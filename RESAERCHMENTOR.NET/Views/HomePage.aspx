@@ -41,7 +41,7 @@
 					<div class="logo-wrap">
 						<a href="researchindex.html">
 							<img class="brand-img" src="dist/img/logo.png" alt="brand"/>
-							<span class="brand-text">Research Gate</span>
+							<span class="brand-text">Research Mentor</span>
 						</a>
 					</div>
 				</div>
@@ -67,12 +67,7 @@
 		</nav>
 		<!-- /Top Menu Items -->
        
-		<!-- Main Content -->
-		<div class="page-wrapper">
-            <div class="container-fluid">
-			
-			
-										<!-- Title -->
+				<!-- Title -->
 				<div class="row heading-bg">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 						<h5 class="txt-dark"></h5>
@@ -97,10 +92,11 @@
                     
                       <div class="wslideinnercontent">
                     <div class="headerdiv">
+                    <h1 class="header">Welcome To Research Mentor</h1>
                       <h2 class="header">Discover scientific knowledge, and make your research visible.</h2>
                     </div>
                           <div class="clearfix"></div><br>
-                          <a  href="Register.aspx"><div class="slidebutton">
+                          <a  href="researchsignup.html"><div class="slidebutton">
                               <span class="slidebuttonbtn">Join for free</span>
                           </div></a>
                           <div class="clearfix"></div><br><br>
@@ -133,12 +129,18 @@
 				<!-- Slide -->
 				
                 
+		<!-- Main Content -->
+		<div class="page-wrapper">
+            <div class="container-fluid">
+			
+			
+                
                 <!-- body1 -->
                 
                 <div class="body1">
                     <div class="body1inner">
                       <div class="body1content">
-                        <span><q class="body1contenttext">Research Gate is changing how scientists share and advance research.</q></span>
+                        <span><q class="body1contenttext">ResearchGate is changing how scientists share and advance research.</q></span>
 			          </div>
 		            </div>
 	            </div>
@@ -149,47 +151,47 @@
                 <div class="body2">
                     <div class="body2inner">
                       <div class="body2content">
-                          <strong><h1 class="read1">Advance your research</h1></strong>
+                          <strong><h1 class="read1">Advance your research</h1></strong><br><br>
                         <div class="clearfix"></div>
                           <div class="body2contentcolumn2">
                               <ul class="left">
-                                  <li><img src="dist/img/big/circle.jpg" alt="image" class="img-circle" width="170"></li>
+                                  <li><img src="dist/img/big/circle1.jpg" alt="image" class="img-circle" width="170"></li>
                                   <li><h4>Read and discuss publications</h4></li>
                                   <li><p>Find the research you need to help your work and join open discussions with the authors and other experts.</p></li>
                               </ul>
                               <ul class="right">
-                                  <li><img src="dist/img/big/circle.jpg" alt="image" class="img-circle" width="170"></li>
+                                  <li><img src="dist/img/big/circle2.jpg" alt="image" class="img-circle" width="170"></li>
                                   <li><h4>Read and discuss publications</h4></li>
                                   <li><p>Find the research you need to help your work and join open discussions with the authors and other experts.</p></li>
                               </ul>
                               <ul class="left">
-                                  <li><img src="dist/img/big/circle.jpg" alt="image" class="img-circle" width="170"></li>
+                                  <li><img src="dist/img/big/circle3.jpg" alt="image" class="img-circle" width="170"></li>
                                   <li><h4>Read and discuss publications</h4></li>
                                   <li><p>Find the research you need to help your work and join open discussions with the authors and other experts.</p></li>
                               </ul>
                               <ul class="right">
-                                  <li><img src="dist/img/big/circle.jpg" alt="image" class="img-circle" width="170"></li>
+                                  <li><img src="dist/img/big/circle4.jpg" alt="image" class="img-circle" width="170"></li>
                                   <li><h4>Read and discuss publications</h4></li>
                                   <li><p>Find the research you need to help your work and join open discussions with the authors and other experts.</p></li>
                               </ul>
                           </div>
-                <div class="clearfix"></div>
-                          <strong><h2 class="read">Advance your research</h2></strong>
+                <div class="clearfix"></div><br><br>
+                          <strong><h2 class="read">What type of researcher are you?</h2></strong><br><br>
                           <div class="body2contentcolumn21">
                               <ul class="left1">
-                                  <li><img src="dist/img/big/circle.jpg" alt="image" class="img-circle" width="170"></li>
+                                  <li><img src="dist/img/big/circle5.jpg" alt="image" class="img-circle" width="170"></li>
                                   <li><h4>Read and discuss publications</h4></li>
                                   <li><p>Find the research you need to help your work and join open discussions with the authors and other experts.</p></li>
                                   <li><button class="btn  btn-info">Join us</button></li>
                               </ul>
                               <ul class="right1">
-                                  <li><img src="dist/img/big/circle.jpg" alt="image" class="img-circle" width="170"></li>
+                                  <li><img src="dist/img/big/circle6.jpg" alt="image" class="img-circle" width="170"></li>
                                   <li><h4>Read and discuss publications</h4></li>
                                   <li><p>Find the research you need to help your work and join open discussions with the authors and other experts.</p></li>
                                   <li><button class="btn  btn-info">Join us</button></li>
                               </ul>
                               <ul class="left1">
-                                  <li><img src="dist/img/big/circle.jpg" alt="image" class="img-circle" width="170"></li>
+                                  <li><img src="dist/img/big/circle7.jpg" alt="image" class="img-circle" width="170"></li>
                                   <li><h4>Read and discuss publications</h4></li>
                                   <li><p>Find the research you need to help your work and join open discussions with the authors and other experts.</p></li>
                                   <li><button class="btn  btn-info">Join us</button></li>
@@ -207,7 +209,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<p><a href="#">News</a><a href="#">About us</a>
-                              <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Copyright</a><a href="#">Careers</a><a href="#">Help Center</a><a href="#">Researchers</a><a href="#">FAQ</a><a href="#">Publications</a><a href="#">Job</a><a href="#">Recruiters</a><a href="#">Advertisers</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">2017 &copy; ResearchGate. Pampered by MEIS007</a></p> 
+                              <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Copyright</a><a href="#">Careers</a><a href="#">Help Center</a><a href="#">Researchers</a><a href="#">FAQ</a><a href="#">Publications</a><a href="#">Job</a><a href="#">Recruiters</a><a href="#">Advertisers</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">2018 &copy; ResearchMentor All rights reserved</a></p> 
 						</div>
 					</div>
 				</footer>

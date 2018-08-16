@@ -117,12 +117,7 @@
 							<li>
 								<div class="app-nicescroll-bar">
 									<ul class="app-icon-wrap pa-10">
-										<li>
-											<a href="researchweather.html" class="connection-item">
-											<i class="zmdi zmdi-cloud-outline txt-info"></i>
-											<span class="block">weather</span>
-											</a>
-										</li>
+										
 										<li>
 											<a href="researchinbox.html" class="connection-item">
 											<i class="zmdi zmdi-email-open txt-success"></i>
@@ -135,18 +130,7 @@
 											<span class="block">calendar</span>
 											</a>
 										</li>
-										<li>
-											<a href="researchvectormap.html" class="connection-item">
-											<i class="zmdi zmdi-map txt-danger"></i>
-											<span class="block">map</span>
-											</a>
-										</li>
-										<li>
-											<a href="researchchats.html" class="connection-item">
-											<i class="zmdi zmdi-comment-outline txt-warning"></i>
-											<span class="block">chat</span>
-											</a>
-										</li>
+										
 										<li>
 											<a href="researchcontactcard.html" class="connection-item">
 											<i class="zmdi zmdi-assignment-account"></i>

@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*------------------------------------------------------------------
 [Master Stylesheet]
 Project:	Jetson
@@ -3097,7 +3097,7 @@ a#toggle_mobile_nav {
 .heading-bg {
     background-color: #fff;
   height: 67px;
-  margin: 0 -20px 10px;
+  margin: 50px -20px 10px;
   padding: 13px 0; }
   .heading-bg h5 {
     padding-top: 6px; }
@@ -3134,6 +3134,7 @@ footer {
   bottom: 0;
   width: 100%;
   height: 40px;
+  margin-top:20px;
   left: 0; }
   footer p {
     display: block;
@@ -7385,15 +7386,14 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
      height:auto;
     border: ;
 }
-.wslideinnercontent{
+.wslideinnercontent {
     position: relative;
-    margin:auto;
-    max-width:1300px;
-    height:350px;
-    border: ;
-    background: #f4f4f4;
+    margin: auto;
+    max-width: 100%;
+    height: 480px;
+    border:;
+    background: url('../img/Untitled.png') left top repeat-x #f4f4f4;
     box-shadow: 1px 3px 3px 0px #ccc;
-
 }
 
 .headerdiv{
@@ -7413,6 +7413,15 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     padding-top: 70px;
    
 }
+.headerdiv h1{
+    text-align: center;
+    font-family: "Roboto",Arial,sans-serif;
+    color: #0cb;
+    max-width:1000px;
+    padding-top: 70px;
+   
+}
+
 
 .slidebutton {
     max-width:720px;
@@ -7619,30 +7628,40 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     border:;
 }
 .body2contentcolumn2 .left{
-    padding: 20px;
+    padding: 40px;
     margin-top: 12px;
     float:left;
     max-width:468px;
     background: #f4f4f4;
     color:#0cb;
     border-radius: 5px;
+	padding-bottom:70px;
 }
+
+.body2contentcolumn2 .left li img, .body2contentcolumn2 .right li img{ margin-bottom:20px; margin-top:30px;}
+
+.body2contentcolumn2 .left li, .body2contentcolumn2 .right li{ margin-bottom:10px;}
 .body2contentcolumn2 .right{
-    padding: 20px;
+    padding: 40px;
     margin-top: 12px;
     float:right;
     max-width:468px;
      background: #f4f4f4;
     color:#0cb;
     border-radius: 5px;
+	padding-bottom:70px;
 }
 
 .read1{
     margin-top: 0px;
     color:#0cb;
+	font-weight:lighter;
+	font-style:italic;
 }.read{
     margin-top: 30px;
     color:#0cb;
+	font-weight:lighter;
+	font-style:italic;
 }
 
 
@@ -7661,10 +7680,15 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     margin-bottom: 20px;
     float:left;
     max-width:310px;
-    background: #f4f4f4;
+    background: #fff;
     color:#0cb;
     border-radius: 5px;
+	padding-bottom:70px;
 }
+
+.body2contentcolumn21 .left1 li img, .body2contentcolumn21 .right1 li img{ margin-top:30px; margin-bottom:30px;}
+.body2contentcolumn21 .left1 li, .body2contentcolumn21 .right1 li{ margin-bottom:10px;}
+.body2contentcolumn21 .left1 li button, .body2contentcolumn21 .right1 li button{ margin-bottom:20px; margin-top:20px;}
 .body2contentcolumn21 .right1{
     padding: 20px;
     margin-left:5px;
@@ -7675,6 +7699,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
      background: #f4f4f4;
     color:#0cb;
     border-radius: 5px;
+	padding-bottom:70px;
 }
 
 .col-sm-12 p a{
