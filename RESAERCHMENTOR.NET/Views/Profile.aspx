@@ -77,6 +77,8 @@
 </head>
 
 <body>
+	<p>
+&nbsp;</p>
 	<!--Preloader-->
 	<div class="preloader-it">
 		<div class="la-anim-1"></div>
@@ -1187,10 +1189,25 @@
 <%--																						<form action="#" runat="server">--%>
 																							<div class="form-body overflow-hide">
 																								<div class="form-group">
-																									<label class="control-label mb-10" for="exampleInputuname_1">Name</label>
+																									<label class="control-label mb-10" for="exampleInputuname_1">First Name</label>
 																									<div class="input-group">
 																										<div class="input-group-addon"><i class="icon-user"></i></div>
-																										<input type="text" runat="server" required ="required" class="form-control" id="FName" placeholder="willard bryant">
+																										<input type="text" class="form-control" runat="server" id="FirstName" placeholder="willard" required>
+																									</div>
+																								</div>
+                                                                                                
+                                                                                                <div class="form-group">
+																									<label class="control-label mb-10" for="exampleInputuname_1">Last Name</label>
+																									<div class="input-group">
+																										<div class="input-group-addon"><i class="icon-user"></i></div>
+																										<input type="text" class="form-control" runat="server" id="LastName" placeholder="bryant" required>
+																									</div>
+																								</div>
+                                                                                                <div class="form-group">
+																									<label class="control-label mb-10" for="exampleInputuname_1">Degree</label>
+																									<div class="input-group">
+																										<div class="input-group-addon"><i class="icon-user"></i></div>
+																										<input type="text" class="form-control" runat="server" id="degree" placeholder="MBBS, FWACP">
 																									</div>
 																								</div>
 																								<div class="form-group">
@@ -1204,16 +1221,30 @@
 																									<label class="control-label mb-10" for="exampleInputContact_1">Contact number</label>
 																									<div class="input-group">
 																										<div class="input-group-addon"><i class="icon-phone"></i></div>
-																										<input type="email" class="form-control" runat="server" required ="required" id="CNumber" placeholder="+102 9388333">
+																										<input type="text" class="form-control" runat="server" required ="required" id="CNumber" placeholder="+102 9388333">
 																									</div>
 																								</div>
-																								<div class="form-group">
-																									<label class="control-label mb-10" for="exampleInputpwd_1">Password</label>
-																									<div class="input-group">
-																										<div class="input-group-addon"><i class="icon-lock"></i></div>
-																										<input type="password" runat="server" required ="required" class="form-control" id="Password" placeholder="Enter pwd" value="password">
-																									</div>
-																								</div>
+																							<div class="form-group">
+	<label class="control-label mb-10">Date of Birth</label><br>
+	<select class="form-control col-lg-3 pull-left ma-5" runat="server" data-placeholder="Day" style="width:30%" id="bday">
+	<option value="day">Day</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	</select>
+    <select class="form-control col-lg-3 pull-left ma-5" runat="server" data-placeholder="Month" style="width:30%" id="bmonth">
+	<option value="month">Month</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	</select>
+    <select class="form-control col-lg-3 pull-left ma-5" runat="server" data-placeholder="year" style="width:30%" id="byear">
+	<option value="year">Year</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	</select>
+	</div> <br /><br />	
 																								<div class="form-group">
 																									<label class="control-label mb-10">Gender</label>
 																									<div>
@@ -1254,10 +1285,10 @@
 																</div>
 															</div>
 														</div>
-														<div class="modal-footer">
+														<!--div class="modal-footer">
 															<button type="button" class="btn btn-success waves-effect" data-dismiss="modal">Save</button>
 															<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
-														</div>
+														</div-->
 													</div>
 													<!-- /.modal-content -->
 												</div>
@@ -1277,10 +1308,10 @@
 										<ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
 											<li class="active" role="presentation"><a  data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>Researches</span></a></li>
 											<li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>followers<span class="inline-block">(246)</span></span></a></li>
-											<li role="presentation" class=""><a  data-toggle="tab" id="photos_tab_8" role="tab" href="#photos_8" aria-expanded="false"><span>photos</span></a></li>
+											
 											<li role="presentation" class=""><a  data-toggle="tab" id="earning_tab_8" role="tab" href="#earnings_8" aria-expanded="false"><span>Timeline</span></a></li>
 											<li role="presentation" class=""><a  data-toggle="tab" id="settings_tab_8" role="tab" href="#settings_8" aria-expanded="false"><span>settings</span></a></li>
-                                            <li role="presentation" class=""><a  data-toggle="tab" id="filemanager_tab_8" role="tab" href="#filemanager_8" aria-expanded="false"><span>File Manager</span></a></li>
+                                            
 											<li class="dropdown" role="presentation">
 												<a  data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false"><span>More</span> <span class="caret"></span></a>
 												<ul id="myTabDrop_7_contents"  class="dropdown-menu">
@@ -1720,33 +1751,49 @@
 <%--																			<form action="#">--%>
 																				<div class="form-body overflow-hide">
 																					<div class="form-group">
-																						<label class="control-label mb-10" for="exampleInputuname_01">Name</label>
+																						<label class="control-label mb-10" for="exampleInputuname_01">First Name</label>
 																						<div class="input-group">
 																							<div class="input-group-addon"><i class="icon-user"></i></div>
-																							<input type="text" runat="server" required ="required" class="form-control" id="FName2" placeholder="willard bryant">
+																							<input type="text" runat="server" required ="required" class="form-control" id="first_name2" placeholder="willard" readonly>
+																						</div>
+																					</div>
+                                                                                    <div class="form-group">
+																						<label class="control-label mb-10" for="exampleInputuname_01">Last Name</label>
+																						<div class="input-group">
+																							<div class="input-group-addon"><i class="icon-user"></i></div>
+																							<input type="text" runat="server" required ="required" class="form-control" id="last_name2" placeholder="bryant" readonly>
+																						</div>
+																					</div>
+                                                                                    <div class="form-group">
+																						<label class="control-label mb-10" for="exampleInputuname_01">Degree</label>
+																						<div class="input-group">
+																							<div class="input-group-addon"><i class="icon-user"></i></div>
+																							<input type="text" runat="server" required ="required" class="form-control" id="degree2" placeholder="willard bryant" readonly>
 																						</div>
 																					</div>
 																					<div class="form-group">
 																						<label class="control-label mb-10" for="exampleInputEmail_01">Email address</label>
 																						<div class="input-group">
 																							<div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-																							<input type="email" runat="server" required ="required" class="form-control" id="Email2" placeholder="xyz@gmail.com">
+																							<input type="email" runat="server" required ="required" class="form-control" id="Email2" placeholder="xyz@gmail.com" readonly>
 																						</div>
 																					</div>
+
 																					<div class="form-group">
 																						<label class="control-label mb-10" for="exampleInputContact_01">Contact number</label>
 																						<div class="input-group">
 																							<div class="input-group-addon"><i class="icon-phone"></i></div>
-																							<input type="email" runat="server" required ="required" class="form-control" id="CNumber2" placeholder="+102 9388333">
+																							<input type="email" runat="server" required ="required" class="form-control" id="CNumber2" placeholder="+102 9388333" readonly>
 																						</div>
 																					</div>
 																					<div class="form-group">
-																						<label class="control-label mb-10" for="exampleInputpwd_01">Password</label>
-																						<div class="input-group">
-																							<div class="input-group-addon"><i class="icon-lock"></i></div>
-																							<input type="password" runat="server" required ="required" class="form-control" id="Password2" placeholder="Enter pwd" value="password">
-																						</div>
-																					</div>
+	<label class="control-label mb-10">Date of Birth</label><br>
+	<input class="form-control col-lg-3 pull-left ma-5" data-placeholder="Day" style="width:30%" id="bday2" placeholder="day" readonly>	
+    <input class="form-control col-lg-3 pull-left ma-5" data-placeholder="Month" style="width:30%" id="bmonth2" placeholder="month" readonly>
+    <input class="form-control col-lg-3 pull-left ma-5" data-placeholder="year" style="width:30%" id="byear2" placeholder="year" readonly>
+	
+	</div>
+                                                                                    <br /><br />
 																					<div class="form-group">
 																						<label class="control-label mb-10">Gender</label>
 																						<div>
@@ -1775,7 +1822,7 @@
 																					</div>
 																				</div>
 																				<div class="form-actions mt-10">			
-																					<button type="submit" runat="server"  OnClientClick="UpdateProfile2_Click" class="btn btn-success mr-10 mb-30">Update profile</button>
+																					
 																				</div>				
 <%--																			</form>--%>
 																		</div>
@@ -1788,378 +1835,7 @@
 											</div>
                                             
                                             
-                                            <div  id="filemanager_8" class="tab-pane fade" role="tabpanel">
-												<!-- Row -->
-												<div class="row">
-													
-                                                    	<div class="col-md-12">
-							<div class="panel panel-default card-view pa-0">
-								<div class="panel-wrapper collapse in">
-									<div class="panel-body pa-0">
-										<div class="">
-											<div class="col-lg-3 col-md-4 file-directory pa-0">
-												<div class="ibox float-e-margins">
-													<div class="ibox-content">
-														<div class="file-manager">
-															<div class="mt-20 mb-20 ml-15 mr-15">
-																<div class="fileupload btn btn-success btn-anim btn-block"><i class="fa fa-upload"></i><span class="btn-text">Upload files</span>
-																	<input type="file" class="upload">
-																</div>
-															</div>
-															<div class="pl-15 mb-30">
-																<a href="#" class="file-control active">All</a>
-																<a href="#" class="file-control">Documents</a>
-																<a href="#" class="file-control">Audio</a>
-																<a href="#" class="file-control">Images</a>
-															</div>	
-															
-															<h6 class="mb-10 pl-15">Folders</h6>
-															<ul class="folder-list mb-30">
-																<li class="active"><a href=""><i class="zmdi zmdi-folder"></i> Files</a></li>
-																<li><a href=""><i class="zmdi zmdi-folder"></i> Pictures</a></li>
-																<li><a href=""><i class="zmdi zmdi-folder"></i> Web pages</a></li>
-																<li><a href=""><i class="zmdi zmdi-folder"></i> Illustrations</a></li>
-																<li><a href=""><i class="zmdi zmdi-folder"></i> Films</a></li>
-																<li><a href=""><i class="zmdi zmdi-folder"></i> Books</a></li>
-															</ul>
-															<h6 class="pl-15 mb-10">Tags</h6>
-															<ul class="tag-list pl-15 pr-15">
-																<li><a href="">Family</a></li>
-																<li><a href="">Work</a></li>
-																<li><a href="">Home</a></li>
-																<li><a href="">Children</a></li>
-																<li><a href="">Holidays</a></li>
-																<li><a href="">Music</a></li>
-																<li><a href="">Photography</a></li>
-																<li><a href="">Film</a></li>
-															</ul>
-															<div class="clearfix"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-lg-9 col-md-8 file-sec pt-20">
-												<div class="row">
-													<div class="col-lg-12">
-														<div class="row">
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="icon">
-																			<i class="zmdi zmdi-file-text"></i>
-																		</div>
-																		<div class="file-name">
-																			Document_2016.doc
-																			<br>
-																			<span>Added: Jan 11, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="image" style="background-image:url(dist/img/gallery/mock1.jpg)">
-																		</div>
-																		<div class="file-name">
-																			Italy street.jpg
-																			<br>
-																			<span>Added: Jan 6, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="image" style="background-image:url(dist/img/gallery/mock2.jpg)">
-																		</div>
-																		<div class="file-name">
-																			My feel.png
-																			<br>
-																			<span>Added: Jan 7, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="icon">
-																			<i class="zmdi zmdi-collection-music"></i>
-																		</div>
-																		<div class="file-name">
-																			Michal Jackson.mp3
-																			<br>
-																			<span>Added: Jan 22, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="image" style="background-image:url(dist/img/gallery/mock3.jpg)">
-																		</div>
-																		<div class="file-name">
-																			Document_2016.doc
-																			<br>
-																			<span>Added: Fab 11, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="icon">
-																			<i class="img-responsive zmdi zmdi-collection-video"></i>
-																		</div>
-																		<div class="file-name">
-																			Monica's birthday.mpg4
-																			<br>
-																			<span>Added: Fab 18, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<a href="#">
-																	<div class="file">
-																		
-																		<div class="icon">
-																			<i class="zmdi zmdi-chart"></i>
-																		</div>
-																		<div class="file-name">
-																			Annual report 2016.xls
-																			<br>
-																			<span>Added: Fab 22, 2016</span>
-																		</div>
-																	</div>
-																</a>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="icon">
-																			<i class="zmdi zmdi-file-text"></i>
-																		</div>
-																		<div class="file-name">
-																			Document_2016.doc
-																			<br>
-																			<span>Added: Jan 11, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="image" style="background-image:url(dist/img/gallery/equal-size/mock6.jpg)">
-																		</div>
-																		<div class="file-name">
-																			Italy street.jpg
-																			<br>
-																			<span>Added: Jan 6, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="image" style="background-image:url(dist/img/gallery/equal-size/mock3.jpg)">
-																		</div>
-																		<div class="file-name">
-																			My feel.png
-																			<br>
-																			<span>Added: Jan 7, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="icon">
-																			<i class="zmdi zmdi-collection-music"></i>
-																		</div>
-																		<div class="file-name">
-																			Michal Jackson.mp3
-																			<br>
-																			<span>Added: Jan 22, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="image" style="background-image:url(dist/img/gallery/equal-size/mock2.jpg)">
-																		</div>
-																		<div class="file-name">
-																			Document_2016.doc
-																			<br>
-																			<span>Added: Fab 11, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="icon">
-																			<i class="img-responsive zmdi zmdi-collection-video"></i>
-																		</div>
-																		<div class="file-name">
-																			Monica's birthday.mpg4
-																			<br>
-																			<span>Added: Fab 18, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<a href="#">
-																	<div class="file">
-																		
-																		<div class="icon">
-																			<i class="zmdi zmdi-chart"></i>
-																		</div>
-																		<div class="file-name">
-																			Annual report 2016.xls
-																			<br>
-																			<span>Added: Fab 22, 2016</span>
-																		</div>
-																	</div>
-																</a>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="icon">
-																			<i class="zmdi zmdi-file-text"></i>
-																		</div>
-																		<div class="file-name">
-																			Document_2016.doc
-																			<br>
-																			<span>Added: Jan 11, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="image" style="background-image:url(dist/img/gallery/mock6.jpg)">
-																		</div>
-																		<div class="file-name">
-																			Italy street.jpg
-																			<br>
-																			<span>Added: Jan 6, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="image" style="background-image:url(dist/img/gallery/equal-size/mock5.jpg)">
-																		</div>
-																		<div class="file-name">
-																			My feel.png
-																			<br>
-																			<span>Added: Jan 7, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="icon">
-																			<i class="zmdi zmdi-collection-music"></i>
-																		</div>
-																		<div class="file-name">
-																			Michal Jackson.mp3
-																			<br>
-																			<span>Added: Jan 22, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="image" style="background-image:url(dist/img/gallery/equal-size/mock4.jpg)">
-																		</div>
-																		<div class="file-name">
-																			Document_2016.doc
-																			<br>
-																			<span>Added: Fab 11, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<div class="file">
-																	<a href="#">
-																		
-																		<div class="icon">
-																			<i class="img-responsive zmdi zmdi-collection-video"></i>
-																		</div>
-																		<div class="file-name">
-																			Monica's birthday.mpg4
-																			<br>
-																			<span>Added: Fab 18, 2016</span>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box">
-																<a href="#">
-																	<div class="file">
-																		
-																		<div class="icon">
-																			<i class="zmdi zmdi-chart"></i>
-																		</div>
-																		<div class="file-name">
-																			Annual report 2016.xls
-																			<br>
-																			<span>Added: Fab 22, 2016</span>
-																		</div>
-																	</div>
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-                                                    
-												</div>
-											</div>
+                                            
                                             
                                             
 										</div>

@@ -13,13 +13,31 @@ namespace RESAERCHMENTOR.NET.Views {
     public partial class Profile {
         
         /// <summary>
-        /// FName control.
+        /// FirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText FName;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText FirstName;
+        
+        /// <summary>
+        /// LastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText LastName;
+        
+        /// <summary>
+        /// degree control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText degree;
         
         /// <summary>
         /// Email control.
@@ -37,16 +55,34 @@ namespace RESAERCHMENTOR.NET.Views {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CNumber;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText CNumber;
         
         /// <summary>
-        /// Password control.
+        /// bday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect bday;
+        
+        /// <summary>
+        /// bmonth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect bmonth;
+        
+        /// <summary>
+        /// byear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect byear;
         
         /// <summary>
         /// Gender1 control.
@@ -85,13 +121,31 @@ namespace RESAERCHMENTOR.NET.Views {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// FName2 control.
+        /// first_name2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText FName2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText first_name2;
+        
+        /// <summary>
+        /// last_name2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText last_name2;
+        
+        /// <summary>
+        /// degree2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText degree2;
         
         /// <summary>
         /// Email2 control.
@@ -110,15 +164,6 @@ namespace RESAERCHMENTOR.NET.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CNumber2;
-        
-        /// <summary>
-        /// Password2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password2;
         
         /// <summary>
         /// Country2 control.

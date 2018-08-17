@@ -45,43 +45,23 @@
 						</a>
 					</div>
 				</div>
-				<a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>
-				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
-				<form id="search_form" runat ="server" role="search" class="top-nav-search collapse pull-left">
-					<div class="input-group">
-						<input type="text" name="example-input1-group2" class="form-control" placeholder="Search">
-						<span class="input-group-btn">
-						<button type="button" class="btn  btn-default"  data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
-						</span>
-					</div>
-                </form>
+				
 				
 			</div>
-			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+
+            <div>
 				<ul class="nav navbar-right top-nav pull-right">
-					<li>
-<%--						<a id="open_right_sidebar" href="#"><i class="zmdi zmdi-apps top-nav-icon"></i></a>--%>
-					</li>
+					<li  class="active"><a href="HomePage.aspx">Research</a></li>
+                       		<li  class="active"><a href="Register.aspx">Sign Up</a></li>
+							<li  class="active"><a href="Login.aspx">Log In</a></li>
 				</ul>
 			</div>	
+				
 		</nav>
 		<!-- /Top Menu Items -->
        
 				<!-- Title -->
-				<div class="row heading-bg">
-					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-						<h5 class="txt-dark"></h5>
-					</div>
-					<!-- Breadcrumb -->
-					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-						<ol class="breadcrumb">
-							<li  class="active"><a href="HomePage.aspx">Research</a></li>
-                       		<li  class="active"><a href="Register.aspx">Sign Up</a></li>
-							<li  class="active"><a href="Login.aspx">Log In</a></li>
-						</ol>
-					</div>
-					<!-- /Breadcrumb -->
-				</div>
+				
 				<!-- /Title -->
 				
 				<!-- Slide -->

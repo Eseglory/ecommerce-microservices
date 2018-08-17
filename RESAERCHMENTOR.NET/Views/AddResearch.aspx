@@ -790,9 +790,13 @@
 												<!--/row-->
 												<div class="seprator-block"></div>
 												<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>upload File</h6>
+                                                
 												<hr class="light-grey-hr"/>
 													<div class="col-lg-12">
-                                                            <asp:FileUpload ID="FileUpload1"  required="required" runat="server" />
+                                                        <div class="fileupload btn btn-info btn-anim"><i class="fa fa-upload"></i><span class="btn-text">Upload from PC</span>
+														 <asp:FileUpload ID="FileUpload1" class="upload"  required="required" runat="server" />
+												</div>
+                                                            
                                                         <!-- Button trigger modal -->                                                        
                                                         <div class="panel-body">
 										<!-- sample modal content -->

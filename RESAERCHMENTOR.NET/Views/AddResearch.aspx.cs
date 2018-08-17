@@ -46,10 +46,11 @@ namespace RESAERCHMENTOR.NET.Views
                         FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Images/") + fileName);                        
                         byte[] myFile = FileUpload1.FileBytes;
                         string userName = Context.User.Identity.GetUserName();
+                        string creationDate = DateTime.Now.ToShortDateString();
                         string RStatus = "";
                         if (RStatus1.Checked) { RStatus = "Published"; }
                         else { RStatus = "Draft"; }
-                        var cmd = new SqlCommand("Insert into Research(Title, SubTitle, AuthorName, RType, Status, Description, FileName, OwnersId, DateCreated) values('"+ ReTitle.Value +"', '" + ReSubTitle.Value + "', '" + ReAuthorName.Value + "', '" + ReType1.Value + "', '" + RStatus + "', '" + ReDescription.Value + "', '" + fileName + "', '" + userName + "', '" + DateTime.Now + "')", conAm);
+                        var cmd = new SqlCommand("Insert into Research(Title, SubTitle, AuthorName, RType, Status, Description, FileName, OwnersId, DateCreated) values('"+ ReTitle.Value +"', '" + ReSubTitle.Value + "', '" + ReAuthorName.Value + "', '" + ReType1.Value + "', '" + RStatus + "', '" + ReDescription.Value + "', '" + fileName + "', '" + userName + "', '" + creationDate + "')", conAm);
                         row = cmd.ExecuteNonQuery();
                         SuccessMessage.Text = "Record was inserted successfully inserted..!";
                         Response.Redirect("SuccessPage.aspx");
