@@ -186,6 +186,8 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="App_Data\profile.sql" />
+    <Content Include="App_Data\researchtable.sql" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -4616,7 +4618,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\vendors\bower_components\pdfmake\libs\FileSaver.js\" />
   </ItemGroup>
   <ItemGroup>
