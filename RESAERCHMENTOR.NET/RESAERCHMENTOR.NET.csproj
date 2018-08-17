@@ -186,8 +186,16 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="App_Data\appNetRoles.sql" />
+    <Content Include="App_Data\aspNetUserClaims.sql" />
+    <Content Include="App_Data\aspNetUserLogins.sql" />
+    <Content Include="App_Data\aspNetUserRoles.sql" />
+    <Content Include="App_Data\aspNetUsers.sql" />
+    <Content Include="App_Data\dbo.ResearchType.sql" />
+    <Content Include="App_Data\migration_history.sql" />
     <Content Include="App_Data\profile.sql" />
     <Content Include="App_Data\researchtable.sql" />
+    <Content Include="App_Data\ResearchType.sql" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
