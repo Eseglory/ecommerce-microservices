@@ -1108,7 +1108,6 @@
 		
 
         <!-- Main Content -->
-		<form action="#" runat="server">
 		<div class="page-wrapper">
             <div class="container-fluid pt-25">
 					<!-- Title -->
@@ -1188,6 +1187,16 @@
 																					<div class="form-wrap">
 <%--																						<form action="#" runat="server">--%>
 																							<div class="form-body overflow-hide">
+                                                                                                																								<div class="form-group">
+																									<label class="control-label mb-10">Title</label>
+																									<select class="form-control" runat="server" id="Rtitle" data-placeholder="Choose a Category" tabindex="1">
+																										<option value="Prof.">Prof.</option>
+																										<option value="Dr.">Dr.</option>
+																										<option value="Mr.">Mr.</option>
+																										<option value="Mrs.">Mrs.</option>
+																									</select>
+																								</div>
+
 																								<div class="form-group">
 																									<label class="control-label mb-10" for="exampleInputuname_1">First Name</label>
 																									<div class="input-group">
@@ -1214,7 +1223,7 @@
 																									<label class="control-label mb-10" for="exampleInputEmail_1">Email address</label>
 																									<div class="input-group">
 																										<div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-																										<input type="email" class="form-control" runat="server" required ="required" id="Email" placeholder="xyz@gmail.com">
+																										<input type="email" class="form-control" runat="server" required ="required" readonly ="readonly" id="Email" placeholder="xyz@gmail.com">
 																									</div>
 																								</div>
 																								<div class="form-group">
@@ -1224,27 +1233,13 @@
 																										<input type="text" class="form-control" runat="server" required ="required" id="CNumber" placeholder="+102 9388333">
 																									</div>
 																								</div>
-																							<div class="form-group">
-	<label class="control-label mb-10">Date of Birth</label><br>
-	<select class="form-control col-lg-3 pull-left ma-5" runat="server" data-placeholder="Day" style="width:30%" id="bday">
-	<option value="day">Day</option>
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	</select>
-    <select class="form-control col-lg-3 pull-left ma-5" runat="server" data-placeholder="Month" style="width:30%" id="bmonth">
-	<option value="month">Month</option>
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	</select>
-    <select class="form-control col-lg-3 pull-left ma-5" runat="server" data-placeholder="year" style="width:30%" id="byear">
-	<option value="year">Year</option>
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	</select>
-	</div> <br /><br />	
+																								<div class="form-group">
+																									<label class="control-label mb-10" for="exampleInputContact_1">Date Of Birth number</label>
+																									<div class="input-group">
+																										<div class="input-group-addon"><i class="icon-phone"></i></div>
+																										<input type="text" class="form-control" runat="server" required ="required" id="BDate" placeholder="16/12/1986">
+																									</div>
+																								</div>
 																								<div class="form-group">
 																									<label class="control-label mb-10">Gender</label>
 																									<div>
@@ -1274,7 +1269,7 @@
 																							</div>
 																							<div class="form-actions mt-10">
 <%--                                                      <asp:Button ID="insert_research" runat="server" OnClick="AddResearch_Click" Text="save" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="AddResearch_Click"/>--%>
-																								<button type="submit" runat="server"  OnClientClick="UpdateProfile_Click" class="btn btn-success mr-10 mb-30">Update profile</button>
+																								<button type="submit" id="UpdateProfile" runat="server" OnClientClick="UpdateProfile_Click" class="btn btn-success mr-10 mb-30">Update profile</button>
 																							</div>				
 <%--																						</form>--%>
 																					</div>
@@ -1307,8 +1302,8 @@
 									<div  class="tab-struct custom-tab-1">
 										<ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
 											<li class="active" role="presentation"><a  data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>Researches</span></a></li>
-											<li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>followers<span class="inline-block">(246)</span></span></a></li>
-											
+											<li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>follow<span class="inline-block">(<asp:Label ID="LabelFollow" runat="server" Text="Label"></asp:Label>)</span></span></a></li>
+											<li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="folloing_tab_8" href="#folloing_8"><span>following<span class="inline-block">(<asp:Label ID="LabelFollowing" runat="server" Text="Label"></asp:Label>)</span></span></a></li>
 											<li role="presentation" class=""><a  data-toggle="tab" id="earning_tab_8" role="tab" href="#earnings_8" aria-expanded="false"><span>Timeline</span></a></li>
 											<li role="presentation" class=""><a  data-toggle="tab" id="settings_tab_8" role="tab" href="#settings_8" aria-expanded="false"><span>settings</span></a></li>
                                             
@@ -1323,6 +1318,7 @@
 											</li>
 										</ul>
 										<div class="tab-content" id="myTabContent_8">
+		<form action="#" runat="server">
 											<div  id="profile_8" class="tab-pane fade active in" role="tabpanel">
 												<div class="col-md-12">
 													<div class="pt-20">
@@ -1403,60 +1399,20 @@
 															<ul class="followers-list-wrap">
 																<li class="follow-list">
 																	<div class="follo-body">
-																		<div class="follo-data">
-																			<img class="user-img img-circle"  src="dist/img/user.png" alt="user"/>
-																			<div class="user-data">
-																				<span class="name block capitalize-font">Clay Masse</span>
-																				<span class="time block truncate txt-grey">No one saves us but ourselves.</span>
-																			</div>
-																			<button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
-																			<div class="clearfix"></div>
-																		</div>
-																		<div class="follo-data">
-																			<img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
-																			<div class="user-data">
-																				<span class="name block capitalize-font">Evie Ono</span>
-																				<span class="time block truncate txt-grey">Unity is strength</span>
-																			</div>
-																			<button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
-																			<div class="clearfix"></div>
-																		</div>
-																		<div class="follo-data">
-																			<img class="user-img img-circle"  src="dist/img/user2.png" alt="user"/>
-																			<div class="user-data">
-																				<span class="name block capitalize-font">Madalyn Rascon</span>
-																				<span class="time block truncate txt-grey">Respect yourself if you would have others respect you.</span>
-																			</div>
-																			<button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
-																			<div class="clearfix"></div>
-																		</div>
-																		<div class="follo-data">
-																			<img class="user-img img-circle"  src="dist/img/user3.png" alt="user"/>
-																			<div class="user-data">
-																				<span class="name block capitalize-font">Mitsuko Heid</span>
-																				<span class="time block truncate txt-grey">I’m thankful.</span>
-																			</div>
-																			<button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
-																			<div class="clearfix"></div>
-																		</div>
-																		<div class="follo-data">
-																			<img class="user-img img-circle"  src="dist/img/user.png" alt="user"/>
-																			<div class="user-data">
-																				<span class="name block capitalize-font">Ezequiel Merideth</span>
-																				<span class="time block truncate txt-grey">Patience is bitter.</span>
-																			</div>
-																			<button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
-																			<div class="clearfix"></div>
-																		</div>
-																		<div class="follo-data">
-																			<img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
-																			<div class="user-data">
-																				<span class="name block capitalize-font">Jonnie Metoyer</span>
-																				<span class="time block truncate txt-grey">Genius is eternal patience.</span>
-																			</div>
-																			<button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
-																			<div class="clearfix"></div>
-																		</div>
+                                                                            <%foreach (var item in GetFellowByLoginList()){%>
+												        						<div class="follo-data">
+																			        <img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
+																			        <div class="user-data">
+                                                                                        <%string passFid = item.OwnersId;
+                                                                                            if (passFid != string.Empty) { Session["passFid"] = passFid; }%>
+                                                                                         <span class="name block capitalize-font"><% HttpContext.Current.Response.Write(item.Title + " " + item.LName + " " + item.FName);%></span>	
+																				        <span class="time block truncate txt-grey"><% HttpContext.Current.Response.Write(item.OwnersId);%></span>
+																			        </div>
+                                                                                   <asp:Button ID="FollowB" runat="server" OnClick="Follow_Click" class="btn btn-success pull-right btn-xs fixed-btn" Text ="Following" CommandArgument = '<%#Eval("passFid")%>' />
+                                                                                     <div class="clearfix"></div>
+																		        </div>
+                                                                                <%}%>
+
 																	</div>
 																</li>
 															</ul>
@@ -1464,6 +1420,37 @@
 													</div>
 												</div>
 											</div>
+
+											<div  id="folloing_8" class="tab-pane fade" role="tabpanel">
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="followers-wrap">
+															<ul class="followers-list-wrap">
+																<li class="follow-list">
+																	<div class="follo-body">
+                                                                            <%foreach (var item in GetFollowingByLogin()){%>
+												        						<div class="follo-data">
+																			        <img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
+																			        <div class="user-data">
+                                                                                        <%string passFid = item.Following;
+                                                                                            if (passFid != string.Empty) { Session["passFid"] = passFid; }%>
+                                                                                         <span class="name block capitalize-font"><% HttpContext.Current.Response.Write(item.Title + " " + item.LName + " " + item.FName);%></span>	
+																				        <span class="time block truncate txt-grey"><% HttpContext.Current.Response.Write(item.OwnersId);%></span>
+																			        </div>
+                                                                                   <asp:Button ID="Button1" runat="server" OnClick="UnFollow_Click" class="btn btn-success btn-outline pull-right btn-xs fixed-btn" Text ="Un-Follow" CommandArgument = '<%#Eval("passFid")%>' />
+                                                                                     <div class="clearfix"></div>
+																		        </div>
+                                                                                <%}%>
+
+																	</div>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+        </form>
+
 											<div  id="photos_8" class="tab-pane fade" role="tabpanel">
 												<div class="col-md-12 pb-20">
 													<div class="gallery-wrap">
@@ -1748,7 +1735,6 @@
 																<div class="panel-body pa-0">
 																	<div class="col-sm-12 col-xs-12">
 																		<div class="form-wrap">
-<%--																			<form action="#">--%>
 																				<div class="form-body overflow-hide">
 																					<div class="form-group">
 																						<label class="control-label mb-10" for="exampleInputuname_01">First Name</label>
@@ -1824,7 +1810,6 @@
 																				<div class="form-actions mt-10">			
 																					
 																				</div>				
-<%--																			</form>--%>
 																		</div>
 																	</div>
 																</div>
@@ -2233,7 +2218,6 @@
 			
 			
 		</div>
-            </form>
         <!-- /Main Content -->
 
     </div>

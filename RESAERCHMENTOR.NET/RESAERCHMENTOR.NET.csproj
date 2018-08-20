@@ -246,6 +246,14 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\AddResearch.aspx" />
+    <Content Include="Views\dist\img\big\circle1.jpg" />
+    <Content Include="Views\dist\img\big\circle2.jpg" />
+    <Content Include="Views\dist\img\big\circle3.jpg" />
+    <Content Include="Views\dist\img\big\circle4.jpg" />
+    <Content Include="Views\dist\img\big\circle5.jpg" />
+    <Content Include="Views\dist\img\big\circle6.jpg" />
+    <Content Include="Views\dist\img\big\circle7.jpg" />
+    <Content Include="Views\dist\img\successbutton.jpg" />
     <Content Include="Views\Manage.aspx" />
     <Content Include="Views\Confirm.aspx" />
     <Content Include="Views\dist\css\animate.css" />

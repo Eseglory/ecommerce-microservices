@@ -10,6 +10,8 @@ using System.Configuration;
 using System.IO;
 using Microsoft.AspNet.Identity;
 using System.Data;
+using RESAERCHMENTOR.NET.Models.Entities;
+using System.Data.Common;
 
 namespace RESAERCHMENTOR.NET.Views
 {
@@ -17,9 +19,16 @@ namespace RESAERCHMENTOR.NET.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int CFollow = GetFellowByLoginList().Count();
+            int CFollowing = GetFollowingByLogin().Count();
+
             if (!Page.IsPostBack)
             {
+                LabelFollow.Text = CFollow.ToString();
+                LabelFollowing.Text = CFollowing.ToString();
                 refreshdata();
+                GetFollowingByLogin();
+                GetFellowByLoginList();
             }
         }
         private string ConnectionState()
@@ -37,41 +46,204 @@ namespace RESAERCHMENTOR.NET.Views
             GridView1.DataSource = ds;
             GridView1.DataBind();
         }
-        
-               protected void UpdateProfile_Click(object sender, EventArgs e)
+        public List<UserProfile> GetFollowingByLogin()
         {
-            //ErrorMessage.Text = null;
-            //SuccessMessage.Text = null;
+            string userName = Context.User.Identity.GetUserName();
+            List<UserProfile> depositorsList = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    con.Open();
+                    string querystring = "select distinct * from Profile as a join Following as b on a.OwnersId = b.OwnerId where a.OwnersId = '"+ userName + "'";
+                    using (SqlCommand cmd = new SqlCommand(querystring, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            depositorsList = (from DataRow rec in dt.Rows
+                                              select new UserProfile()
+                                              {
+                                                  Title = rec["Title"].ToString(),
+                                                  FName = rec["FName"].ToString(),
+                                                  LName = rec["LName"].ToString(),
+                                                  Degree = rec["Degree"].ToString(),
+                                                  CNumber = rec["CNumber"].ToString(),
+                                                  BDate = rec["BDate"].ToString(),
+                                                  Gender = rec["Gender"].ToString(),
+                                                  OwnersId = rec["OwnersId"].ToString(),
+                                                  DateCreated = rec["DateCreated"].ToString(),
+                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                                  ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                                  Following = rec["Following"].ToString(),
+                                              }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return depositorsList;
+        }
+        public List<UserProfile> GetFellowByLoginList()
+        {
+            string userName = Context.User.Identity.GetUserName();
+            List<UserProfile> depositorsList = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    List<UserProfile> UserKist = new List<UserProfile>();
+                    string query = "";
+                    query = "select distinct * from Profile as a where not exists ( select * from Following as b where a.OwnersId = b.OwnerId) and a.OwnersId != '" + userName + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            depositorsList = (from DataRow rec in dt.Rows
+                                              select new UserProfile()
+                                              {
+                                                  Title = rec["Title"].ToString(),
+                                                  FName = rec["FName"].ToString(),
+                                                  LName = rec["LName"].ToString(),
+                                                  Degree = rec["Degree"].ToString(),
+                                                  CNumber = rec["CNumber"].ToString(),
+                                                  BDate = rec["BDate"].ToString(),
+                                                  Gender = rec["Gender"].ToString(),
+                                                  OwnersId = rec["OwnersId"].ToString(),
+                                                  DateCreated = rec["DateCreated"].ToString(),
+                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                                  ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                              }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return depositorsList;
+        }
+        public List<UserProfile> GetAllUsers()
+        {
+            string userName = Context.User.Identity.GetUserName();
+            List<UserProfile> depositorsList = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";                 
+                    query = "select * from Profile as a";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            depositorsList = (from DataRow rec in dt.Rows
+                                              select new UserProfile()
+                                              {
+                                                  Title = rec["Title"].ToString(),
+                                                  FName = rec["FName"].ToString(),
+                                                  LName = rec["LName"].ToString(),
+                                                  Degree = rec["Degree"].ToString(),
+                                                  CNumber = rec["CNumber"].ToString(),
+                                                  BDate = rec["BDate"].ToString(),
+                                                  Gender = rec["Gender"].ToString(),
+                                                  OwnersId = rec["OwnersId"].ToString(),
+                                                  DateCreated = rec["DateCreated"].ToString(),
+                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                                  ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                              }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return depositorsList;
+        }
+        protected int FollowingR(string following)
+        {
             int row = 0;
+            string CodeGen = CodeGenerator.RandomString(7);
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
                 conAm.Open();
                 try
                 {
-                    //string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
-                    //FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
-                    //byte[] myFile = FileUpload1.FileBytes;
                     string userName = Context.User.Identity.GetUserName();
                     string CreationDate = DateTime.Now.ToShortDateString();
-                    string RGender = "";
-                    string DateOfBirth = bday.Value + bmonth.Value + byear.Value;
-                    if (Gender1.Checked) { RGender = "Male"; }
-                    else { RGender = "Female"; }
-                    var cmd = new SqlCommand("Insert into Profile(FirstName, LastName, Degree, Email, Phone, DateOfBirth, Gender, Country, ProfileImage, CreationDate) values('" + FirstName.Value + "', '" + LastName.Value + "', '" + degree.Value + "', '" + userName + "', '" + CNumber.Value + "', '" + DateOfBirth + "', '" + RGender + "', '" + Country.Value + "', '" + null + "', '" + CreationDate + "')", conAm);
+                    var cmd = new SqlCommand("INSERT INTO Following(OwnerId,Following,DateCreated) values('" + userName + "','" + following + "','" + CreationDate + "')", conAm);
                     row = cmd.ExecuteNonQuery();
-                    //SuccessMessage.Text = "Record was inserted successfully inserted..!";
-                    Response.Redirect("SuccessPage.aspx");
+                    return row;
+                    #region Send Confirmation Mail
+                    string Message = "";
+                    #endregion
                 }
                 catch (Exception ee)
                 {
-                    //ErrorMessage.Visible = true;
-                    //ErrorMessage.Text = "Sorry. error occured when trying to connect to DB.!";
-                    return;
+                    return 0;
                 }
             }
         }
-
-
+        protected int UnFollowingR(string following)
+        {
+            using (SqlConnection conAm = new SqlConnection(ConnectionState()))
+            {
+                conAm.Open();
+                try
+                {
+                    var cmd = new SqlCommand("delete Following where Following = '"+ following + "'", conAm);
+                    row = cmd.ExecuteNonQuery();
+                    return row;
+                }
+                catch (Exception ee)
+                {
+                    return 0;
+                }
+            }
+        }
+        protected void Follow_Click(object sender, EventArgs e)
+        {
+            string Following = Session["passFid"].ToString();
+            int FCount = FollowingR(Following);
+            if(FCount > 0)
+            {
+                Response.Redirect("SuccessPage.aspx");
+            }
+        }
+        protected void UnFollow_Click(object sender, EventArgs e)
+        {
+            string Following = Session["passFid"].ToString();
+            int FCount = UnFollowingR(Following);
+            if (FCount > 0)
+            {
+                Response.Redirect("SuccessPage.aspx");
+            }
+        }
 
     }
 }

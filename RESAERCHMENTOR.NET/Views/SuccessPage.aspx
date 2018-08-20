@@ -93,6 +93,7 @@
                         </p>
                     </asp:PlaceHolder>
 										<div class="mb-30">
+                                           <p align ="center"> <img src="dist/img/successbutton.jpg" /></p>
 											<h3 class="text-center txt-dark mb-10">Operation was successful</h3>
 											<h6 class="text-center nonecase-font txt-grey"><a href="Profile.aspx">Go to profile page</a></h6>
 										</div>	
