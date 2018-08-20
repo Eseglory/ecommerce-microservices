@@ -11,7 +11,7 @@ namespace RESAERCHMENTOR.NET
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Redirect("http://mentorpartner.net/Views/HomePage");
         }
     }
 }

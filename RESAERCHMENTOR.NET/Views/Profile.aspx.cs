@@ -211,6 +211,7 @@ namespace RESAERCHMENTOR.NET.Views
         }
         protected int UnFollowingR(string following)
         {
+            int row = 0;
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
                 conAm.Open();
@@ -244,6 +245,24 @@ namespace RESAERCHMENTOR.NET.Views
                 Response.Redirect("SuccessPage.aspx");
             }
         }
-
+        protected int UpdateUserProfile()
+        {
+            int row = 0;
+            string userName = Context.User.Identity.GetUserName();
+            using (SqlConnection conAm = new SqlConnection(ConnectionState()))
+            {
+                conAm.Open();
+                try
+                {
+                    var cmd = new SqlCommand("delete Following where Following = '" + userName + "'", conAm);
+                    row = cmd.ExecuteNonQuery();
+                    return row;
+                }
+                catch (Exception ee)
+                {
+                    return 0;
+                }
+            }
+        }
     }
 }
