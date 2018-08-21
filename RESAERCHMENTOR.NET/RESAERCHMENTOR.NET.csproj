@@ -474,6 +474,7 @@
     <Content Include="Views\favicon.ico" />
     <Content Include="Views\HomePage.aspx" />
     <Content Include="Views\Login.aspx" />
+    <Content Include="Views\PreConfirm.aspx" />
     <Content Include="Views\Profile.aspx" />
     <Content Include="Views\Ref\index.html" />
     <Content Include="Views\Ref\researchaddproducts.html" />
@@ -712,6 +713,13 @@
     </Compile>
     <Compile Include="Views\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PreConfirm.aspx.cs">
+      <DependentUpon>PreConfirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PreConfirm.aspx.designer.cs">
+      <DependentUpon>PreConfirm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

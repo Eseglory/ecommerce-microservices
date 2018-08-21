@@ -1237,7 +1237,7 @@
 																									<label class="control-label mb-10" for="exampleInputContact_1">Date Of Birth number</label>
 																									<div class="input-group">
 																										<div class="input-group-addon"><i class="icon-phone"></i></div>
-																										<input type="text" class="form-control" runat="server" required ="required" id="BDate" placeholder="16/12/1986">
+																										<input type="date" class="form-control" runat="server" required ="required" id="BDate" placeholder="16/12/1986">
 																									</div>
 																								</div>
 																								<div class="form-group">
@@ -1260,10 +1260,10 @@
 																								<div class="form-group">
 																									<label class="control-label mb-10">Country</label>
 																									<select class="form-control" runat="server" id="Country" data-placeholder="Choose a Category" tabindex="1">
-																										<option value="Category 1">USA</option>
-																										<option value="Category 2">Austrailia</option>
-																										<option value="Category 3">India</option>
-																										<option value="Category 4">UK</option>
+																										<option value="USA">USA</option>
+																										<option value="Austrailia">Austrailia</option>
+																										<option value="India">India</option>
+																										<option value="UK">UK</option>
 																									</select>
 																								</div>
 																							</div>

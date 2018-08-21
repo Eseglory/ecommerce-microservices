@@ -20,6 +20,7 @@ namespace RESAERCHMENTOR.NET.Models.Entities
         public byte[] ProfilePics { get; set; }
         public string ProfilePicsName { get; set; }
         public string FollowState { get; set; }
+        public bool IsConfirmed { get; set; }
         #region Following
         public string Following { get; set; }
         public string Follower { get; set; }

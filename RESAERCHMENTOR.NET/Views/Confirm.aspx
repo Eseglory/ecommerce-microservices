@@ -71,9 +71,9 @@
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 						<ol class="breadcrumb">
-							<li  class="active"><a href="researchindex.html">Research</a></li>
-							<li><a href="researchlogin.html"><span>Login</span></a></li>
-                            <li><a href="researchsignup.html"><span>Signup</span></a></li>
+							<li  class="active"><a href="HomePage.aspx">Research</a></li>
+							<li><a href="Login.aspx"><span>Login</span></a></li>
+                            <li><a href="Register.aspx"><span>Signup</span></a></li>
 						</ol>
 					</div>
 					<!-- /Breadcrumb -->
