@@ -41,45 +41,39 @@
 					<div class="logo-wrap">
 						<a href="index.html">
 							<img class="brand-img" src="dist/img/logo.png" alt="brand"/>
-							<span class="brand-text">Research Gate</span>
+							<!--span class="brand-text">Research Gate</span-->
 						</a>
 					</div>
 				</div>
-				<a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>
+				
 				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
 <%--				<form id="search_form" runat ="server" role="search" class="top-nav-search collapse pull-left">--%>
 				
 			</div>
-			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
-				<ul class="nav navbar-right top-nav pull-right">
-					<li>
-						<a id="open_right_sidebar" href="#"><i class="zmdi zmdi-apps top-nav-icon"></i></a>
-					</li>
+			<!--div id="mobile_only_nav" class="mobile-only-nav pull-right">
+				<ul class="yusuf">
+					        <li><a href="HomePage.aspx">Research</a></li>
+							<li><a href="#"><span>Login</span></a></li>
+                            <li><asp:HyperLink runat="server" ID="HyperLink1" ViewStateMode="Disabled">Register as a new user</asp:HyperLink></li>
 				</ul>
-			</div>	
+			</!--div-->	
+
+
+            <div>
+						<ul class="nav navbar-right top-nav pull-right">
+							<li  class="active"><a href="HomePage.aspx"><i class=" ti-home"> Research</i></a></li>
+							<li><a href="#"><span><i class=" ti-user"> Login</i></span></a></li>
+                            <li><asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled"><i class=" ti-user">  Register</i></asp:HyperLink></li>
+						</ul>
+					</div>
+
 		</nav>
 		<!-- /Top Menu Items -->
 			
 			<!-- Main Content -->
 			<div class="page-wrapper pa-0 ma-0 auth-page">
 				<div class="container-fluid">
-                    <br><br><br>
-                     <!-- Title -->
-				<div class="row heading-bg">
-					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-						<h5 class="txt-dark"></h5>
-					</div>
-					<!-- Breadcrumb -->
-					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-						<ol class="breadcrumb">
-							<li  class="active"><a href="HomePage.aspx">Research</a></li>
-							<li><a href="#"><span>Login</span></a></li>
-                            <li><asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink></li>
-						</ol>
-					</div>
-					<!-- /Breadcrumb -->
-				</div>
-				<!-- /Title -->
+                 
 					<!-- Row -->
 					<div class="table-struct full-width full-height">
 						<div class="table-cell vertical-align-middle auth-form-wrap">
@@ -146,7 +140,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<p><a href="#">News</a><a href="#">About us</a>
-                              <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Copyright</a><a href="#">Careers</a><a href="#">Help Center</a><a href="#">Researchers</a><a href="#">FAQ</a><a href="#">Publications</a><a href="#">Job</a><a href="#">Recruiters</a><a href="#">Advertisers</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">2017 &copy; ResearchGate. Pampered by MEIS007</a></p> 
+                              <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Copyright</a><a href="#">Careers</a><a href="#">Help Center</a><a href="#">Researchers</a><a href="#">FAQ</a><a href="#">Publications</a><a href="#">Job</a><a href="#">Recruiters</a><a href="#">Advertisers</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">2017 &copy; Mentor Partner All Rights Reserved</a></p> 
 						</div>
 					</div>
 				</footer>
