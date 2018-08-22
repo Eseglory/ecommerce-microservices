@@ -41,7 +41,7 @@
 					<div class="logo-wrap">
 						<a href="researchindex.html">
 							<img class="brand-img" src="dist/img/logo.png" alt="brand"/>
-							<span class="brand-text">Research Mentor</span>
+							<!--span class="brand-text">Research Mentor</span-->
 						</a>
 					</div>
 				</div>
