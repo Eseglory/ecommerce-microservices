@@ -14,27 +14,28 @@ namespace RESAERCHMENTOR.NET.Views
 {
     public partial class Register : Page
     {
-        DBConnect dbconnect;
         private string ConnectionState()
         {
             string conString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             return conString;
         }
-        protected void InsertUserProfile()
+        protected void InsertUserProfile(string email)
         {
             int row = 0;
+            DBConnect dbconnect = new DBConnect();
             string CodeGen = CodeGenerator.RandomString(7);
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
                 conAm.Open();
                 try
                 {
-                    string userName = Context.User.Identity.GetUserName();
+                    string userName = email;
                     string CreationDate = DateTime.Now.ToShortDateString();
                     var cmd = new SqlCommand("INSERT INTO Profile(Title,FName,LName,Degree,CNumber,BDate,Gender,OwnersId,DateCreated,ConfirmationCode) values('" + null + "','" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + userName + "','" + CreationDate + "','" + CodeGen + "')", conAm);
                     row = cmd.ExecuteNonQuery();
                     #region Send Confirmation Mail
-                    string Message = "";
+                    string Message = "Hello " + userName + " your confirmation code is " + CodeGen + ".";
+                    Message = Message + " <a href=" + "http://mentorpartner.net/Views/PreConfirm.aspx" + ">click here</a> to proceed";
                     dbconnect.ConfirmationMail(userName, userName, Message);
                     #endregion
                 }
@@ -88,8 +89,9 @@ namespace RESAERCHMENTOR.NET.Views
             {
                 string code = manager.GenerateEmailConfirmationToken(user.Id);
                 string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                InsertUserProfile();
+                InsertUserProfile(Email.Text);
                 manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
+                Response.Redirect("~/Views/PreConfirm.aspx");
                 signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }

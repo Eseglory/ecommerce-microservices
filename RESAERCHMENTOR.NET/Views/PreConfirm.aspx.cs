@@ -27,7 +27,7 @@ namespace RESAERCHMENTOR.NET.Views
                 try
                 {
                     string query = "";
-                    query = "select * from Profile as a where a.ConfirmationCode = '" + code + "' and a.IsConfirmed = 0";
+                    query = "select * from Profile as a where a.ConfirmationCode = '" + code + "' and a.IsConfirmed IS NULL";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -50,7 +50,6 @@ namespace RESAERCHMENTOR.NET.Views
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                                   ProfilePicsName = rec["ConfirmationCode"].ToString(),
-                                                  IsConfirmed = Convert.ToBoolean(rec["ConfirmationCode"].ToString()),
                                               }).ToList();
                             #endregion
                         }

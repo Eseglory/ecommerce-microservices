@@ -1134,10 +1134,10 @@
 								<div class="panel-body  pa-0">
 									<div class="profile-box">
 										<div class="profile-cover-pic">
-											<div class="fileupload btn btn-default">
+<%--											<div class="fileupload btn btn-default">
 												<span class="btn-text">edit</span>
 												<input class="upload" type="file">
-											</div>
+											</div>--%>
 											<div class="profile-image-overlay"></div>
 										</div>
 										<div class="profile-info text-center">
@@ -1170,7 +1170,8 @@
 											</div>
 											<button class="btn btn-info btn-block  btn-anim mt-30" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i><span class="btn-text">edit profile</span></button>
 											<div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-												<div class="modal-dialog">
+		<form action="#" runat="server">
+                                                	<div class="modal-dialog">
 													<div class="modal-content">
 														<div class="modal-header">
 															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -1268,8 +1269,8 @@
 																								</div>
 																							</div>
 																							<div class="form-actions mt-10">
-<%--                                                      <asp:Button ID="insert_research" runat="server" OnClick="AddResearch_Click" Text="save" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="AddResearch_Click"/>--%>
-																								<button type="submit" id="UpdateProfile" runat="server" OnClientClick="UpdateProfile_Click" class="btn btn-success mr-10 mb-30">Update profile</button>
+                                                      <asp:Button ID="insert_research" runat="server" OnClick="UpdateProfile_Click" Text="Update profile" class="btn btn-success mr-10 mb-30" CausesValidation="False" OnClientClick="UpdateProfile_Click"/>
+<%--																								<button type="submit" id="UpdateProfile" runat="server" OnClientClick="UpdateProfile_Click" class="btn btn-success mr-10 mb-30">Update profile</button>--%>
 																							</div>				
 <%--																						</form>--%>
 																					</div>
@@ -1318,7 +1319,6 @@
 											</li>
 										</ul>
 										<div class="tab-content" id="myTabContent_8">
-		<form action="#" runat="server">
 											<div  id="profile_8" class="tab-pane fade active in" role="tabpanel">
 												<div class="col-md-12">
 													<div class="pt-20">
@@ -1449,7 +1449,6 @@
 													</div>
 												</div>
 											</div>
-        </form>
 
 											<div  id="photos_8" class="tab-pane fade" role="tabpanel">
 												<div class="col-md-12 pb-20">
@@ -1740,28 +1739,28 @@
 																						<label class="control-label mb-10" for="exampleInputuname_01">First Name</label>
 																						<div class="input-group">
 																							<div class="input-group-addon"><i class="icon-user"></i></div>
-																							<input type="text" runat="server" required ="required" class="form-control" id="first_name2" placeholder="willard" readonly>
+																							<input type="text" runat="server" class="form-control" id="first_name2" placeholder="willard" readonly>
 																						</div>
 																					</div>
                                                                                     <div class="form-group">
 																						<label class="control-label mb-10" for="exampleInputuname_01">Last Name</label>
 																						<div class="input-group">
 																							<div class="input-group-addon"><i class="icon-user"></i></div>
-																							<input type="text" runat="server" required ="required" class="form-control" id="last_name2" placeholder="bryant" readonly>
+																							<input type="text" runat="server" class="form-control" id="last_name2" placeholder="bryant" readonly>
 																						</div>
 																					</div>
                                                                                     <div class="form-group">
 																						<label class="control-label mb-10" for="exampleInputuname_01">Degree</label>
 																						<div class="input-group">
 																							<div class="input-group-addon"><i class="icon-user"></i></div>
-																							<input type="text" runat="server" required ="required" class="form-control" id="degree2" placeholder="willard bryant" readonly>
+																							<input type="text" runat="server" class="form-control" id="degree2" placeholder="willard bryant" readonly>
 																						</div>
 																					</div>
 																					<div class="form-group">
 																						<label class="control-label mb-10" for="exampleInputEmail_01">Email address</label>
 																						<div class="input-group">
 																							<div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-																							<input type="email" runat="server" required ="required" class="form-control" id="Email2" placeholder="xyz@gmail.com" readonly>
+																							<input type="email" runat="server" class="form-control" id="Email2" placeholder="xyz@gmail.com" readonly>
 																						</div>
 																					</div>
 
@@ -1769,43 +1768,43 @@
 																						<label class="control-label mb-10" for="exampleInputContact_01">Contact number</label>
 																						<div class="input-group">
 																							<div class="input-group-addon"><i class="icon-phone"></i></div>
-																							<input type="email" runat="server" required ="required" class="form-control" id="CNumber2" placeholder="+102 9388333" readonly>
+																							<input type="email" runat="server" class="form-control" id="CNumber2" placeholder="+102 9388333" readonly>
 																						</div>
 																					</div>
-																					<div class="form-group">
-	<label class="control-label mb-10">Date of Birth</label><br>
-	<input class="form-control col-lg-3 pull-left ma-5" data-placeholder="Day" style="width:30%" id="bday2" placeholder="day" readonly>	
-    <input class="form-control col-lg-3 pull-left ma-5" data-placeholder="Month" style="width:30%" id="bmonth2" placeholder="month" readonly>
-    <input class="form-control col-lg-3 pull-left ma-5" data-placeholder="year" style="width:30%" id="byear2" placeholder="year" readonly>
-	
-	</div>
+																								<div class="form-group">
+																									<label class="control-label mb-10" for="exampleInputContact_1">Date Of Birth number</label>
+																									<div class="input-group">
+																										<div class="input-group-addon"><i class="icon-phone"></i></div>
+																										<input type="date" class="form-control" runat="server" id="BDate2" placeholder="16/12/1986">
+																									</div>
+																								</div>
                                                                                     <br /><br />
 																					<div class="form-group">
 																						<label class="control-label mb-10">Gender</label>
 																						<div>
 																							<div class="radio">
-																								<input type="radio" name="radio1" id="Gender11" value="option1" checked="">
+																								<input type="radio" runat ="server" name="radio1" id="Gender11" value="option1" checked="">
 																								<label for="radio_01">
 																								M
 																								</label>
 																							</div>
 																							<div class="radio">
-																								<input type="radio" name="radio1" id="Gender22" value="option2">
+																								<input type="radio" runat ="server" name="radio1" id="Gender22" value="option2">
 																								<label for="radio_02">
 																								F
 																								</label>
 																							</div>
 																						</div>
 																					</div>
-																					<div class="form-group">
-																						<label class="control-label mb-10">Country</label>
-																						<select class="form-control" data-placeholder="Choose a Category" id="Country2" runat="server" required ="required" tabindex="1">
-																							<option value="Category 1">USA</option>
-																							<option value="Category 2">Austrailia</option>
-																							<option value="Category 3">India</option>
-																							<option value="Category 4">UK</option>
-																						</select>
-																					</div>
+																								<div class="form-group">
+																									<label class="control-label mb-10">Country</label>
+																									<select class="form-control" runat="server" id="Country2" data-placeholder="Choose a Category" tabindex="1">
+																										<option value="USA">USA</option>
+																										<option value="Austrailia">Austrailia</option>
+																										<option value="India">India</option>
+																										<option value="UK">UK</option>
+																									</select>
+																								</div>
 																				</div>
 																				<div class="form-actions mt-10">			
 																					
@@ -1820,7 +1819,7 @@
 											</div>
                                             
                                             
-                                            
+        </form>
                                             
                                             
 										</div>

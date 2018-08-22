@@ -90,21 +90,14 @@
 
 										<div class="mb-30">
 											<h3 class="text-center txt-dark mb-10">Account Confirmation</h3>
+                                            <h5 class="text-center txt-dark mb-10">Please enter the confirmation code that was sent your mail.</h5>
 										</div>	
 										<div class="form-wrap">
 											<form action="#" runat ="server">
-                              							<div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label mb-10">Confirmation Code title</label>
-															<input type="text" required="required" runat="server" id="ConCode" class="form-control" placeholder="Enter Code">
-														</div>
-													</div>
-												<br>
-												<div class="form-actions">
-                                                      <asp:Button ID="Confirm_User" runat="server" OnClick="Confirm_Click" Text="Confirm" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="Confirm_Click"/>
-													<div class="clearfix"></div>
-												</div>
-
+								<input type="text" required="required" runat="server" id="ConCode" class="form-control" placeholder="Enter Confirmation Code">
+                                  <br /> <div align ="center">
+                                                 <asp:Button ID="Confirm_User" runat="server" OnClick="Confirm_Click" Text="Confirm" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="Confirm_Click"/>
+                                       </div>
 											</form>
 										</div>
 									</div>	

@@ -27,16 +27,15 @@ namespace RESAERCHMENTOR.NET.Views
                 RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             }
         }
-        public List<UserProfile> GetLoginUser()
+        public List<UserProfile> GetLoginUser(string username)
         {
-            string userName = Context.User.Identity.GetUserName();
             List<UserProfile> depositorsList = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
                 {
                     string query = "";
-                    query = "select * from Profile as a where a.OwnersId = '"+ userName + "' and a.IsConfirmed = 1";
+                    query = "select * from Profile as a where a.OwnersId = '"+ username + "' and a.IsConfirmed = 1";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -59,7 +58,6 @@ namespace RESAERCHMENTOR.NET.Views
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                                   ProfilePicsName = rec["ConfirmationCode"].ToString(),
-                                                  IsConfirmed = Convert.ToBoolean(rec["ConfirmationCode"].ToString()),
                                               }).ToList();
                             #endregion
                         }
@@ -79,7 +77,7 @@ namespace RESAERCHMENTOR.NET.Views
             if (IsValid)
             {
                 #region Check If Confirmed
-                int Ccheck = GetLoginUser().Count();
+                int Ccheck = GetLoginUser(Email.Text).Count();
                 if(Ccheck == 0)
                 {
                     Response.Redirect("~/Views/PreConfirm.aspx");
