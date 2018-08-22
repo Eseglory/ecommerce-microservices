@@ -14,6 +14,7 @@ namespace RESAERCHMENTOR.NET.Views
 {
     public partial class Register : Page
     {
+        DBConnect dbconnect;
         private string ConnectionState()
         {
             string conString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -34,6 +35,7 @@ namespace RESAERCHMENTOR.NET.Views
                     row = cmd.ExecuteNonQuery();
                     #region Send Confirmation Mail
                     string Message = "";
+                    dbconnect.ConfirmationMail(userName, userName, Message);
                     #endregion
                 }
                 catch (Exception ee)

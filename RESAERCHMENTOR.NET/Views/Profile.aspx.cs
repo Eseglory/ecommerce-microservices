@@ -29,6 +29,12 @@ namespace RESAERCHMENTOR.NET.Views
                 refreshdata();
                 GetFollowingByLogin();
                 GetFellowByLoginList();
+                #region Load Profile
+                var MyProfile = GetLoginUser().FirstOrDefault();
+                Rtitle.Value = MyProfile.Title;
+                FirstName.Value = MyProfile.FName;
+                LastName.Value = MyProfile.LName;
+                #endregion
             }
         }
         private string ConnectionState()
@@ -171,6 +177,7 @@ namespace RESAERCHMENTOR.NET.Views
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                                   ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                                  IsConfirmed = Convert.ToBoolean(rec["ConfirmationCode"].ToString()),
                                               }).ToList();
                             #endregion
                         }
@@ -251,10 +258,17 @@ namespace RESAERCHMENTOR.NET.Views
             string userName = Context.User.Identity.GetUserName();
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
+                string Gender = "";
+                if (Gender1.Checked) { Gender = "Male"; }
+                else
+                {
+                    Gender = "Female";
+                }
                 conAm.Open();
+                string querystring = "UPDATE [dbo].[Profile] SET [Title] = '"+ Rtitle.Value +"', [FName] = '"+ FirstName.Value +"', [LName] = '"+ LastName.Value +"', [Degree] = '"+ degree.Value +"', [CNumber] = '"+ CNumber.Value +"', [BDate] = '"+ BDate.Value +"', [Gender] = '"+ Gender + "' WHERE [OwnersId] = '"+ userName + "'";
                 try
                 {
-                    var cmd = new SqlCommand("delete Following where Following = '" + userName + "'", conAm);
+                    var cmd = new SqlCommand(querystring, conAm);
                     row = cmd.ExecuteNonQuery();
                     return row;
                 }
@@ -263,6 +277,61 @@ namespace RESAERCHMENTOR.NET.Views
                     return 0;
                 }
             }
+        }
+        protected void UpdateProfile_Click(object sender, EventArgs e)
+        {
+            int FCount = UpdateUserProfile();
+            if (FCount > 0)
+            {
+                Response.Redirect("SuccessPage.aspx");
+            }
+        }
+        public List<UserProfile> GetLoginUser()
+        {
+            string userName = Context.User.Identity.GetUserName();
+            List<UserProfile> depositorsList = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select * from Profile as a where a.OwnersId = '" + userName + "' and a.IsConfirmed = 1";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            depositorsList = (from DataRow rec in dt.Rows
+                                              select new UserProfile()
+                                              {
+                                                  Title = rec["Title"].ToString(),
+                                                  FName = rec["FName"].ToString(),
+                                                  LName = rec["LName"].ToString(),
+                                                  Degree = rec["Degree"].ToString(),
+                                                  CNumber = rec["CNumber"].ToString(),
+                                                  BDate = rec["BDate"].ToString(),
+                                                  Gender = rec["Gender"].ToString(),
+                                                  OwnersId = rec["OwnersId"].ToString(),
+                                                  DateCreated = rec["DateCreated"].ToString(),
+                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                                  ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                                  IsConfirmed = Convert.ToBoolean(rec["ConfirmationCode"].ToString()),
+                                              }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return depositorsList;
         }
     }
 }
