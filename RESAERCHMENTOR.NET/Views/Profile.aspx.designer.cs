@@ -103,13 +103,13 @@ namespace RESAERCHMENTOR.NET.Views {
         protected global::System.Web.UI.HtmlControls.HtmlSelect Country;
         
         /// <summary>
-        /// UpdateProfile control.
+        /// insert_research control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton UpdateProfile;
+        protected global::System.Web.UI.WebControls.Button insert_research;
         
         /// <summary>
         /// LabelFollow control.
@@ -200,6 +200,33 @@ namespace RESAERCHMENTOR.NET.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl CNumber2;
+        
+        /// <summary>
+        /// BDate2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl BDate2;
+        
+        /// <summary>
+        /// Gender11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton Gender11;
+        
+        /// <summary>
+        /// Gender22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton Gender22;
         
         /// <summary>
         /// Country2 control.

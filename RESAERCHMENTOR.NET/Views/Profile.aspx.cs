@@ -31,9 +31,41 @@ namespace RESAERCHMENTOR.NET.Views
                 GetFellowByLoginList();
                 #region Load Profile
                 var MyProfile = GetLoginUser().FirstOrDefault();
-                Rtitle.Value = MyProfile.Title;
-                FirstName.Value = MyProfile.FName;
-                LastName.Value = MyProfile.LName;
+                if (MyProfile != null)
+                {
+                    Rtitle.Value = MyProfile.Title;
+                    FirstName.Value = MyProfile.FName;
+                    LastName.Value = MyProfile.LName;
+                    degree.Value = MyProfile.Degree;
+                    BDate.Value = MyProfile.BDate;
+                    CNumber.Value = MyProfile.CNumber;
+                    Country.Value = MyProfile.Country;
+                    if (MyProfile.Gender == "Male")
+                    {
+                        Gender1.Checked = true;
+                    }
+                    else
+                    {
+                        Gender2.Checked = true;
+                    }
+                    Email.Value = MyProfile.OwnersId;
+
+                    first_name2.Value = MyProfile.FName;
+                    last_name2.Value = MyProfile.LName;
+                    degree2.Value = MyProfile.Degree;
+                    CNumber2.Value = MyProfile.CNumber;
+                    BDate2.Value = MyProfile.BDate;
+                    Country2.Value = MyProfile.Country;
+                    if (MyProfile.Gender == "Male")
+                    {
+                        Gender11.Checked = true;
+                    }
+                    else
+                    {
+                        Gender22.Checked = true;
+                    }
+                    Email2.Value = MyProfile.OwnersId;
+                }
                 #endregion
             }
         }
@@ -318,7 +350,6 @@ namespace RESAERCHMENTOR.NET.Views
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                                   ProfilePicsName = rec["ConfirmationCode"].ToString(),
-                                                  IsConfirmed = Convert.ToBoolean(rec["ConfirmationCode"].ToString()),
                                               }).ToList();
                             #endregion
                         }

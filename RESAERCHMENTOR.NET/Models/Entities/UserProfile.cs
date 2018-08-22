@@ -21,6 +21,8 @@ namespace RESAERCHMENTOR.NET.Models.Entities
         public string ProfilePicsName { get; set; }
         public string FollowState { get; set; }
         public bool IsConfirmed { get; set; }
+        public string Country { get; set; }
+
         #region Following
         public string Following { get; set; }
         public string Follower { get; set; }

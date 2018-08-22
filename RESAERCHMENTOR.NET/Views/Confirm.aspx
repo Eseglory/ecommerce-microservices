@@ -95,9 +95,9 @@
 											<form action="#" runat ="server">
     <div>
         <asp:PlaceHolder runat="server" ID="successPanel" ViewStateMode="Disabled" Visible="true">
-            <p>
-                Thank you for confirming your account. Click <asp:HyperLink ID="login" runat="server" NavigateUrl="~/Views/Login.aspx">here</asp:HyperLink>  to login             
-            </p>
+            <h5 class="text-center txt-dark mb-10">
+                Thank you for confirming your account. <a href="Login.aspx">Click here to login </a>              
+            </h5>
         </asp:PlaceHolder>
         <asp:PlaceHolder runat="server" ID="errorPanel" ViewStateMode="Disabled" Visible="false">
             <p class="text-danger">
