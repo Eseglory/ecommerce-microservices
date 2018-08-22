@@ -32,7 +32,7 @@
 					<div class="logo-wrap">
 						<a href="index.html">
 							<img class="brand-img" src="dist/img/logo.png" alt="brand"/>
-							<span class="brand-text">Research Gate</span>
+							<!--span class="brand-text">Research Gate</span-->
 						</a>
 					</div>
 				</div>	
