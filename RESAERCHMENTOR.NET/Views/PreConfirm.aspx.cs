@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using RESAERCHMENTOR.NET.Controllers;
 using RESAERCHMENTOR.NET.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ namespace RESAERCHMENTOR.NET.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Panel1.Visible = true;
+            Panel2.Visible = false;
         }
         public List<UserProfile> GetUserConfirmation(string code)
         {
@@ -103,6 +105,69 @@ namespace RESAERCHMENTOR.NET.Views
             {
                 Response.Redirect("~/Views/Confirm.aspx");
             }
+        }
+        protected void ResendConfirm_Click(object sender, EventArgs e)
+        {
+            Panel1.Visible = false;
+            Panel2.Visible = true;
+        }
+        public List<UserProfile> GeUser()
+        {
+            string userName = Context.User.Identity.GetUserName();
+            List<UserProfile> depositorsList = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select * from Profile as a where a.OwnersId = '" + Email.Value + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            depositorsList = (from DataRow rec in dt.Rows
+                                              select new UserProfile()
+                                              {
+                                                  Title = rec["Title"].ToString(),
+                                                  FName = rec["FName"].ToString(),
+                                                  LName = rec["LName"].ToString(),
+                                                  Degree = rec["Degree"].ToString(),
+                                                  CNumber = rec["CNumber"].ToString(),
+                                                  BDate = rec["BDate"].ToString(),
+                                                  Gender = rec["Gender"].ToString(),
+                                                  OwnersId = rec["OwnersId"].ToString(),
+                                                  DateCreated = rec["DateCreated"].ToString(),
+                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                                  ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                              }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return depositorsList;
+        }
+        protected void ResendMail_Click(object sender, EventArgs e)
+        {
+            DBConnect dbconnect = new DBConnect();
+            string CCode = GeUser().FirstOrDefault().ConfirmationCode;
+            #region Send Confirmation Mail
+            string Message = "Hello " + Email.Value + " your confirmation code is " + CCode + ".";
+            Message = Message + " <a href=" + "http://mentorpartner.net/Views/PreConfirm.aspx" + ">click here</a> to proceed";
+            dbconnect.ConfirmationMail(Email.Value, Email.Value, Message);
+            #endregion
+            Response.Redirect("~/Views/PreConfirm.aspx");
+
         }
     }
 }

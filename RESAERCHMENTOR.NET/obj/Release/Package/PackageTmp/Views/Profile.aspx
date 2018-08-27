@@ -1142,11 +1142,11 @@
 										</div>
 										<div class="profile-info text-center">
 											<div class="profile-img-wrap">
-												<img class="inline-block mb-10" src="dist/img/mock1.jpg" alt="user"/>
-												<div class="fileupload btn btn-default">
+												<img id="Image2" runat="server" class="inline-block mb-10" />
+<%--												<div class="fileupload btn btn-default">
 													<span class="btn-text">edit</span>
 													<input class="upload" type="file">
-												</div>
+												</div>--%>
 											</div>	
 											<h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-info">
 <a runat="server" href="~/Views/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a>											</h5>
@@ -1188,7 +1188,20 @@
 																					<div class="form-wrap">
 <%--																						<form action="#" runat="server">--%>
 																							<div class="form-body overflow-hide">
-                                                                                                																								<div class="form-group">
+																								<div class="form-group">
+																									<label class="control-label mb-10" for="exampleInputuname_1"></label>
+																									<div class="input-group">
+
+												                                                       <%--     <img id="Image1" runat="server" class="inline-block mb-10" />
+                                                                                                            <asp:FileUpload ID="FileUpload1" runat="server" />--%>
+<%--                                                                                                            <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="UploadFile" />--%>
+                                                                                                        <asp:Image ID="PictureImageA" runat="server" Height="140px" ImageUrl="~/images/UserDefined/defaultImage.png" Width="120px" />
+                                                                                                         <asp:FileUpload ID="PictureUpload" runat="server" TabIndex="40" />
+                                                                                                         <asp:Label ID="lblPictureMessage" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+                                                                                                         <%--<asp:Button ID="btnUpload" runat="server" OnClientClick ="btnUpload_Click" CausesValidation="False" CssClass="button" Text="Upload" Width="114px" />--%>
+																									</div>
+																								</div>
+                                                                                       		<div class="form-group">
 																									<label class="control-label mb-10">Title</label>
 																									<select class="form-control" runat="server" id="Rtitle" data-placeholder="Choose a Category" tabindex="1">
 																										<option value="Prof.">Prof.</option>
@@ -1197,7 +1210,6 @@
 																										<option value="Mrs.">Mrs.</option>
 																									</select>
 																								</div>
-
 																								<div class="form-group">
 																									<label class="control-label mb-10" for="exampleInputuname_1">First Name</label>
 																									<div class="input-group">

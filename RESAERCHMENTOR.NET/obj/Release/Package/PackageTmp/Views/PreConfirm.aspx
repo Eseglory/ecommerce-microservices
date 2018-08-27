@@ -44,40 +44,27 @@
 						</a>
 					</div>
 				</div>
-				<a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>
-				<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
-<%--				<form id="search_form" runat ="server" role="search" class="top-nav-search collapse pull-left">--%>
+				
 				
 			</div>
-			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+			
+            
+            <div>
 				<ul class="nav navbar-right top-nav pull-right">
-					<li>
-						<a id="open_right_sidebar" href="#"><i class="zmdi zmdi-apps top-nav-icon"></i></a>
-					</li>
+					<li  class="active"><a href="HomePage.aspx"><i class=" ti-home"> Research</i></a></li>
+                    <li  class="active"><a href="Register.aspx"><i class=" ti-user"> Sign Up</i> </a></li>
+					<li  class="active"><a href="Login.aspx"><i class="ti-lock"> Log In</i> </a></li>
 				</ul>
 			</div>	
+				
 		</nav>
 		<!-- /Top Menu Items -->
 			
 			<!-- Main Content -->
 			<div class="page-wrapper pa-0 ma-0 auth-page">
 				<div class="container-fluid">
-                    <br><br><br>
-                     <!-- Title -->
-				<div class="row heading-bg">
-					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-						<h5 class="txt-dark"></h5>
-					</div>
-					<!-- Breadcrumb -->
-					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-						<ol class="breadcrumb">
-							<li  class="active"><a href="HomePage.aspx">Research</a></li>
-							<li><a href="Login.aspx"><span>Login</span></a></li>
-                            <li><a href="Register.aspx"><span>Signup</span></a></li>
-						</ol>
-					</div>
-					<!-- /Breadcrumb -->
-				</div>
+                   
+				
 				<!-- /Title -->
 					<!-- Row -->
 					<div class="table-struct full-width full-height">
@@ -90,15 +77,23 @@
 
 										<div class="mb-30">
 											<h3 class="text-center txt-dark mb-10">Account Confirmation</h3>
-                                            <h5 class="text-center txt-dark mb-10">Please enter the confirmation code that was sent your mail.</h5>
+                                            <h5 class="text-center txt-dark mb-10">Please enter the confirmation code that was sent to your mail.</h5>
 										</div>	
 										<div class="form-wrap">
 											<form action="#" runat ="server">
-								<input type="text" required="required" runat="server" id="ConCode" class="form-control" placeholder="Enter Confirmation Code">
+                                                <asp:Panel ID="Panel1" runat="server">
+                                                    	<input type="text" runat="server" id="ConCode" class="form-control" placeholder="Enter Confirmation Code">
                                   <br /> <div align ="center">
                                                  <asp:Button ID="Confirm_User" runat="server" OnClick="Confirm_Click" Text="Confirm" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="Confirm_Click"/>
-                                       </div>
-											</form>
+                                                  <asp:Button ID="Resend_Confirm" runat="server" OnClick="ResendConfirm_Click" Text="Resend Mail" BackColor ="Blue" ForeColor ="White" CausesValidation="False" OnClientClick="ResendConfirm_Click"/>                                  </div>
+										
+                                                </asp:Panel>
+                                                <asp:Panel ID="Panel2" runat="server">
+                                                    	<input type="text" required="required" runat="server" id="Email" class="form-control" placeholder="Enter Email Address">
+                                  <br /> <div align ="center">
+                                                 <asp:Button ID="ResendMail" runat="server" OnClick="ResendMail_Click" Text="Send Code" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="ResendMail_Click"/>
+                                                </asp:Panel>
+							       	</form>
 										</div>
 									</div>	
 								</div>

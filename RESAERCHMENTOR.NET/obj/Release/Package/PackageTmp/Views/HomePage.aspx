@@ -41,7 +41,7 @@
 					<div class="logo-wrap">
 						<a href="researchindex.html">
 							<img class="brand-img" src="dist/img/logo.png" alt="brand"/>
-							<span class="brand-text">Research Mentor</span>
+							<!--span class="brand-text">Research Mentor</span-->
 						</a>
 					</div>
 				</div>
@@ -51,18 +51,14 @@
 
             <div>
 				<ul class="nav navbar-right top-nav pull-right">
-					<li  class="active"><a href="HomePage.aspx">Research</a></li>
-                       		<li  class="active"><a href="Register.aspx">Sign Up</a></li>
-							<li  class="active"><a href="Login.aspx">Log In</a></li>
+					<li  class="active"><a href="HomePage.aspx"><i class=" ti-home"> Research</i></a></li>
+                       		<li  class="active"><a href="Register.aspx"><i class=" ti-user"> Sign Up</i> </a></li>
+							<li  class="active"><a href="Login.aspx"><i class="ti-lock"> Log In</i> </a></li>
 				</ul>
 			</div>	
 				
 		</nav>
 		<!-- /Top Menu Items -->
-       
-				<!-- Title -->
-				
-				<!-- /Title -->
 				
 				<!-- Slide -->
 				
@@ -72,11 +68,11 @@
                     
                       <div class="wslideinnercontent">
                     <div class="headerdiv">
-                    <h1 class="header">Welcome To Research Mentor</h1>
+                    <h1 class="header">Welcome To Mentor Partner</h1>
                       <h2 class="header">Discover scientific knowledge, and make your research visible.</h2>
                     </div>
                           <div class="clearfix"></div><br>
-                          <a  href="researchsignup.html"><div class="slidebutton">
+                          <a href="Register.aspx"><div class="slidebutton">
                               <span class="slidebuttonbtn">Join for free</span>
                           </div></a>
                           <div class="clearfix"></div><br><br>

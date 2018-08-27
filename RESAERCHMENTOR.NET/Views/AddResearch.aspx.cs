@@ -18,6 +18,17 @@ namespace RESAERCHMENTOR.NET.Views
         {
             if (!IsPostBack)
             {
+                Panel1.Visible = true;
+                Panel2.Visible = false;
+                int? ARCall = Convert.ToInt32(ViewState["ARe"]);
+                if(ARCall != null)
+                {
+                    if(ARCall > 0)
+                    {
+                        Panel1.Visible = false;
+                        Panel2.Visible = true;
+                    }
+                }
                 string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/"));
                 List<ListItem> files = new List<ListItem>();
                 foreach (string filePath in filePaths)
@@ -35,32 +46,39 @@ namespace RESAERCHMENTOR.NET.Views
         protected void AddResearch_Click(object sender, EventArgs e)
         {
             ErrorMessage.Text = null;
+            ErrorMessage.Visible = false;
             SuccessMessage.Text = null;
+            Panel1.Visible = true;
             int row = 0;
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
                 conAm.Open();
-                 try
-                    {
-                        string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
-                        FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Images/") + fileName);                        
-                        byte[] myFile = FileUpload1.FileBytes;
-                        string userName = Context.User.Identity.GetUserName();
-                        string creationDate = DateTime.Now.ToShortDateString();
-                        string RStatus = "";
-                        if (RStatus1.Checked) { RStatus = "Published"; }
-                        else { RStatus = "Draft"; }
-                        var cmd = new SqlCommand("Insert into Research(Title, SubTitle, AuthorName, RType, Status, Description, FileName, OwnersId, DateCreated) values('"+ ReTitle.Value +"', '" + ReSubTitle.Value + "', '" + ReAuthorName.Value + "', '" + ReType1.Value + "', '" + RStatus + "', '" + ReDescription.Value + "', '" + fileName + "', '" + userName + "', '" + creationDate + "')", conAm);
-                        row = cmd.ExecuteNonQuery();
-                        SuccessMessage.Text = "Record was inserted successfully inserted..!";
-                        Response.Redirect("SuccessPage.aspx");
-                    }
-                    catch (Exception ee)
-                    {
-                        ErrorMessage.Visible = true;
-                        ErrorMessage.Text = "Sorry. error occured when trying to connect to DB.!";
-                        return;
-                   }
+                try
+                {
+                    string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+                    FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
+                    byte[] myFile = FileUpload1.FileBytes;
+                    string userName = Context.User.Identity.GetUserName();
+                    string creationDate = DateTime.Now.ToShortDateString();
+                    string RStatus = "";
+                    if (RStatus1.Checked) { RStatus = "Published"; }
+                    else { RStatus = "Draft"; }
+                    var cmd = new SqlCommand("Insert into Research(Title, SubTitle, AuthorName, RType, Status, Description, FileName, OwnersId, DateCreated) values('" + ReTitle.Value + "', '" + ReSubTitle.Value + "', '" + ReAuthorName.Value + "', '" + ReType1.Value + "', '" + RStatus + "', '" + ReDescription.Value + "', '" + fileName + "', '" + userName + "', '" + creationDate + "')", conAm);
+                    row = cmd.ExecuteNonQuery();
+                    conAm.Close();
+                    conAm.Dispose();
+                    Response.Redirect("~/Views/SuccessPage.aspx");
+                    ViewState["ARe"] = row;
+                    Panel1.Visible = false;
+                    Panel2.Visible = true;
+                }
+                catch (Exception ee)
+                {
+                    ErrorMessage.Visible = true;
+                    ErrorMessage.Text = "Sorry. error occured when trying to connect to DB.!";
+                    Response.Redirect("~/Views/SuccessPage.aspx");
+                }
+
             }
         }
         protected void Upload(object sender, EventArgs e)

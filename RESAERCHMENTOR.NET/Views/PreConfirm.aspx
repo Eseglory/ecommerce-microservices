@@ -77,15 +77,23 @@
 
 										<div class="mb-30">
 											<h3 class="text-center txt-dark mb-10">Account Confirmation</h3>
-                                            <h5 class="text-center txt-dark mb-10">Please enter the confirmation code that was sent your mail.</h5>
+                                            <h5 class="text-center txt-dark mb-10">Please enter the confirmation code that was sent to your mail.</h5>
 										</div>	
 										<div class="form-wrap">
 											<form action="#" runat ="server">
-								<input type="text" required="required" runat="server" id="ConCode" class="form-control" placeholder="Enter Confirmation Code">
+                                                <asp:Panel ID="Panel1" runat="server">
+                                                    	<input type="text" runat="server" id="ConCode" class="form-control" placeholder="Enter Confirmation Code">
                                   <br /> <div align ="center">
                                                  <asp:Button ID="Confirm_User" runat="server" OnClick="Confirm_Click" Text="Confirm" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="Confirm_Click"/>
-                                       </div>
-											</form>
+                                                  <asp:Button ID="Resend_Confirm" runat="server" OnClick="ResendConfirm_Click" Text="Resend Mail" BackColor ="Blue" ForeColor ="White" CausesValidation="False" OnClientClick="ResendConfirm_Click"/>                                  </div>
+										
+                                                </asp:Panel>
+                                                <asp:Panel ID="Panel2" runat="server">
+                                                    	<input type="text" required="required" runat="server" id="Email" class="form-control" placeholder="Enter Email Address">
+                                  <br /> <div align ="center">
+                                                 <asp:Button ID="ResendMail" runat="server" OnClick="ResendMail_Click" Text="Send Code" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="ResendMail_Click"/>
+                                                </asp:Panel>
+							       	</form>
 										</div>
 									</div>	
 								</div>

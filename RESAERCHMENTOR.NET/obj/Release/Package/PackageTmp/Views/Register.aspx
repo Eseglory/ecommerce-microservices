@@ -49,36 +49,23 @@
 <%--				<form id="search_form" runat ="server" role="search" class="top-nav-search collapse pull-left">--%>
 				
 			</div>
-			<div id="mobile_only_nav" class="mobile-only-nav pull-right">
+			
+            
+            <div>
 				<ul class="nav navbar-right top-nav pull-right">
-					<li>
-						<a id="open_right_sidebar" href="#"><i class="zmdi zmdi-apps top-nav-icon"></i></a>
-					</li>
+					<li  class="active"><a href="HomePage.aspx"><i class=" ti-home"> Research</i></a></li>
+                       		<li  class="active"><a href="Register.aspx"><i class=" ti-user"> Sign Up</i> </a></li>
+							<li  class="active"><a href="Login.aspx"><i class="ti-lock"> Log In</i> </a></li>
 				</ul>
 			</div>	
+					
 		</nav>
 		<!-- /Top Menu Items -->
 			
 			<!-- Main Content -->
 			<div class="page-wrapper pa-0 ma-0 auth-page">
 				<div class="container-fluid">
-                    <br><br><br>
-                     <!-- Title -->
-				<div class="row heading-bg">
-					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-						<h5 class="txt-dark"></h5>
-					</div>
-					<!-- Breadcrumb -->
-					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-						<ol class="breadcrumb">
-							<li  class="active"><a href="HomePage.aspx">Research</a></li>
-							<li><a href="Login.aspx"><span>Login</span></a></li>
-                            <li><a href="Register.aspx"><span>Signup</span></a></li>
-						</ol>
-					</div>
-					<!-- /Breadcrumb -->
-				</div>
-				<!-- /Title -->
+                    
 					<!-- Row -->
 					<div class="table-struct full-width full-height">
 						<div class="table-cell vertical-align-middle auth-form-wrap">

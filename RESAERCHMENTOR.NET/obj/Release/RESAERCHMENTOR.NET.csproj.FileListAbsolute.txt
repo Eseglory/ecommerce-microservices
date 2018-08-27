@@ -76,3 +76,4 @@ C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET\bin
 C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET\obj\Release\RESAERCHMENTOR.NET.dll
 C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET\obj\Release\RESAERCHMENTOR.NET.pdb
+C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET\obj\Release\RESAERCHMENTOR.NET.csprojResolveAssemblyReference.cache

@@ -151,7 +151,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
     <File Include="bin/RESAERCHMENTOR.NET.dll">
-      <publishTime>08/21/2018 18:14:52</publishTime>
+      <publishTime>08/27/2018 08:03:18</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>08/17/2018 09:31:28</publishTime>
@@ -339,6 +339,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Site.Mobile.Master">
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
+    <File Include="UploadedImages/mock1.jpg">
+      <publishTime>08/22/2018 10:45:49</publishTime>
+    </File>
     <File Include="Views/.bowerrc">
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
@@ -346,13 +349,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
     <File Include="Views/AddResearch.aspx">
-      <publishTime>08/17/2018 09:31:28</publishTime>
+      <publishTime>08/27/2018 06:50:10</publishTime>
     </File>
     <File Include="Views/bower.json">
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
     <File Include="Views/Confirm.aspx">
-      <publishTime>08/21/2018 16:23:27</publishTime>
+      <publishTime>08/22/2018 06:37:25</publishTime>
     </File>
     <File Include="Views/dist/css/animate.css">
       <publishTime>08/17/2018 09:31:28</publishTime>
@@ -397,7 +400,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
     <File Include="Views/dist/css/style.css">
-      <publishTime>08/17/2018 09:31:28</publishTime>
+      <publishTime>08/22/2018 08:51:24</publishTime>
     </File>
     <File Include="Views/dist/css/style.css.map">
       <publishTime>08/17/2018 09:31:28</publishTime>
@@ -690,6 +693,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/dist/img/country/07-flag.png">
       <publishTime>08/15/2018 10:38:01</publishTime>
     </File>
+    <File Include="Views/dist/img/coverimg.jpg">
+      <publishTime>08/22/2018 09:06:41</publishTime>
+    </File>
     <File Include="Views/dist/img/cropper.jpg">
       <publishTime>08/15/2018 10:38:01</publishTime>
     </File>
@@ -757,7 +763,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/15/2018 10:38:01</publishTime>
     </File>
     <File Include="Views/dist/img/logo.png">
-      <publishTime>08/15/2018 10:38:01</publishTime>
+      <publishTime>08/22/2018 06:37:25</publishTime>
     </File>
     <File Include="Views/dist/img/mock1.jpg">
       <publishTime>08/15/2018 10:38:01</publishTime>
@@ -1189,19 +1195,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
     <File Include="Views/HomePage.aspx">
-      <publishTime>08/17/2018 09:31:28</publishTime>
+      <publishTime>08/22/2018 06:54:02</publishTime>
     </File>
     <File Include="Views/Login.aspx">
-      <publishTime>08/17/2018 09:31:28</publishTime>
+      <publishTime>08/22/2018 06:37:25</publishTime>
     </File>
     <File Include="Views/Manage.aspx">
-      <publishTime>08/17/2018 09:31:28</publishTime>
+      <publishTime>08/22/2018 06:37:25</publishTime>
     </File>
     <File Include="Views/PreConfirm.aspx">
-      <publishTime>08/21/2018 16:06:54</publishTime>
+      <publishTime>08/24/2018 04:52:34</publishTime>
     </File>
     <File Include="Views/Profile.aspx">
-      <publishTime>08/21/2018 17:29:08</publishTime>
+      <publishTime>08/26/2018 15:28:12</publishTime>
     </File>
     <File Include="Views/Ref/index.html">
       <publishTime>08/17/2018 09:31:28</publishTime>
@@ -1273,7 +1279,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
     <File Include="Views/Register.aspx">
-      <publishTime>08/17/2018 09:31:28</publishTime>
+      <publishTime>08/22/2018 06:37:25</publishTime>
     </File>
     <File Include="Views/src/scss/GridStyle.css">
       <publishTime>08/17/2018 09:31:28</publishTime>
@@ -1288,10 +1294,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
     <File Include="Views/src/scss/style.scss">
-      <publishTime>08/17/2018 09:31:28</publishTime>
+      <publishTime>08/22/2018 08:51:10</publishTime>
     </File>
     <File Include="Views/SuccessPage.aspx">
-      <publishTime>08/20/2018 07:22:49</publishTime>
+      <publishTime>08/22/2018 08:37:43</publishTime>
     </File>
     <File Include="Views/vendors/chart.js/Chart.min.js">
       <publishTime>08/17/2018 09:31:28</publishTime>
@@ -1417,7 +1423,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/17/2018 09:31:28</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/21/2018 18:14:55</publishTime>
+      <publishTime>08/24/2018 04:57:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

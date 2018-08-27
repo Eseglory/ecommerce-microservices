@@ -6082,7 +6082,7 @@ a.compose-mail {
 .profile-box .profile-cover-pic {
   position: relative;
   min-height: 197px;
-  background-image: url("../img/gallery/mock6.jpg"); }
+  background-image: url('../../dist/img/coverimg.jpg'); }
   .profile-box .profile-cover-pic .profile-image-overlay {
     position: absolute;
     height: 100%;

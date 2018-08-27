@@ -670,7 +670,7 @@ code {
 
 .txt-success,
 .text-success {
-  color: #0cb !important; }
+  color: #238C00 !important; }
 
 .txt-danger,
 .text-danger {
@@ -928,8 +928,8 @@ button.fc-agendaWeek-button, .fc-prev-button, .fc-next-button, .fc-today-button 
   .btn.btn-info, .wizard > .actions a.btn-info, .dt-buttons .btn-info.dt-button, .tablesaw-sortable th.tablesaw-sortable-head button.btn-info, .sweet-alert button.btn-info, .owl-theme .owl-nav .btn-info[class*="owl-"], button.btn-info.fc-agendaDay-button.fc-state-default.fc-corner-right,
   button.btn-info.fc-month-button.fc-state-default.fc-corner-left,
   button.btn-info.fc-agendaWeek-button, .btn-info.fc-prev-button, .btn-info.fc-next-button, .btn-info.fc-today-button {
-    background: #0cb;
-    border: solid 1px #0cb; }
+    background: #238C00;
+    border: solid 1px #238C00; }
     .btn.btn-info:hover, .wizard > .actions a.btn-info:hover, .dt-buttons .btn-info.dt-button:hover, .tablesaw-sortable th.tablesaw-sortable-head button.btn-info:hover, .sweet-alert button.btn-info:hover, .owl-theme .owl-nav .btn-info[class*="owl-"]:hover, button.btn-info.fc-agendaDay-button.fc-state-default.fc-corner-right:hover,
     button.btn-info.fc-month-button.fc-state-default.fc-corner-left:hover,
     button.btn-info.fc-agendaWeek-button:hover, .btn-info.fc-prev-button:hover, .btn-info.fc-next-button:hover, .btn-info.fc-today-button:hover, .btn.btn-info:active, .wizard > .actions a.btn-info:active, .dt-buttons .btn-info.dt-button:active, .tablesaw-sortable th.tablesaw-sortable-head button.btn-info:active, .sweet-alert button.btn-info:active, .owl-theme .owl-nav .btn-info[class*="owl-"]:active, button.btn-info.fc-agendaDay-button.fc-state-default.fc-corner-right:active,
@@ -943,8 +943,8 @@ button.fc-agendaWeek-button, .fc-prev-button, .fc-next-button, .fc-today-button 
   button.btn-primary.fc-month-button.fc-state-default.fc-corner-left,
   .dt-buttons button.fc-month-button.fc-state-default.fc-corner-left.dt-button,
   button.btn-primary.fc-agendaWeek-button, .btn-primary.fc-prev-button, .btn-primary.fc-next-button, .btn-primary.fc-today-button {
-    background: #0cb;
-    border: solid 1px #0cb; }
+    background: #238C00;
+    border: solid 1px #238C00; }
     .btn.btn-primary:hover, .wizard > .actions a:hover, .dt-buttons .dt-button:hover, .tablesaw-sortable th.tablesaw-sortable-head button.btn-primary:hover, .sweet-alert button.btn-primary:hover, .owl-theme .owl-nav .btn-primary[class*="owl-"]:hover, button.btn-primary.fc-agendaDay-button.fc-state-default.fc-corner-right:hover, .dt-buttons button.fc-agendaDay-button.fc-state-default.fc-corner-right.dt-button:hover,
     button.btn-primary.fc-month-button.fc-state-default.fc-corner-left:hover,
     .dt-buttons button.fc-month-button.fc-state-default.fc-corner-left.dt-button:hover,
@@ -963,8 +963,8 @@ button.fc-agendaWeek-button, .fc-prev-button, .fc-next-button, .fc-today-button 
   .owl-theme .owl-nav button[class*="owl-"].fc-agendaWeek-button, .owl-theme .owl-nav [class*="owl-"].fc-prev-button, .owl-theme .owl-nav [class*="owl-"].fc-next-button, .owl-theme .owl-nav [class*="owl-"].fc-today-button, button.fc-agendaDay-button.fc-state-default.fc-corner-right,
   button.fc-month-button.fc-state-default.fc-corner-left,
   button.fc-agendaWeek-button, .fc-prev-button, .fc-next-button, .fc-today-button {
-    background: #0cb;
-    border: solid 1px #0cb; }
+    background: #238C00;
+    border: solid 1px #238C00; }
     .btn.btn-success:hover, .wizard > .actions a.btn-success:hover, .wizard > .actions a.fc-prev-button:hover, .wizard > .actions a.fc-next-button:hover, .wizard > .actions a.fc-today-button:hover, .dt-buttons .btn-success.dt-button:hover, .tablesaw-sortable th.tablesaw-sortable-head button.btn-success:hover,
     .tablesaw-sortable th.tablesaw-sortable-head button.fc-agendaWeek-button:hover, .tablesaw-sortable th.tablesaw-sortable-head button.fc-prev-button:hover, .tablesaw-sortable th.tablesaw-sortable-head button.fc-next-button:hover, .tablesaw-sortable th.tablesaw-sortable-head button.fc-today-button:hover, .sweet-alert button.btn-success:hover, .owl-theme .owl-nav .btn-success[class*="owl-"]:hover,
     .owl-theme .owl-nav button[class*="owl-"].fc-agendaWeek-button:hover, .owl-theme .owl-nav [class*="owl-"].fc-prev-button:hover, .owl-theme .owl-nav [class*="owl-"].fc-next-button:hover, .owl-theme .owl-nav [class*="owl-"].fc-today-button:hover, button.fc-agendaDay-button.fc-state-default.fc-corner-right:hover,
@@ -978,8 +978,8 @@ button.fc-agendaWeek-button, .fc-prev-button, .fc-next-button, .fc-today-button 
     .owl-theme .owl-nav button[class*="owl-"].fc-agendaWeek-button:focus, .owl-theme .owl-nav [class*="owl-"].fc-prev-button:focus, .owl-theme .owl-nav [class*="owl-"].fc-next-button:focus, .owl-theme .owl-nav [class*="owl-"].fc-today-button:focus, button.fc-agendaDay-button.fc-state-default.fc-corner-right:focus,
     button.fc-month-button.fc-state-default.fc-corner-left:focus,
     button.fc-agendaWeek-button:focus, .fc-prev-button:focus, .fc-next-button:focus, .fc-today-button:focus {
-      background: #0cb;
-      border: #0cb; }
+      background: #238C00;
+      border: #238C00; }
   .btn.btn-danger, .wizard > .actions a.btn-danger, .dt-buttons .btn-danger.dt-button, .tablesaw-sortable th.tablesaw-sortable-head button.btn-danger, .sweet-alert button.btn-danger, .owl-theme .owl-nav .btn-danger[class*="owl-"], button.btn-danger.fc-agendaDay-button.fc-state-default.fc-corner-right,
   button.btn-danger.fc-month-button.fc-state-default.fc-corner-left,
   button.btn-danger.fc-agendaWeek-button, .btn-danger.fc-prev-button, .btn-danger.fc-next-button, .btn-danger.fc-today-button {
@@ -2637,7 +2637,7 @@ a#toggle_mobile_nav {
     .wrapper.theme-2-active .navbar.navbar-inverse.navbar-fixed-top .nav > li > a:active, .wrapper.theme-2-active .navbar.navbar-inverse.navbar-fixed-top .nav > li > a:hover, .wrapper.theme-2-active .navbar.navbar-inverse.navbar-fixed-top .nav > li > a:focus {
       color: #fff; }
   .wrapper.theme-2-active .fixed-sidebar-left .side-nav {
-    background: #0cb; }
+    background: #238C00; }
   .wrapper.theme-3-active .fixed-sidebar-left {
     z-index: 1030; }
     .wrapper.theme-3-active .fixed-sidebar-left .side-nav {
@@ -2656,7 +2656,7 @@ a#toggle_mobile_nav {
       background: #f4f4f4;
       border-right: 1px solid #2a3e4c; }
       .wrapper.theme-4-active .navbar.navbar-inverse.navbar-fixed-top .nav-header .logo-wrap .brand-text {
-        color: #212121; }
+        color: #FFF; }
     .wrapper.theme-4-active .navbar.navbar-inverse.navbar-fixed-top .nav > li > a:active, .wrapper.theme-4-active .navbar.navbar-inverse.navbar-fixed-top .nav > li > a:hover, .wrapper.theme-4-active .navbar.navbar-inverse.navbar-fixed-top .nav > li > a:focus {
       color: #fff; }
   .wrapper.theme-4-active .fixed-sidebar-left {
@@ -2664,9 +2664,9 @@ a#toggle_mobile_nav {
     .wrapper.theme-4-active .fixed-sidebar-left .side-nav {
       background: #f4f4f4; }
   .wrapper.theme-5-active .navbar.navbar-inverse {
-    background: #0cb; }
+    background: #238C00; }
   .wrapper.theme-5-active .fixed-sidebar-left .side-nav {
-    background: #0cb; }
+    background: #238C00; }
   .wrapper.theme-6-active .navbar.navbar-inverse.navbar-fixed-top {
     background: #24333e;
     border-bottom: 1px solid #24333e; }
@@ -2720,7 +2720,7 @@ a#toggle_mobile_nav {
   .wrapper.theme-3-active .navbar.navbar-inverse.navbar-fixed-top .nav-header {
     background: #fff; }
     .wrapper.theme-3-active .navbar.navbar-inverse.navbar-fixed-top .nav-header .logo-wrap .brand-text {
-      color: #0cb; }
+      color: #238C00; }
   .wrapper.theme-4-active .navbar.navbar-inverse.navbar-fixed-top .nav-header {
     background: #2a3e4c;
     border-right: none; }
@@ -2736,14 +2736,14 @@ a#toggle_mobile_nav {
     color: #fff; } }
 /* Top Navigation */
 .navbar.navbar-inverse {
-  background: #0cb; }
+  background: #238C00; }
   .navbar.navbar-inverse.navbar-fixed-top {
     border-bottom: 1px solid #dedede;
     margin-bottom: 0;
     min-height: 66px;
     padding: 0 15px 0 0; }
     .navbar.navbar-inverse.navbar-fixed-top .nav-header {
-      width: 225px;
+      width: 270px;
       padding-left: 15px;
       height: 66px;
       -webkit-transition: 0.4s ease;
@@ -2751,12 +2751,13 @@ a#toggle_mobile_nav {
       transition: 0.4s ease;
       overflow: hidden; }
       .navbar.navbar-inverse.navbar-fixed-top .nav-header .logo-wrap {
-        width: 225px;
-        padding-top: 19px; }
+        width: 250px;
+        padding-top: 0px; }
         .navbar.navbar-inverse.navbar-fixed-top .nav-header .logo-wrap .brand-img {
-          margin-right: 10px;
-          position: relative;
-          top: 2px; }
+          margin-right: 0px;
+          top: 0px;
+          width:250px;
+        }
         .navbar.navbar-inverse.navbar-fixed-top .nav-header .logo-wrap .brand-text {
           display: inline-block;
           font-family: "Poppins",sans-serif;
@@ -2784,13 +2785,13 @@ a#toggle_mobile_nav {
           .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .btn, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .wizard > .actions .disabled .input-group-btn > a, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .wizard > .actions .input-group-btn > a, .wizard > .actions .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > a, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .dt-buttons .input-group-btn > .dt-button, .dt-buttons .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .dt-button, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .tablesaw-sortable th.tablesaw-sortable-head .input-group-btn > button, .tablesaw-sortable th.tablesaw-sortable-head .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .sweet-alert .input-group-btn > button, .sweet-alert .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .owl-theme .owl-nav .input-group-btn > [class*="owl-"], .owl-theme .owl-nav .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > [class*="owl-"], .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button.fc-agendaDay-button.fc-state-default.fc-corner-right,
           .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button.fc-month-button.fc-state-default.fc-corner-left,
           .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button.fc-agendaWeek-button, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .fc-prev-button, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .fc-next-button, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .fc-today-button {
-            background: transparent none repeat scroll 0 0;
+            /*background: transparent none repeat scroll 0 0;*/
             border: medium none;
             padding: 0; }
             .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .btn i, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .wizard > .actions .input-group-btn > a i, .wizard > .actions .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > a i, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .dt-buttons .input-group-btn > .dt-button i, .dt-buttons .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .dt-button i, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .tablesaw-sortable th.tablesaw-sortable-head .input-group-btn > button i, .tablesaw-sortable th.tablesaw-sortable-head .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button i, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .sweet-alert .input-group-btn > button i, .sweet-alert .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button i, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .owl-theme .owl-nav .input-group-btn > [class*="owl-"] i, .owl-theme .owl-nav .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > [class*="owl-"] i, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button.fc-agendaDay-button.fc-state-default.fc-corner-right i,
             .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button.fc-month-button.fc-state-default.fc-corner-left i,
             .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > button.fc-agendaWeek-button i, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .fc-prev-button i, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .fc-next-button i, .navbar.navbar-inverse.navbar-fixed-top .top-nav-search .input-group .input-group-btn > .fc-today-button i {
-              color: #0cb;
+              color: #238C00;
               font-size: 20px; }
     .navbar.navbar-inverse.navbar-fixed-top .nav > li.dropdown {
       position: relative; }
@@ -3006,7 +3007,7 @@ a#toggle_mobile_nav {
     opacity: 0;
     visibility: hidden; }
 .slide-nav-toggle.sidebar-hover .navbar.navbar-inverse.navbar-fixed-top .nav-header {
-  width: 225px; }
+  width: 250px; }
   .slide-nav-toggle.sidebar-hover .navbar.navbar-inverse.navbar-fixed-top .nav-header .logo-wrap .brand-text {
     opacity: 1;
     visibility: visible; }
@@ -3167,7 +3168,7 @@ footer {
   border-radius: 0;
   background-color: #fff;
   box-shadow: none;
-  color: #0cb;
+  color: #238C00;
   height: 42px; }
   .form-control:focus, .select2-container--default .select2-selection--single .select2-selection__rendered:focus,
   .select2-container--default .select2-selection--single:focus, .select2-selection.select2-selection--multiple:focus, .wizard .content > .body input:focus, .mce-floatpanel .mce-textbox:focus, .mce-floatpanel .mce-btn:focus, .dataTables_wrapper .dataTables_filter input:focus, .dataTables_wrapper .dataTables_length select:focus, .jsgrid-cell input:focus, .jsgrid-cell select:focus, .tablesaw-bar .btn-select select:focus, .dd-handle:focus, .dd3-content:focus, .app-search .form-control:focus, .app-search .jsgrid-cell input:focus, .jsgrid-cell .app-search input:focus, .app-search .jsgrid-cell select:focus, .jsgrid-cell .app-search select:focus, .app-search .dd-handle:focus, .app-search .dd3-content:focus {
@@ -3272,7 +3273,7 @@ footer {
 
 .has-success .checkbox, .has-success
 .checkbox-inline, .has-success .control-label, .has-success .help-block, .has-success .radio, .has-success .radio-inline, .has-success.checkbox label, .has-success.checkbox-inline label, .has-success.radio label, .has-success.radio-inline label {
-  color: #0cb; }
+  color: #238C00; }
 
 .has-warning .checkbox, .has-warning
 .checkbox-inline, .has-warning .control-label, .has-warning .help-block, .has-warning .radio, .has-warning .radio-inline, .has-warning.checkbox label, .has-warning.checkbox-inline label, .has-warning.radio label, .has-warning.radio-inline label {
@@ -3280,7 +3281,7 @@ footer {
 
 .has-error .checkbox, .has-error
 .checkbox-inline, .has-error .control-label, .has-error .help-block, .has-error .radio, .has-error .radio-inline, .has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label, .has-error.radio-inline label {
-  color: #0cb; }
+  color: #238C00; }
 
 .has-error .input-group-addon {
   background-color: transparent;
@@ -3622,14 +3623,14 @@ div.colorpicker {
 
 .product-detail-wrap .product-price {
   font-size: 18px;
-  color: #0cb; }
+  color: #238C00; }
 .product-detail-wrap .bootstrap-touchspin {
   float: left;
   margin-right: 15px;
   width: 70px; }
 
 .product-rating a {
-  color: #0cb;
+  color: #238C00;
   margin-right: 5px; }
 
 /*Product Cart*/
@@ -3945,7 +3946,7 @@ ul.wysihtml5-toolbar a.btn.wysihtml5-command-active, ul.wysihtml5-toolbar .wizar
   background: transparent !important;
   border: none; }
 .custom-tab-1 .nav-tabs > li.active > a {
-  border-bottom: 3px solid #0cb; }
+  border-bottom: 3px solid #238C00; }
 .custom-tab-1.vertical-tab .ver-nav-tab > li {
   background: transparent !important; }
   .custom-tab-1.vertical-tab .ver-nav-tab > li.active > a {
@@ -4852,8 +4853,8 @@ button.btn-small.btn-select.fc-agendaWeek-button, .btn-small.btn-select.fc-prev-
 
 .checkbox-info input[type="checkbox"]:checked + label::before,
 .checkbox-info input[type="radio"]:checked + label::before {
-  background-color: #0cb;
-  border-color: #0cb; }
+  background-color: #238C00;
+  border-color: #238C00; }
 
 .checkbox-warning input[type="checkbox"]:checked + label::before,
 .checkbox-warning input[type="radio"]:checked + label::before {
@@ -4877,8 +4878,8 @@ button.btn-small.btn-select.fc-agendaWeek-button, .btn-small.btn-select.fc-prev-
 
 .checkbox-info input[type="checkbox"]:indeterminate + label::before,
 .checkbox-info input[type="radio"]:indeterminate + label::before {
-  background-color: #0cb;
-  border-color: #0cb; }
+  background-color: #238C00;
+  border-color: #238C00; }
 
 .checkbox-warning input[type="checkbox"]:indeterminate + label::before,
 .checkbox-warning input[type="radio"]:indeterminate + label::before {
@@ -4909,13 +4910,13 @@ button.btn-small.btn-select.fc-agendaWeek-button, .btn-small.btn-select.fc-prev-
   background-color: #f33923; }
 
 .radio-info input[type="radio"] + label::after {
-  background-color: #0cb; }
+  background-color: #238C00; }
 
 .radio-info input[type="radio"]:checked + label::before {
-  border-color: #0cb; }
+  border-color: #238C00; }
 
 .radio-info input[type="radio"]:checked + label::after {
-  background-color: #0cb; }
+  background-color: #238C00; }
 
 .radio-warning input[type="radio"] + label::after {
   background-color: #f8b32d; }
@@ -6081,7 +6082,7 @@ a.compose-mail {
 .profile-box .profile-cover-pic {
   position: relative;
   min-height: 197px;
-  background-image: url("../img/gallery/mock6.jpg"); }
+  background-image: url('../../dist/img/coverimg.jpg'); }
   .profile-box .profile-cover-pic .profile-image-overlay {
     position: absolute;
     height: 100%;
@@ -6971,7 +6972,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     margin-left: 44px; }
 
   .navbar.navbar-inverse.navbar-fixed-top .nav-header {
-    width: 44px; }
+    width: 250px; }
     .navbar.navbar-inverse.navbar-fixed-top .nav-header .logo-wrap .brand-text {
       opacity: 0;
       visibility: hidden; }
@@ -7066,7 +7067,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
       right: 50px;
       top: 0; }
     .navbar.navbar-inverse.navbar-fixed-top .mobile-only-brand {
-      background: #0cb;
+      background: #238C00;
       position: relative;
       z-index: 2; }
     .navbar.navbar-inverse.navbar-fixed-top .mobile-only-nav {
@@ -7078,7 +7079,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
       position: absolute;
       left: 0;
       top: 0;
-      background: #0cb;
+      background: #238C00;
       padding: 0 15px;
       border-bottom: 1px solid #dedede; }
     .navbar.navbar-inverse.navbar-fixed-top .top-nav-search {
@@ -7409,7 +7410,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     text-align: center;
     font-size: 28px;
     font-family: "Roboto",Arial,sans-serif;
-    color: #0cb;
+    color: #238C00;
     max-width:1000px;
     padding-top: 70px;
    
@@ -7417,7 +7418,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 .headerdiv h1{
     text-align: center;
     font-family: "Roboto",Arial,sans-serif;
-    color: #0cb;
+    color: #238C00;
     max-width:1000px;
     padding-top: 70px;
    
@@ -7432,7 +7433,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     height:50px;
     border: ;
     border-radius:50px;
-    background: #0cb;
+    background: #238C00;
     text-align: center;
     padding:12px;
     cursor:pointer;
@@ -7497,7 +7498,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 .icon-container{
     margin-left: 32px;
     float:left;
-    color:#0cb;
+    color:#238C00;
     cursor:pointer;
     
 }
@@ -7617,7 +7618,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 
 .body2contentcolumn1text h3{
     text-align: center;
-    color:#0cb;
+    color:#238C00;
 }
 
 .body2contentcolumn2{
@@ -7634,7 +7635,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     float:left;
     max-width:468px;
     background: #f4f4f4;
-    color:#0cb;
+    color:#238C00;
     border-radius: 5px;
 	padding-bottom:70px;
 }
@@ -7648,19 +7649,19 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     float:right;
     max-width:468px;
      background: #f4f4f4;
-    color:#0cb;
+    color:#238C00;
     border-radius: 5px;
 	padding-bottom:70px;
 }
 
 .read1{
     margin-top: 0px;
-    color:#0cb;
+    color:#238C00;
 	font-weight:lighter;
 	font-style:italic;
 }.read{
     margin-top: 30px;
-    color:#0cb;
+    color:#238C00;
 	font-weight:lighter;
 	font-style:italic;
 }
@@ -7682,7 +7683,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     float:left;
     max-width:310px;
     background: #fff;
-    color:#0cb;
+    color:#238C00;
     border-radius: 5px;
 	padding-bottom:70px;
 }
@@ -7698,7 +7699,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     float:left;
     max-width:310px;
      background: #f4f4f4;
-    color:#0cb;
+    color:#238C00;
     border-radius: 5px;
 	padding-bottom:70px;
 }
@@ -7735,7 +7736,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     transform-origin: 37.6719px 21px;
     user-select: none;
     caret-color: rgb(255, 255, 255);
-    background: #0cb none repeat scroll 0% 0% / auto padding-box border-box;
+    background: #238C00 none repeat scroll 0% 0% / auto padding-box border-box;
     border: 1px solid #fff;
     border-radius: 60px 60px 60px 60px;
     font: normal normal 400 normal 14px / 20px Roboto, sans-serif;
@@ -8103,6 +8104,27 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     outline: rgb(135, 135, 135) none 0px;
 }/*#IMG_2:before*/
 
+
+
+ .navbar.navbar-inverse.navbar-fixed-top .nav.top-nav li{
+  display:block;
+  border-right:#fff 1px solid;
+  line-height:66px;
+  padding:0 7px 0px 7px;
+  width:120px;
+  text-align:center;
+ }
+
+.navbar.navbar-inverse.navbar-fixed-top .nav.top-nav li:last-child{
+     border-right:none; 
+ }
+
+@media (min-width: 720px) {
+
+    ul.yusuf{
+     display:none;
+ }
+}
 
 
 

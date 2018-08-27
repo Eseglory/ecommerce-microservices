@@ -1,4 +1,4 @@
-@charset "UTF-8"; 
+﻿@charset "UTF-8"; 
 /*------------------------------------------------------------------
 [Master Stylesheet]
 Project:	Jetson
@@ -6459,7 +6459,7 @@ a.compose-mail {
 	.profile-cover-pic {
 		position:relative;
 		min-height:197px;
-		background-image:url("../img/gallery/mock6.jpg");
+		background-image: url('../../dist/img/coverimg.jpg');
 		.profile-image-overlay {
 			position:absolute;
 			height:100%;

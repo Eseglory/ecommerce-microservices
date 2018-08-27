@@ -32,7 +32,7 @@
 					<div class="logo-wrap">
 						<a href="index.html">
 							<img class="brand-img" src="dist/img/logo.png" alt="brand"/>
-							<span class="brand-text">Research Gate</span>
+							<!--span class="brand-text">Research Gate</span-->
 						</a>
 					</div>
 				</div>	
@@ -706,6 +706,7 @@
         <asp:Literal runat="server" ID="SuccessMessage" />
     </p>
 					<!-- Row -->
+                    <asp:Panel ID="Panel1" runat="server">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="panel panel-default card-view">
@@ -1189,7 +1190,7 @@
 													</div>
 												<br>
 												<div class="form-actions">
-                                                      <asp:Button ID="insert_research" runat="server" OnClick="AddResearch_Click" Text="save" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="AddResearch_Click"/>
+                                                      <asp:Button ID="insert_research" runat="server" OnClick="AddResearch_Click" Text="save" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" />
 <%--													<button  runat="server" OnClick="AddResearch_Click" class="btn btn-success btn-icon left-icon mr-10 pull-left"> <i class="fa fa-check"></i> <span>save</span></button>--%>
 													<button type="button" class="btn btn-warning pull-left">Cancel</button>
 													<div class="clearfix"></div>
@@ -1201,6 +1202,12 @@
 							</div>
 						</div>
 					</div>
+                     </asp:Panel>
+                    <asp:Panel ID="Panel2" runat="server">
+                        <div align="center">
+                        <h3>Operation was successful, new research has been added to the list</h3>
+                         </div>
+                    </asp:Panel>
 					<!-- /Row -->
 
 				</div>

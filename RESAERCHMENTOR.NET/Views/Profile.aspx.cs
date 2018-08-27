@@ -24,6 +24,8 @@ namespace RESAERCHMENTOR.NET.Views
 
             if (!Page.IsPostBack)
             {
+                PictureImageA.ImageUrl = "dist/img/mock1.jpg";
+                Image2.Src = "dist/img/mock1.jpg";
                 LabelFollow.Text = CFollow.ToString();
                 LabelFollowing.Text = CFollowing.ToString();
                 refreshdata();
@@ -33,6 +35,11 @@ namespace RESAERCHMENTOR.NET.Views
                 var MyProfile = GetLoginUser().FirstOrDefault();
                 if (MyProfile != null)
                 {
+                    if(MyProfile.ProfilePicsName != string.Empty)
+                    {
+                        PictureImageA.ImageUrl = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
+                        Image2.Src = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
+                    }
                     Rtitle.Value = MyProfile.Title;
                     FirstName.Value = MyProfile.FName;
                     LastName.Value = MyProfile.LName;
@@ -140,7 +147,7 @@ namespace RESAERCHMENTOR.NET.Views
                 {
                     List<UserProfile> UserKist = new List<UserProfile>();
                     string query = "";
-                    query = "select distinct * from Profile as a where not exists ( select * from Following as b where a.OwnersId = b.OwnerId) and a.OwnersId != '" + userName + "'";
+                    query = "select distinct * from Profile as a where not exists ( select * from Following as b) and a.OwnersId != '" + userName + "'";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -175,6 +182,7 @@ namespace RESAERCHMENTOR.NET.Views
                     var message = ee.Message;
                 }
             }
+            depositorsList.Where(x => x.OwnersId != userName);
             return depositorsList;
         }
         public List<UserProfile> GetAllUsers()
@@ -291,13 +299,14 @@ namespace RESAERCHMENTOR.NET.Views
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
                 string Gender = "";
+                string FileName = PictureUpload.FileName;
                 if (Gender1.Checked) { Gender = "Male"; }
                 else
                 {
                     Gender = "Female";
                 }
                 conAm.Open();
-                string querystring = "UPDATE [dbo].[Profile] SET [Title] = '"+ Rtitle.Value +"', [FName] = '"+ FirstName.Value +"', [LName] = '"+ LastName.Value +"', [Degree] = '"+ degree.Value +"', [CNumber] = '"+ CNumber.Value +"', [BDate] = '"+ BDate.Value +"', [Gender] = '"+ Gender + "' WHERE [OwnersId] = '"+ userName + "'";
+                string querystring = "UPDATE [dbo].[Profile] SET [Title] = '"+ Rtitle.Value +"', [FName] = '"+ FirstName.Value +"', [LName] = '"+ LastName.Value +"', [Degree] = '"+ degree.Value +"', [CNumber] = '"+ CNumber.Value +"', [BDate] = '"+ BDate.Value +"', [Gender] = '"+ Gender + "', [ProfilePicsName] = '" + FileName + "' WHERE [OwnersId] = '"+ userName + "'";
                 try
                 {
                     var cmd = new SqlCommand(querystring, conAm);
@@ -312,6 +321,7 @@ namespace RESAERCHMENTOR.NET.Views
         }
         protected void UpdateProfile_Click(object sender, EventArgs e)
         {
+            UploadFile();
             int FCount = UpdateUserProfile();
             if (FCount > 0)
             {
@@ -347,9 +357,10 @@ namespace RESAERCHMENTOR.NET.Views
                                                   BDate = rec["BDate"].ToString(),
                                                   Gender = rec["Gender"].ToString(),
                                                   OwnersId = rec["OwnersId"].ToString(),
+                                                  Country = rec["Country"].ToString(),
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
                                               }).ToList();
                             #endregion
                         }
@@ -364,5 +375,17 @@ namespace RESAERCHMENTOR.NET.Views
             }
             return depositorsList;
         }
+        protected void UploadFile()
+        {
+            string folderPath = Server.MapPath("~/Files/");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            PictureUpload.SaveAs(folderPath + Path.GetFileName(PictureUpload.FileName));
+            PictureImageA.ImageUrl = "~/Files/" + Path.GetFileName(PictureUpload.FileName);
+            Image2.Src = "~/Files/" + Path.GetFileName(PictureUpload.FileName);
+        }
+
     }
 }

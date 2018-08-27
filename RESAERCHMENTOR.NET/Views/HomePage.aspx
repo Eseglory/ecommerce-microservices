@@ -72,7 +72,7 @@
                       <h2 class="header">Discover scientific knowledge, and make your research visible.</h2>
                     </div>
                           <div class="clearfix"></div><br>
-                          <a  href="researchsignup.html"><div class="slidebutton">
+                          <a href="Register.aspx"><div class="slidebutton">
                               <span class="slidebuttonbtn">Join for free</span>
                           </div></a>
                           <div class="clearfix"></div><br><br>

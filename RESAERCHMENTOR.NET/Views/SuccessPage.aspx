@@ -85,7 +85,10 @@
 										<div class="mb-30">
                                            <p align ="center"><img src="dist/img/success.jpg" class="auto-style1" /></p>
 											<h3 class="text-center txt-dark mb-10">Operation was successful</h3>
-											<h6 class="text-center nonecase-font txt-grey">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="Profile.aspx">Go to profile page</a></h6>
+                                            <div align ="center">
+											<h6 class="text-center nonecase-font txt-grey">
+                                                 <a href="Profile.aspx">Go to profile page</a></h6>
+                                                </div>
 										</div>	
 										<div class="form-wrap">
 											<form action="#" runat ="server">												
