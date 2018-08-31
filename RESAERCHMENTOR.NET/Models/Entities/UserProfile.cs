@@ -22,7 +22,15 @@ namespace RESAERCHMENTOR.NET.Models.Entities
         public string FollowState { get; set; }
         public bool IsConfirmed { get; set; }
         public string Country { get; set; }
-
+        #region Research
+        public string FileName { get; set; }
+        public string AuthorName { get; set; }
+        public string ResearchId { get; set; }
+        public string RDateCreated { get; set; }
+        public string Description { get; set; }
+        public string RType { get; set; }
+        public string Status { get; set; }
+        #endregion
         #region Following
         public string Following { get; set; }
         public string Follower { get; set; }

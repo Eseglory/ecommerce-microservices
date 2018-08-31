@@ -1335,70 +1335,78 @@
 												<div class="col-md-12">
 													<div class="pt-20">
 														<div class="streamline user-activity">
-															<h5>My Researches</h5>
                                                           <p><br /></p>
-                                                            <div id="popup" style="max-height:600px;overflow-y:scroll;">
-                                      <asp:GridView ID="GridView1" AllowSorting ="True" AllowPaging ="True"  CssClass="table1" runat="server" AutoGenerateColumns="False" DataKeyNames="id" Width="1062px">  
-                    <Columns>  
-                        <asp:TemplateField HeaderText="Title">  
-                            <EditItemTemplate>  
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Title") %>'></asp:TextBox>  
-                            </EditItemTemplate>  
-                            <ItemTemplate>  
-                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Title") %>'></asp:Label>  
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
-                        <asp:TemplateField HeaderText="Sub Title">  
-                            <EditItemTemplate>  
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("SubTitle") %>'></asp:TextBox>  
-                            </EditItemTemplate>  
-                            <ItemTemplate>  
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("SubTitle") %>'></asp:Label>  
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
-                        <asp:TemplateField HeaderText="Authors Name">  
-                            <EditItemTemplate>  
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("AuthorName") %>'></asp:TextBox>  
-                            </EditItemTemplate>  
-                            <ItemTemplate>  
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("AuthorName") %>'></asp:Label>  
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
-                        <asp:TemplateField HeaderText="Research Type">  
-                            <EditItemTemplate>  
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("RType") %>'></asp:TextBox>  
-                            </EditItemTemplate>  
-                            <ItemTemplate>  
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("RType") %>'></asp:Label>  
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
-                        <asp:TemplateField HeaderText="Status">  
-                            <EditItemTemplate>  
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Status") %>'></asp:TextBox>  
-                            </EditItemTemplate>  
-                            <ItemTemplate>  
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Status") %>'></asp:Label>  
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
-                        <asp:TemplateField HeaderText="Description">  
-                            <EditItemTemplate>  
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Description") %>'></asp:TextBox>  
-                            </EditItemTemplate>  
-                            <ItemTemplate>  
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Description") %>'></asp:Label>  
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
-                        <asp:TemplateField HeaderText="Date Created">  
-                            <EditItemTemplate>  
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("DateCreated") %>'></asp:TextBox>  
-                            </EditItemTemplate>  
-                            <ItemTemplate>  
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("DateCreated") %>'></asp:Label>  
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
-                    </Columns>  
-                </asp:GridView>  
-           </div>
+                    <!-- /story-cont -->
+                   <%foreach (var item in GetLoginUserResearch()){%>
+                    <div class="story-cont col-lg-12 p-b-m">
+                    	<div class="row story-cont2">
+                            <div class="profile-pic col-lg-1 col-xs-2 pg-up">
+                                <div class="row">
+                                    <img runat="server" id="RProfileImg" class="img-responsive">
+                                </div><!-- /profile-pic -->
+                            </div>
+                        	<!--div class="row"-->
+                            <div class="news-feed-header col-lg-10 col-xs-10 pg-up bg-white">
+                                <div class="username-newsfeed p-tb-xs"> 
+                                    <span class="txt-green"><strong><asp:Label ID="ROwner" runat="server" Text="Label"></asp:Label> </strong></span> 
+                                    <div class="visible-xs"><br></div>
+                                    <%DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                        string MDate = RDate.ToLongDateString();
+                                         %>
+                                    <span class="txt-grey pull-right">Posted <%HttpContext.Current.Response.Write(MDate); %></span>
+                                    <br>
+                                    
+                                    <span class="txt-grey"><%HttpContext.Current.Response.Write(item.RType); %> was added</span> 
+                                </div><!-- /username-newsfeed -->
+                            </div><!-- /news-feed-header -->
+                            <div class="write-up col-lg-10 bg-white border-top p-b-s">
+                                <div class="news-feed-title_img col-lg-7">
+                                	
+                                        <div class="row">
+                                            <div class="post-heading col-lg-12">
+                                                <h6><%HttpContext.Current.Response.Write(item.Description); %> </h6>
+                                            </div><!-- /post-heading -->
+                                            <div class="row">
+                                                    
+                                <br><br><br><br><br><br>
+                                                    
+                                                </div>
+                                        </div><!-- /row -->
+                                    <div class="row">
+                                        <div class="post-img col-lg-12">
+                                        
+                                        <div class="row">
+                                            <div class="col-lg-8 col-xs-9 view-top">
+                                                <div class="row">
+                          <a href="#" class="p-l-s txt-green">View </a>
+                         <a href="#" class="p-l-s txt-green">Download </a>
+                                                </div>
+                                            </div><!-- /col-6 -->
+                                            <div class="col-lg-4 col-xs-3 pull-right view-top">
+                                                <div class="row">
+                                                <div class="col-lg-6 col-xs-6"><img src="dist/img/big/like.png" width="15"></div>
+                                                <div class="col-lg-6 col-xs-6"><img src="dist/img/big/share.png" width="15"></div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /row -->
+                                    
+                            		<p><br /></p>	
+                                    <hr />
+
+                                        </div><!-- /post-img -->
+                                    </div><!-- /row -->
+                                    
+                                </div><!-- /news-feed-title_img -->
+                                <div class="news-feed-text col-lg-5 p-t-s">
+                                <img src="dist/img/big/kids.png" class="img-responsive" width="100" height="600">
+                                </div><!-- /news-feed-text -->
+                            </div><!-- /write-up -->
+                            <!--/div-->
+                            
+                        </div><!-- /row -->
+                    </div>
+                    <%} %>
+                    <!-- /story-cont -->
 														</div>
 													</div>
 												</div>
@@ -1416,6 +1424,7 @@
 																			        <img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
 																			        <div class="user-data">
                                                                                         <%string passFid = item.OwnersId;
+                                                                                            Session["passFid"] = null;
                                                                                             if (passFid != string.Empty) { Session["passFid"] = passFid; }%>
                                                                                          <span class="name block capitalize-font"><% HttpContext.Current.Response.Write(item.Title + " " + item.LName + " " + item.FName);%></span>	
 																				        <span class="time block truncate txt-grey"><% HttpContext.Current.Response.Write(item.OwnersId);%></span>

@@ -166,13 +166,22 @@ namespace RESAERCHMENTOR.NET.Views {
         protected global::System.Web.UI.WebControls.Label LabelFollowing;
         
         /// <summary>
-        /// GridView1 control.
+        /// RProfileImg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.HtmlControls.HtmlImage RProfileImg;
+        
+        /// <summary>
+        /// ROwner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ROwner;
         
         /// <summary>
         /// FollowB control.

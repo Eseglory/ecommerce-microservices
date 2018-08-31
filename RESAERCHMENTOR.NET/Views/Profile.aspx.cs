@@ -24,18 +24,20 @@ namespace RESAERCHMENTOR.NET.Views
 
             if (!Page.IsPostBack)
             {
+                Session["passFid"] = null;
                 PictureImageA.ImageUrl = "dist/img/mock1.jpg";
                 Image2.Src = "dist/img/mock1.jpg";
                 LabelFollow.Text = CFollow.ToString();
                 LabelFollowing.Text = CFollowing.ToString();
-                refreshdata();
+                GetLoginUserResearch();
                 GetFollowingByLogin();
                 GetFellowByLoginList();
                 #region Load Profile
                 var MyProfile = GetLoginUser().FirstOrDefault();
                 if (MyProfile != null)
                 {
-                    if(MyProfile.ProfilePicsName != string.Empty)
+                    ROwner.Text = MyProfile.LName + " " + MyProfile.FName;
+                    if (MyProfile.ProfilePicsName != string.Empty)
                     {
                         PictureImageA.ImageUrl = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
                         Image2.Src = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
@@ -80,16 +82,6 @@ namespace RESAERCHMENTOR.NET.Views
         {
             string conString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             return conString;
-        }
-        public void refreshdata()
-        {
-            SqlConnection con = new SqlConnection(ConnectionState());
-            SqlCommand cmd = new SqlCommand("select * from Research", con);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            sda.Fill(ds);
-            GridView1.DataSource = ds;
-            GridView1.DataBind();
         }
         public List<UserProfile> GetFollowingByLogin()
         {
@@ -147,7 +139,7 @@ namespace RESAERCHMENTOR.NET.Views
                 {
                     List<UserProfile> UserKist = new List<UserProfile>();
                     string query = "";
-                    query = "select distinct * from Profile as a where not exists ( select * from Following as b) and a.OwnersId != '" + userName + "'";
+                    query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "'";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -235,13 +227,22 @@ namespace RESAERCHMENTOR.NET.Views
         protected int FollowingR(string following)
         {
             int row = 0;
+            string userName = Context.User.Identity.GetUserName();
+            #region Check
+            int FollowingList = GetFollowingByLogin().Where(
+                x => x.OwnersId == userName && x.Following == following).Count();
+            if (FollowingList > 0)
+            {
+                Response.Write("You already have this person on your list.!");
+            }
+            #endregion
+
             string CodeGen = CodeGenerator.RandomString(7);
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
                 conAm.Open();
                 try
                 {
-                    string userName = Context.User.Identity.GetUserName();
                     string CreationDate = DateTime.Now.ToShortDateString();
                     var cmd = new SqlCommand("INSERT INTO Following(OwnerId,Following,DateCreated) values('" + userName + "','" + following + "','" + CreationDate + "')", conAm);
                     row = cmd.ExecuteNonQuery();
@@ -277,6 +278,7 @@ namespace RESAERCHMENTOR.NET.Views
         protected void Follow_Click(object sender, EventArgs e)
         {
             string Following = Session["passFid"].ToString();
+            var SCheck = FollowB.CommandArgument;
             int FCount = FollowingR(Following);
             if(FCount > 0)
             {
@@ -386,6 +388,56 @@ namespace RESAERCHMENTOR.NET.Views
             PictureImageA.ImageUrl = "~/Files/" + Path.GetFileName(PictureUpload.FileName);
             Image2.Src = "~/Files/" + Path.GetFileName(PictureUpload.FileName);
         }
+        public List<UserProfile> GetLoginUserResearch()
+        {
+            string userName = Context.User.Identity.GetUserName();
+            List<UserProfile> depositorsList = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select distinct a.Title, a.Degree, a.BDate, a.Country, a.Gender, a.CNumber, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.Status from Profile as a join Research as b on a.OwnersId = b.OwnersId where a.OwnersId = '" + userName + "' and a.IsConfirmed = 1";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            depositorsList = (from DataRow rec in dt.Rows
+                                              select new UserProfile()
+                                              {
+                                                  Title = rec["Title"].ToString(),
+                                                  FName = rec["FName"].ToString(),
+                                                  LName = rec["LName"].ToString(),
+                                                  Degree = rec["Degree"].ToString(),
+                                                  CNumber = rec["CNumber"].ToString(),
+                                                  BDate = rec["BDate"].ToString(),
+                                                  Gender = rec["Gender"].ToString(),
+                                                  Country = rec["Country"].ToString(),
+                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                                  FileName = rec["FileName"].ToString(),
+                                                  ResearchId = rec["Id"].ToString(),
+                                                  RDateCreated = rec["DateCreated"].ToString(),
+                                                  RType = rec["RType"].ToString(),
+                                                  Status = rec["Status"].ToString(),
+                                                  Description = rec["Description"].ToString(),
 
+                                              }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return depositorsList;
+        }
     }
 }

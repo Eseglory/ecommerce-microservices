@@ -200,6 +200,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Files\10849725_518838801553082_6556234672891186567_n.jpg" />
+    <Content Include="Files\C# Test.png" />
+    <Content Include="Files\CU_Payment.PNG" />
+    <Content Include="Files\NOU158851168.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -210,6 +214,11 @@
     <Content Include="Account\Web.config" />
     <None Include="Properties\PublishProfiles\ese.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\10849725_518838801553082_6556234672891186567_n.jpg" />
+    <Content Include="Images\15781553_1208484999236580_7679065313999853631_n.jpg" />
+    <Content Include="Images\15823463_1208484979236582_6172216041716355125_n.jpg" />
+    <Content Include="Images\BB-contact.PNG" />
+    <Content Include="Images\NOU158851168.jpg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -247,6 +256,16 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\AddResearch.aspx" />
+    <Content Include="Views\DashBoard.aspx" />
+    <Content Include="Views\dist\img\1-s.png" />
+    <Content Include="Views\dist\img\2-s.png" />
+    <Content Include="Views\dist\img\3-s.png" />
+    <Content Include="Views\dist\img\4-s.png" />
+    <Content Include="Views\dist\img\avatar.jpg" />
+    <Content Include="Views\dist\img\big\ad-1.png" />
+    <Content Include="Views\dist\img\big\ad-2.png" />
+    <Content Include="Views\dist\img\big\arrow.png" />
+    <Content Include="Views\dist\img\big\circle.jpg" />
     <Content Include="Views\dist\img\big\circle1.jpg" />
     <Content Include="Views\dist\img\big\circle2.jpg" />
     <Content Include="Views\dist\img\big\circle3.jpg" />
@@ -254,63 +273,33 @@
     <Content Include="Views\dist\img\big\circle5.jpg" />
     <Content Include="Views\dist\img\big\circle6.jpg" />
     <Content Include="Views\dist\img\big\circle7.jpg" />
-    <Content Include="Views\dist\img\coverimg.jpg" />
-    <Content Include="Views\dist\img\success.jpg" />
-    <Content Include="Views\dist\img\successbutton.jpg" />
-    <Content Include="Views\Manage.aspx" />
-    <Content Include="Views\Confirm.aspx" />
-    <Content Include="Views\dist\css\animate.css" />
-    <Content Include="Views\dist\css\basic-admin.css" />
-    <Content Include="Views\dist\css\bootstrap.min.css" />
-    <Content Include="Views\dist\css\fancy-buttons.css" />
-    <Content Include="Views\dist\css\fancy-dropdown.css" />
-    <Content Include="Views\dist\css\filter.css" />
-    <Content Include="Views\dist\css\font-awesome.min.css" />
-    <Content Include="Views\dist\css\lightgallery.css" />
-    <Content Include="Views\dist\css\linea-icon.css" />
-    <Content Include="Views\dist\css\material-design-iconic-font.min.css" />
-    <Content Include="Views\dist\css\pe-icon-7-stroke.css" />
-    <Content Include="Views\dist\css\pe-icon-7-styles.css" />
-    <Content Include="Views\dist\css\sb-admin.css" />
-    <Content Include="Views\dist\css\simple-line-icons.css" />
-    <Content Include="Views\dist\css\style.css" />
-    <Content Include="Views\dist\css\themify-icons.css" />
-    <Content Include="Views\dist\fonts\fontawesome\fontawesome-webfont.svg" />
-    <Content Include="Views\dist\fonts\lg\lg.svg" />
-    <Content Include="Views\dist\fonts\linea-icons\linea-arrows-10.svg" />
-    <Content Include="Views\dist\fonts\linea-icons\linea-basic-10.svg" />
-    <Content Include="Views\dist\fonts\linea-icons\linea-basic-elaboration-10.svg" />
-    <Content Include="Views\dist\fonts\linea-icons\linea-ecommerce-10.svg" />
-    <Content Include="Views\dist\fonts\linea-icons\linea-music-10.svg" />
-    <Content Include="Views\dist\fonts\linea-icons\linea-software-10.svg" />
-    <Content Include="Views\dist\fonts\linea-icons\linea-weather-10.svg" />
-    <Content Include="Views\dist\fonts\material-design-iconic-font\Material-Design-Iconic-Font.svg" />
-    <Content Include="Views\dist\fonts\pe-icon-7\Pe-icon-7-stroke.svg" />
-    <Content Include="Views\dist\fonts\simple-line-icons\Simple-Line-Icons4c82.svg" />
-    <Content Include="Views\dist\fonts\themify-icons\themify.svg" />
-    <Content Include="Views\dist\img\1-s.png" />
-    <Content Include="Views\dist\img\2-s.png" />
-    <Content Include="Views\dist\img\3-s.png" />
-    <Content Include="Views\dist\img\4-s.png" />
-    <Content Include="Views\dist\img\avatar.jpg" />
-    <Content Include="Views\dist\img\big\circle.jpg" />
+    <Content Include="Views\dist\img\big\home.png" />
     <Content Include="Views\dist\img\big\img1.jpg" />
     <Content Include="Views\dist\img\big\img2.jpg" />
     <Content Include="Views\dist\img\big\img3.jpg" />
     <Content Include="Views\dist\img\big\img4.jpg" />
     <Content Include="Views\dist\img\big\img5.jpg" />
     <Content Include="Views\dist\img\big\img6.jpg" />
+    <Content Include="Views\dist\img\big\kids.png" />
+    <Content Include="Views\dist\img\big\like.png" />
+    <Content Include="Views\dist\img\big\login-bg.jpg" />
+    <Content Include="Views\dist\img\big\prof-px.png" />
+    <Content Include="Views\dist\img\big\share.png" />
+    <Content Include="Views\dist\img\big\signup-bg.jpg" />
     <Content Include="Views\dist\img\chair.jpg" />
     <Content Include="Views\dist\img\chair2.jpg" />
     <Content Include="Views\dist\img\chair3.jpg" />
     <Content Include="Views\dist\img\chair4.jpg" />
     <Content Include="Views\dist\img\country\01-flag.png" />
+    <Content Include="Views\dist\img\country\01-flag.zip" />
     <Content Include="Views\dist\img\country\02-flag.png" />
     <Content Include="Views\dist\img\country\03-flag.png" />
     <Content Include="Views\dist\img\country\04-flag.png" />
     <Content Include="Views\dist\img\country\05-flag.png" />
     <Content Include="Views\dist\img\country\06-flag.png" />
     <Content Include="Views\dist\img\country\07-flag.png" />
+    <Content Include="Views\dist\img\coverimg.jpg" />
+    <Content Include="Views\dist\img\coverimg.png" />
     <Content Include="Views\dist\img\cropper.jpg" />
     <Content Include="Views\dist\img\errorbg.jpg" />
     <Content Include="Views\dist\img\gallery\equal-size\mock1.jpg" />
@@ -341,6 +330,8 @@
     <Content Include="Views\dist\img\modals\model3.png" />
     <Content Include="Views\dist\img\range\sprite-skin-modern.png" />
     <Content Include="Views\dist\img\slide1.jpg" />
+    <Content Include="Views\dist\img\success.jpg" />
+    <Content Include="Views\dist\img\successbutton.jpg" />
     <Content Include="Views\dist\img\sweetalert\alert.png" />
     <Content Include="Views\dist\img\sweetalert\alert2.png" />
     <Content Include="Views\dist\img\sweetalert\alert3.png" />
@@ -351,6 +342,7 @@
     <Content Include="Views\dist\img\thumb-1.jpg" />
     <Content Include="Views\dist\img\thumb-2.jpg" />
     <Content Include="Views\dist\img\thumb-3.jpg" />
+    <Content Include="Views\dist\img\Untitled.png" />
     <Content Include="Views\dist\img\user.png" />
     <Content Include="Views\dist\img\user1.png" />
     <Content Include="Views\dist\img\user2.png" />
@@ -409,6 +401,37 @@
     <Content Include="Views\dist\img\weathericons\8.svg" />
     <Content Include="Views\dist\img\weathericons\9.svg" />
     <Content Include="Views\dist\img\youtube-play.png" />
+    <Content Include="Views\Manage.aspx" />
+    <Content Include="Views\Confirm.aspx" />
+    <Content Include="Views\dist\css\animate.css" />
+    <Content Include="Views\dist\css\basic-admin.css" />
+    <Content Include="Views\dist\css\bootstrap.min.css" />
+    <Content Include="Views\dist\css\fancy-buttons.css" />
+    <Content Include="Views\dist\css\fancy-dropdown.css" />
+    <Content Include="Views\dist\css\filter.css" />
+    <Content Include="Views\dist\css\font-awesome.min.css" />
+    <Content Include="Views\dist\css\lightgallery.css" />
+    <Content Include="Views\dist\css\linea-icon.css" />
+    <Content Include="Views\dist\css\material-design-iconic-font.min.css" />
+    <Content Include="Views\dist\css\pe-icon-7-stroke.css" />
+    <Content Include="Views\dist\css\pe-icon-7-styles.css" />
+    <Content Include="Views\dist\css\sb-admin.css" />
+    <Content Include="Views\dist\css\simple-line-icons.css" />
+    <Content Include="Views\dist\css\style.css" />
+    <Content Include="Views\dist\css\themify-icons.css" />
+    <Content Include="Views\dist\fonts\fontawesome\fontawesome-webfont.svg" />
+    <Content Include="Views\dist\fonts\lg\lg.svg" />
+    <Content Include="Views\dist\fonts\linea-icons\linea-arrows-10.svg" />
+    <Content Include="Views\dist\fonts\linea-icons\linea-basic-10.svg" />
+    <Content Include="Views\dist\fonts\linea-icons\linea-basic-elaboration-10.svg" />
+    <Content Include="Views\dist\fonts\linea-icons\linea-ecommerce-10.svg" />
+    <Content Include="Views\dist\fonts\linea-icons\linea-music-10.svg" />
+    <Content Include="Views\dist\fonts\linea-icons\linea-software-10.svg" />
+    <Content Include="Views\dist\fonts\linea-icons\linea-weather-10.svg" />
+    <Content Include="Views\dist\fonts\material-design-iconic-font\Material-Design-Iconic-Font.svg" />
+    <Content Include="Views\dist\fonts\pe-icon-7\Pe-icon-7-stroke.svg" />
+    <Content Include="Views\dist\fonts\simple-line-icons\Simple-Line-Icons4c82.svg" />
+    <Content Include="Views\dist\fonts\themify-icons\themify.svg" />
     <Content Include="Views\dist\js\bootstrap-table-data.js" />
     <Content Include="Views\dist\js\bootstrap-wysuhtml5-data.js" />
     <Content Include="Views\dist\js\chartist-data.js" />
@@ -597,7 +620,6 @@
     <Content Include="Views\dist\fonts\themify-icons\themify.eot" />
     <Content Include="Views\dist\fonts\themify-icons\themify.ttf" />
     <Content Include="Views\dist\fonts\themify-icons\themify.woff" />
-    <Content Include="Views\dist\img\country\01-flag.zip" />
     <Content Include="Views\dist\json\bootstrap-table.json" />
     <Content Include="Views\dist\videos\video1.mp4" />
     <Content Include="Views\src\scss\mixins.scss" />
@@ -611,6 +633,7 @@
     <Content Include="Views\vendors\jquery.sparkline\README.md" />
     <Content Include="Views\vendors\jquery.sparkline\sparkline.jquery.json" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\dist\img\RImage.webp" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -687,6 +710,13 @@
     </Compile>
     <Compile Include="Views\AddResearch.aspx.designer.cs">
       <DependentUpon>AddResearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DashBoard.aspx.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\DashBoard.aspx.designer.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>

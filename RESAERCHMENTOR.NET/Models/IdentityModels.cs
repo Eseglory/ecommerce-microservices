@@ -92,7 +92,7 @@ namespace RESAERCHMENTOR.NET
             }
             else
             {
-                response.Redirect("~/Views/Profile.aspx");
+                response.Redirect("~/Views/DashBoard.aspx");
             }
         }
     }
