@@ -1,0 +1,200 @@
+.nav {
+	margin-top: 15px; /* this is a faux center fix for the nav options - adjust this if you wish to change the logo height or the font of the menu items */
+}
+
+/* SPACING */
+.p-s{
+	padding:10px !important;
+}
+.p-t-s{
+	padding-top:20px;
+}
+.p-t-xs{
+	padding-top:10px;
+}
+.p-tb-xs{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.p-b-s{
+	padding-bottom:20px;
+}
+.p-b-m{
+	padding-bottom:30px;
+}
+.p-l-s{
+	padding-left:20px;
+}
+.p-arrow{
+	padding:3px 5px 5px 5px;
+}
+.m-t-lg{
+	margin-top:100px;
+}
+.m-t-xs{
+	margin-top:10px;
+}
+
+/* OTHERS */
+.border-top{
+	border-top:#999 1px solid;
+}
+.pg-up{
+	z-index:100;
+}
+.post-btn a:hover{
+	background-color:#FFF !important;
+	color:#090 !important;
+}
+.static{
+	width:280px;
+	position:fixed;
+	left:72%;
+}
+
+/* COLOR */
+.txt-green{
+	color:#090;
+}
+.txt-grey{
+	color:#999;
+}
+.bg-white{
+	background-color:#FFF;
+}
+.bg-green{
+	background-color:#090;
+}
+
+/*LOGIN CONFIGURATION PAGE*/
+#login-page{
+	background-image:url(../images/login-bg.jpg);
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-size:cover;
+	background-position:bottom right;
+}
+#signup-page{
+	background-image:url(../images/signup-bg.jpg);
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-size:cover;
+	background-position:bottom right;
+}
+.form-login {
+	max-width: 330px;
+	margin: 100px auto 0;
+	background: #fff;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.form-login h2.form-login-heading {
+	margin: 0;
+	padding: 25px 20px;
+	text-align: center;
+	background: #090;
+	border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	color: #fff;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 300;
+}
+.login-wrap {
+	padding: 20px;
+}
+.login-wrap .registration {
+	text-align: center;
+}
+.login-social-link {
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+
+/*LOCK SCREEN CONF*/
+#showtime {
+	width: 100%;
+	color: #fff;
+	font-size: 90px;
+	margin-bottom: 30px;
+	margin-top: 250px;
+	display: inline-block;
+	text-align: center;
+	font-weight: 400;
+}
+
+.lock-screen {
+	text-align: center;
+}
+
+.lock-screen a {
+	color: white;
+}
+
+.lock-screen a:hover {
+	color: #48cfad
+}
+
+.lock-screen i {
+	font-size: 60px;
+}
+
+.lock-screen .modal-content {
+	position: relative;
+	background-color: #f2f2f2;
+	background-clip: padding-box;
+	border: 1px solid #999;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 5px;
+}
+
+
+.btn-facebook {
+  color: #fff;
+  background-color: #5193ea;
+  border-color: #2775e2;
+}
+.btn-facebook:hover,
+.btn-facebook:focus,
+.btn-facebook:active,
+.btn-facebook.active,
+.open .dropdown-toggle.btn-facebook {
+  color: #fff;
+  background-color: #2775e2;
+  border-color: #2775e2;
+}
+
+.btn-twitter {
+  color: #fff;
+  background-color: #44ccfe;
+  border-color: #2bb4e8;
+}
+.btn-twitter:hover,
+.btn-twitter:focus,
+.btn-twitter:active,
+.btn-twitter.active,
+.open .dropdown-toggle.btn-twitter {
+  color: #fff;
+  background-color: #2bb4e8;
+  border-color: #2bb4e8;
+}
+
+.story-cont2{
+	background-color:;
+	margin-bottom:35px;
+	}
+	.text-white{
+		color:#fff;
+		display:block;
+		line-height:15px;
+		width:130px;
+		padding:15px;
+		}
+.view-top{
+	   margin-top:35px;
+	}		
+.write-up{
+	 padding:15px;
+	}		
