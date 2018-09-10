@@ -7395,7 +7395,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     border:;
     background: url('../img/Untitled.png') left top repeat-x #f4f4f4;
     box-shadow: 1px 3px 3px 0px #ccc;
-    margin-top:97px;
+    /*margin-top:97px;*/
 }
 
 .headerdiv{
@@ -8127,7 +8127,13 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 }
 
 
+.yusufReg {
+     margin-right:2px;
+}
 
+    .yusufReg button.btn-info {
+        color:#FFF !important;
+    }
 
 
 

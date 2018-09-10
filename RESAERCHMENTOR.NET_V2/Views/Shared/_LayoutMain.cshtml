@@ -5,26 +5,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>@ViewBag.Title : Mentor Partner</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
-    <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+    @*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+    <meta name="description" content="Mentor Partner" />
+    <meta name="keywords" content="Mentor Partner" />
     <meta name="author" content="hencework" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="~/Content/favicon.ico">
     <link rel="icon" href="~/Content/favicon.ico" type="image/x-icon">
 
+    <!-- Morris Charts CSS -->
+    <link href="~/Content/vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- vector map CSS -->
+    <link href="~/Content/vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css" />
+
+    <!-- Calendar CSS -->
+    <link href="~/Content/vendors/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet" type="text/css" />
+
     <!-- Data table CSS -->
     <link href="~/Content/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Owl CSS -->
-    <link href="~/Content/vendors/bower_components/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
-    <link href="~/Content/vendors/bower_components/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet" type="text/css">
-
-
     <!-- Custom CSS -->
     <link href="~/Content/dist/css/style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -43,21 +48,12 @@
                         <div class="logo-wrap">
                             <a href="index.html">
                                 <img class="brand-img" src="~/Content/dist/img/logo.png" alt="brand" />
-                                <span class="brand-text">Research Gate</span>
+                                <span class="brand-text">Mentor Partner</span>
                             </a>
                         </div>
                     </div>
-                    <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class=""></i></a>
-                    <a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>
-                    <a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
-                    <form id="search_form" role="search" class="top-nav-search collapse pull-left">
-                        <div class="input-group">
-                            <input type="text" name="example-input1-group2" class="form-control" placeholder="Search">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn  btn-default" data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
-                            </span>
-                        </div>
-                    </form>
+                   
+                    
                 </div>
                 <div id="mobile_only_nav" class="mobile-only-nav pull-right">
                     <ul class="nav navbar-right top-nav pull-right">
@@ -1100,7 +1096,7 @@
                     <div class="col-sm-12">
                         <p>
                             <a href="#">News</a><a href="#">About us</a>
-                            <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Copyright</a><a href="#">Careers</a><a href="#">Help Center</a><a href="#">Researchers</a><a href="#">FAQ</a><a href="#">Publications</a><a href="#">Job</a><a href="#">Recruiters</a><a href="#">Advertisers</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">2018 &copy; ResearchMentor All rights reserved</a>
+                            <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Copyright</a><a href="#">Careers</a><a href="#">Help Center</a><a href="#">Researchers</a><a href="#">FAQ</a><a href="#">Publications</a><a href="#">Job</a><a href="#">Recruiters</a><a href="#">Advertisers</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">2018 &copy; Mentor Partner All rights reserved</a>
                         </p>
                     </div>
                 </div>
@@ -1110,6 +1106,8 @@
         </div>
     </div>
 
+
+    
     <!-- /#wrapper -->
     <!-- JavaScript -->
     <!-- jQuery -->
@@ -1118,12 +1116,42 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="~/Content/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <!-- Vector Maps JavaScript -->
+    <script src="~/Content/vendors/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/Content/vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Content/dist/js/vectormap-data.js"></script>
+
+
+    <!-- Calender JavaScripts -->
+    <script src="~/Content/vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/vendors/jquery-ui.min.js"></script>
+    <script src="~/Content/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="~/Content/dist/js/fullcalendar-data.js"></script>
+
+    <!-- Counter Animation JavaScript -->
+    <script src="~/Content/vendors/bower_components/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="~/Content/vendors/bower_components/jquery.counterup/jquery.counterup.min.js"></script>
+
     <!-- Data table JavaScript -->
     <script src="~/Content/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="~/Content/dist/js/dataTables-data.js"></script>
+    
 
     <!-- Slimscroll JavaScript -->
     <script src="~/Content/dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="~/Content/dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- Sparkline JavaScript -->
+    <script src="~/Content/vendors/jquery.sparkline/dist/jquery.sparkline.min.js"></script>
+
+    <script src="~/Content/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <script src="~/Content/dist/js/skills-counter-data.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="~/Content/vendors/bower_components/raphael/raphael.min.js"></script>
+    <script src="~/Content/vendors/bower_components/morris.js/morris.min.js"></script>
+    <script src="~/Content/dist/js/morris-data.js"></script>
 
     <!-- Owl JavaScript -->
     <script src="~/Content/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
@@ -1134,8 +1162,15 @@
     <!-- Fancy Dropdown JS -->
     <script src="~/Content/dist/js/dropdown-bootstrap-extended.js"></script>
 
+    <!-- twitter JavaScript -->
+    <script src="~/Content/dist/js/twitterFetcher.js"></script>
+
+    <!-- Spectragram JavaScript -->
+    <script src="~/Content/dist/js/spectragram.min.js"></script>
+
     <!-- Init JavaScript -->
     <script src="~/Content/dist/js/init.js"></script>
+    <script src="~/Content/dist/js/widgets-data.js"></script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
