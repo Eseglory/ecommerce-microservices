@@ -1,0 +1,1593 @@
+﻿@model RESAERCHMENTOR.NET_V2.Models.MyModelObjects
+@using Microsoft.AspNet.Identity
+@using System.Globalization
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<!-- Title -->
+<div class="row heading-bg">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h5 class="txt-dark">Profile</h5>
+        <dv align="center">
+            <span style="color:green"><strong>@ViewBag.Message</strong></span>
+        </dv>
+    </div>
+    <!-- Breadcrumb -->
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li><a href="researchinbox.html"><span>Inbox</span></a></li>
+            <li class="active"><span>profile</span></li>
+        </ol>
+    </div>
+    <!-- /Breadcrumb -->
+</div>
+<!-- /Title -->
+<!-- Row -->
+<div class="row">
+    <div class="col-lg-3 col-xs-12">
+        <div class="panel panel-default card-view  pa-0">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body  pa-0">
+                    <div class="profile-box">
+                        <div class="profile-cover-pic">
+                            <div class="profile-image-overlay"></div>
+                        </div>
+                        <div class="profile-info text-center">
+                            <div class="profile-img-wrap">
+                                <img id="Image2" class="inline-block mb-10" src="~/Files/@Model.MyProfile.ProfilePicsName" />
+
+                            </div>
+                            <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-info">
+                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                }
+                            </h5>
+                            <h6 class="block capitalize-font pb-20"></h6>
+                        </div>
+                        <div class="social-info">
+                            <div class="row">
+                                <div class="col-xs-4 text-center">
+                                    <span class="counts block head-font"><span class="counter-anim">10</span></span>
+                                    <span class="counts-text block">Posts</span>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <span class="counts block head-font"><span class="counter-anim">5</span></span>
+                                    <span class="counts-text block">Followers</span>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <span class="counts block head-font"><span class="counter-anim">898</span></span>
+                                    <span class="counts-text block">Following</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-info btn-block  btn-anim mt-30" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i><span class="btn-text">edit profile</span></button>
+                            <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h5 class="modal-title" id="myModalLabel">Edit Profile</h5>
+                                        </div>
+                                        <form action="@Url.Action("UpdateProfile_Click", "MentorPartner")" method="post" role="form" enctype="multipart/form-data" id="FileData">
+                                            <div class="modal-body">
+                                                <!-- Row -->
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="">
+                                                            <div class="panel-wrapper collapse in">
+                                                                <div class="panel-body pa-0">
+                                                                    <div class="col-sm-12 col-xs-12">
+                                                                        <div class="form-wrap">
+
+                                                                            <div class="form-body overflow-hide">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputuname_1"></label>
+                                                                                    <div class="input-group">
+                                                                                        <img ID="PictureImageA" Height="140px" Width="120px" src="~/Files/@Model.MyProfile.ProfilePicsName" />
+                                                                                        <input type="file" name="postedFile" required="required" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10">Title</label>
+                                                                                    <select class="form-control" name="Title" id="Title" onselect=@Model.MyProfile.Title data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value="Prof.">Prof.</option>
+                                                                                        <option value="Dr.">Dr.</option>
+                                                                                        <option value="Mr.">Mr.</option>
+                                                                                        <option value="Mrs.">Mrs.</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputuname_1">First Name</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                        <input type="text" class="form-control" name="FName" id="FName" value=@Model.MyProfile.FName placeholder="willard" required>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Last Name</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                        <input type="text" class="form-control" name="LName" value=@Model.MyProfile.LName id="LName" placeholder="bryant" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Degree</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                        <input type="text" class="form-control" name="Degree" value=@Model.MyProfile.Degree id="Degree" placeholder="MBBS, FWACP">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputEmail_1">Email address</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
+                                                                                        <input type="email" class="form-control" name="OwnersId" value=@Model.MyProfile.OwnersId required="required" readonly="readonly" id="OwnersId" placeholder="xyz@gmail.com">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputContact_1">Contact number</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-phone"></i></div>
+                                                                                        <input type="text" class="form-control" name="CNumber" value=@Model.MyProfile.CNumber required="required" id="CNumber" placeholder="+102 9388333">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputContact_1">Date Of Birth number</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-phone"></i></div>
+                                                                                        <input type="date" class="form-control" name="BDate" value=@Model.MyProfile.BDate required="required" id="BDate" placeholder="16/12/1986">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10">Gender</label>
+                                                                                    <div>
+                                                                                        <div class="radio">
+                                                                                            <input type="radio" name="Gender1" id="Gender1" value=@Model.MyProfile.Gender1>
+                                                                                            <label for="Gender1">
+                                                                                                M
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                            <input type="radio" name="Gender2" id="Gender2" value=@Model.MyProfile.Gender2>
+                                                                                            <label for="Gender2">
+                                                                                                F
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10">Country</label>
+                                                                                    <select class="form-control" name="Country" id="Country" onselect=@Model.MyProfile.Country data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value="" selected="selected">Select Country</option>
+                                                                                        <option value="Afghanistan">Afghanistan</option>
+                                                                                        <option value="Albania">Albania</option>
+                                                                                        <option value="Algeria">Algeria</option>
+                                                                                        <option value="American Samoa">American Samoa</option>
+                                                                                        <option value="Andorra">Andorra</option>
+                                                                                        <option value="Angola">Angola</option>
+                                                                                        <option value="Anguilla">Anguilla</option>
+                                                                                        <option value="Antarctica">Antarctica</option>
+                                                                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                                                                        <option value="Argentina">Argentina</option>
+                                                                                        <option value="Armenia">Armenia</option>
+                                                                                        <option value="Aruba">Aruba</option>
+                                                                                        <option value="Australia">Australia</option>
+                                                                                        <option value="Austria">Austria</option>
+                                                                                        <option value="Azerbaijan">Azerbaijan</option>
+                                                                                        <option value="Bahamas">Bahamas</option>
+                                                                                        <option value="Bahrain">Bahrain</option>
+                                                                                        <option value="Bangladesh">Bangladesh</option>
+                                                                                        <option value="Barbados">Barbados</option>
+                                                                                        <option value="Belarus">Belarus</option>
+                                                                                        <option value="Belgium">Belgium</option>
+                                                                                        <option value="Belize">Belize</option>
+                                                                                        <option value="Benin">Benin</option>
+                                                                                        <option value="Bermuda">Bermuda</option>
+                                                                                        <option value="Bhutan">Bhutan</option>
+                                                                                        <option value="Bolivia">Bolivia</option>
+                                                                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                                                                        <option value="Botswana">Botswana</option>
+                                                                                        <option value="Bouvet Island">Bouvet Island</option>
+                                                                                        <option value="Brazil">Brazil</option>
+                                                                                        <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                                                                        <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                                                                        <option value="Bulgaria">Bulgaria</option>
+                                                                                        <option value="Burkina Faso">Burkina Faso</option>
+                                                                                        <option value="Burundi">Burundi</option>
+                                                                                        <option value="Cambodia">Cambodia</option>
+                                                                                        <option value="Cameroon">Cameroon</option>
+                                                                                        <option value="Canada">Canada</option>
+                                                                                        <option value="Cape Verde">Cape Verde</option>
+                                                                                        <option value="Cayman Islands">Cayman Islands</option>
+                                                                                        <option value="Central African Republic">Central African Republic</option>
+                                                                                        <option value="Chad">Chad</option>
+                                                                                        <option value="Chile">Chile</option>
+                                                                                        <option value="China">China</option>
+                                                                                        <option value="Christmas Island">Christmas Island</option>
+                                                                                        <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                                                                                        <option value="Colombia">Colombia</option>
+                                                                                        <option value="Comoros">Comoros</option>
+                                                                                        <option value="Congo">Congo</option>
+                                                                                        <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+                                                                                        <option value="Cook Islands">Cook Islands</option>
+                                                                                        <option value="Costa Rica">Costa Rica</option>
+                                                                                        <option value="Cote D'ivoire">Cote D'ivoire</option>
+                                                                                        <option value="Croatia">Croatia</option>
+                                                                                        <option value="Cuba">Cuba</option>
+                                                                                        <option value="Cyprus">Cyprus</option>
+                                                                                        <option value="Czech Republic">Czech Republic</option>
+                                                                                        <option value="Denmark">Denmark</option>
+                                                                                        <option value="Djibouti">Djibouti</option>
+                                                                                        <option value="Dominica">Dominica</option>
+                                                                                        <option value="Dominican Republic">Dominican Republic</option>
+                                                                                        <option value="Ecuador">Ecuador</option>
+                                                                                        <option value="Egypt">Egypt</option>
+                                                                                        <option value="El Salvador">El Salvador</option>
+                                                                                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                                                                        <option value="Eritrea">Eritrea</option>
+                                                                                        <option value="Estonia">Estonia</option>
+                                                                                        <option value="Ethiopia">Ethiopia</option>
+                                                                                        <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                                                                                        <option value="Faroe Islands">Faroe Islands</option>
+                                                                                        <option value="Fiji">Fiji</option>
+                                                                                        <option value="Finland">Finland</option>
+                                                                                        <option value="France">France</option>
+                                                                                        <option value="French Guiana">French Guiana</option>
+                                                                                        <option value="French Polynesia">French Polynesia</option>
+                                                                                        <option value="French Southern Territories">French Southern Territories</option>
+                                                                                        <option value="Gabon">Gabon</option>
+                                                                                        <option value="Gambia">Gambia</option>
+                                                                                        <option value="Georgia">Georgia</option>
+                                                                                        <option value="Germany">Germany</option>
+                                                                                        <option value="Ghana">Ghana</option>
+                                                                                        <option value="Gibraltar">Gibraltar</option>
+                                                                                        <option value="Greece">Greece</option>
+                                                                                        <option value="Greenland">Greenland</option>
+                                                                                        <option value="Grenada">Grenada</option>
+                                                                                        <option value="Guadeloupe">Guadeloupe</option>
+                                                                                        <option value="Guam">Guam</option>
+                                                                                        <option value="Guatemala">Guatemala</option>
+                                                                                        <option value="Guinea">Guinea</option>
+                                                                                        <option value="Guinea-bissau">Guinea-bissau</option>
+                                                                                        <option value="Guyana">Guyana</option>
+                                                                                        <option value="Haiti">Haiti</option>
+                                                                                        <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+                                                                                        <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+                                                                                        <option value="Honduras">Honduras</option>
+                                                                                        <option value="Hong Kong">Hong Kong</option>
+                                                                                        <option value="Hungary">Hungary</option>
+                                                                                        <option value="Iceland">Iceland</option>
+                                                                                        <option value="India">India</option>
+                                                                                        <option value="Indonesia">Indonesia</option>
+                                                                                        <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                                                                                        <option value="Iraq">Iraq</option>
+                                                                                        <option value="Ireland">Ireland</option>
+                                                                                        <option value="Israel">Israel</option>
+                                                                                        <option value="Italy">Italy</option>
+                                                                                        <option value="Jamaica">Jamaica</option>
+                                                                                        <option value="Japan">Japan</option>
+                                                                                        <option value="Jordan">Jordan</option>
+                                                                                        <option value="Kazakhstan">Kazakhstan</option>
+                                                                                        <option value="Kenya">Kenya</option>
+                                                                                        <option value="Kiribati">Kiribati</option>
+                                                                                        <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                                                                                        <option value="Korea, Republic of">Korea, Republic of</option>
+                                                                                        <option value="Kuwait">Kuwait</option>
+                                                                                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                                                                        <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                                                                                        <option value="Latvia">Latvia</option>
+                                                                                        <option value="Lebanon">Lebanon</option>
+                                                                                        <option value="Lesotho">Lesotho</option>
+                                                                                        <option value="Liberia">Liberia</option>
+                                                                                        <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                                                                                        <option value="Liechtenstein">Liechtenstein</option>
+                                                                                        <option value="Lithuania">Lithuania</option>
+                                                                                        <option value="Luxembourg">Luxembourg</option>
+                                                                                        <option value="Macao">Macao</option>
+                                                                                        <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+                                                                                        <option value="Madagascar">Madagascar</option>
+                                                                                        <option value="Malawi">Malawi</option>
+                                                                                        <option value="Malaysia">Malaysia</option>
+                                                                                        <option value="Maldives">Maldives</option>
+                                                                                        <option value="Mali">Mali</option>
+                                                                                        <option value="Malta">Malta</option>
+                                                                                        <option value="Marshall Islands">Marshall Islands</option>
+                                                                                        <option value="Martinique">Martinique</option>
+                                                                                        <option value="Mauritania">Mauritania</option>
+                                                                                        <option value="Mauritius">Mauritius</option>
+                                                                                        <option value="Mayotte">Mayotte</option>
+                                                                                        <option value="Mexico">Mexico</option>
+                                                                                        <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                                                                                        <option value="Moldova, Republic of">Moldova, Republic of</option>
+                                                                                        <option value="Monaco">Monaco</option>
+                                                                                        <option value="Mongolia">Mongolia</option>
+                                                                                        <option value="Montserrat">Montserrat</option>
+                                                                                        <option value="Morocco">Morocco</option>
+                                                                                        <option value="Mozambique">Mozambique</option>
+                                                                                        <option value="Myanmar">Myanmar</option>
+                                                                                        <option value="Namibia">Namibia</option>
+                                                                                        <option value="Nauru">Nauru</option>
+                                                                                        <option value="Nepal">Nepal</option>
+                                                                                        <option value="Netherlands">Netherlands</option>
+                                                                                        <option value="Netherlands Antilles">Netherlands Antilles</option>
+                                                                                        <option value="New Caledonia">New Caledonia</option>
+                                                                                        <option value="New Zealand">New Zealand</option>
+                                                                                        <option value="Nicaragua">Nicaragua</option>
+                                                                                        <option value="Niger">Niger</option>
+                                                                                        <option value="Nigeria">Nigeria</option>
+                                                                                        <option value="Niue">Niue</option>
+                                                                                        <option value="Norfolk Island">Norfolk Island</option>
+                                                                                        <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                                                                                        <option value="Norway">Norway</option>
+                                                                                        <option value="Oman">Oman</option>
+                                                                                        <option value="Pakistan">Pakistan</option>
+                                                                                        <option value="Palau">Palau</option>
+                                                                                        <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                                                                                        <option value="Panama">Panama</option>
+                                                                                        <option value="Papua New Guinea">Papua New Guinea</option>
+                                                                                        <option value="Paraguay">Paraguay</option>
+                                                                                        <option value="Peru">Peru</option>
+                                                                                        <option value="Philippines">Philippines</option>
+                                                                                        <option value="Pitcairn">Pitcairn</option>
+                                                                                        <option value="Poland">Poland</option>
+                                                                                        <option value="Portugal">Portugal</option>
+                                                                                        <option value="Puerto Rico">Puerto Rico</option>
+                                                                                        <option value="Qatar">Qatar</option>
+                                                                                        <option value="Reunion">Reunion</option>
+                                                                                        <option value="Romania">Romania</option>
+                                                                                        <option value="Russian Federation">Russian Federation</option>
+                                                                                        <option value="Rwanda">Rwanda</option>
+                                                                                        <option value="Saint Helena">Saint Helena</option>
+                                                                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                                                                        <option value="Saint Lucia">Saint Lucia</option>
+                                                                                        <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                                                                                        <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+                                                                                        <option value="Samoa">Samoa</option>
+                                                                                        <option value="San Marino">San Marino</option>
+                                                                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                                                                        <option value="Saudi Arabia">Saudi Arabia</option>
+                                                                                        <option value="Senegal">Senegal</option>
+                                                                                        <option value="Serbia and Montenegro">Serbia and Montenegro</option>
+                                                                                        <option value="Seychelles">Seychelles</option>
+                                                                                        <option value="Sierra Leone">Sierra Leone</option>
+                                                                                        <option value="Singapore">Singapore</option>
+                                                                                        <option value="Slovakia">Slovakia</option>
+                                                                                        <option value="Slovenia">Slovenia</option>
+                                                                                        <option value="Solomon Islands">Solomon Islands</option>
+                                                                                        <option value="Somalia">Somalia</option>
+                                                                                        <option value="South Africa">South Africa</option>
+                                                                                        <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+                                                                                        <option value="Spain">Spain</option>
+                                                                                        <option value="Sri Lanka">Sri Lanka</option>
+                                                                                        <option value="Sudan">Sudan</option>
+                                                                                        <option value="Suriname">Suriname</option>
+                                                                                        <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                                                                                        <option value="Swaziland">Swaziland</option>
+                                                                                        <option value="Sweden">Sweden</option>
+                                                                                        <option value="Switzerland">Switzerland</option>
+                                                                                        <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                                                                                        <option value="Taiwan, Province of China">Taiwan, Province of China</option>
+                                                                                        <option value="Tajikistan">Tajikistan</option>
+                                                                                        <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                                                                                        <option value="Thailand">Thailand</option>
+                                                                                        <option value="Timor-leste">Timor-leste</option>
+                                                                                        <option value="Togo">Togo</option>
+                                                                                        <option value="Tokelau">Tokelau</option>
+                                                                                        <option value="Tonga">Tonga</option>
+                                                                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                                                                        <option value="Tunisia">Tunisia</option>
+                                                                                        <option value="Turkey">Turkey</option>
+                                                                                        <option value="Turkmenistan">Turkmenistan</option>
+                                                                                        <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                                                                                        <option value="Tuvalu">Tuvalu</option>
+                                                                                        <option value="Uganda">Uganda</option>
+                                                                                        <option value="Ukraine">Ukraine</option>
+                                                                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                                                                        <option value="United Kingdom">United Kingdom</option>
+                                                                                        <option value="United States">United States</option>
+                                                                                        <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                                                                        <option value="Uruguay">Uruguay</option>
+                                                                                        <option value="Uzbekistan">Uzbekistan</option>
+                                                                                        <option value="Vanuatu">Vanuatu</option>
+                                                                                        <option value="Venezuela">Venezuela</option>
+                                                                                        <option value="Viet Nam">Viet Nam</option>
+                                                                                        <option value="Virgin Islands, British">Virgin Islands, British</option>
+                                                                                        <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+                                                                                        <option value="Wallis and Futuna">Wallis and Futuna</option>
+                                                                                        <option value="Western Sahara">Western Sahara</option>
+                                                                                        <option value="Yemen">Yemen</option>
+                                                                                        <option value="Zambia">Zambia</option>
+                                                                                        <option value="Zimbabwe">Zimbabwe</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-actions mt-10">
+                                                                                <button type="submit" class="btn btn-success mr-10 mb-30">Update profile</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <!-- /.modal-dialog -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 col-xs-12">
+        <div class="panel panel-default card-view pa-0">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body pb-0">
+                    <div class="tab-struct custom-tab-1">
+                        <ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
+                            <li class="active" role="presentation"><a data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>Researches</span></a></li>
+                            <li role="presentation" class="next"><a aria-expanded="true" data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>follow<span class="inline-block">(@Model.FollowCount)</span></span></a></li>
+                            <li role="presentation" class="next"><a aria-expanded="true" data-toggle="tab" role="tab" id="folloing_tab_8" href="#folloing_8"><span>following<span class="inline-block">(@Model.FollowingCount)</span></span></a></li>
+                            <li role="presentation" class=""><a data-toggle="tab" id="earning_tab_8" role="tab" href="#earnings_8" aria-expanded="false"><span>Timeline</span></a></li>
+                            <li role="presentation" class=""><a data-toggle="tab" id="settings_tab_8" role="tab" href="#settings_8" aria-expanded="false"><span>settings</span></a></li>
+
+                            <li class="dropdown" role="presentation">
+                                <a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false"><span>More</span> <span class="caret"></span></a>
+                                <ul id="myTabDrop_7_contents" class="dropdown-menu">
+                                    <li class=""><a data-toggle="tab" id="dropdown_13_tab" role="tab" href="#dropdown_13" aria-expanded="true">About</a></li>
+                                    <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#dropdown_14" aria-expanded="false">Followings</a></li>
+                                    <li class=""><a data-toggle="tab" id="dropdown_15_tab" role="tab" href="#dropdown_15" aria-expanded="false">Likes</a></li>
+                                    <li class=""><a data-toggle="tab" id="dropdown_16_tab" role="tab" href="#dropdown_16" aria-expanded="false">Reviews</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent_8">
+                            <div id="profile_8" class="tab-pane fade active in" role="tabpanel">
+                                <div class="col-md-12">
+                                    <div class="pt-20">
+                                        <div class="streamline user-activity">
+                                            <p><br /></p>
+                                            <!-- /story-cont -->
+                                            @{foreach (var item in Model.MyResearch)
+                                                {
+                                            <div class="story-cont col-lg-12 p-b-m">
+                                                <div class="row story-cont2">
+                                                    <div class="profile-pic col-lg-1 col-xs-2 pg-up">
+                                                        <div class="row">
+                                                            <img id="RProfileImg" class="img-responsive">
+                                                        </div><!-- /profile-pic -->
+                                                    </div>
+                                                    <!--div class="row"-->
+                                                    <div class="news-feed-header col-lg-10 col-xs-10 pg-up bg-white">
+                                                        <div class="username-newsfeed p-tb-xs">
+                                                            <span class="txt-green"><strong> @Model.MyProfile.FullName </strong></span>
+                                                            <div class="visible-xs"><br></div>
+                                                            @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                                                        string MDate = RDate.ToLongDateString();
+                                                            }
+                                                            <span class="txt-grey pull-right">Posted @MDate </span>
+                                                            <br>
+
+                                                            <span class="txt-grey">@item.RType was added</span>
+                                                        </div><!-- /username-newsfeed -->
+                                                    </div><!-- /news-feed-header -->
+                                                    <div class="write-up col-lg-10 bg-white border-top p-b-s">
+                                                        <div class="news-feed-title_img col-lg-7">
+
+                                                            <div class="row">
+                                                                <div class="post-heading col-lg-12">
+                                                                    <h6>@item.Description </h6>
+                                                                </div><!-- /post-heading -->
+                                                                <div class="row">
+
+                                                                    <br><br><br><br><br><br>
+
+                                                                </div>
+                                                            </div><!-- /row -->
+                                                            <div class="row">
+                                                                <div class="post-img col-lg-12">
+
+                                                                    <div class="row">
+                                                                        <div class="col-lg-8 col-xs-9 view-top">
+                                                                            <div class="row">
+                                                                                <a href="#" class="p-l-s txt-green">View </a>
+                                                                                <a href="#" class="p-l-s txt-green">Download </a>
+                                                                            </div>
+                                                                        </div><!-- /col-6 -->
+                                                                        <div class="col-lg-4 col-xs-3 pull-right view-top">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/like.png" width="15"></div>
+                                                                                <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/share.png" width="15"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- /row -->
+
+                                                                    <p><br /></p>
+                                                                    <hr />
+
+                                                                </div><!-- /post-img -->
+                                                            </div><!-- /row -->
+
+                                                        </div><!-- /news-feed-title_img -->
+                                                        <div class="news-feed-text col-lg-5 p-t-s">
+                                                            <img src="~/Content/dist/img/big/kids.png" class="img-responsive" width="100" height="600">
+                                                        </div><!-- /news-feed-text -->
+                                                    </div><!-- /write-up -->
+                                                    <!--/div-->
+
+                                                </div><!-- /row -->
+                                            </div>
+                                                 }
+                                            }
+                                            <!-- /story-cont -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="follo_8" class="tab-pane fade" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="followers-wrap">
+                                            <ul class="followers-list-wrap">
+                                                <li class="follow-list">
+                                                    <div class="follo-body">
+
+                                                        @{foreach (var rec in Model.FollowList)
+                                                            {
+                                                        <div class="follo-data">
+                                                            <img class="user-img img-circle" src="~/Content/dist/img/user1.png" alt="user" />
+                                                            <div class="user-data">
+                                                                @{ string myName = rec.Title + " " + rec.LName + " " + rec.FName;}
+                                                                <span class="name block capitalize-font"> @myName</span>
+                                                                <span class="time block truncate txt-grey">@rec.OwnersId</span>
+                                                            </div>
+                                                            <a title="Follow This Person" href="@Url.Action("follow_click", "mentorpartner", new { id = rec.Id})" class="btn btn-success pull-right btn-xs fixed-btn"> Follow <i class='fa fa-user'></i></a>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                            }
+                                                        }
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="folloing_8" class="tab-pane fade" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="followers-wrap">
+                                            <ul class="followers-list-wrap">
+                                                <li class="follow-list">
+                                                    <div class="follo-body">
+                                                        @{foreach (var item in Model.FollowingList)
+                                                            {
+                                                        <div class="follo-data">
+                                                            <img class="user-img img-circle" src="~/Content/dist/img/user1.png" alt="user" />
+                                                            <div class="user-data">
+                                                                @{ string myName = item.Title + " " + item.LName + " " + item.FName;}
+                                                                <span class="name block capitalize-font">@myName </span>
+                                                                <span class="time block truncate txt-grey">@item.Following</span>
+                                                            </div>
+                                                            <a title="Un-Follow This Person" href="@Url.Action("UnFollow_Click", "mentorpartner", new { id = item.Id})" class="btn btn-success btn-outline pull-right btn-xs fixed-btn"> Un-Follow <i class='fa fa-user'></i></a>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                                            }
+                                                        }
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="photos_8" class="tab-pane fade" role="tabpanel">
+                                <div class="col-md-12 pb-20">
+                                    <div class="gallery-wrap">
+                                        <div class="portfolio-wrap project-gallery">
+                                            <ul id="portfolio_1" class="portf auto-construct  project-gallery" data-col="4">
+                                                <li class="item" data-src="dist/img/gallery/equal-size/mock1.jpg" data-sub-html="<h6>Bagwati</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                    <a href="">
+                                                        <img class="img-responsive" src="dist/img/gallery/equal-size/mock1.jpg" alt="Image description" />
+                                                        <span class="hover-cap">Bagwati</span>
+                                                    </a>
+                                                </li>
+                                                <li class="item" data-src="dist/img/gallery/equal-size/mock2.jpg" data-sub-html="<h6>Not a Keyboard</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                    <a href="">
+                                                        <img class="img-responsive" src="dist/img/gallery/equal-size/mock2.jpg" alt="Image description" />
+                                                        <span class="hover-cap">Not a Keyboard</span>
+                                                    </a>
+                                                </li>
+                                                <li class="item" data-src="dist/img/gallery/equal-size/mock3.jpg" data-sub-html="<h6>Into the Woods</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                    <a href="">
+                                                        <img class="img-responsive" src="dist/img/gallery/equal-size/mock3.jpg" alt="Image description" />
+                                                        <span class="hover-cap">Into the Woods</span>
+                                                    </a>
+                                                </li>
+                                                <li class="item" data-src="dist/img/gallery/equal-size/mock4.jpg" data-sub-html="<h6>Ultra Saffire</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                    <a href="">
+                                                        <img class="img-responsive" src="dist/img/gallery/equal-size/mock4.jpg" alt="Image description" />
+                                                        <span class="hover-cap"> Ultra Saffire</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="item" data-src="dist/img/gallery/equal-size/mock5.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                    <a href="">
+                                                        <img class="img-responsive" src="dist/img/gallery/equal-size/mock5.jpg" alt="Image description" />
+                                                        <span class="hover-cap">Happy Puppy</span>
+                                                    </a>
+                                                </li>
+                                                <li class="item" data-src="dist/img/gallery/equal-size/mock6.jpg" data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                    <a href="">
+                                                        <img class="img-responsive" src="dist/img/gallery/equal-size/mock6.jpg" alt="Image description" />
+                                                        <span class="hover-cap">Wooden Closet</span>
+                                                    </a>
+                                                </li>
+                                                <li class="item" data-src="dist/img/gallery/equal-size/mock7.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                    <a href="">
+                                                        <img class="img-responsive" src="dist/img/gallery/equal-size/mock7.jpg" alt="Image description" />
+                                                        <span class="hover-cap">Happy Puppy</span>
+                                                    </a>
+                                                </li>
+                                                <li class="item" data-src="dist/img/gallery/equal-size/mock8.jpg" data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                    <a href="">
+                                                        <img class="img-responsive" src="dist/img/gallery/equal-size/mock8.jpg" alt="Image description" />
+                                                        <span class="hover-cap">Wooden Closet</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="earnings_8" class="tab-pane fade" role="tabpanel">
+                                <!-- Row -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <div class="panel panel-default card-view">
+                                            <div class="panel-body">
+                                                <ul class="timeline">
+                                                    <li>
+                                                        <div class="timeline-badge bg-yellow">
+                                                            <i class="icon-layers"></i>
+                                                        </div>
+                                                        <div class="timeline-panel pa-30">
+                                                            <div class="panel-heading" style="background-color:#0cb;">
+                                                                <div class="timeline-heading">
+                                                                    <div class="pull-left">
+                                                                        <div class="tmlphoto">
+                                                                            <img src="dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
+                                                                        </div><div class="clearfix"></div>
+                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
+                                                                        <h6 class="mb-15">1 september 15</h6>
+                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
+                                                                    </div>
+                                                                    <div class="pull-right">
+                                                                        <div class="pull-left inline-block dropdown mr-15">
+                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
+                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
+                                                                            </ul>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div><div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="timeline-body">
+                                                                <div class="" style="height:auto; max-width: 100%;">
+                                                                    <img src="dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
+                                                                </div>
+                                                                <br>
+                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li class="timeline-inverted">
+                                                        <div class="timeline-badge bg-pink">
+                                                            <i class="icon-layers"></i>
+                                                        </div>
+                                                        <div class="timeline-panel pa-30">
+                                                            <div class="panel-heading" style="background-color:#0cb;">
+                                                                <div class="timeline-heading">
+                                                                    <div class="pull-left">
+                                                                        <div class="tmlphoto">
+                                                                            <img src="dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
+                                                                        </div><div class="clearfix"></div>
+                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
+                                                                        <h6 class="mb-15">1 september 15</h6>
+                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
+                                                                    </div>
+                                                                    <div class="pull-right">
+                                                                        <div class="pull-left inline-block dropdown mr-15">
+                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
+                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
+                                                                            </ul>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div><div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="timeline-body">
+                                                                <div class="" style="height:auto; max-width: 100%;">
+                                                                    <img src="dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
+                                                                </div>
+                                                                <br>
+                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+                                                        <div class="timeline-badge bg-red">
+                                                            <i class="icon-layers"></i>
+                                                        </div>
+                                                        <div class="timeline-panel pa-30">
+                                                            <div class="panel-heading" style="background-color:#0cb;">
+                                                                <div class="timeline-heading">
+                                                                    <div class="pull-left">
+                                                                        <div class="tmlphoto">
+                                                                            <img src="dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
+                                                                        </div><div class="clearfix"></div>
+                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
+                                                                        <h6 class="mb-15">1 september 15</h6>
+                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
+                                                                    </div>
+                                                                    <div class="pull-right">
+                                                                        <div class="pull-left inline-block dropdown mr-15">
+                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
+                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
+                                                                            </ul>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div><div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="timeline-body">
+                                                                <div class="" style="height:auto; max-width: 100%;">
+                                                                    <img src="dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
+                                                                </div>
+                                                                <br>
+                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li class="timeline-inverted">
+                                                        <div class="timeline-badge bg-blue">
+                                                            <i class="icon-layers"></i>
+                                                        </div>
+                                                        <div class="timeline-panel pa-30">
+                                                            <div class="panel-heading" style="background-color:#0cb;">
+                                                                <div class="timeline-heading">
+                                                                    <div class="pull-left">
+                                                                        <div class="tmlphoto">
+                                                                            <img src="dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
+                                                                        </div><div class="clearfix"></div>
+                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
+                                                                        <h6 class="mb-15">1 september 15</h6>
+                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
+                                                                    </div>
+                                                                    <div class="pull-right">
+                                                                        <div class="pull-left inline-block dropdown mr-15">
+                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
+                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
+                                                                            </ul>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div><div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="timeline-body">
+                                                                <div class="" style="height:auto; max-width: 100%;">
+                                                                    <img src="dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
+                                                                </div>
+                                                                <br>
+                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+                                                        <div class="timeline-badge bg-green">
+                                                            <i class="icon-layers"></i>
+                                                        </div>
+                                                        <div class="timeline-panel pa-30">
+                                                            <div class="panel-heading" style="background-color:#0cb;">
+                                                                <div class="timeline-heading">
+                                                                    <div class="pull-left">
+                                                                        <div class="tmlphoto">
+                                                                            <img src="dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
+                                                                        </div><div class="clearfix"></div>
+                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
+                                                                        <h6 class="mb-15">1 september 15</h6>
+                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
+                                                                    </div>
+                                                                    <div class="pull-right">
+                                                                        <div class="pull-left inline-block dropdown mr-15">
+                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
+                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
+                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
+                                                                            </ul>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div><div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="timeline-body">
+                                                                <div class="" style="height:auto; max-width: 100%;">
+                                                                    <img src="dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
+                                                                </div>
+                                                                <br>
+                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li class="clearfix no-float"></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="settings_8" class="tab-pane fade" role="tabpanel">
+                                <!-- Row -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="">
+                                            <div class="panel-wrapper collapse in">
+                                                <div class="panel-body pa-0">
+                                                    <div class="col-sm-12 col-xs-12">
+                                                        <div class="form-wrap">
+                                                            <div class="form-body overflow-hide">
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputuname_01">First Name</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                        @Html.TextBoxFor(m => m.MyProfile.FName, new { @class = "form-control", placeholder = "Enter First Name", required = true, @readonly = "readonly" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputuname_01">Last Name</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                        <input type="text" name="LName" class="form-control" value=@Model.MyProfile.LName id="LName" placeholder="bryant" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputuname_01">Degree</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                        <input type="text" name="Degree" class="form-control" id="Degree" value=@Model.MyProfile.Degree placeholder="willard bryant" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputEmail_01">Email address</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
+                                                                        <input type="email" name="OwnersId" class="form-control" id="OwnersId" value="@Model.MyProfile.OwnersId"  readonly>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputContact_01">Contact number</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-phone"></i></div>
+                                                                        <input type="email" name="CNumber" class="form-control" id="CNumber" value=@Model.MyProfile.CNumber  readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputContact_1">Date Of Birth number</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-phone"></i></div>
+                                                                        <input type="date" class="form-control" name="BDate" id="BDate" value=@Model.MyProfile.BDate placeholder="16/12/1986">
+                                                                    </div>
+                                                                </div>
+                                                                <br /><br />
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10">Gender</label>
+                                                                    <div>
+                                                                        <div class="radio">
+                                                                            <input type="radio" name="Gender1" id="Gender1" value=@Model.MyProfile.Gender1 checked="">
+                                                                            <label for="radio_01">
+                                                                                M
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="radio">
+                                                                            <input type="radio" name="Gender2" id="Gender2" value=@Model.MyProfile.Gender2>
+                                                                            <label for="radio_02">
+                                                                                F
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10">Country</label>
+                                                                    <select class="form-control" value=@Model.MyProfile.Country id="Country" data-placeholder="Choose a Category" tabindex="1">
+                                                                        <option value="" selected="selected">Select Country</option>
+                                                                        <option value="Afghanistan">Afghanistan</option>
+                                                                        <option value="Albania">Albania</option>
+                                                                        <option value="Algeria">Algeria</option>
+                                                                        <option value="American Samoa">American Samoa</option>
+                                                                        <option value="Andorra">Andorra</option>
+                                                                        <option value="Angola">Angola</option>
+                                                                        <option value="Anguilla">Anguilla</option>
+                                                                        <option value="Antarctica">Antarctica</option>
+                                                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                                                        <option value="Argentina">Argentina</option>
+                                                                        <option value="Armenia">Armenia</option>
+                                                                        <option value="Aruba">Aruba</option>
+                                                                        <option value="Australia">Australia</option>
+                                                                        <option value="Austria">Austria</option>
+                                                                        <option value="Azerbaijan">Azerbaijan</option>
+                                                                        <option value="Bahamas">Bahamas</option>
+                                                                        <option value="Bahrain">Bahrain</option>
+                                                                        <option value="Bangladesh">Bangladesh</option>
+                                                                        <option value="Barbados">Barbados</option>
+                                                                        <option value="Belarus">Belarus</option>
+                                                                        <option value="Belgium">Belgium</option>
+                                                                        <option value="Belize">Belize</option>
+                                                                        <option value="Benin">Benin</option>
+                                                                        <option value="Bermuda">Bermuda</option>
+                                                                        <option value="Bhutan">Bhutan</option>
+                                                                        <option value="Bolivia">Bolivia</option>
+                                                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                                                        <option value="Botswana">Botswana</option>
+                                                                        <option value="Bouvet Island">Bouvet Island</option>
+                                                                        <option value="Brazil">Brazil</option>
+                                                                        <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                                                        <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                                                        <option value="Bulgaria">Bulgaria</option>
+                                                                        <option value="Burkina Faso">Burkina Faso</option>
+                                                                        <option value="Burundi">Burundi</option>
+                                                                        <option value="Cambodia">Cambodia</option>
+                                                                        <option value="Cameroon">Cameroon</option>
+                                                                        <option value="Canada">Canada</option>
+                                                                        <option value="Cape Verde">Cape Verde</option>
+                                                                        <option value="Cayman Islands">Cayman Islands</option>
+                                                                        <option value="Central African Republic">Central African Republic</option>
+                                                                        <option value="Chad">Chad</option>
+                                                                        <option value="Chile">Chile</option>
+                                                                        <option value="China">China</option>
+                                                                        <option value="Christmas Island">Christmas Island</option>
+                                                                        <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                                                                        <option value="Colombia">Colombia</option>
+                                                                        <option value="Comoros">Comoros</option>
+                                                                        <option value="Congo">Congo</option>
+                                                                        <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+                                                                        <option value="Cook Islands">Cook Islands</option>
+                                                                        <option value="Costa Rica">Costa Rica</option>
+                                                                        <option value="Cote D'ivoire">Cote D'ivoire</option>
+                                                                        <option value="Croatia">Croatia</option>
+                                                                        <option value="Cuba">Cuba</option>
+                                                                        <option value="Cyprus">Cyprus</option>
+                                                                        <option value="Czech Republic">Czech Republic</option>
+                                                                        <option value="Denmark">Denmark</option>
+                                                                        <option value="Djibouti">Djibouti</option>
+                                                                        <option value="Dominica">Dominica</option>
+                                                                        <option value="Dominican Republic">Dominican Republic</option>
+                                                                        <option value="Ecuador">Ecuador</option>
+                                                                        <option value="Egypt">Egypt</option>
+                                                                        <option value="El Salvador">El Salvador</option>
+                                                                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                                                        <option value="Eritrea">Eritrea</option>
+                                                                        <option value="Estonia">Estonia</option>
+                                                                        <option value="Ethiopia">Ethiopia</option>
+                                                                        <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                                                                        <option value="Faroe Islands">Faroe Islands</option>
+                                                                        <option value="Fiji">Fiji</option>
+                                                                        <option value="Finland">Finland</option>
+                                                                        <option value="France">France</option>
+                                                                        <option value="French Guiana">French Guiana</option>
+                                                                        <option value="French Polynesia">French Polynesia</option>
+                                                                        <option value="French Southern Territories">French Southern Territories</option>
+                                                                        <option value="Gabon">Gabon</option>
+                                                                        <option value="Gambia">Gambia</option>
+                                                                        <option value="Georgia">Georgia</option>
+                                                                        <option value="Germany">Germany</option>
+                                                                        <option value="Ghana">Ghana</option>
+                                                                        <option value="Gibraltar">Gibraltar</option>
+                                                                        <option value="Greece">Greece</option>
+                                                                        <option value="Greenland">Greenland</option>
+                                                                        <option value="Grenada">Grenada</option>
+                                                                        <option value="Guadeloupe">Guadeloupe</option>
+                                                                        <option value="Guam">Guam</option>
+                                                                        <option value="Guatemala">Guatemala</option>
+                                                                        <option value="Guinea">Guinea</option>
+                                                                        <option value="Guinea-bissau">Guinea-bissau</option>
+                                                                        <option value="Guyana">Guyana</option>
+                                                                        <option value="Haiti">Haiti</option>
+                                                                        <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+                                                                        <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+                                                                        <option value="Honduras">Honduras</option>
+                                                                        <option value="Hong Kong">Hong Kong</option>
+                                                                        <option value="Hungary">Hungary</option>
+                                                                        <option value="Iceland">Iceland</option>
+                                                                        <option value="India">India</option>
+                                                                        <option value="Indonesia">Indonesia</option>
+                                                                        <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                                                                        <option value="Iraq">Iraq</option>
+                                                                        <option value="Ireland">Ireland</option>
+                                                                        <option value="Israel">Israel</option>
+                                                                        <option value="Italy">Italy</option>
+                                                                        <option value="Jamaica">Jamaica</option>
+                                                                        <option value="Japan">Japan</option>
+                                                                        <option value="Jordan">Jordan</option>
+                                                                        <option value="Kazakhstan">Kazakhstan</option>
+                                                                        <option value="Kenya">Kenya</option>
+                                                                        <option value="Kiribati">Kiribati</option>
+                                                                        <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                                                                        <option value="Korea, Republic of">Korea, Republic of</option>
+                                                                        <option value="Kuwait">Kuwait</option>
+                                                                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                                                        <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                                                                        <option value="Latvia">Latvia</option>
+                                                                        <option value="Lebanon">Lebanon</option>
+                                                                        <option value="Lesotho">Lesotho</option>
+                                                                        <option value="Liberia">Liberia</option>
+                                                                        <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                                                                        <option value="Liechtenstein">Liechtenstein</option>
+                                                                        <option value="Lithuania">Lithuania</option>
+                                                                        <option value="Luxembourg">Luxembourg</option>
+                                                                        <option value="Macao">Macao</option>
+                                                                        <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+                                                                        <option value="Madagascar">Madagascar</option>
+                                                                        <option value="Malawi">Malawi</option>
+                                                                        <option value="Malaysia">Malaysia</option>
+                                                                        <option value="Maldives">Maldives</option>
+                                                                        <option value="Mali">Mali</option>
+                                                                        <option value="Malta">Malta</option>
+                                                                        <option value="Marshall Islands">Marshall Islands</option>
+                                                                        <option value="Martinique">Martinique</option>
+                                                                        <option value="Mauritania">Mauritania</option>
+                                                                        <option value="Mauritius">Mauritius</option>
+                                                                        <option value="Mayotte">Mayotte</option>
+                                                                        <option value="Mexico">Mexico</option>
+                                                                        <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                                                                        <option value="Moldova, Republic of">Moldova, Republic of</option>
+                                                                        <option value="Monaco">Monaco</option>
+                                                                        <option value="Mongolia">Mongolia</option>
+                                                                        <option value="Montserrat">Montserrat</option>
+                                                                        <option value="Morocco">Morocco</option>
+                                                                        <option value="Mozambique">Mozambique</option>
+                                                                        <option value="Myanmar">Myanmar</option>
+                                                                        <option value="Namibia">Namibia</option>
+                                                                        <option value="Nauru">Nauru</option>
+                                                                        <option value="Nepal">Nepal</option>
+                                                                        <option value="Netherlands">Netherlands</option>
+                                                                        <option value="Netherlands Antilles">Netherlands Antilles</option>
+                                                                        <option value="New Caledonia">New Caledonia</option>
+                                                                        <option value="New Zealand">New Zealand</option>
+                                                                        <option value="Nicaragua">Nicaragua</option>
+                                                                        <option value="Niger">Niger</option>
+                                                                        <option value="Nigeria">Nigeria</option>
+                                                                        <option value="Niue">Niue</option>
+                                                                        <option value="Norfolk Island">Norfolk Island</option>
+                                                                        <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                                                                        <option value="Norway">Norway</option>
+                                                                        <option value="Oman">Oman</option>
+                                                                        <option value="Pakistan">Pakistan</option>
+                                                                        <option value="Palau">Palau</option>
+                                                                        <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                                                                        <option value="Panama">Panama</option>
+                                                                        <option value="Papua New Guinea">Papua New Guinea</option>
+                                                                        <option value="Paraguay">Paraguay</option>
+                                                                        <option value="Peru">Peru</option>
+                                                                        <option value="Philippines">Philippines</option>
+                                                                        <option value="Pitcairn">Pitcairn</option>
+                                                                        <option value="Poland">Poland</option>
+                                                                        <option value="Portugal">Portugal</option>
+                                                                        <option value="Puerto Rico">Puerto Rico</option>
+                                                                        <option value="Qatar">Qatar</option>
+                                                                        <option value="Reunion">Reunion</option>
+                                                                        <option value="Romania">Romania</option>
+                                                                        <option value="Russian Federation">Russian Federation</option>
+                                                                        <option value="Rwanda">Rwanda</option>
+                                                                        <option value="Saint Helena">Saint Helena</option>
+                                                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                                                        <option value="Saint Lucia">Saint Lucia</option>
+                                                                        <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                                                                        <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+                                                                        <option value="Samoa">Samoa</option>
+                                                                        <option value="San Marino">San Marino</option>
+                                                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                                                        <option value="Saudi Arabia">Saudi Arabia</option>
+                                                                        <option value="Senegal">Senegal</option>
+                                                                        <option value="Serbia and Montenegro">Serbia and Montenegro</option>
+                                                                        <option value="Seychelles">Seychelles</option>
+                                                                        <option value="Sierra Leone">Sierra Leone</option>
+                                                                        <option value="Singapore">Singapore</option>
+                                                                        <option value="Slovakia">Slovakia</option>
+                                                                        <option value="Slovenia">Slovenia</option>
+                                                                        <option value="Solomon Islands">Solomon Islands</option>
+                                                                        <option value="Somalia">Somalia</option>
+                                                                        <option value="South Africa">South Africa</option>
+                                                                        <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+                                                                        <option value="Spain">Spain</option>
+                                                                        <option value="Sri Lanka">Sri Lanka</option>
+                                                                        <option value="Sudan">Sudan</option>
+                                                                        <option value="Suriname">Suriname</option>
+                                                                        <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                                                                        <option value="Swaziland">Swaziland</option>
+                                                                        <option value="Sweden">Sweden</option>
+                                                                        <option value="Switzerland">Switzerland</option>
+                                                                        <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                                                                        <option value="Taiwan, Province of China">Taiwan, Province of China</option>
+                                                                        <option value="Tajikistan">Tajikistan</option>
+                                                                        <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                                                                        <option value="Thailand">Thailand</option>
+                                                                        <option value="Timor-leste">Timor-leste</option>
+                                                                        <option value="Togo">Togo</option>
+                                                                        <option value="Tokelau">Tokelau</option>
+                                                                        <option value="Tonga">Tonga</option>
+                                                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                                                        <option value="Tunisia">Tunisia</option>
+                                                                        <option value="Turkey">Turkey</option>
+                                                                        <option value="Turkmenistan">Turkmenistan</option>
+                                                                        <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                                                                        <option value="Tuvalu">Tuvalu</option>
+                                                                        <option value="Uganda">Uganda</option>
+                                                                        <option value="Ukraine">Ukraine</option>
+                                                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                                                        <option value="United Kingdom">United Kingdom</option>
+                                                                        <option value="United States">United States</option>
+                                                                        <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                                                        <option value="Uruguay">Uruguay</option>
+                                                                        <option value="Uzbekistan">Uzbekistan</option>
+                                                                        <option value="Vanuatu">Vanuatu</option>
+                                                                        <option value="Venezuela">Venezuela</option>
+                                                                        <option value="Viet Nam">Viet Nam</option>
+                                                                        <option value="Virgin Islands, British">Virgin Islands, British</option>
+                                                                        <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+                                                                        <option value="Wallis and Futuna">Wallis and Futuna</option>
+                                                                        <option value="Western Sahara">Western Sahara</option>
+                                                                        <option value="Yemen">Yemen</option>
+                                                                        <option value="Zambia">Zambia</option>
+                                                                        <option value="Zimbabwe">Zimbabwe</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions mt-10">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- /Row -->
+<!-- Row -->
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-default border-panel card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title pull-left">users</h6>
+                </div>
+                <div class="pull-right">
+                    <a href="#" class="pull-left inline-block mr-15">
+                        <i class="zmdi zmdi-search"></i>
+                    </a>
+                    <a class="pull-left inline-block" href="#" data-effect="fadeOut">
+                        <i class="zmdi zmdi-plus"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body row pa-0">
+                    <div class="chat-cmplt-wrap chat-for-widgets">
+                        <div class="chat-box-wrap">
+                            <div>
+                                <div class="users-nicescroll-bar">
+                                    <ul class="chat-list-wrap">
+                                        <li class="chat-list">
+                                            <div class="chat-body">
+                                                <a href="javascript:void(0)">
+                                                    <div class="chat-data">
+                                                        <img class="user-img img-circle" src="~/Content/dist/img/user.png" alt="user" />
+                                                        <div class="user-data">
+                                                            <span class="name block capitalize-font">Clay Masse</span>
+                                                            <span class="time block truncate txt-grey">No one saves us but ourselves.</span>
+                                                        </div>
+                                                        <div class="status away"></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <div class="chat-data">
+                                                        <img class="user-img img-circle" src="~/Content/dist/img/user1.png" alt="user" />
+                                                        <div class="user-data">
+                                                            <span class="name block capitalize-font">Evie Ono</span>
+                                                            <span class="time block truncate txt-grey">Unity is strength</span>
+                                                        </div>
+                                                        <div class="status offline"></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <div class="chat-data">
+                                                        <img class="user-img img-circle" src="~/Content/dist/img/user2.png" alt="user" />
+                                                        <div class="user-data">
+                                                            <span class="name block capitalize-font">Madalyn Rascon</span>
+                                                            <span class="time block truncate txt-grey">Respect yourself if you would have others respect you.</span>
+                                                        </div>
+                                                        <div class="status online"></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <div class="chat-data">
+                                                        <img class="user-img img-circle" src="~/Content/dist/img/user3.png" alt="user" />
+                                                        <div class="user-data">
+                                                            <span class="name block capitalize-font">Mitsuko Heid</span>
+                                                            <span class="time block truncate txt-grey">I’m thankful.</span>
+                                                        </div>
+                                                        <div class="status online"></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <div class="chat-data">
+                                                        <img class="user-img img-circle" src="~/Content/dist/img/user.png" alt="user" />
+                                                        <div class="user-data">
+                                                            <span class="name block capitalize-font">Ezequiel Merideth</span>
+                                                            <span class="time block truncate txt-grey">Patience is bitter.</span>
+                                                        </div>
+                                                        <div class="status offline"></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <div class="chat-data">
+                                                        <img class="user-img img-circle" src="~/Content/dist/img/user1.png" alt="user" />
+                                                        <div class="user-data">
+                                                            <span class="name block capitalize-font">Jonnie Metoyer</span>
+                                                            <span class="time block truncate txt-grey">Genius is eternal patience.</span>
+                                                        </div>
+                                                        <div class="status online"></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <div class="chat-data">
+                                                        <img class="user-img img-circle" src="~/Content/dist/img/user2.png" alt="user" />
+                                                        <div class="user-data">
+                                                            <span class="name block capitalize-font">Angelic Lauver</span>
+                                                            <span class="time block truncate txt-grey">Every burden is a blessing.</span>
+                                                        </div>
+                                                        <div class="status away"></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <div class="chat-data">
+                                                        <img class="user-img img-circle" src="~/Content/dist/img/user3.png" alt="user" />
+                                                        <div class="user-data">
+                                                            <span class="name block capitalize-font">Priscila Shy</span>
+                                                            <span class="time block truncate txt-grey">Wise to resolve, and patient to perform.</span>
+                                                        </div>
+                                                        <div class="status online"></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <div class="chat-data">
+                                                        <img class="user-img img-circle" src="~/Content/dist/img/user4.png" alt="user" />
+                                                        <div class="user-data">
+                                                            <span class="name block capitalize-font">Linda Stack</span>
+                                                            <span class="time block truncate txt-grey">Our patience will achieve more than our force.</span>
+                                                        </div>
+                                                        <div class="status away"></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recent-chat-box-wrap">
+                            <div class="recent-chat-wrap">
+                                <div class="panel-heading ma-0 pt-15">
+                                    <div class="goto-back">
+                                        <a id="goto_back_widget" href="javascript:void(0)" class="inline-block txt-grey">
+                                            <i class="zmdi zmdi-chevron-left"></i>
+                                        </a>
+                                        <span class="inline-block txt-dark">ryan</span>
+                                        <a href="javascript:void(0)" class="inline-block text-right txt-grey"><i class="zmdi zmdi-more"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body pa-0">
+                                        <div class="chat-content">
+                                            <ul class="users-chat-nicescroll-bar pt-20">
+                                                <li class="friend">
+                                                    <div class="friend-msg-wrap">
+                                                        <img class="user-img img-circle block pull-left" src="~/Content/dist/img/user.png" alt="user" />
+                                                        <div class="msg pull-left">
+                                                            <p>Hello Jason, how are you, it's been a long time since we last met?</p>
+                                                            <div class="msg-per-detail text-right">
+                                                                <span class="msg-time txt-grey">2:30 PM</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </li>
+                                                <li class="self mb-10">
+                                                    <div class="self-msg-wrap">
+                                                        <div class="msg block pull-right">
+                                                            Oh, hi Sarah I'm have got a new job now and is going great.
+                                                            <div class="msg-per-detail text-right">
+                                                                <span class="msg-time txt-grey">2:31 pm</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </li>
+                                                <li class="self">
+                                                    <div class="self-msg-wrap">
+                                                        <div class="msg block pull-right">
+                                                            How about you?
+                                                            <div class="msg-per-detail text-right">
+                                                                <span class="msg-time txt-grey">2:31 pm</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </li>
+                                                <li class="friend">
+                                                    <div class="friend-msg-wrap">
+                                                        <img class="user-img img-circle block pull-left" src="~/Content/dist/img/user.png" alt="user" />
+                                                        <div class="msg pull-left">
+                                                            <p>Not too bad.</p>
+                                                            <div class="msg-per-detail  text-right">
+                                                                <span class="msg-time txt-grey">2:35 pm</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" id="input_msg_send_widget" name="send-msg" class="input-msg-send form-control" placeholder="Type something">
+                                            <div class="input-group-btn emojis">
+                                                <div class="dropup">
+                                                    <button type="button" class="btn  btn-default  dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-mood"></i></button>
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li><a href="javascript:void(0)">Action</a></li>
+                                                        <li><a href="javascript:void(0)">Another action</a></li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="javascript:void(0)">Separated link</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="input-group-btn attachment">
+                                                <div class="fileupload btn  btn-default">
+                                                    <i class="zmdi zmdi-attachment-alt"></i>
+                                                    <input type="file" class="upload">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-default border-panel card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">todo</h6>
+                </div>
+                <div class="pull-right">
+                    <div class="pull-left inline-block dropdown mr-15">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert"></i></a>
+                        <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
+                            <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
+                            <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Clear All</a></li>
+                            <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Select All</a></li>
+                        </ul>
+                    </div>
+                    <a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                        <i class="zmdi zmdi-close"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body row pa-0">
+                    <div class="todo-box-wrap">
+                        <!-- Todo-List -->
+                        <ul class="todo-list todo-box-nicescroll-bar">
+                            <li class="todo-item">
+                                <div class="checkbox checkbox-default">
+                                    <input type="checkbox" id="checkbox001" />
+                                    <label for="checkbox001">Record The First Episode</label>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="light-grey-hr" />
+                            </li>
+                            <li class="todo-item">
+                                <div class="checkbox checkbox-pink">
+                                    <input type="checkbox" id="checkbox002" />
+                                    <label for="checkbox002">Prepare The Conference Schedule</label>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="light-grey-hr" />
+                            </li>
+                            <li class="todo-item">
+                                <div class="checkbox checkbox-warning">
+                                    <input type="checkbox" id="checkbox003" checked />
+                                    <label for="checkbox003">Decide The Live Discussion Time</label>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="light-grey-hr" />
+                            </li>
+                            <li class="todo-item">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" id="checkbox004" checked />
+                                    <label for="checkbox004">Prepare For The Next Project</label>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="light-grey-hr" />
+                            </li>
+                            <li class="todo-item">
+                                <div class="checkbox checkbox-danger">
+                                    <input type="checkbox" id="checkbox005" checked />
+                                    <label for="checkbox005">Finish Up AngularJs Tutorial</label>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="light-grey-hr" />
+                            </li>
+                            <li class="todo-item">
+                                <div class="checkbox checkbox-purple">
+                                    <input type="checkbox" id="checkbox006" checked />
+                                    <label for="checkbox006">Finish Infinity Project</label>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="light-grey-hr" />
+                            </li>
+                        </ul>
+                        <!-- /Todo-List -->
+                        <!-- New Todo -->
+                        <div class="new-todo">
+                            <div class="input-group">
+                                <input type="text" id="add_todo" name="example-input2-group2" class="form-control" placeholder="Add new task">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-success"><i class="zmdi zmdi-plus txt-success"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /New Todo -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="calendar-wrap">
+                        <div id="calendar_small" class="small-calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-default card-view bg-twitter">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="twitter-icon-wrap text-center mb-15">
+                        <i class="fa fa-twitter"></i>
+                    </div>
+                    <!-- START carousel-->
+                    <div id="twitter_slider" data-ride="carousel" class="carousel slide twitter-slider-wrap text-slider">
+                        <ol class="carousel-indicators">
+                            <li data-target="#twitter_slider" data-slide-to="0" class="active"></li>
+                            <li data-target="#twitter_slider" data-slide-to="1"></li>
+                        </ol>
+                        <div id="tweets_fetch" role="listbox" class="carousel-inner mb-50">
+                        </div>
+                    </div>
+                    <!-- END carousel-->
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Madalyn Rascon</h6>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body row pa-0">
+                    <!--Instagram-->
+                    <ul class="instagram-lite"></ul>
+                    <!--/Instagram-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Row -->
