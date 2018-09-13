@@ -124,3 +124,5 @@ C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RES
 C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\obj\Debug\RESAERCHMENTOR.NET_V2.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\obj\Debug\RESAERCHMENTOR.NET_V2.Tests.dll
 C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\obj\Debug\RESAERCHMENTOR.NET_V2.Tests.pdb
+C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\bin\Debug\roslyn\vcsc.exe
+C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\bin\Debug\roslyn\vcsc.ico
