@@ -4576,6 +4576,7 @@
     <Content Include="Views\MentorPartner\AddResearch.cshtml" />
     <Content Include="Views\MentorPartner\Confirm.cshtml" />
     <Content Include="Views\MentorPartner\PreConfirm.cshtml" />
+    <Content Include="Views\MentorPartner\ResendConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

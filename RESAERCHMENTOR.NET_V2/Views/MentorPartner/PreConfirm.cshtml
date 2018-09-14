@@ -20,18 +20,22 @@
                         <h5 class="text-center txt-dark mb-10">Please enter the confirmation code that was sent to your mail.</h5>
                     </div>
                     <div class="form-wrap">
-                        <form action="@Url.Action("UpdateProfile_Click", "MentorPartner")" method="post" role="form" enctype="multipart/form-data" id="FileData">
-                            <input type="text" runat="server" id="ConCode" class="form-control" placeholder="Enter Confirmation Code">
-                            <br /> <div align="center">
-                                <asp:Button ID="Confirm_User" runat="server" OnClick="Confirm_Click" Text="Confirm" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="Confirm_Click" />
-                                <asp:Button ID="Resend_Confirm" runat="server" OnClick="ResendConfirm_Click" Text="Resend Mail" BackColor="Blue" ForeColor="White" CausesValidation="False" OnClientClick="ResendConfirm_Click" />
+                        <form action="@Url.Action("Confirm_Click", "MentorPartner")" method="post" role="form" enctype="multipart/form-data" id="FileData">
+                            <input type="text" name="ConfirmationCode" value=@Model.ConfirmationCode id="ConfirmationCode" class="form-control" placeholder="Enter Confirmation Code">
+                            <br />
+                            <div align="center">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <button type="submit" class="btn btn-success mr-10 mb-30">Confirm</button>
+                                        </td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>
+                                            <button class="btn btn-danger"><a href="@Url.Action("ResendConfirm","MentorPartner")">Resend Confirmation Code</a></button>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-
-                            <asp:Panel ID="Panel2" runat="server">
-                                <input type="text" required="required" runat="server" id="Email" class="form-control" placeholder="Enter Email Address">
-                                <br /> <div align="center">
-                                    <asp:Button ID="ResendMail" runat="server" OnClick="ResendMail_Click" Text="Send Code" class="btn btn-success btn-icon left-icon mr-10 pull-left" CausesValidation="False" OnClientClick="ResendMail_Click" />
-                            </asp:Panel>
                         </form>
                     </div>
                 </div>

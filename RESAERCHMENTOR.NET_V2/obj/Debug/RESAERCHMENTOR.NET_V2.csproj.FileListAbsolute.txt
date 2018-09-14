@@ -262,5 +262,3 @@ C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RES
 C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\obj\Debug\RESAERCHMENTOR.NET_V2.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\obj\Debug\RESAERCHMENTOR.NET_V2.dll
 C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\obj\Debug\RESAERCHMENTOR.NET_V2.pdb
-C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\bin\roslyn\vcsc.exe
-C:\Users\Administrator\Source\Repos\Working On\Current\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\bin\roslyn\vcsc.ico
