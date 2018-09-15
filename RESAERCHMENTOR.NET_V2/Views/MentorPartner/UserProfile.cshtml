@@ -18,7 +18,6 @@
     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
         <ol class="breadcrumb">
             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-            <li><a href="researchinbox.html"><span>Inbox</span></a></li>
             <li class="active"><span>profile</span></li>
         </ol>
     </div>
@@ -160,6 +159,95 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10">Who you are</label>
+                                                                                    <select class="form-control" name="who_you_are" id="who_you_are"  data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value="" selected="selected">Select One</option>
+                                                                                        <option value="Student">Student</option>
+                                                                                        <option value="researcher">Researcher or Academician</option>
+                                                                                        <option value="Developer">Project developer</option>
+                                                                                        <option value="Writer">Writer</option>
+                                                                                        <option value="Professional">Professional</option>
+                                                                                        
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Institution</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                        <input type="text" class="form-control" name="Institution" value="Institution" id="Institution" placeholder="University of Lagos">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10">Qualification</label>
+                                                                                    <select class="form-control" name="Qualification" id="Qualification" data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value="" selected="selected">Select Qualification</option>
+                                                                                        <option value="SSCE">SSCE</option>
+                                                                                        <option value="Bsc">Bsc</option>
+                                                                                        <option value="Msc">Msc</option>
+                                                                                        <option value="Phd">Phd</option>
+
+                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Primary Field of Expertise</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                        <input type="text" class="form-control" name="Expertise" value="Expertise" id="Expertise" placeholder="Optician">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Sub Specialty</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                        <input type="text" class="form-control" name="Specialty" value="Specialty" id="Specialty" placeholder="Optician">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Research Interest or Focus</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                        <input type="text" class="form-control" name="Interest" value="Interest" id="Interest" placeholder="Research Interest or Focus">
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Number of years in Field of Expertise</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                        <input type="text" class="form-control" name="fieldExpertise" value="fieldExpertise" id="fieldExpertise" placeholder="4 years">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10">Willing to be</label>
+                                                                                    <select class="form-control" name="WillingToBe" id="WillingToBe" data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value="" selected="selected">Select Category</option>
+                                                                                        <option value="Mentor">Mentor</option>
+                                                                                        <option value="Mentee">Mentee</option>
+                                                                                        <option value="Collaborator">Collaborator</option>
+
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10">Mark areas your willing to mentor  or provide academic services </label>
+                                                                                    <select class="form-control" multiple name="WillingToBe" id="WillingToBe" data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value="Phd"> Phd/postdoc thesis </option>
+                                                                                        <option value="Masters">	Master’s Thesis</option>
+                                                                                        <option value="Bsc">	Bsc or Diploma or Undergraduate Thesis</option>
+                                                                                        <option value="Manuscript">	Manuscript Proofreading or Editing</option>
+                                                                                        <option value="Translation">	Translation Services </option>
+                                                                                        <option value="Grant">	Grant Advisory</option>
+                                                                                        <option value="Journal">	journal advisory</option>
+                                                                                        <option value="Peer">	Peer Review </option>
+                                                                                        <option value="ProjectAdvisory">	Project  advisory </option>
+
+                                                                                    </select>
+                                                                                </div>
+
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Country</label>
                                                                                     <select class="form-control" name="Country" id="Country" onselect=@Model.MyProfile.Country data-placeholder="Choose a Category" tabindex="1">
@@ -949,6 +1037,96 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10">Who you are</label>
+                                                                    <select class="form-control" name="who_you_are" id="who_you_are" data-placeholder="Choose a Category" tabindex="1">
+                                                                        <option value="" selected="selected">Select One</option>
+                                                                        <option value="Student">Student</option>
+                                                                        <option value="researcher">Researcher or Academician</option>
+                                                                        <option value="Developer">Project developer</option>
+                                                                        <option value="Writer">Writer</option>
+                                                                        <option value="Professional">Professional</option>
+
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Institution</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                        <input type="text" class="form-control" name="Institution" value="Institution" id="Institution" placeholder="University of Lagos">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10">Qualification</label>
+                                                                    <select class="form-control" name="Qualification" id="Qualification" data-placeholder="Choose a Category" tabindex="1">
+                                                                        <option value="" selected="selected">Select Qualification</option>
+                                                                        <option value="SSCE">SSCE</option>
+                                                                        <option value="Bsc">Bsc</option>
+                                                                        <option value="Msc">Msc</option>
+                                                                        <option value="Phd">Phd</option>
+
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Primary Field of Expertise</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                        <input type="text" class="form-control" name="Expertise" value="Expertise" id="Expertise" placeholder="Optician">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Sub Specialty</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                        <input type="text" class="form-control" name="Specialty" value="Specialty" id="Specialty" placeholder="Optician">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Research Interest or Focus</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                        <input type="text" class="form-control" name="Interest" value="Interest" id="Interest" placeholder="Research Interest or Focus">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Number of years in Field of Expertise</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                        <input type="text" class="form-control" name="fieldExpertise" value="fieldExpertise" id="fieldExpertise" placeholder="4 years">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10">Willing to be</label>
+                                                                    <select class="form-control" name="WillingToBe" id="WillingToBe" data-placeholder="Choose a Category" tabindex="1">
+                                                                        <option value="" selected="selected">Select Category</option>
+                                                                        <option value="Mentor">Mentor</option>
+                                                                        <option value="Mentee">Mentee</option>
+                                                                        <option value="Collaborator">Collaborator</option>
+
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10">Mark areas your willing to mentor  or provide academic services </label>
+                                                                    <select class="form-control" multiple name="WillingToBe" id="WillingToBe" data-placeholder="Choose a Category" tabindex="1">
+                                                                        <option value="Phd"> Phd/postdoc thesis </option>
+                                                                        <option value="Masters">	Master’s Thesis</option>
+                                                                        <option value="Bsc">	Bsc or Diploma or Undergraduate Thesis</option>
+                                                                        <option value="Manuscript">	Manuscript Proofreading or Editing</option>
+                                                                        <option value="Translation">	Translation Services </option>
+                                                                        <option value="Grant">	Grant Advisory</option>
+                                                                        <option value="Journal">	journal advisory</option>
+                                                                        <option value="Peer">	Peer Review </option>
+                                                                        <option value="ProjectAdvisory">	Project  advisory </option>
+
+                                                                    </select>
+                                                                </div>
+
                                                                 <div class="form-group">
                                                                     <label class="control-label mb-10">Country</label>
                                                                     <select class="form-control" value=@Model.MyProfile.Country id="Country" data-placeholder="Choose a Category" tabindex="1">

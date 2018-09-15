@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>@ViewBag.Title : Mentor Partner</title>
+    <title>@ViewBag.Title : Mentor Partners</title>
     @*@Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")*@
     <meta name="description" content="Mentor Partner" />
@@ -46,9 +46,9 @@
                 <div class="mobile-only-brand pull-left">
                     <div class="nav-header pull-left">
                         <div class="logo-wrap">
-                            <a href="index.html">
-                                <img class="brand-img" src="~/Content/dist/img/logo.png" alt="brand" />
-                                <span class="brand-text">Mentor Partner</span>
+                            <a href="@Url.Action("index","home")">
+                                <img class="" src="~/Content/dist/img/logo.png" alt="brand" />
+                                <!---span class="brand-text">Mentor Partner</span-->
                             </a>
                         </div>
                     </div>
@@ -1062,9 +1062,9 @@
                     <div class="mobile-only-brand pull-left">
                         <div class="nav-header pull-left">
                             <div class="logo-wrap">
-                                <a href="researchindex.html">
-                                    <img class="brand-img" src="~/Content/dist/img/logo.png" alt="brand" />
-                                    <!--span class="brand-text">Research Mentor</span-->
+                                <a href="@Url.Action("index","home")">
+                                    <img class="" src="~/Content/dist/img/logo.png" alt="brand" />
+                                    <!--span class="brand-text">Mentor Partner</span -->
                                 </a>
                             </div>
                         </div>
@@ -1089,7 +1089,7 @@
                 @RenderBody()
 
             </div>
-
+            
             <!-- Footer -->
             <footer class="footer container-fluid pl-30 pr-30">
                 <div class="row">
