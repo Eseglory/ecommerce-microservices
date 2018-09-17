@@ -38,9 +38,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
         public ApplicationUserManager UserManager
@@ -78,6 +78,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 {
                    return RedirectToAction("PreConfirm", "MentorPartner");
                 }
+            }
+            else if(Ccheck == 0)
+            {
+                return RedirectToAction("PreConfirm", "MentorPartner");
             }
             #endregion
             // This doesn't count login failures towards account lockout
@@ -119,9 +123,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
+            // The following code protects for brute force attacks against the two factor codes.
+            // If a user enters incorrect codes for a specified amount of time then the user account
+            // will be locked out for a specified amount of time.
             // You can configure the account lockout settings in IdentityConfig
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
@@ -498,7 +502,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public List<UserProfile> GetLoginUser(string username)
         {
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -513,7 +517,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
                                                   Title = rec["Title"].ToString(),
@@ -526,7 +530,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                                   OwnersId = rec["OwnersId"].ToString(),
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"].ToString()),
+                                                  IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"]),
                                               }).ToList();
                             #endregion
                         }
@@ -539,7 +543,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            return depositorsList;
+            return myuserlist;
         }
         private string ConnectionState()
         {

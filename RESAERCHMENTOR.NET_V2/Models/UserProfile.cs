@@ -26,6 +26,16 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public bool Gender1 { get; set; }
         public bool Gender2 { get; set; }
         public string Country { get; set; }
+        public string WhoYouAre { get; set; }
+        public string Institution { get; set; }
+        public string Qualification { get; set; }
+        public string Expertise { get; set; }
+        public string Specialty { get; set; }
+        public string Interest { get; set; }
+        public string fieldExpertise { get; set; }
+        public string WillingToBe { get; set; }
+        public string MentorCategory { get; set; }
+
         #region Research
         public string FileName { get; set; }
         public string AuthorName { get; set; }
@@ -57,10 +67,13 @@ namespace RESAERCHMENTOR.NET_V2.Models
     {
         public int FollowCount { get; set; }
         public int FollowingCount { get; set; }
+        public string MyFullName { get; set; }
         public UserProfile MyProfile { get; set; }
         public List<UserProfile> MyResearch { get; set; }
         public List<UserProfile> FollowList { get; set; }
         public List<UserProfile> FollowingList { get; set; }
+        public List<UserProfile> GetAllUsers { get; set; }
+
     }
 
 }
