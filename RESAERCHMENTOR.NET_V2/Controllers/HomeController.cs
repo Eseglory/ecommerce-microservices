@@ -12,7 +12,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         {
              if(Request.IsAuthenticated)
              {
-                return RedirectToAction("UserProfile", "MentorPartner");
+                return RedirectToAction("DashBoard", "MentorPartner");
              }
             return View();
         }

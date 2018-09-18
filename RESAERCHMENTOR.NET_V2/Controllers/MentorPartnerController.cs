@@ -68,9 +68,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 var sendmail = dbconnect.ConfirmationMail(model.OwnersId, model.OwnersId, Message);
                 if (!sendmail)
                 {
-                    Response.Redirect("http://mentorpartner.net");
+                    ViewBag.ErrorText = "Network issue, make sure you are connected to the Internet..!";
+                    return View("ResendConfirm", model);
                 }
                 #endregion
+                ViewBag.ErrorText = "Confirmation code was successfully sent to " + model.OwnersId;
                 return RedirectToAction("PreConfirm");
             }
             catch (Exception ex)
@@ -94,18 +96,29 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return RedirectToRoute("Confirm");
         }
-        public ActionResult ResendConfirm(UserProfile model)
+        public ActionResult ResendConfirm()
         {
-            return View();
+            UserProfile model = new Models.UserProfile();
+            return View(model);
         }
-        public ActionResult PreConfirm(UserProfile model)
+        public ActionResult PreConfirm()
         {
-            return View();
+            UserProfile model = new UserProfile();
+            return View(model);
         }
         public ActionResult Confirm(UserProfile model)
         {
             return View();
         }
+        public ActionResult DashBoard(UserProfile model)
+        {
+            MyModelObjects LoadProfile = new MyModelObjects();
+            LoadProfile.MyResearch = GetLoginUserResearch();
+            LoadProfile.MyFullName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
+            string UserName = User.Identity.GetUserName();
+            return View(LoadProfile);
+        }
+
 
         #region Functions
         public MyModelObjects Page_Load()
@@ -114,8 +127,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 UserProfile UProfile = new UserProfile();
                 MyObjectList.FollowCount = GetFellowByLoginList().Count();
                 MyObjectList.FollowingCount = GetFollowingByLogin().Count();
-                //PictureImageA.ImageUrl = "dist/img/mock1.jpg";
-                //Image2.Src = "dist/img/mock1.jpg";
+                MyObjectList.GetAllUsers = GetAllUsers();
                 MyObjectList.MyResearch = GetLoginUserResearch();
                 MyObjectList.FollowingList = GetFollowingByLogin();
                 MyObjectList.FollowList = GetFellowByLoginList();
@@ -159,7 +171,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         public List<UserProfile> GetFollowingByLogin()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -173,7 +185,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
                                                   Title = rec["Title"].ToString(),
@@ -201,20 +213,20 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            if (depositorsList.Count() > 0)
+            if (myuserlist.Count() > 0)
             {
-                foreach (var rec in depositorsList)
+                foreach (var rec in myuserlist)
                 {
                     rec.FName = GetSingleUsersByEmail(rec.Following).FName;
                     rec.LName = GetSingleUsersByEmail(rec.Following).LName;
                 }
             }
-            return depositorsList;
+            return myuserlist;
         }
         public List<UserProfile> GetFellowByLoginList()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             List<UserProfile> UserList = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
@@ -230,7 +242,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
                                                   Id = Convert.ToInt32(rec["Id"].ToString()),
@@ -258,13 +270,13 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            depositorsList.Where(x => x.OwnersId != userName);
-            return depositorsList;
+            myuserlist.Where(x => x.OwnersId != userName);
+            return myuserlist;
         }
         public List<UserProfile> GetAllUsers()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -279,9 +291,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
+                                                  Id = Convert.ToInt32(rec["Id"].ToString()),
                                                   Title = rec["Title"].ToString(),
                                                   FName = rec["FName"].ToString(),
                                                   LName = rec["LName"].ToString(),
@@ -293,7 +306,17 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                                   ProfilePicsName = rec["ProfilePicsName"].ToString(),
-                                                  IsConfirmed = Convert.ToBoolean(rec["ConfirmationCode"].ToString()),
+                                                  IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"].ToString()),
+                                                  WhoYouAre = rec["WhoYouAre"].ToString(),
+                                                  Institution = rec["Institution"].ToString(),
+                                                  Qualification = rec["Qualification"].ToString(),
+                                                  Expertise = rec["Expertise"].ToString(),
+                                                  Specialty = rec["Specialty"].ToString(),
+                                                  Interest = rec["Interest"].ToString(),
+                                                  fieldExpertise = rec["fieldExpertise"].ToString(),
+                                                  WillingToBe = rec["WillingToBe"].ToString(),
+                                                  MentorCategory = rec["MentorCategory"].ToString(),
+
                                               }).ToList();
                             #endregion
                         }
@@ -306,11 +329,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            return depositorsList;
+            return myuserlist;
         }
         public UserProfile GetSingleUsers(string id)
         {
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -325,7 +348,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
                                                   Id =  Convert.ToInt32(rec["Id"].ToString()),
@@ -336,6 +359,16 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                                   ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                                  WhoYouAre = rec["WhoYouAre"].ToString(),
+                                                  Institution = rec["Institution"].ToString(),
+                                                  Qualification = rec["Qualification"].ToString(),
+                                                  Expertise = rec["Expertise"].ToString(),
+                                                  Specialty = rec["Specialty"].ToString(),
+                                                  Interest = rec["Interest"].ToString(),
+                                                  fieldExpertise = rec["fieldExpertise"].ToString(),
+                                                  WillingToBe = rec["WillingToBe"].ToString(),
+                                                  MentorCategory = rec["MentorCategory"].ToString(),
+
                                               }).ToList();
                             #endregion
                         }
@@ -348,11 +381,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            return depositorsList.FirstOrDefault();
+            return myuserlist.FirstOrDefault();
         }
         public UserProfile GetSingleUsersByEmail(string id)
         {
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -367,7 +400,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
                                                   Id = Convert.ToInt32(rec["Id"].ToString()),
@@ -390,7 +423,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            return depositorsList.FirstOrDefault();
+            return myuserlist.FirstOrDefault();
         }
         protected int FollowingR(string following)
         {
@@ -493,7 +526,16 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     Gender = "Female";
                 }
                 conAm.Open();
-                string querystring = "UPDATE [dbo].[Profile] SET [Title] = '" + model.Title + "', [FName] = '" + model.FName + "', [LName] = '" + model.LName + "', [Degree] = '" + model.Degree + "', [CNumber] = '" + model.CNumber + "', [BDate] = '" + model.BDate + "', [Gender] = '" + Gender + "', [ProfilePicsName] = '" + FileName + "' WHERE [OwnersId] = '" + userName + "'";
+                string querystring = "UPDATE [dbo].[Profile] SET [Title] = '" + model.Title + "',";
+                querystring = querystring + "[FName] = '" + model.FName + "', [LName] = '" + model.LName + "',";
+                querystring = querystring + "[Degree] = '" + model.Degree + "', [CNumber] = '" + model.CNumber + "',";
+                querystring = querystring + "[BDate] = '" + model.BDate + "', [Gender] = '" + Gender + "',";
+                querystring = querystring + "[ProfilePicsName] = '" + FileName + "', [WhoYouAre] ='" + model.WhoYouAre + "',";
+                querystring = querystring + "[Institution] = '" + model.Institution + "', [Qualification] = '" + model.Qualification +"'";
+                querystring = querystring + ", [Expertise] = '" + model.Expertise + "', [Specialty] = '" + model.Specialty +"', ";
+                querystring = querystring + "[Interest] = '" + model.Interest + "', [fieldExpertise] = '" + model.fieldExpertise + "',";
+                querystring = querystring + " [WillingToBe] = '" + model.WillingToBe + "', [MentorCategory] = '" + model.MentorCategory +"'";
+                querystring = querystring + " WHERE[OwnersId] = '" + userName + "'";
                 try
                 {
                     var cmd = new SqlCommand(querystring, conAm);
@@ -532,7 +574,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         public UserProfile GetLoginUser()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -547,7 +589,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
                                                   Id = Convert.ToInt32(rec["Id"].ToString()),
@@ -563,6 +605,16 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                                   ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                                  WhoYouAre = rec["WhoYouAre"].ToString(),
+                                                  Institution = rec["Institution"].ToString(),
+                                                  Qualification = rec["Qualification"].ToString(),
+                                                  Expertise = rec["Expertise"].ToString(),
+                                                  Specialty = rec["Specialty"].ToString(),
+                                                  Interest = rec["Interest"].ToString(),
+                                                  fieldExpertise = rec["fieldExpertise"].ToString(),
+                                                  WillingToBe = rec["WillingToBe"].ToString(),
+                                                  MentorCategory = rec["MentorCategory"].ToString(),
+
                                               }).ToList();
                             #endregion
                         }
@@ -575,7 +627,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            return depositorsList.FirstOrDefault();
+            return myuserlist.FirstOrDefault();
         }
         protected void UploadFile()
         {
@@ -598,7 +650,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         public List<UserProfile> GetLoginUserResearch()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -613,7 +665,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
                                                   Title = rec["Title"].ToString(),
@@ -644,7 +696,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            return depositorsList;
+            return myuserlist;
         }
         private void LogError(Exception ex)
         {
@@ -667,7 +719,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             LoadResearch.AuthorName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
             return View("AddResearch", LoadResearch);
         }
-        protected ActionResult AddResearch_Click(UserProfile model, HttpPostedFileBase postedFile)
+        public ActionResult AddResearch_Click(UserProfile model, HttpPostedFileBase postedFile)
         {
             MyModelObjects LoadProfile = new MyModelObjects();
             int row = 0;
@@ -676,13 +728,13 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 conAm.Open();
                 try
                 {
-                    string fileName = Path.GetFileName(postedFile.FileName);
-                    postedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
                     string path = Server.MapPath("~/Images/");
                     if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);
                     }
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    postedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
                     string userName = User.Identity.GetUserName();
                     string creationDate = DateTime.Now.ToShortDateString();
                     string RStatus = "";
@@ -701,9 +753,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 }
                 catch (Exception ee)
                 {
-
+                    Response.Write("Error Occurred.!");
                 }
-                return View();
+                return View("AddResearch");
             }
         }
         public byte[] ConvertToBytes(HttpPostedFileBase myDoc)
@@ -718,7 +770,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region Pre-Confirmation Functions
         public List<UserProfile> GetUserConfirmation(string code)
         {
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -733,7 +785,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
                                                   Title = rec["Title"].ToString(),
@@ -759,7 +811,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            return depositorsList;
+            return myuserlist;
         }
         protected int UpdateUserProfile(string concode)
         {
@@ -783,7 +835,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public UserProfile GeUser(string Email)
         {
-            List<UserProfile> depositorsList = new List<UserProfile>();
+            List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -798,7 +850,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfile");
                             dt.Load(dr);
                             #region Convert To Object List
-                            depositorsList = (from DataRow rec in dt.Rows
+                            myuserlist = (from DataRow rec in dt.Rows
                                               select new UserProfile()
                                               {
                                                   Title = rec["Title"].ToString(),
@@ -824,7 +876,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var message = ee.Message;
                 }
             }
-            return depositorsList.FirstOrDefault();
+            return myuserlist.FirstOrDefault();
         }
 
         #endregion
