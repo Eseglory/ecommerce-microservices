@@ -191,7 +191,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     InsertUserProfile(model.Email);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("PreConfirm", "MentorPartner");
                 }
                 AddErrors(result);
             }
@@ -430,6 +430,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     string CreationDate = DateTime.Now.ToShortDateString();
                     var cmd = new SqlCommand("INSERT INTO Profile(Title,FName,LName,Degree,CNumber,BDate,Gender,OwnersId,DateCreated,ConfirmationCode) values('" + null + "','" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + userName + "','" + CreationDate + "','" + CodeGen + "')", conAm);
                     row = cmd.ExecuteNonQuery();
+                    string querystring = "UPDATE [dbo].[Profile] SET [IsConfirmed] = 0";
+                    var cmd1 = new SqlCommand(querystring, conAm);
+                    cmd1.ExecuteNonQuery();
                     #region Send Confirmation Mail
                     string Message = "Hello " + userName + " your confirmation code is " + CodeGen + ".";
                     Message = Message + " <a href=" + "http://mentorpartner.net/MentorPartner/PreConfirm" + ">click here</a> to proceed";

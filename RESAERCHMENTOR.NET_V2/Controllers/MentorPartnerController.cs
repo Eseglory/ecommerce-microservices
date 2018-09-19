@@ -92,9 +92,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             if (Update > 0)
             {
-                return RedirectToRoute("Confirm");
+                return View("Confirm");
             }
-            return RedirectToRoute("Confirm");
+            ViewBag.ErrorText = "Code is not correct.!";
+            return View("PreConfirm", model);
         }
         public ActionResult ResendConfirm()
         {
@@ -106,7 +107,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             UserProfile model = new UserProfile();
             return View(model);
         }
-        public ActionResult Confirm(UserProfile model)
+        public ActionResult Confirm()
         {
             return View();
         }
@@ -776,7 +777,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select * from Profile as a where a.ConfirmationCode = '" + code + "' and a.IsConfirmed IS NULL";
+                    query = "select * from Profile as a where a.ConfirmationCode = '" + code + "'";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
