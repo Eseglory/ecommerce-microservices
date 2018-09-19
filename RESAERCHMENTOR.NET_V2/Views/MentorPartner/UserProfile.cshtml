@@ -524,7 +524,7 @@
                     <div class="tab-struct custom-tab-1">
                         <ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
 
-                            <li class="active" role="presentation"><a data-toggle="tab" id="profile_tab_9" role="tab" href="#profile_9" aria-expanded="false"><span>Profile Updates</span></a></li>
+                            <li class="active" role="presentation"><a data-toggle="tab" id="profile_tab_9" role="tab" href="#profile_9" aria-expanded="false"><span>Updates</span></a></li>
                             <li class="active" role="presentation"><a data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>Researches</span></a></li>
                             <li role="presentation" class="next"><a aria-expanded="true" data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>follow<span class="inline-block">(@Model.FollowCount)</span></span></a></li>
                             <li role="presentation" class="next"><a aria-expanded="true" data-toggle="tab" role="tab" id="folloing_tab_8" href="#folloing_8"><span>following<span class="inline-block">(@Model.FollowingCount)</span></span></a></li>
@@ -542,6 +542,7 @@
                             </li-->
                         </ul>
                         <div class="tab-content" id="myTabContent_8">
+                            <!-- Profile Notification tab begins here-->
                             <div id="profile_9" class="tab-pane fade active in" role="tabpanel">
                                 <div class="col-md-12">
                                     <div class="pt-20">
@@ -614,6 +615,9 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Profile Notification tab ends here-->
+
                             <div id="profile_8" class="tab-pane fade active in" role="tabpanel">
                                 <div class="col-md-12">
                                     <div class="pt-20">
@@ -1057,7 +1061,7 @@
                                         <div class="">
                                             <div class="panel-wrapper collapse in">
                                                 <div class="panel-body pa-0">
-                                                    <div class="col-sm-12 col-xs-12">
+                                                    <div class="col-lg-12 col-sm-12 col-xs-12">
                                                         <div class="form-wrap">
                                                             <div class="form-body overflow-hide">
                                                                 <div class="form-group">
@@ -1148,7 +1152,7 @@
                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Primary Field of Expertise</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="Expertise" value=@Model.MyProfile.Expertise id="Expertise" placeholder="Optician" readonly>
+                                                                        <input type="text" class="form-control" name="Expertise" value=@Model.MyProfile.Expertise id="Expertise" placeholder="" readonly>
                                                                     </div>
                                                                 </div>
 
@@ -1172,7 +1176,7 @@
                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Number of years in Field of Expertise</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="fieldExpertise" value=@Model.MyProfile.fieldExpertise id="fieldExpertise" placeholder="4 years" readonly>
+                                                                        <input type="text" class="form-control" name="fieldExpertise" value=@Model.MyProfile.fieldExpertise id="fieldExpertise" placeholder="" readonly>
                                                                     </div>
                                                                 </div>
 
