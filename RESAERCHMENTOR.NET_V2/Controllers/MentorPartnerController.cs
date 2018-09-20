@@ -111,10 +111,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         {
             return View();
         }
-        public ActionResult DashBoard(UserProfile model)
+        public ActionResult DashBoard()
         {
             MyModelObjects LoadProfile = new MyModelObjects();
             LoadProfile.MyResearch = GetLoginUserResearch();
+            LoadProfile.MyProfile = GetLoginUser();
             LoadProfile.MyFullName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);

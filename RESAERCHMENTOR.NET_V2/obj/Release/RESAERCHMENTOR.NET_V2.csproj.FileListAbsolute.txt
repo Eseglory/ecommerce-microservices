@@ -85,3 +85,4 @@ C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\
 C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\obj\Release\RESAERCHMENTOR.NET_V2.dll
 C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\obj\Release\RESAERCHMENTOR.NET_V2.pdb
+C:\Users\Administrator\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\obj\Release\RESAERCHMENTOR.NET_V2.csprojResolveAssemblyReference.cache

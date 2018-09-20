@@ -395,7 +395,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         {
             return View();
         }
-
+        public ActionResult LogOffExtend()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
