@@ -553,6 +553,7 @@
     <Content Include="Content\vendors\vectormap\jquery-jvectormap-world-mill-en.js" />
     <Content Include="Content\vendors\vectormap\jvectormap.custom.js" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\fatz.jpg" />
     <Content Include="Files\NOU158851168.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

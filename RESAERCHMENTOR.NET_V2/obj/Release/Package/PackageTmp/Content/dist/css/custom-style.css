@@ -1,8 +1,6 @@
-.nav {
-	margin-top: 15px; /* this is a faux center fix for the nav options - adjust this if you wish to change the logo height or the font of the menu items */
-}
 
-/* SPACING */
+
+/* SPACING 
 .p-s{
 	padding:10px !important;
 }
@@ -33,7 +31,7 @@
 }
 .m-t-xs{
 	margin-top:10px;
-}
+}*/
 
 /* OTHERS */
 .border-top{
@@ -66,7 +64,7 @@
 	background-color:#090;
 }
 
-/*LOGIN CONFIGURATION PAGE*/
+/*LOGIN CONFIGURATION PAGE
 #login-page{
 	background-image:url(../images/login-bg.jpg);
 	background-repeat:no-repeat;
@@ -111,9 +109,9 @@
 	display: block;
 	margin-top: 20px;
 	margin-bottom: 15px;
-}
+}*/
 
-/*LOCK SCREEN CONF*/
+/*LOCK SCREEN CONF
 #showtime {
 	width: 100%;
 	color: #fff;
@@ -180,7 +178,7 @@
   background-color: #2bb4e8;
   border-color: #2bb4e8;
 }
-
+*/
 .story-cont2{
 	background-color:;
 	margin-bottom:35px;
