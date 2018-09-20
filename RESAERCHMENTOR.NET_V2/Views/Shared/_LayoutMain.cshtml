@@ -12,6 +12,10 @@
 	<meta name="keywords" content="Mentor Partner" />
 	<meta name="author" content="hencework" />
 
+
+    @Scripts.Render("~/bundles/dist")
+    @Scripts.Render("~/bundles/vendors")
+
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="~/Content/favicon.ico">
 	<link rel="icon" href="~/Content/favicon.ico" type="image/x-icon">
@@ -235,7 +239,9 @@
     <script src="~/Content/dist/js/init.js"></script>
     <script src="~/Content/dist/js/widgets-data.js"></script>
 
-
+  
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
 </body>
 

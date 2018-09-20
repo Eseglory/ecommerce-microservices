@@ -62,11 +62,11 @@
                                     <span class="counts-text block">Posts</span>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <span class="counts block head-font"><span class="counter-anim">5</span></span>
+                                    <span class="counts block head-font"><span class="counter-anim">@Model.FollowCount</span></span>
                                     <span class="counts-text block">Followers</span>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <span class="counts block head-font"><span class="counter-anim">898</span></span>
+                                    <span class="counts block head-font"><span class="counter-anim">@Model.FollowingCount</span></span>
                                     <span class="counts-text block">Following</span>
                                 </div>
                             </div>
@@ -1096,7 +1096,7 @@
                                                                     <label class="control-label mb-10" for="exampleInputEmail_01">Email address</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-                                                                        <input type="email" name="OwnersId" class="form-control" id="OwnersId" value="@Model.MyProfile.OwnersId"  readonly>
+                                                                        <input type="text" name="OwnersId" class="form-control" id="OwnersId" value="@Model.MyProfile.OwnersId"  readonly>
                                                                     </div>
                                                                 </div>
 
@@ -1104,14 +1104,14 @@
                                                                     <label class="control-label mb-10" for="exampleInputContact_01">Contact number</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                        <input type="email" name="CNumber" class="form-control" id="CNumber" value=@Model.MyProfile.CNumber  readonly>
+                                                                        <input type="text" name="CNumber" class="form-control" id="CNumber" value=@Model.MyProfile.CNumber  readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label mb-10" for="exampleInputContact_1">Date Of Birth number</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                        <input type="date" class="form-control" name="BDate" id="BDate" value=@Model.MyProfile.BDate placeholder="16/12/1986">
+                                                                        <input type="text" class="form-control" name="BDate" id="BDate" value=@Model.MyProfile.BDate placeholder="16/12/1986">
                                                                     </div>
                                                                 </div>
                                                                 <br /><br />
@@ -1206,7 +1206,7 @@
                                                                     <label class="control-label mb-10">Country</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-globe"></i></div>
-                                                                        <input type="text" class="form-control" name="Country" id="Country" value=@Model.MyProfile.Country readonly>
+                                                                        <input type="text" class="form-control" name="Country" id="Country" value=@Model.MyProfile.Country placeholder="" readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1516,7 +1516,7 @@
         <div class="panel panel-default card-view">
             <div class="panel-heading">
                 <div class="pull-left">
-                    <h6 class="panel-title txt-dark">Follow @MentorPartners</h6>
+                    <h6 class="panel-title txt-dark">Follow Mentor Partners</h6>
                 </div>
                 <div class="clearfix"></div>
             </div>
