@@ -1295,7 +1295,7 @@
                                                 </a>
                                                 @{foreach (var iuser in Model.GetAllUsers)
                                                  {
-                                                        <a href="javascript:void(0)">
+                                                        <a href="#">
                                                             <div class="chat-data">
                                                                 <img class="user-img img-circle" src="~/Files/@iuser.ProfilePicsName" alt="user" />
                                                                 @{ string fullname = iuser.Title + " " + iuser.LName + " " + iuser.FName; }
@@ -1304,6 +1304,7 @@
                                                                     <span class="time block truncate txt-grey">@iuser.fieldExpertise</span>
                                                                 </div>
                                                                 <div class="status offline"></div>
+                                                                <button class="btn-success pull-right btn-xs fixed-btn"><i class=" ti-plus"></i></button>
                                                                 <div class="clearfix"></div>
                                                             </div>
                                                         </a>
