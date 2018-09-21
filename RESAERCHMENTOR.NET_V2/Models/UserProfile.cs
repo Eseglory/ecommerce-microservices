@@ -35,7 +35,20 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public string fieldExpertise { get; set; }
         public string WillingToBe { get; set; }
         public string MentorCategory { get; set; }
-
+        #region Activities
+        public string ActivityName { get; set; }
+        public int ActivityParentID { get; set; }
+        public string ActivityType { get; set; }
+        public string ActivityDateCreated { get; set; }
+        #endregion
+        #region Message
+        public string From { get; set; }
+        public string To { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+        public string AttachedFileName { get; set; }
+        public string MessageDateCreated { get; set; }
+        #endregion
         #region Research
         public string FileName { get; set; }
         public string AuthorName { get; set; }
@@ -56,6 +69,11 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public string Follower { get; set; }
         public string FollowDate { get; set; }
         #endregion
+        #region MenTors_Mentees
+        public string Mentor { get; set; }
+        public string Mentee { get; set; }
+        public string MenTors_MenteesCreated { get; set; }
+        #endregion
     }
     public class Follower
     {
@@ -75,5 +93,26 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public List<UserProfile> GetAllUsers { get; set; }
 
     }
-
+    public class Messages
+    {
+        public string From { get; set; }
+        public string To { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+        public string AttachedFileName { get; set; }
+        public string MessageDateCreated { get; set; }
+    }
+    public class Activities
+    {
+        public string ActivityName { get; set; }
+        public string ActivityParentID { get; set; }
+        public string Type { get; set; }
+        public string ActivityDateCreated { get; set; }
+    }
+    public class MenTors_Mentees
+    {
+        public string Mentor { get; set; }
+        public string Mentee { get; set; }
+        public string MenTors_MenteesCreated { get; set; }
+    }
 }

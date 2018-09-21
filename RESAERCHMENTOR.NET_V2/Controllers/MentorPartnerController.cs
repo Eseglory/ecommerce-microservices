@@ -120,7 +120,17 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);
         }
-
+        public ActionResult UserInfo()
+        {
+            MyModelObjects LoadProfile = new MyModelObjects();
+            LoadProfile = Page_Load();
+            string UserName = User.Identity.GetUserName();
+            return View(LoadProfile);
+        }
+        public ActionResult UserInbox()
+        {
+            return View();
+        }
 
         #region Functions
         public MyModelObjects Page_Load()
