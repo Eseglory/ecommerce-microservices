@@ -6,14 +6,15 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<title>@ViewBag.Title : Mentor Partners</title>
-	@Styles.Render("~/Content/css")
-	@Scripts.Render("~/bundles/modernizr")
-	@Scripts.Render("~/bundles/dist")
-	@Scripts.Render("~/bundles/vendors")
+	
 
 	<meta name="description" content="Mentor Partner" />
 	<meta name="keywords" content="Mentor Partner" />
 	<meta name="author" content="hencework" />
+
+
+    @Scripts.Render("~/bundles/dist")
+    @Scripts.Render("~/bundles/vendors")
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="~/Content/favicon.ico">
@@ -25,6 +26,9 @@
 	<!-- vector map CSS -->
 	<link href="~/Content/vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css" />
 
+    <!-- Bootstrap Wysihtml5 css -->
+    <link rel="stylesheet" href="~/Content/vendors/bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.css" />
+
 	<!-- Calendar CSS -->
 	<link href="~/Content/vendors/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet" type="text/css" />
 
@@ -33,6 +37,7 @@
 
 	<!-- Custom CSS -->
 	<link href="~/Content/dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/dist/css/custom-style.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -73,15 +78,40 @@
 
 
                         <li>
-                            <a href="@Url.Action("AddResearch", "MentorPartner")" class="dropdown-toggle" data-toggle="">Add Research </a>
+                            <a href="@Url.Action("index","home")"  data-toggle=""><i class=" ti-home"> Home</i> </a>
                         </li>
 
                         <li>
-                            <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="~/Files/@imgName" alt="user_auth" class="user-auth-img img-circle" /><span class="user-online-status"></span></a>
+                            <a href="@Url.Action("AddResearch", "MentorPartner")"  data-toggle="">
+                            <i class=" ti-comments">
+                                Post </i></a>
+                        </li>
+
+
+                        <li style="width:200px;">
+                            <a href="#" data-toggle=""><i class="ti-user"> Find a Mentor </i></a>
                         </li>
 
                         <li>
-                            <a href="@Url.Action("LogOffExtend", "Account")"><i class="zmdi zmdi-settings top-nav-icon"></i> Log Out</a>
+                            <a href="@Url.Action("UserProfile", "MentorPartner")">                               
+                                    @if (@imgName == null)
+
+                                    { 
+                                        
+                                        <img src="~/Content/dist/img/user1.png" alt="user_auth" class="user-auth-img img-circle" />}
+
+                                    else
+                                    {
+                                        <img src="~/Files/@imgName" alt="user_auth" class="user-auth-img img-circle" />
+
+
+                                    }
+                                    <span class="user-online-status"></span>
+                                </a>
+
+                        </li>
+                        <li>
+                            <a href="@Url.Action("LogOffExtend", "Account")"><i class="ti-lock"> Log Out</i></a>
                         </li>
                     </ul>
                 </div>
@@ -173,6 +203,7 @@
     <!-- Data table JavaScript -->
     <script src="~/Content/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
 
+    
 
     <!-- Slimscroll JavaScript -->
     <script src="~/Content/dist/js/jquery.slimscroll.js"></script>
@@ -196,7 +227,14 @@
 
     <!-- Switchery JavaScript -->
     <script src="~/Content/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+    <!-- wysuhtml5 Plugin JavaScript -->
+    <script src="~/Content/vendors/bower_components/wysihtml5x/dist/wysihtml5x.min.js"></script>
 
+    <script src="~/Content/vendors/bower_components/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.js"></script>
+
+
+    <!-- Bootstrap Wysuhtml5 Init JavaScript -->
+    <script src="~/dist/js/bootstrap-wysuhtml5-data.js"></script>
 
 
     <!-- Fancy Dropdown JS -->
@@ -212,7 +250,7 @@
     <script src="~/Content/dist/js/init.js"></script>
     <script src="~/Content/dist/js/widgets-data.js"></script>
 
-    @Scripts.Render("~/bundles/jquery")
+  
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 

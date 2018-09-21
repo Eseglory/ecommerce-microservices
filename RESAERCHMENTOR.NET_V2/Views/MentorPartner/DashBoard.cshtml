@@ -6,20 +6,16 @@
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 <p><br /><br /><br /></p>
-<div align="right">
-    <button class="btnmenuresearch"> <a href="@Url.Action("UserProfile", "MentorPartner")">My Profile </a>
-    </button>
 
-</div>
-<p><br /></p>
-@if (Model.MyResearch.Count() == 0)
-{
-    <h3>No research found.</h3>
-}
 <!-- Added by saka -->
-<div class="news-feed col-lg-7">
+<div class="container">
     <div class="row">
-        <!-- /story-cont -->
+        @if (Model.MyResearch.Count() == 0)
+        {
+            <h4>No research found.</h4>
+            <p><a href="@Url.Action("UserProfile", "MentorPartner")" class="dropdown-toggle pr-0" data-toggle="dropdown"> Click here </a>
+        to start following experts so as to see some of their publications  </p>
+        }
         @{foreach (var item in Model.MyResearch)
             {
         <div class="story-cont col-lg-12 p-b-m">
@@ -30,7 +26,7 @@
                     </div><!-- /profile-pic -->
                 </div>
                 <!--div class="row"-->
-                <div class="news-feed-header col-lg-10 col-xs-10 pg-up bg-white">
+                <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
                     <div class="username-newsfeed p-tb-xs">
                         <span class="txt-green"><strong>@Model.MyFullName </strong></span>
                         <div class="visible-xs"><br></div>
