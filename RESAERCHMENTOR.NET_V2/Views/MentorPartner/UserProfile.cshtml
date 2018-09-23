@@ -103,7 +103,7 @@
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1"></label>
                                                                                     <div class="input-group">
                                                                                         <img ID="PictureImageA" Height="140px" Width="120px" src="~/Files/@Model.MyProfile.ProfilePicsName" />
-                                                                                        <input type="file" name="postedFile" required="required" />
+                                                                                        <input type="file" name="postedFile" />
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
@@ -571,70 +571,24 @@
                                 <div class="col-md-12">
                                     <div class="pt-20">
                                         <div class="streamline user-activity">
-                                            <div class="sl-item">
+                                            @{ 
+                                                foreach (var act in Model.MyActivities)
+                                                {
+                                                    DateTime DT = Convert.ToDateTime(act.ActivityDateCreated);
+                                                    var TStamp = DT.ToLongTimeString();
+                                                 <div class="sl-item">
                                                 <a href="javascript:void(0)">
                                                     <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                        <img class="img-responsive img-circle" src="~/Content/dist/img/user.png" alt="avatar" />
+                                                        <img class="img-responsive img-circle" src="~/Files/@act.ProfilePicsName" alt="avatar" />
                                                     </div>
                                                     <div class="sl-content">
-                                                        <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Clay Masse</span><span>invited to join the meeting in the conference room at 9.45 am</span></p>
-                                                        <span class="block txt-grey font-12 capitalize-font">3 Min</span>
+                                                        <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">@act.OwnerName</span><span>@act.ActivityDescription</span></p>
+                                                        <span class="block txt-grey font-12 capitalize-font">@TStamp</span>
                                                     </div>
                                                 </a>
                                             </div>
-
-                                            <div class="sl-item">
-                                                <a href="javascript:void(0)">
-                                                    <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                        <img class="img-responsive img-circle" src="~/Content/dist/img/user1.png" alt="avatar" />
-                                                    </div>
-                                                    <div class="sl-content">
-                                                        <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Evie Ono</span><span>added three new photos in the library</span></p>
-                                                        <div class="activity-thumbnail">
-                                                            <img src="~/Content/dist/img/thumb-1.jpg" alt="thumbnail" />
-                                                            <img src="~/Content/dist/img/thumb-2.jpg" alt="thumbnail" />
-                                                            <img src="~/Content/dist/img/thumb-3.jpg" alt="thumbnail" />
-                                                        </div>
-                                                        <span class="block txt-grey font-12 capitalize-font">8 Min</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                            <div class="sl-item">
-                                                <a href="javascript:void(0)">
-                                                    <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                        <img class="img-responsive img-circle" src="~/Content/dist/img/user2.png" alt="avatar" />
-                                                    </div>
-                                                    <div class="sl-content">
-                                                        <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">madalyn rascon</span><span>assigned a new task</span></p>
-                                                        <span class="block txt-grey font-12 capitalize-font">28 Min</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                            <div class="sl-item">
-                                                <a href="javascript:void(0)">
-                                                    <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                        <img class="img-responsive img-circle" src="~/Content/dist/img/user3.png" alt="avatar" />
-                                                    </div>
-                                                    <div class="sl-content">
-                                                        <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Ezequiel Merideth</span><span>completed project wireframes</span></p>
-                                                        <span class="block txt-grey font-12 capitalize-font">yesterday</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                            <div class="sl-item">
-                                                <a href="javascript:void(0)">
-                                                    <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                        <img class="img-responsive img-circle" src="~/Content/dist/img/user4.png" alt="avatar" />
-                                                    </div>
-                                                    <div class="sl-content">
-                                                        <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">jonnie metoyer</span><span>created a group 'Hencework' in the discussion forum</span></p>
-                                                        <span class="block txt-grey font-12 capitalize-font">18 feb</span>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                                }
+                                             }
                                         </div>
                                     </div>
                                 </div>
@@ -1304,7 +1258,7 @@
                                                                     <span class="time block truncate txt-grey">@iuser.fieldExpertise</span>
                                                                 </div>
                                                                 <div class="status offline"></div>
-                                                                <button class="btn-success pull-right btn-xs fixed-btn"><i class=" ti-plus"></i></button>
+                                                                <a title="Add This Person As Mentor" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })" class="btn-success pull-right btn-xs fixed-btn"><i class=" ti-plus"></i></a>
                                                                 <div class="clearfix"></div>
                                                             </div>
                                                         </a>

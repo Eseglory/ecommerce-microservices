@@ -40,6 +40,9 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public int ActivityParentID { get; set; }
         public string ActivityType { get; set; }
         public string ActivityDateCreated { get; set; }
+        public string OwnerName { get; set; }
+        public string ActivityDescription { get; set; }
+        public string Activityowner { get; set; }
         #endregion
         #region Message
         public string From { get; set; }
@@ -48,6 +51,7 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public string Message { get; set; }
         public string AttachedFileName { get; set; }
         public string MessageDateCreated { get; set; }
+        public bool Read { get; set; }
         #endregion
         #region Research
         public string FileName { get; set; }
@@ -91,7 +95,10 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public List<UserProfile> FollowList { get; set; }
         public List<UserProfile> FollowingList { get; set; }
         public List<UserProfile> GetAllUsers { get; set; }
-
+        public List<UserProfile> MyMessages { get; set; }
+        public List<UserProfile> MyMessageInbox { get; set; }
+        public List<UserProfile> MyActivities { get; set; }
+        public List<UserProfile> GetOtherUsersResearch { get; set; }
     }
     public class Messages
     {
@@ -101,13 +108,18 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public string Message { get; set; }
         public string AttachedFileName { get; set; }
         public string MessageDateCreated { get; set; }
+        public bool Read { get; set; }
     }
     public class Activities
     {
         public string ActivityName { get; set; }
-        public string ActivityParentID { get; set; }
-        public string Type { get; set; }
+        public int ActivityParentID { get; set; }
+        public string ActivityType { get; set; }
         public string ActivityDateCreated { get; set; }
+        public string OwnerName { get; set; }
+        public string Description { get; set; }
+        public string Activityowner { get; set; }
+
     }
     public class MenTors_Mentees
     {

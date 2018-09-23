@@ -682,7 +682,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
-    <Content Include="Views\UserProfile.cshtml" />
+    <Content Include="Views\MentorPartner\UserProfile.cshtml" />
     <Content Include="Views\MentorPartner\AddResearch.cshtml" />
     <Content Include="Views\MentorPartner\Confirm.cshtml" />
     <Content Include="Views\MentorPartner\PreConfirm.cshtml" />
@@ -690,6 +690,8 @@
     <Content Include="Views\MentorPartner\DashBoard.cshtml" />
     <Content Include="Views\MentorPartner\UserInfo.cshtml" />
     <Content Include="Views\MentorPartner\UserInbox.cshtml" />
+    <Content Include="Views\MentorPartner\SendMessage.cshtml" />
+    <Content Include="Views\MentorPartner\UserOutbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
