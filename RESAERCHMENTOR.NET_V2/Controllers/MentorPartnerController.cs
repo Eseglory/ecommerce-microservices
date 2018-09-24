@@ -115,21 +115,43 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         {
             MyModelObjects LoadProfile = new MyModelObjects();
             LoadProfile.MyResearch = GetLoginUserResearch();
+            LoadProfile.GetOtherUsersResearch = GetOtherUsersResearch();
             LoadProfile.MyProfile = GetLoginUser();
             LoadProfile.MyFullName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);
         }
-        public ActionResult UserInfo()
+        public ActionResult UserInfo(string id)
         {
             MyModelObjects LoadProfile = new MyModelObjects();
-            LoadProfile = Page_Load();
+            string userId = GetSingleUsers(id).OwnersId;
+            LoadProfile = Load_Profile(userId);
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);
         }
         public ActionResult UserInbox()
         {
-            return View();
+            MyModelObjects MyObjectList = new MyModelObjects();
+            MyObjectList.MyMessages = GetLoginUserMessages();
+            MyObjectList.MyMessageInbox = GetLoginUserInbox();
+            MyObjectList.GetAllUsers = GetAllUsers();
+            return View(MyObjectList);
+        }
+        public ActionResult UserOutbox()
+        {
+            MyModelObjects MyObjectList = new MyModelObjects();
+            MyObjectList.MyMessages = GetLoginUserMessages();
+            MyObjectList.MyMessageInbox = GetLoginUserInbox();
+            MyObjectList.GetAllUsers = GetAllUsers();
+            return View(MyObjectList);
+        }
+        public ActionResult SendMessage(string id)
+        {
+            Messages MyObjectList = new Messages();
+            string userName = User.Identity.GetUserName();
+            MyObjectList.To = GetSingleUsers(id).OwnersId;
+            MyObjectList.From = userName;
+            return PartialView(MyObjectList);
         }
 
         #region Functions
@@ -142,9 +164,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 MyObjectList.GetAllUsers = GetAllUsers();
                 MyObjectList.MyResearch = GetLoginUserResearch();
                 MyObjectList.FollowingList = GetFollowingByLogin();
-                MyObjectList.FollowList = GetFellowByLoginList();
+                MyObjectList.FollowList = GetFellowByLoginList();               
+                MyObjectList.MyActivities = GetNonLoginUserActivities();
                 #region Load Profile
-                var MyProfile = GetLoginUser();
+            var MyProfile = GetLoginUser();
                 if (MyProfile != null)
                 {
                     UProfile.FullName = MyProfile.LName + " " + MyProfile.FName;
@@ -175,6 +198,50 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 MyObjectList.MyProfile = UProfile;
             return MyObjectList;
             }
+        public MyModelObjects Load_Profile(string userId)
+        {
+            UserProperties UProperties = new UserProperties();
+            MyModelObjects MyObjectList = new MyModelObjects();
+            UserProfile UProfile = new UserProfile();
+            MyObjectList.FollowCount = UProperties.GetFellowByLoginList(userId).Count();
+            MyObjectList.FollowingCount = UProperties.GetFollowingByLogin(userId).Count();
+            MyObjectList.GetAllUsers = GetAllUsers();
+            MyObjectList.MyResearch = UProperties.GetLoginUserResearch(userId);
+            MyObjectList.FollowingList = UProperties.GetFollowingByLogin(userId);
+            MyObjectList.FollowList = UProperties.GetFellowByLoginList(userId);
+            #region Load Profile
+            var MyProfile = UProperties.GetSingleUsersByEmail(userId);
+            if (MyProfile != null)
+            {
+                UProfile.FullName = MyProfile.LName + " " + MyProfile.FName;
+                if (MyProfile.ProfilePicsName != string.Empty)
+                {
+                    //PictureImageA.ImageUrl = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
+                    //Image2.Src = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
+                }
+                UProfile.Title = MyProfile.Title;
+                UProfile.FName = MyProfile.FName;
+                UProfile.LName = MyProfile.LName;
+                UProfile.FullName = MyProfile.Title + " " + MyProfile.LName + " " + MyProfile.FName;
+                UProfile.Degree = MyProfile.Degree;
+                UProfile.BDate = MyProfile.BDate;
+                UProfile.CNumber = MyProfile.CNumber;
+                UProfile.Country = MyProfile.Country;
+                UProfile.ProfilePicsName = MyProfile.ProfilePicsName;
+                UProfile.OwnersId = MyProfile.OwnersId;
+                if (MyProfile.Gender == "Male")
+                {
+                    UProfile.Gender1 = true;
+                }
+                else
+                {
+                    UProfile.Gender2 = true;
+                }
+            }
+            #endregion
+            MyObjectList.MyProfile = UProfile;
+            return MyObjectList;
+        }
         private string ConnectionState()
         {
             string conString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -503,12 +570,14 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 ViewBag.Message = "Operation was successful.";
                 return View("UserProfile", LoadProfile);
             }
-            ModelState.AddModelError("UserProfile", "Error Occured");
+            ModelState.AddModelError("", "Error Occured");
             return View("UserProfile", LoadProfile);
         }
         public ActionResult UnFollow_Click(string id)
         {
             int FCount = 0;
+            MyModelObjects LoadProfile = new MyModelObjects();
+            LoadProfile = Page_Load();
             if (id != null)
             {
                 string Following = GetSingleUsers(id).OwnersId;
@@ -516,13 +585,13 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             else
             {
-                ModelState.AddModelError("UserProfile", "Error Occured");
+                ModelState.AddModelError("", "Error Occured");
             }
             if (FCount > 0)
             {
                 ViewBag.Message = "Operation was successful.";
             }
-            return View("UserProfile");
+            return View("UserProfile", LoadProfile);
         }
         protected int UpdateUserProfile(UserProfile model)
         {
@@ -641,6 +710,45 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist.FirstOrDefault();
         }
+        public MenTors_Mentees Mentor_Mentee(string mentor)
+        {
+            string userName = User.Identity.GetUserName();
+            List<MenTors_Mentees> myuserlist = new List<MenTors_Mentees>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select * from MenTors_Mentees as a where a.Mentee = '" + userName + "' and Mentor = '"+ mentor + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            myuserlist = (from DataRow rec in dt.Rows
+                                          select new MenTors_Mentees()
+                                          {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
+                                              Mentee = rec["Mentee"].ToString(),
+                                              Mentor = rec["Mentor"].ToString(),
+                                              MenTors_MenteesCreated = rec["MenTors_MenteesCreated"].ToString(),                                            
+                                          }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return myuserlist.FirstOrDefault();
+        }
         protected void UploadFile()
         {
             try
@@ -710,6 +818,186 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
+        public List<UserProfile> GetOtherUsersResearch()
+        {
+            string userName = User.Identity.GetUserName();
+            List<UserProfile> myuserlist = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select distinct a.Title, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.Status from Profile as a join Research as b on a.OwnersId = b.OwnersId join MenTors_Mentees as c on a.OwnersId = c.Mentor where a.OwnersId != '" + userName + "' and c.Mentee != '" + userName + "' and c.Mentor != '" + userName + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            myuserlist = (from DataRow rec in dt.Rows
+                                          select new UserProfile()
+                                          {
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              Country = rec["Country"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              FileName = rec["FileName"].ToString(),
+                                              ResearchId = rec["Id"].ToString(),
+                                              RDateCreated = rec["DateCreated"].ToString(),
+                                              RType = rec["RType"].ToString(),
+                                              Status = rec["Status"].ToString(),
+                                              Description = rec["Description"].ToString(),
+
+                                          }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return myuserlist;
+        }
+
+        public List<UserProfile> GetLoginUserMessages()
+        {
+            string userName = User.Identity.GetUserName();
+            List<UserProfile> myuserlist = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select distinct * from Messages where [From] = '" + userName + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            myuserlist = (from DataRow rec in dt.Rows
+                                          select new UserProfile()
+                                          {
+                                              From = rec["From"].ToString(),
+                                              To = rec["To"].ToString(),
+                                              Subject = rec["Subject"].ToString(),
+                                              Message = rec["Message"].ToString(),
+                                              AttachedFileName = rec["AttachedFileName"].ToString(),
+                                              MessageDateCreated = rec["MessageDateCreated"].ToString(),                                             
+
+                                          }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return myuserlist;
+        }
+        public List<UserProfile> GetLoginUserInbox()
+        {
+            string userName = User.Identity.GetUserName();
+            List<UserProfile> myuserlist = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select distinct * from Messages where [To] = '" + userName + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            myuserlist = (from DataRow rec in dt.Rows
+                                          select new UserProfile()
+                                          {
+                                              From = rec["From"].ToString(),
+                                              To = rec["To"].ToString(),
+                                              Subject = rec["Subject"].ToString(),
+                                              Message = rec["Message"].ToString(),
+                                              AttachedFileName = rec["AttachedFileName"].ToString(),
+                                              MessageDateCreated = rec["MessageDateCreated"].ToString(),
+                                              Read = Convert.ToBoolean(rec["Read"].ToString()),
+                                          }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return myuserlist;
+        }
+        public List<UserProfile> GetNonLoginUserActivities()
+        {
+            string userName = User.Identity.GetUserName();
+            List<UserProfile> myuserlist = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select distinct * from Activities as a join Profile as b on a.Activityowner = b.OwnersId where a.Activityowner != '" + userName + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            myuserlist = (from DataRow rec in dt.Rows
+                                          select new UserProfile()
+                                          {
+                                              ActivityName = rec["ActivityName"].ToString(),
+                                              ActivityParentID = Convert.ToInt32(rec["ActivityParentID"].ToString()),
+                                              ActivityType = rec["ActivityType"].ToString(),
+                                              ActivityDateCreated = rec["ActivityDateCreated"].ToString(),
+                                              OwnerName = rec["OwnerName"].ToString(),
+                                              ActivityDescription = rec["Description"].ToString(),
+                                              Activityowner = rec["Activityowner"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                          }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return myuserlist;
+        }
+
         private void LogError(Exception ex)
         {
             string lines = ex.Message;
@@ -733,7 +1021,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult AddResearch_Click(UserProfile model, HttpPostedFileBase postedFile)
         {
+            UserProperties userProperties = new UserProperties();
             MyModelObjects LoadProfile = new MyModelObjects();
+            Activities loadActivity = new Activities();
             int row = 0;
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
@@ -758,6 +1048,14 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     conAm.Dispose();
                     if(row > 0)
                     {
+                        #region Activity
+                        loadActivity.ActivityName = "New research was added, " + model.RTitle;
+                        loadActivity.ActivityType = "Research";
+                        loadActivity.OwnerName = GetSingleUsersByEmail(userName).Title + " " + GetSingleUsersByEmail(userName).LName + " " + GetSingleUsersByEmail(userName).FName;
+                        loadActivity.Description = model.SubTitle + " ( " + RStatus + " ) ";
+                        loadActivity.Activityowner = userName;
+                        #endregion
+                        int myActivity = userProperties.AddActivity(loadActivity);
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful.";
                         return View("UserProfile", LoadProfile);
@@ -776,6 +1074,89 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             BinaryReader reader = new BinaryReader(myDoc.InputStream);
             MyDocBytes = reader.ReadBytes((int)myDoc.ContentLength);
             return MyDocBytes;
+        }
+        #endregion
+
+        #region Send Message
+        public ActionResult Messages()
+        {
+            return View("UserInbox");
+        }
+        public ActionResult Messages_Click(UserProfile model, HttpPostedFileBase postedFile)
+        {
+            MyModelObjects LoadProfile = new MyModelObjects();
+            int row = 0;
+            using (SqlConnection conAm = new SqlConnection(ConnectionState()))
+            {
+                conAm.Open();
+                try
+                {
+                    string path = Server.MapPath("~/Images/");
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    postedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
+                    string userName = User.Identity.GetUserName();
+                    string creationDate = DateTime.Now.ToShortDateString();                   
+                    var cmd = new SqlCommand("Insert into Messages(From, To, Subject, Message, AttachedFileName, MessageDateCreated, Read) values('" + userName + "', '" + model.To + "', '" + model.Subject + "', '" + model.Message + "', '" + fileName + "', '" + creationDate + "', '" + false + "')", conAm);
+                    row = cmd.ExecuteNonQuery();
+                    conAm.Close();
+                    conAm.Dispose();
+                    if (row > 0)
+                    {
+                        LoadProfile = Page_Load();
+                        ViewBag.Message = "Operation was successful.";
+                        return View("UserProfile", LoadProfile);
+                    }
+                }
+                catch (Exception ee)
+                {
+                    Response.Write("Error Occurred.!");
+                }
+                return View("UserProfile", LoadProfile);
+            }
+        }
+        #endregion
+
+        #region Add Mentor
+        public ActionResult Mentor_Click(string id)
+        {
+            MyModelObjects LoadProfile = new MyModelObjects();
+            int row = 0;
+            using (SqlConnection conAm = new SqlConnection(ConnectionState()))
+            {
+                conAm.Open();
+                try
+                {
+                    string mentor = GetSingleUsers(id).OwnersId;
+                    int SeeId = Mentor_Mentee(mentor).Id;
+                    if(SeeId > 0)
+                    {
+                        LoadProfile = Page_Load();
+                        ViewBag.Message = "This  Person Is Already Your Mentor.";
+                        return View("UserProfile", LoadProfile);
+                    }
+                    string userName = User.Identity.GetUserName();
+                    string creationDate = DateTime.Now.ToShortDateString();
+                    var cmd = new SqlCommand("Insert into MenTors_Mentees(Mentor, Mentee, MenTors_MenteesCreated) values('" + mentor + "', '" + userName + "', '" + creationDate + "')", conAm);
+                    row = cmd.ExecuteNonQuery();
+                    conAm.Close();
+                    conAm.Dispose();
+                    if (row > 0)
+                    {
+                        LoadProfile = Page_Load();
+                        ViewBag.Message = "Operation was successful.";
+                        return View("UserProfile", LoadProfile);
+                    }
+                }
+                catch (Exception ee)
+                {
+                    Response.Write("Error Occurred.!");
+                }
+                return View("UserProfile", LoadProfile);
+            }
         }
         #endregion
 
