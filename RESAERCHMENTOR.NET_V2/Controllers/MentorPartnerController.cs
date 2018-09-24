@@ -869,7 +869,6 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-
         public List<UserProfile> GetLoginUserMessages()
         {
             string userName = User.Identity.GetUserName();
@@ -997,7 +996,6 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-
         private void LogError(Exception ex)
         {
             string lines = ex.Message;
@@ -1085,6 +1083,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         public ActionResult Messages_Click(UserProfile model, HttpPostedFileBase postedFile)
         {
             MyModelObjects LoadProfile = new MyModelObjects();
+            DBConnect mailService = new DBConnect();
             int row = 0;
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
@@ -1104,8 +1103,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     row = cmd.ExecuteNonQuery();
                     conAm.Close();
                     conAm.Dispose();
+                    string message = "you have pending message on mentor partner, please login to reply.";
+                    string Subject = model.Subject;
                     if (row > 0)
                     {
+                        mailService.MailService(userName, userName, message, Subject);
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful.";
                         return View("UserProfile", LoadProfile);

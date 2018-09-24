@@ -57,6 +57,41 @@ namespace RESAERCHMENTOR.NET.Controllers
             }
             return true;
         }
+        public bool MailService(string email, string user, string message, string Subject)
+        {
+            try
+            {
+                mail = new MailMessage(new MailAddress("pasosoese@gmail.com", "Mentor Partner"), new MailAddress(email));
+                mail.Subject = Subject;
+                mail.Body = message;
+                mail.IsBodyHtml = true;
+
+                var smtp = new SmtpClient
+                {
+                    //Host = "mail.mentorpartner.net",
+                    //Port = 465,
+                    //EnableSsl = true,
+                    //DeliveryMethod = SmtpDeliveryMethod.Network,
+                    //UseDefaultCredentials = false,
+                    //Timeout = 9999,
+                    //Credentials = new NetworkCredential("noreply@mentorpartner.net", "Mentorpartner2018")
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential("pasosoese@gmail.com", "eseosa@1212")
+                };
+
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                LogError(ex);
+            }
+            return true;
+        }
+
         private void LogError(Exception ex)
         {
             string lines = ex.Message;

@@ -195,60 +195,25 @@
                                             <ul class="followers-list-wrap">
                                                 <li class="follow-list">
                                                     <div class="follo-body">
-                                                        <div class="follo-data">
-                                                            <img class="user-img img-circle" src="dist/img/user.png" alt="user" />
-                                                            <div class="user-data">
-                                                                <span class="name block capitalize-font">Clay Masse</span>
-                                                                <span class="time block truncate txt-grey">No one saves us but ourselves.</span>
-                                                            </div>
-                                                            <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <div class="follo-data">
-                                                            <img class="user-img img-circle" src="dist/img/user1.png" alt="user" />
-                                                            <div class="user-data">
-                                                                <span class="name block capitalize-font">Evie Ono</span>
-                                                                <span class="time block truncate txt-grey">Unity is strength</span>
-                                                            </div>
-                                                            <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <div class="follo-data">
-                                                            <img class="user-img img-circle" src="dist/img/user2.png" alt="user" />
-                                                            <div class="user-data">
-                                                                <span class="name block capitalize-font">Madalyn Rascon</span>
-                                                                <span class="time block truncate txt-grey">Respect yourself if you would have others respect you.</span>
-                                                            </div>
-                                                            <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <div class="follo-data">
-                                                            <img class="user-img img-circle" src="dist/img/user3.png" alt="user" />
-                                                            <div class="user-data">
-                                                                <span class="name block capitalize-font">Mitsuko Heid</span>
-                                                                <span class="time block truncate txt-grey">I’m thankful.</span>
-                                                            </div>
-                                                            <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <div class="follo-data">
-                                                            <img class="user-img img-circle" src="dist/img/user.png" alt="user" />
-                                                            <div class="user-data">
-                                                                <span class="name block capitalize-font">Ezequiel Merideth</span>
-                                                                <span class="time block truncate txt-grey">Patience is bitter.</span>
-                                                            </div>
-                                                            <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <div class="follo-data">
-                                                            <img class="user-img img-circle" src="dist/img/user1.png" alt="user" />
-                                                            <div class="user-data">
-                                                                <span class="name block capitalize-font">Jonnie Metoyer</span>
-                                                                <span class="time block truncate txt-grey">Genius is eternal patience.</span>
-                                                            </div>
-                                                            <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
-                                                            <div class="clearfix"></div>
-                                                        </div>
+                                                        @if (Model.FollowList.Count() == 0)
+                                                        {
+                                                            <h3>No record found.</h3>
+                                                        }
+                                                        @{foreach (var rec in Model.FollowList)
+                                                            {
+                                                                <div class="follo-data">
+                                                                    <img class="user-img img-circle" src="~/Content/dist/img/user1.png" alt="user" />
+                                                                    <div class="user-data">
+                                                                        @{ string myName = rec.Title + " " + rec.LName + " " + rec.FName;}
+                                                                        <span class="name block capitalize-font"> @myName</span>
+                                                                        <span class="time block truncate txt-grey">@rec.OwnersId</span>
+                                                                    </div>
+                                                                    <a title="Follow This Person" href="@Url.Action("follow_click", "mentorpartner", new { id = rec.Id })" class="btn btn-success pull-right btn-xs fixed-btn"> Follow <i class='fa fa-user'></i></a>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                            }
+                                                        }
+
                                                     </div>
                                                 </li>
                                             </ul>
