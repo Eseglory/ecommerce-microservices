@@ -153,6 +153,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             MyObjectList.From = userName;
             return PartialView(MyObjectList);
         }
+
         #region Functions
         public MyModelObjects Page_Load()
         {
@@ -227,6 +228,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 UProfile.CNumber = MyProfile.CNumber;
                 UProfile.Country = MyProfile.Country;
                 UProfile.ProfilePicsName = MyProfile.ProfilePicsName;
+                UProfile.OwnersId = MyProfile.OwnersId;
                 if (MyProfile.Gender == "Male")
                 {
                     UProfile.Gender1 = true;
@@ -240,7 +242,6 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             MyObjectList.MyProfile = UProfile;
             return MyObjectList;
         }
-
         private string ConnectionState()
         {
             string conString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -709,6 +710,45 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist.FirstOrDefault();
         }
+        public MenTors_Mentees Mentor_Mentee(string mentor)
+        {
+            string userName = User.Identity.GetUserName();
+            List<MenTors_Mentees> myuserlist = new List<MenTors_Mentees>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select * from MenTors_Mentees as a where a.Mentee = '" + userName + "' and Mentor = '"+ mentor + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            myuserlist = (from DataRow rec in dt.Rows
+                                          select new MenTors_Mentees()
+                                          {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
+                                              Mentee = rec["Mentee"].ToString(),
+                                              Mentor = rec["Mentor"].ToString(),
+                                              MenTors_MenteesCreated = rec["MenTors_MenteesCreated"].ToString(),                                            
+                                          }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return myuserlist.FirstOrDefault();
+        }
         protected void UploadFile()
         {
             try
@@ -1061,6 +1101,46 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     string userName = User.Identity.GetUserName();
                     string creationDate = DateTime.Now.ToShortDateString();                   
                     var cmd = new SqlCommand("Insert into Messages(From, To, Subject, Message, AttachedFileName, MessageDateCreated, Read) values('" + userName + "', '" + model.To + "', '" + model.Subject + "', '" + model.Message + "', '" + fileName + "', '" + creationDate + "', '" + false + "')", conAm);
+                    row = cmd.ExecuteNonQuery();
+                    conAm.Close();
+                    conAm.Dispose();
+                    if (row > 0)
+                    {
+                        LoadProfile = Page_Load();
+                        ViewBag.Message = "Operation was successful.";
+                        return View("UserProfile", LoadProfile);
+                    }
+                }
+                catch (Exception ee)
+                {
+                    Response.Write("Error Occurred.!");
+                }
+                return View("UserProfile", LoadProfile);
+            }
+        }
+        #endregion
+
+        #region Add Mentor
+        public ActionResult Mentor_Click(string id)
+        {
+            MyModelObjects LoadProfile = new MyModelObjects();
+            int row = 0;
+            using (SqlConnection conAm = new SqlConnection(ConnectionState()))
+            {
+                conAm.Open();
+                try
+                {
+                    string mentor = GetSingleUsers(id).OwnersId;
+                    int SeeId = Mentor_Mentee(mentor).Id;
+                    if(SeeId > 0)
+                    {
+                        LoadProfile = Page_Load();
+                        ViewBag.Message = "This  Person Is Already Your Mentor.";
+                        return View("UserProfile", LoadProfile);
+                    }
+                    string userName = User.Identity.GetUserName();
+                    string creationDate = DateTime.Now.ToShortDateString();
+                    var cmd = new SqlCommand("Insert into MenTors_Mentees(Mentor, Mentee, MenTors_MenteesCreated) values('" + mentor + "', '" + userName + "', '" + creationDate + "')", conAm);
                     row = cmd.ExecuteNonQuery();
                     conAm.Close();
                     conAm.Dispose();
