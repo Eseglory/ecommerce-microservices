@@ -1,0 +1,97 @@
+﻿@model RESAERCHMENTOR.NET_V2.Models.MyModelObjects
+@using Microsoft.AspNet.Identity
+@using System.Globalization
+@{
+    ViewBag.Title = "userSearch";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view pa-0">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body pt-0">
+                    <form id="example-advanced-form" action="#">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-12 pa-30">
+
+
+                                    <h3 class="ma-30"><span class="number"><i class="icon-user-following txt-black"></i></span><span class="head-font capitalize-font"> Looking For a Mentor or Collaborator</span></h3>
+
+                                    <div class="form-wrap">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                <input type="text" class="form-control required" name="Username" id="exampleInputuname" placeholder="Looking For a Mentor or Collaborator">
+                                            </div>
+                                        </div>
+
+                                        <div class="button-list mt-25">
+                                            <button class="btn  btn-primary btn-rounded pull-right">Primary</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+
+                        <fieldset>
+                            <div class="table-responsive">
+                                <table class="table display product-overview" id="datable_1">
+                                    <thead>
+                                        <tr>
+                                            <th>Photo</th>
+                                            <th>Name</th>
+                                            <th>Primary Area of Expertise</th>
+                                            <th>No of Years in Field</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img src="dist/img/chair.jpg" alt="iMac" width="80">
+                                            </td>
+                                            <td>Saka Yusuf Owolabi</td>
+                                            <td>
+                                                Optician
+                                            </td>
+                                            <td>15 years</td>
+
+                                            <td><a href="javascript:void(0)" class="text-inverse" title="Delete" data-toggle="tooltip"><i class="zmdi zmdi-delete txt-danger"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="dist/img/chair2.jpg" alt="iMac" width="80">
+                                            </td>
+                                            <td>Saka Yusuf Owolabi</td>
+                                            <td>
+                                                Dentist
+                                            </td>
+                                            <td>45 years</td>
+                                            <td><a href="javascript:void(0)" class="text-inverse" title="Delete" data-toggle="tooltip"><i class="zmdi zmdi-delete txt-danger"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="dist/img/chair3.jpg" alt="iMac" width="80">
+                                            </td>
+                                            <td>Saka Yusuf Owolabi</td>
+                                            <td>
+                                                Surgeon
+                                            </td>
+                                            <td>4 years</td>
+
+                                            <td><a href="javascript:void(0)" class="text-inverse" title="Delete" data-toggle="tooltip"><i class="zmdi zmdi-delete txt-danger"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
