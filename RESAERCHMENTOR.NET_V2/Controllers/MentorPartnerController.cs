@@ -51,6 +51,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult UserProfile()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("index", "Home");
+            }
             MyModelObjects LoadProfile = new MyModelObjects();
             LoadProfile = Page_Load();
             string UserName = User.Identity.GetUserName();
