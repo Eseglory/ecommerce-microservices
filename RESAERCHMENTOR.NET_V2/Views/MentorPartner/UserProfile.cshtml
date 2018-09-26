@@ -176,7 +176,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label mb-10">Who you are</label>
+                                                                                    <label class="control-label mb-10">Who are you?</label>
                                                                                     <select class="form-control" name="WhoYouAre" id="WhoYouAre" value=@Model.MyProfile.WhoYouAre  data-placeholder="Choose a Category" tabindex="1">
                                                                                         <option value="" selected="selected">Select One</option>
                                                                                         <option value="Student">Student</option>
@@ -1105,10 +1105,10 @@
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label class="control-label mb-10">Who you are</label>
+                                                                    <label class="control-label mb-10">Who are you?</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="WhoYouAre" value=@Model.MyProfile.WhoYouAre id="WhoYouAre" placeholder="Who You Are" readonly>
+                                                                        <input type="text" class="form-control" name="WhoYouAre" value=@Model.MyProfile.WhoYouAre id="WhoYouAre" placeholder="Who Are You" readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -1227,9 +1227,9 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="panel-wrapper collapse in">
+            <div class="panel-wrapper">
                 <div class="panel-body row pa-0">
-                    <div class="chat-cmplt-wrap chat-for-widgets">
+                    <div class="chat-cmplt-wrap">
                         <div class="chat-box-wrap">
                             <div>
                                 <div class="users-nicescroll-bar">
@@ -1249,7 +1249,7 @@
                                                 </a>
                                                 @{foreach (var iuser in Model.GetAllUsers)
                                                  {
-                                                        <a href="#">
+                                                        <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })">
                                                             <div class="chat-data">
                                                                 <img class="user-img img-circle" src="~/Files/@iuser.ProfilePicsName" alt="user" />
                                                                 @{ string fullname = iuser.Title + " " + iuser.LName + " " + iuser.FName; }
@@ -1270,7 +1270,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="recent-chat-box-wrap">
+                        @*<div class="recent-chat-box-wrap">
                             <div class="recent-chat-wrap">
                                 <div class="panel-heading ma-0 pt-15">
                                     <div class="goto-back">
@@ -1357,7 +1357,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>

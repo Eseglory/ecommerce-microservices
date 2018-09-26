@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\admin\Desktop\mEN</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\admin\Desktop\Men2</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -94,7 +94,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/20/2018 12:39:07</publishTime>
     </File>
     <File Include="bin/RESAERCHMENTOR.NET_V2.dll">
-      <publishTime>09/20/2018 16:40:46</publishTime>
+      <publishTime>09/24/2018 22:43:20</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>09/20/2018 12:38:58</publishTime>
@@ -721,7 +721,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/20/2018 12:39:16</publishTime>
     </File>
     <File Include="Content/dist/img/logo.png">
-      <publishTime>09/20/2018 12:39:16</publishTime>
+      <publishTime>09/24/2018 21:35:35</publishTime>
     </File>
     <File Include="Content/dist/img/mock1.jpg">
       <publishTime>09/20/2018 12:39:16</publishTime>
@@ -1486,7 +1486,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/20/2018 12:41:00</publishTime>
     </File>
     <File Include="Views/Manage/Index.cshtml">
-      <publishTime>09/20/2018 12:41:00</publishTime>
+      <publishTime>09/20/2018 20:57:01</publishTime>
     </File>
     <File Include="Views/Manage/ManageLogins.cshtml">
       <publishTime>09/20/2018 12:41:00</publishTime>
@@ -1504,7 +1504,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/20/2018 12:41:00</publishTime>
     </File>
     <File Include="Views/MentorPartner/DashBoard.cshtml">
-      <publishTime>09/20/2018 15:40:38</publishTime>
+      <publishTime>09/24/2018 12:57:05</publishTime>
     </File>
     <File Include="Views/MentorPartner/PreConfirm.cshtml">
       <publishTime>09/20/2018 12:41:00</publishTime>
@@ -1512,8 +1512,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/MentorPartner/ResendConfirm.cshtml">
       <publishTime>09/20/2018 12:41:00</publishTime>
     </File>
+    <File Include="Views/MentorPartner/SendMessage.cshtml">
+      <publishTime>09/24/2018 12:57:05</publishTime>
+    </File>
+    <File Include="Views/MentorPartner/UserInbox.cshtml">
+      <publishTime>09/24/2018 12:57:05</publishTime>
+    </File>
+    <File Include="Views/MentorPartner/UserInfo.cshtml">
+      <publishTime>09/24/2018 16:10:44</publishTime>
+    </File>
+    <File Include="Views/MentorPartner/UserOutbox.cshtml">
+      <publishTime>09/24/2018 12:57:05</publishTime>
+    </File>
     <File Include="Views/MentorPartner/UserProfile.cshtml">
-      <publishTime>09/20/2018 16:32:49</publishTime>
+      <publishTime>09/24/2018 22:32:57</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>09/20/2018 12:41:00</publishTime>
@@ -1525,13 +1537,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/20/2018 12:41:00</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutMain.cshtml">
-      <publishTime>09/20/2018 16:28:56</publishTime>
+      <publishTime>09/24/2018 12:57:06</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>09/20/2018 12:41:00</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>09/20/2018 12:41:00</publishTime>
+      <publishTime>09/23/2018 15:35:19</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>09/20/2018 12:41:00</publishTime>
