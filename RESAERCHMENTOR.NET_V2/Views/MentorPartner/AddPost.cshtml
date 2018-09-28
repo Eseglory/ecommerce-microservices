@@ -1,19 +1,23 @@
 ﻿@model RESAERCHMENTOR.NET_V2.Models.UserProfile
+
+
 @{
-    ViewBag.Title = "AddResearch";
+    ViewBag.Title = "AddPost";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
+
+
 <div class="row heading-bg">
     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-        <h5 class="txt-dark">add research</h5>
+        <h5 class="txt-dark">add post</h5>
     </div>
     <!-- Breadcrumb -->
     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
-            <li><a href="#"><span>research</span></a></li>
-            <li class="active"><span>add research</span></li>
+            <li><a href="#"><span>post</span></a></li>
+            <li class="active"><span>add post</span></li>
         </ol>
     </div>
     <!-- /Breadcrumb -->
@@ -25,7 +29,7 @@
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                     <div class="form-wrap">
-                        <form action="@Url.Action("AddResearch_Click", "MentorPartner")" method="post" role="form" enctype="multipart/form-data" id="FileData">
+                        <form action="@Url.Action("AddPost_Click", "MentorPartner")" method="post" role="form" enctype="multipart/form-data" id="FileData">
                             @Html.AntiForgeryToken()
                             <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-calendar-note mr-10"></i>about research</h6>
                             <hr class="light-grey-hr" />
@@ -43,13 +47,13 @@
                                         <input type="text" name="SubTitle" required="required" value=@Model.SubTitle id="SubTitle" class="form-control" placeholder="Sub Title">
                                     </div>
                                 </div>
-                                <div class="col-md-6" style="display:none;">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label mb-10">Author's Name</label>
                                         <input type="text" required="required" name="AuthorName" value=@Model.AuthorName id="AuthorName" class="form-control" placeholder="Author's Name">
                                     </div>
                                 </div>
-                                <div class="col-md-6" style="display:none;">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label mb-10">Research type</label>
                                         <select class="form-control" required="required" name="RType" onselect=@Model.RType id="RType" data-placeholder="Choose a Category" tabindex="1">
@@ -66,7 +70,7 @@
                                 <!--/span-->
                             </div>
                             <!-- Row -->
-                            <div class="row" style="display:none;">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label mb-10">Status</label>
@@ -77,7 +81,7 @@
                                                     <label for="radio1">Published</label>
                                                 </div>
                                             </div>
-                                            <div class="radio-inline">
+                                            <div class="radio-inline" style="display:none;">
                                                 <div class="radio radio-info">
                                                     <input type="radio" name="RStatus2" id="RStatus2" value=@Model.RStatus2>
                                                     <label for="radio2">Draft</label>
@@ -103,7 +107,7 @@
                             </div>
                             <!--/row-->
                             <div class="seprator-block"></div>
-                            <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>upload Research</h6>
+                            <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>upload File</h6>
 
                             <hr class="light-grey-hr" />
                             <div class="col-lg-12">
@@ -120,7 +124,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <h5 class="modal-title" id="myLargeModalLabel">Add Research</h5>
+                                                    <h5 class="modal-title" id="myLargeModalLabel">Add Post</h5>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="panel panel-default card-view pa-0">

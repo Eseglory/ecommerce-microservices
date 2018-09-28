@@ -692,6 +692,8 @@
     <Content Include="Views\MentorPartner\UserInbox.cshtml" />
     <Content Include="Views\MentorPartner\SendMessage.cshtml" />
     <Content Include="Views\MentorPartner\UserOutbox.cshtml" />
+    <Content Include="Views\MentorPartner\AddPost.cshtml" />
+    <Content Include="Views\MentorPartner\userSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

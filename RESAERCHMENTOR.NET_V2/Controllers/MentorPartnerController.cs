@@ -1043,7 +1043,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     string creationDate = DateTime.Now.ToShortDateString();
                     string RStatus = "";
                     if (model.RStatus1) { RStatus = "Published"; }
-                    else { RStatus = "Draft"; }
+                    else { RStatus = "Published"; }
                     var cmd = new SqlCommand("Insert into Research(Title, SubTitle, AuthorName, RType, Status, Description, FileName, OwnersId, DateCreated) values('" + model.RTitle + "', '" + model.SubTitle + "', '" + model.AuthorName + "', '" + model.RType + "', '" + RStatus + "', '" + model.Description + "', '" + fileName + "', '" + userName + "', '" + creationDate + "')", conAm);
                     row = cmd.ExecuteNonQuery();
                     conAm.Close();
@@ -1078,6 +1078,66 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             return MyDocBytes;
         }
         #endregion
+
+        #region Add Post
+        public ActionResult AddPost()
+        {
+            UserProfile LoadResearch = new UserProfile();
+            LoadResearch.OwnersId = GetLoginUser().OwnersId;
+            LoadResearch.AuthorName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
+            return View("AddPost", LoadResearch);
+        }
+        public ActionResult AddPost_Click(UserProfile model, HttpPostedFileBase postedFile)
+        {
+            UserProperties userProperties = new UserProperties();
+            MyModelObjects LoadProfile = new MyModelObjects();
+            Activities loadActivity = new Activities();
+            int row = 0;
+            using (SqlConnection conAm = new SqlConnection(ConnectionState()))
+            {
+                conAm.Open();
+                try
+                {
+                    string path = Server.MapPath("~/Images/");
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    postedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
+                    string userName = User.Identity.GetUserName();
+                    string creationDate = DateTime.Now.ToShortDateString();
+                    string RStatus = "";
+                    if (model.RStatus1) { RStatus = "Published"; }
+                    else { RStatus = "Published"; }
+                    var cmd = new SqlCommand("Insert into Research(Title, SubTitle, AuthorName, RType, Status, Description, FileName, OwnersId, DateCreated) values('" + model.RTitle + "', '" + model.SubTitle + "', '" + model.AuthorName + "', '" + model.RType + "', '" + RStatus + "', '" + model.Description + "', '" + fileName + "', '" + userName + "', '" + creationDate + "')", conAm);
+                    row = cmd.ExecuteNonQuery();
+                    conAm.Close();
+                    conAm.Dispose();
+                    if (row > 0)
+                    {
+                        #region Activity
+                        loadActivity.ActivityName = "New Post was added, " + model.RTitle;
+                        loadActivity.ActivityType = "Post";
+                        loadActivity.OwnerName = GetSingleUsersByEmail(userName).Title + " " + GetSingleUsersByEmail(userName).LName + " " + GetSingleUsersByEmail(userName).FName;
+                        loadActivity.Description = model.SubTitle + " ( " + RStatus + " ) ";
+                        loadActivity.Activityowner = userName;
+                        #endregion
+                        int myActivity = userProperties.AddActivity(loadActivity);
+                        LoadProfile = Page_Load();
+                        ViewBag.Message = "Operation was successful.";
+                        return View("UserProfile", LoadProfile);
+                    }
+                }
+                catch (Exception ee)
+                {
+                    Response.Write("Error Occurred.!");
+                }
+                return View("AddPost");
+            }
+        }
+        #endregion
+
 
         #region Send Message
         public ActionResult Messages()
