@@ -1144,11 +1144,12 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         {
             return View("UserInbox");
         }
-        public ActionResult Messages_Click(UserProfile model, HttpPostedFileBase postedFile)
+        public ActionResult Messages_Click(string OwnersId, string Subject, string Message, HttpPostedFileBase postedFile)
         {
             MyModelObjects LoadProfile = new MyModelObjects();
             DBConnect mailService = new DBConnect();
             int row = 0;
+            string fileName = "";
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
                 conAm.Open();
@@ -1159,16 +1160,18 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         Directory.CreateDirectory(path);
                     }
-                    string fileName = Path.GetFileName(postedFile.FileName);
-                    postedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
+                    if(postedFile != null)
+                    {
+                        fileName = Path.GetFileName(postedFile.FileName);
+                        postedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
+                    }
                     string userName = User.Identity.GetUserName();
                     string creationDate = DateTime.Now.ToShortDateString();                   
-                    var cmd = new SqlCommand("Insert into Messages(From, To, Subject, Message, AttachedFileName, MessageDateCreated, Read) values('" + userName + "', '" + model.To + "', '" + model.Subject + "', '" + model.Message + "', '" + fileName + "', '" + creationDate + "', '" + false + "')", conAm);
+                    var cmd = new SqlCommand("Insert into Messages([From], [To], [Subject], [Message], [AttachedFileName], [MessageDateCreated], [Read]) values('" + userName + "', '" + OwnersId + "', '" + Subject + "', '" + Message + "', '" + fileName + "', '" + creationDate + "', '" + false + "')", conAm);
                     row = cmd.ExecuteNonQuery();
                     conAm.Close();
                     conAm.Dispose();
                     string message = "you have pending message on mentor partner, please login to reply.";
-                    string Subject = model.Subject;
                     if (row > 0)
                     {
                         mailService.MailService(userName, userName, message, Subject);
@@ -1197,8 +1200,8 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string mentor = GetSingleUsers(id).OwnersId;
-                    int SeeId = Mentor_Mentee(mentor).Id;
-                    if(SeeId > 0)
+                    var SeeId = Mentor_Mentee(mentor);
+                    if(SeeId != null)
                     {
                         LoadProfile = Page_Load();
                         ViewBag.Message = "This  Person Is Already Your Mentor.";

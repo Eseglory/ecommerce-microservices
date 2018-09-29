@@ -58,7 +58,7 @@
                                                     <div class="form-group">
                                                         <label class="col-lg-2 control-label">To</label>
                                                         <div class="col-lg-10">
-                                                            <input type="text" value=@Model.MyProfile.OwnersId placeholder="" id="inputEmail1" class="form-control" readonly="readonly">
+                                                            <input type="text" value=@Model.MyProfile.OwnersId placeholder="" id="OwnersId" name="OwnersId" class="form-control" readonly="readonly">
                                                         </div>
                                                     </div>
                                                     @*<div class="form-group">
@@ -70,13 +70,13 @@
                                                     <div class="form-group">
                                                         <label class="col-lg-2 control-label">Subject</label>
                                                         <div class="col-lg-10">
-                                                            <input type="text" value=@Model.MyProfile.Subject placeholder="" id="inputPassword1" class="form-control">
+                                                            <input type="text" value=@Model.MyProfile.Subject placeholder="" id="Subject" name="Subject" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-lg-2 control-label">Message</label>
                                                         <div class="col-lg-10">
-                                                            <textarea class="textarea_editor form-control" name=@Model.MyProfile.Message rows="15" placeholder="Enter text ..."></textarea>
+                                                            <textarea class="textarea_editor form-control" id="Message" name=@Model.MyProfile.Message rows="15" placeholder="Enter text ..."></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
