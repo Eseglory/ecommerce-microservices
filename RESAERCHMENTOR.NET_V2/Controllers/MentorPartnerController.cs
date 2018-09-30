@@ -133,6 +133,25 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);
         }
+        public ActionResult userSearch()
+        {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("index", "Home");
+            }
+            List<UserProfile> LoadProfile = new List<UserProfile>();
+            LoadProfile = GetAllUsersAreaOfExpactise("090z");
+            string UserName = User.Identity.GetUserName();
+            return View(LoadProfile);
+        }
+
+        public ActionResult userSearchResult(string fieldExpertise)
+        {
+            List<UserProfile> LoadProfile = new List<UserProfile>();
+            LoadProfile = GetAllUsersAreaOfExpactise(fieldExpertise); ;
+            return View("userSearch", LoadProfile);
+        }
+
         public ActionResult UserInbox()
         {
             MyModelObjects MyObjectList = new MyModelObjects();
@@ -401,6 +420,65 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                                   MentorCategory = rec["MentorCategory"].ToString(),
 
                                               }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return myuserlist;
+        }
+        public List<UserProfile> GetAllUsersAreaOfExpactise(string param)
+        {
+            string userName = User.Identity.GetUserName();
+            param = "'%" + param + "%'";
+            List<UserProfile> myuserlist = new List<UserProfile>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and fieldExpertise like '" + param + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfile");
+                            dt.Load(dr);
+                            #region Convert To Object List
+                            myuserlist = (from DataRow rec in dt.Rows
+                                          select new UserProfile()
+                                          {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"].ToString()),
+                                              WhoYouAre = rec["WhoYouAre"].ToString(),
+                                              Institution = rec["Institution"].ToString(),
+                                              Qualification = rec["Qualification"].ToString(),
+                                              Expertise = rec["Expertise"].ToString(),
+                                              Specialty = rec["Specialty"].ToString(),
+                                              Interest = rec["Interest"].ToString(),
+                                              fieldExpertise = rec["fieldExpertise"].ToString(),
+                                              WillingToBe = rec["WillingToBe"].ToString(),
+                                              MentorCategory = rec["MentorCategory"].ToString(),
+
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();

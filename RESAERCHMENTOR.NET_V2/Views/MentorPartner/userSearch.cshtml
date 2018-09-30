@@ -1,8 +1,8 @@
-﻿@model RESAERCHMENTOR.NET_V2.Models.MyModelObjects
+﻿@model IEnumerable<RESAERCHMENTOR.NET_V2.Models.UserProfile>
 @using Microsoft.AspNet.Identity
 @using System.Globalization
 @{
-    ViewBag.Title = "userSearch";
+    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
@@ -11,7 +11,7 @@
         <div class="panel panel-default card-view pa-0">
             <div class="panel-wrapper collapse in">
                 <div class="panel-body pt-0">
-                    <form id="example-advanced-form" action="#">
+                    <form action="@Url.Action("userSearchResult", "MentorPartner")" method="post" role="form" enctype="multipart/form-data" id="FileData">
                         <fieldset>
                             <div class="row">
                                 <div class="col-sm-12 pa-30">
@@ -23,19 +23,19 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                <input type="text" class="form-control required" name="Username" id="exampleInputuname" placeholder="Looking For a Mentor or Collaborator">
+                                                <input type="text" class="form-control required" name="fieldExpertise" id="fieldExpertise" placeholder="Looking For a Mentor or Collaborator">
                                             </div>
                                         </div>
 
                                         <div class="button-list mt-25">
-                                            <button class="btn  btn-primary btn-rounded pull-right">Start Looking For Expert Now</button>
+                                            <button class="btn  btn-primary btn-rounded pull-right" type="submit">Start Looking For Expert Now</button>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
-
+                    </form>
 
                         <fieldset>
                             <div class="table-responsive">
@@ -50,46 +50,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        @{foreach (var item in Model)
+                                            {
+                                              <tr>
                                             <td>
-                                                <img src="dist/img/chair.jpg" alt="iMac" width="80">
+                                                <img src="~/Files/@item.ProfilePicsName" alt="iMac" width="80">
                                             </td>
-                                            <td>Saka Yusuf Owolabi</td>
+                                                  @{ item.FullName = item.Title + " " + item.LName + " " + item.FName; }
+                                            <td>@item.FullName</td>
                                             <td>
-                                                Optician
+                                                @item.fieldExpertise
                                             </td>
-                                            <td>15 years</td>
-
-                                            <td><a href="javascript:void(0)" class="text-inverse" title="Delete" data-toggle="tooltip"><i class="zmdi zmdi-delete txt-danger"></i></a></td>
+                                            <td>@item.Specialty</td>
+                                                  <td align="center">
+    @if (item.FullName != string.Empty)
+    {
+        <a title="Add This Person As Your Mentor" href="@Url.Action("mentor_click", "mentorpartner", new { id = item.Id })" class="btn-success pull-right btn-xs fixed-btn"><i class=" ti-plus"></i></a>
+    }
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <img src="dist/img/chair2.jpg" alt="iMac" width="80">
-                                            </td>
-                                            <td>Saka Yusuf Owolabi</td>
-                                            <td>
-                                                Dentist
-                                            </td>
-                                            <td>45 years</td>
-                                            <td><a href="javascript:void(0)" class="text-inverse" title="Delete" data-toggle="tooltip"><i class="zmdi zmdi-delete txt-danger"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <img src="dist/img/chair3.jpg" alt="iMac" width="80">
-                                            </td>
-                                            <td>Saka Yusuf Owolabi</td>
-                                            <td>
-                                                Surgeon
-                                            </td>
-                                            <td>4 years</td>
-
-                                            <td><a href="javascript:void(0)" class="text-inverse" title="Delete" data-toggle="tooltip"><i class="zmdi zmdi-delete txt-danger"></i></a></td>
-                                        </tr>
+                                            }
+                                         }
                                     </tbody>
                                 </table>
                             </div>
                         </fieldset>
-                    </form>
                 </div>
             </div>
         </div>
