@@ -102,7 +102,7 @@
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1"></label>
                                                                                     <div class="input-group">
-                                                                                        <img ID="PictureImageA" Height="140px" Width="120px" src="~/Files/@Model.MyProfile.ProfilePicsName" />
+                                                                                        <img ID="PictureImageA" Height="140" Width="120" src="~/Files/@Model.MyProfile.ProfilePicsName" />
                                                                                         <input type="file" name="postedFile" />
                                                                                     </div>
                                                                                 </div>
@@ -1249,7 +1249,7 @@
                                                 </a>
                                                 @{foreach (var iuser in Model.GetAllUsers)
                                                  {
-                                                        <a href="#">
+                                                        <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })">
                                                             <div class="chat-data">
                                                                 <img class="user-img img-circle" src="~/Files/@iuser.ProfilePicsName" alt="user" />
                                                                 @{ string fullname = iuser.Title + " " + iuser.LName + " " + iuser.FName; }

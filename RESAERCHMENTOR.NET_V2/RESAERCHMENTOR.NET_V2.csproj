@@ -694,6 +694,7 @@
     <Content Include="Views\MentorPartner\UserOutbox.cshtml" />
     <Content Include="Views\MentorPartner\AddPost.cshtml" />
     <Content Include="Views\MentorPartner\userSearch.cshtml" />
+    <Content Include="Views\MentorPartner\TermsAndConditions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

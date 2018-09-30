@@ -145,12 +145,15 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             return View(LoadProfile);
         }
 
+       #region userSearchResult
         public ActionResult userSearchResult(string fieldExpertise)
         {
             List<UserProfile> LoadProfile = new List<UserProfile>();
             LoadProfile = GetAllUsersAreaOfExpactise(fieldExpertise); ;
             return View("userSearch", LoadProfile);
         }
+
+        #endregion
 
         public ActionResult UserInbox()
         {
@@ -1188,7 +1191,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     string RStatus = "";
                     if (model.RStatus1) { RStatus = "Published"; }
                     else { RStatus = "Published"; }
-                    var cmd = new SqlCommand("Insert into Research(Title, SubTitle, AuthorName, RType, Status, Description, FileName, OwnersId, DateCreated) values('" + model.RTitle + "', '" + model.SubTitle + "', '" + model.AuthorName + "', '" + model.RType + "', '" + RStatus + "', '" + model.Description + "', '" + fileName + "', '" + userName + "', '" + creationDate + "')", conAm);
+                    var cmd = new SqlCommand("Insert into Posts(Title, SubTitle, AuthorName, RType, Status, Description, FileName, OwnersId, DateCreated) values('" + model.RTitle + "', '" + model.SubTitle + "', '" + model.AuthorName + "', '" + model.RType + "', '" + RStatus + "', '" + model.Description + "', '" + fileName + "', '" + userName + "', '" + creationDate + "')", conAm);
                     row = cmd.ExecuteNonQuery();
                     conAm.Close();
                     conAm.Dispose();
@@ -1420,5 +1423,16 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
 
         #endregion
+
+
+        #region Terms and Condition
+        public ActionResult TermsAndConditions()
+        {
+           
+            return View();
+        }
+
+        #endregion
+
     }
 }

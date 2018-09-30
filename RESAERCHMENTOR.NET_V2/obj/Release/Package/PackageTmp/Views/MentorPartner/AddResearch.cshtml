@@ -43,13 +43,13 @@
                                         <input type="text" name="SubTitle" required="required" value=@Model.SubTitle id="SubTitle" class="form-control" placeholder="Sub Title">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="display:none;">
                                     <div class="form-group">
                                         <label class="control-label mb-10">Author's Name</label>
                                         <input type="text" required="required" name="AuthorName" value=@Model.AuthorName id="AuthorName" class="form-control" placeholder="Author's Name">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="display:none;">
                                     <div class="form-group">
                                         <label class="control-label mb-10">Research type</label>
                                         <select class="form-control" required="required" name="RType" onselect=@Model.RType id="RType" data-placeholder="Choose a Category" tabindex="1">
@@ -66,14 +66,14 @@
                                 <!--/span-->
                             </div>
                             <!-- Row -->
-                            <div class="row">
+                            <div class="row" style="display:none;">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label mb-10">Status</label>
                                         <div class="radio-list">
                                             <div class="radio-inline pl-0">
                                                 <div class="radio radio-info">
-                                                    <input type="radio" name="RStatus1" id="RStatus1" value=@Model.RStatus1>
+                                                    <input type="radio" name="RStatus1" id="RStatus1" value=@Model.RStatus1 checked>
                                                     <label for="radio1">Published</label>
                                                 </div>
                                             </div>
@@ -103,7 +103,7 @@
                             </div>
                             <!--/row-->
                             <div class="seprator-block"></div>
-                            <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>upload File</h6>
+                            <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>upload Research</h6>
 
                             <hr class="light-grey-hr" />
                             <div class="col-lg-12">
