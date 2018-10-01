@@ -82,22 +82,30 @@
                         </li>
 
                         <li>
-                            <a href="@Url.Action("AddResearch", "MentorPartner")"  data-toggle="">
+                            <a href="@Url.Action("AddPost", "MentorPartner")"  data-toggle="">
                             <i class=" ti-comments">
                                 Post </i></a>
                         </li>
+
+                        <li style="width:200px;">
+                            <a href="@Url.Action("AddResearch", "MentorPartner")" data-toggle="">
+                                <i class=" ti-comment-alt">
+                                    Add research
+                                </i>
+                            </a>
+                        </li>
                         <li>
                             <a href="@Url.Action("UserInbox", "MentorPartner")" data-toggle="">
-                                <i class=" ti-message">
+                                <i class="ti-envelope">
                                     Messages
                                 </i>
                             </a>
                         </li>
 
                         <li style="width:200px;">
-                            <a href="#" data-toggle=""><i class="ti-user"> Find a Mentor </i></a>
+                            <a href="@Url.Action("userSearch", "MentorPartner")" data-toggle=""><i class="ti-user"> Find a Mentor </i></a>
                         </li>
-
+                        
                         <li>
                             <a href="@Url.Action("UserProfile", "MentorPartner")">                               
                                     @if (@imgName == null)
@@ -169,8 +177,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <p>
-                            <a href="#">News</a><a href="#">About us</a>
-                            <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Copyright</a><a href="#">Careers</a><a href="#">Help Center</a><a href="#">Researchers</a><a href="#">FAQ</a><a href="#">Publications</a><a href="#">Job</a><a href="#">Recruiters</a><a href="#">Advertisers</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">2018 &copy; Mentor Partners All rights reserved</a>
+                            <a href="#">About us</a>
+                <a href="@Url.Action("TermsAndConditions","MentorPartner")">Privacy</a><a href="@Url.Action("TermsAndConditions","MentorPartner")">Terms</a><a href="@Url.Action("TermsAndConditions","MentorPartner")">Copyright</a><a href="#">Careers</a><a href="#">Help Center</a><a href="@Url.Action("TermsAndConditions","MentorPartner")">Mentors</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">2018 &copy; Mentor Partners All rights reserved</a>
                         </p>
                     </div>
                 </div>
@@ -240,7 +248,7 @@
 
 
     <!-- Bootstrap Wysuhtml5 Init JavaScript -->
-    <script src="~/dist/js/bootstrap-wysuhtml5-data.js"></script>
+    <script src="~/Content/dist/js/bootstrap-wysuhtml5-data.js"></script>
 
 
     <!-- Fancy Dropdown JS -->

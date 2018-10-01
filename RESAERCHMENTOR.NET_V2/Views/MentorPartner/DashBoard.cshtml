@@ -25,22 +25,27 @@
                         <div class="row story-cont2">
                             <div class="profile-pic col-lg-1 col-xs-2 pg-up">
                                 <div class="row">
-                                    <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName">
-                                </div><!-- /profile-pic -->
+                                        
+                                            
+                                        <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName" width="96" height="76">
+                                   
+</div><!-- /profile-pic -->
                             </div>
                             <!--div class="row"-->
                             <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
                                 <div class="username-newsfeed p-tb-xs">
-                                    <span class="txt-green"><strong>@Model.MyFullName </strong></span>
-                                    <div class="visible-xs"><br></div>
-                                    @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
-                                        string MDate = RDate.ToLongDateString(); }
+                                    
+                                        <span class="txt-green"><strong>@Model.MyFullName </strong></span>
+                                        
+                                        <div class="visible-xs"><br></div>
+                                        @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                            string MDate = RDate.ToLongDateString(); }
 
-                                    <span class="txt-grey pull-right">Posted @MDate</span>
-                                    <br>
+                                        <span class="txt-grey pull-right">Posted @MDate</span>
+                                        <br>
 
-                                    <span class="txt-grey">@item.RType was added</span>
-                                </div><!-- /username-newsfeed -->
+                                        <span class="txt-grey">@item.RType was added</span>
+</div><!-- /username-newsfeed -->
                             </div><!-- /news-feed-header -->
                             <div class="write-up col-lg-10 bg-white border-top p-b-s">
                                 <div class="news-feed-title_img col-lg-7">
@@ -103,7 +108,7 @@
                     <div class="row story-cont2">
                         <div class="profile-pic col-lg-1 col-xs-2 pg-up">
                             <div class="row">
-                                <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName">
+                                <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName"  width="96" height="76">
                             </div><!-- /profile-pic -->
                         </div>
                         <!--div class="row"-->
