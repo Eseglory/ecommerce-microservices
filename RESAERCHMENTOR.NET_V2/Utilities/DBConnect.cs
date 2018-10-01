@@ -495,7 +495,7 @@ namespace RESAERCHMENTOR.NET.Controllers
                 try
                 {                  
                     string creationDate = DateTime.Now.ToShortDateString();
-                    var cmd = new SqlCommand("Insert into Activities(ActivityName, ActivityParentID, Type, ActivityDateCreated, OwnerName, Description, Activityowner) values('" + model.ActivityName + "', '" + model.ActivityParentID + "', '" + model.ActivityType + "', '" + creationDate + "', '" + model.OwnerName + "', '" + model.Description + "', '" + model.Activityowner + "')", conAm);
+                    var cmd = new SqlCommand("Insert into Activities([ActivityName], [ActivityParentID], [ActivityType], [ActivityDateCreated], [OwnerName], [Description], [Activityowner]) values('" + model.ActivityName + "', '" + model.ActivityParentID + "', '" + model.ActivityType + "', '" + creationDate + "', '" + model.OwnerName + "', '" + model.Description + "', '" + model.Activityowner + "')", conAm);
                     row = cmd.ExecuteNonQuery();
                     conAm.Close();
                     conAm.Dispose();

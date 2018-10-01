@@ -144,14 +144,12 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);
         }
-
         public ActionResult userSearchResult(string fieldExpertise)
         {
             List<UserProfile> LoadProfile = new List<UserProfile>();
             LoadProfile = GetAllUsersAreaOfExpactise(fieldExpertise); ;
             return View("userSearch", LoadProfile);
         }
-
         public ActionResult UserInbox()
         {
             MyModelObjects MyObjectList = new MyModelObjects();
@@ -436,14 +434,14 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         public List<UserProfile> GetAllUsersAreaOfExpactise(string param)
         {
             string userName = User.Identity.GetUserName();
-            param = "'%" + param + "%'";
+            param = "%" + param + "%";
             List<UserProfile> myuserlist = new List<UserProfile>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
                 {
                     string query = "";
-                    query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and fieldExpertise like '" + param + "'";
+                    query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and Expertise like '" + param + "'";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -716,6 +714,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             MyModelObjects LoadProfile = new MyModelObjects();
             if (postedFile != null)
             {
+                model.ProfilePicsName = postedFile.FileName;
                 string path = Server.MapPath("~/Files/");
                 if (!Directory.Exists(path))
                 {
@@ -724,7 +723,6 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 postedFile.SaveAs(path + Path.GetFileName(postedFile.FileName));
                 ViewBag.Message = "Operation was successful.";
             }
-            model.ProfilePicsName = postedFile.FileName;
             int FCount = UpdateUserProfile(model);
             if (FCount > 0)
             {
@@ -1216,7 +1214,6 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         #endregion
 
-
         #region Send Message
         public ActionResult Messages()
         {
@@ -1252,7 +1249,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     string message = "you have pending message on mentor partner, please login to reply.";
                     if (row > 0)
                     {
-                        mailService.MailService(userName, userName, message, Subject);
+                        mailService.MailService(OwnersId, OwnersId, message, Subject);
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful.";
                         return View("UserProfile", LoadProfile);
@@ -1278,6 +1275,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string mentor = GetSingleUsers(id).OwnersId;
+                    string MentorName = GetSingleUsersByEmail(mentor).Title + " " + GetSingleUsersByEmail(mentor).LName + " " + GetSingleUsersByEmail(mentor).FName;
                     var SeeId = Mentor_Mentee(mentor);
                     if(SeeId != null)
                     {
@@ -1294,7 +1292,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     if (row > 0)
                     {
                         LoadProfile = Page_Load();
-                        ViewBag.Message = "Operation was successful.";
+                        ViewBag.Message = "Operation was successful." + " " + MentorName + " is now your mentor.";
                         return View("UserProfile", LoadProfile);
                     }
                 }
