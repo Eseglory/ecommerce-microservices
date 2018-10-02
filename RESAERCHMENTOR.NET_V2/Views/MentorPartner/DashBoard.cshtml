@@ -25,27 +25,27 @@
                         <div class="row story-cont2">
                             <div class="profile-pic col-lg-1 col-xs-2 pg-up">
                                 <div class="row">
-                                        
-                                            
-                                        <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName" width="96" height="76">
-                                   
-</div><!-- /profile-pic -->
+
+
+                                    <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName" width="96" height="76">
+
+                                </div><!-- /profile-pic -->
                             </div>
                             <!--div class="row"-->
                             <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
                                 <div class="username-newsfeed p-tb-xs">
-                                    
-                                        <span class="txt-green"><strong>@Model.MyFullName </strong></span>
-                                        
-                                        <div class="visible-xs"><br></div>
-                                        @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
-                                            string MDate = RDate.ToLongDateString(); }
 
-                                        <span class="txt-grey pull-right">Posted @MDate</span>
-                                        <br>
+                                    <span class="txt-green"><strong>@Model.MyFullName </strong></span>
 
-                                        <span class="txt-grey">@item.RType was added</span>
-</div><!-- /username-newsfeed -->
+                                    <div class="visible-xs"><br></div>
+                                    @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                        string MDate = RDate.ToLongDateString(); }
+
+                                    <span class="txt-grey pull-right">Posted @MDate</span>
+                                    <br>
+
+                                    <span class="txt-grey">@item.RType was added</span>
+                                </div><!-- /username-newsfeed -->
                             </div><!-- /news-feed-header -->
                             <div class="write-up col-lg-10 bg-white border-top p-b-s">
                                 <div class="news-feed-title_img col-lg-7">
@@ -101,87 +101,90 @@
                 <h4>No research found.</h4>
             }
         </div>
-          
-            @{foreach (var item in Model.GetOtherUsersResearch)
-                {
-                 <div class="story-cont col-lg-12 p-b-m">
-                    <div class="row story-cont2">
-                        <div class="profile-pic col-lg-1 col-xs-2 pg-up">
-                            <div class="row">
-                                <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName"  width="96" height="76">
-                            </div><!-- /profile-pic -->
-                        </div>
-                        <!--div class="row"-->
-                        <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
-                            <div class="username-newsfeed p-tb-xs">
-                                <span class="txt-green"><strong>@Model.MyFullName </strong></span>
-                                <div class="visible-xs"><br></div>
-                                @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+
+        @{
+            foreach (var item in Model.GetOtherUsersResearch)
+            {
+                <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">
+                    <div class="story-cont col-lg-12 p-b-m">
+                        <div class="row story-cont2">
+                            <div class="profile-pic col-lg-1 col-xs-2 pg-up">
+                                <div class="row">
+                                    <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName" width="96" height="76">
+                                </div><!-- /profile-pic -->
+                            </div>
+                            <!--div class="row"-->
+                            <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
+                                <div class="username-newsfeed p-tb-xs">
+                                    <span class="txt-green"><strong>@Model.MyFullName </strong></span>
+                                    <div class="visible-xs"><br></div>
+                                    @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
                                     string MDate = RDate.ToLongDateString(); }
 
-                                <span class="txt-grey pull-right">Posted @MDate</span>
-                                <br>
+                                    <span class="txt-grey pull-right">Posted @MDate</span>
+                                    <br>
 
-                                <span class="txt-grey">@item.RType was added</span>
-                            </div><!-- /username-newsfeed -->
-                        </div><!-- /news-feed-header -->
-                        <div class="write-up col-lg-10 bg-white border-top p-b-s">
-                            <div class="news-feed-title_img col-lg-7">
+                                    <span class="txt-grey">@item.RType was added</span>
+                                </div><!-- /username-newsfeed -->
+                            </div><!-- /news-feed-header -->
+                            <div class="write-up col-lg-10 bg-white border-top p-b-s">
+                                <div class="news-feed-title_img col-lg-7">
 
-                                <div class="row">
-                                    <div class="post-heading col-lg-12">
-                                        <h6>@item.Description </h6>
-                                    </div><!-- /post-heading -->
                                     <div class="row">
-
-                                        <br><br><br><br><br><br>
-
-                                    </div>
-                                </div><!-- /row -->
-                                <div class="row">
-                                    <div class="post-img col-lg-12">
-
+                                        <div class="post-heading col-lg-12">
+                                            <h6>@item.Description </h6>
+                                        </div><!-- /post-heading -->
                                         <div class="row">
-                                            <div class="col-lg-8 col-xs-9 view-top">
-                                                <div class="row">
-                                                    <a href="#" class="p-l-s txt-green">View </a>
-                                                    <a href="#" class="p-l-s txt-green">Download </a>
+
+                                            <br><br><br><br><br><br>
+
+                                        </div>
+                                    </div><!-- /row -->
+                                    <div class="row">
+                                        <div class="post-img col-lg-12">
+
+                                            <div class="row">
+                                                <div class="col-lg-8 col-xs-9 view-top">
+                                                    <div class="row">
+                                                        <a href="#" class="p-l-s txt-green">View </a>
+                                                        <a href="#" class="p-l-s txt-green">Download </a>
+                                                    </div>
+                                                </div><!-- /col-6 -->
+                                                <div class="col-lg-4 col-xs-3 pull-right view-top">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/like.png" width="15"></div>
+                                                        <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/share.png" width="15"></div>
+                                                    </div>
                                                 </div>
-                                            </div><!-- /col-6 -->
-                                            <div class="col-lg-4 col-xs-3 pull-right view-top">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/like.png" width="15"></div>
-                                                    <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/share.png" width="15"></div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /row -->
+                                            </div><!-- /row -->
 
 
-                                    </div><!-- /post-img -->
-                                </div><!-- /row -->
+                                        </div><!-- /post-img -->
+                                    </div><!-- /row -->
 
-                            </div><!-- /news-feed-title_img -->
-                            <div class="news-feed-text col-lg-5 p-t-s">
-                                <img src="~/Content/dist/img/big/kids.png" class="img-responsive" width="100" height="600">
+                                </div><!-- /news-feed-title_img -->
+                                <div class="news-feed-text col-lg-5 p-t-s">
+                                    <img src="~/Content/dist/img/big/kids.png" class="img-responsive" width="100" height="600">
 
-                            </div><!-- /news-feed-text -->
-                        </div><!-- /write-up -->
-                        <!--/div-->
+                                </div><!-- /news-feed-text -->
+                            </div><!-- /write-up -->
+                            <!--/div-->
 
-                    </div><!-- /row -->
-                </div>
-                }
-             }
-       
-        <!-- /story-cont -->
-        <div class="col-lg-1"></div>
+                        </div><!-- /row -->
+                    </div>
+                    </a>
+                    }
+                    }
 
-        <div class="col-lg-4 bg-white static pull-right">
-            <div class="p-t-xs"><img src="~/Content/dist/img/big/ad-1.png" class="img-responsive" width="250"></div>
-            <div class="p-tb-xs"><img src="~/Content/dist/img/big/ad-2.png" class="img-responsive" width="250"></div>
+                    <!-- /story-cont -->
+                    <div class="col-lg-1"></div>
 
-        </div><!-- /.col-3 -->
-    </div>
+                    <div class="col-lg-4 bg-white static pull-right">
+                        <div class="p-t-xs"><img src="~/Content/dist/img/big/ad-1.png" class="img-responsive" width="250"></div>
+                        <div class="p-tb-xs"><img src="~/Content/dist/img/big/ad-2.png" class="img-responsive" width="250"></div>
+
+                    </div><!-- /.col-3 -->
+</div>
 
 
 </div><!-- /row -->

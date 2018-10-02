@@ -117,11 +117,15 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult DashBoard()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("index", "Home");
+            }
             MyModelObjects LoadProfile = new MyModelObjects();
             LoadProfile.MyResearch = GetLoginUserResearch();
             LoadProfile.GetOtherUsersResearch = GetOtherUsersResearch();
             LoadProfile.MyProfile = GetLoginUser();
-            LoadProfile.MyFullName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
+            //LoadProfile.MyFullName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);
         }
@@ -907,7 +911,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select distinct a.Title, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.Status from Profile as a join Research as b on a.OwnersId = b.OwnersId join MenTors_Mentees as c on a.OwnersId = c.Mentor where a.OwnersId != '" + userName + "' and c.Mentee != '" + userName + "' and c.Mentor != '" + userName + "'";
+                    query = "select distinct a.Title, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.OwnersId, b.Status from Profile as a join Research as b on a.OwnersId = b.OwnersId join MenTors_Mentees as c on a.OwnersId = c.Mentor where a.OwnersId != '" + userName + "' and c.Mentor != '" + userName + "'";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -922,11 +926,6 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
                                               LName = rec["LName"].ToString(),
-                                              Degree = rec["Degree"].ToString(),
-                                              CNumber = rec["CNumber"].ToString(),
-                                              BDate = rec["BDate"].ToString(),
-                                              Gender = rec["Gender"].ToString(),
-                                              Country = rec["Country"].ToString(),
                                               ProfilePicsName = rec["ProfilePicsName"].ToString(),
                                               FileName = rec["FileName"].ToString(),
                                               ResearchId = rec["Id"].ToString(),
