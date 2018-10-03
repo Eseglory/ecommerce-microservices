@@ -911,7 +911,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select distinct a.Title, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.OwnersId, b.Status from Profile as a join Research as b on a.OwnersId = b.OwnersId join MenTors_Mentees as c on a.OwnersId = c.Mentor where a.OwnersId != '" + userName + "' and c.Mentor != '" + userName + "'";
+                    query = "select distinct a.Title, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, a.Id, b.Id as ResearchId, b.DateCreated, b.Description, b.RType, b.OwnersId, b.Status from Profile as a join Research as b on a.OwnersId = b.OwnersId join MenTors_Mentees as c on a.OwnersId = c.Mentor where a.OwnersId != '" + userName + "' and c.Mentor != '" + userName + "'";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -923,6 +923,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             myuserlist = (from DataRow rec in dt.Rows
                                           select new UserProfile()
                                           {
+                                              Id = (int) rec["Id"],
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
                                               LName = rec["LName"].ToString(),

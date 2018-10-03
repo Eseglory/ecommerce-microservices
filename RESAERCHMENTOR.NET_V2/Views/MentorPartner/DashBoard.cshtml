@@ -103,20 +103,22 @@
         </div>
 
         @{
-            foreach (var item in Model.GetOtherUsersResearch)
+            foreach(var item in Model.GetOtherUsersResearch)
             {
-                <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">
                     <div class="story-cont col-lg-12 p-b-m">
                         <div class="row story-cont2">
                             <div class="profile-pic col-lg-1 col-xs-2 pg-up">
-                                <div class="row">
-                                    <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName" width="96" height="76">
-                                </div><!-- /profile-pic -->
-                            </div>
+                                <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">
+                                    <div class="row">
+                                        <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName" width="96" height="76">
+                                    </div><!-- /profile-pic -->
+                                </a>
+
+                              </div>
                             <!--div class="row"-->
                             <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
                                 <div class="username-newsfeed p-tb-xs">
-                                    <span class="txt-green"><strong>@Model.MyFullName </strong></span>
+                                    <span class="txt-green"><strong>@item.OwnersId </strong></span>
                                     <div class="visible-xs"><br></div>
                                     @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
                                     string MDate = RDate.ToLongDateString(); }
@@ -172,9 +174,8 @@
 
                         </div><!-- /row -->
                     </div>
-                    </a>
-                    }
-                    }
+            }
+            }
 
                     <!-- /story-cont -->
                     <div class="col-lg-1"></div>
