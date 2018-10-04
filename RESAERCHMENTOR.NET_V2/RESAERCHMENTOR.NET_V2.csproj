@@ -553,6 +553,9 @@
     <Content Include="Content\vendors\vectormap\jquery-jvectormap-world-mill-en.js" />
     <Content Include="Content\vendors\vectormap\jvectormap.custom.js" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\2.png" />
+    <Content Include="Files\BB-contact.PNG" />
+    <Content Include="Files\C# 100.png" />
     <Content Include="Files\fatz.jpg" />
     <Content Include="Files\NOU158851168.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -695,6 +698,7 @@
     <Content Include="Views\MentorPartner\AddPost.cshtml" />
     <Content Include="Views\MentorPartner\userSearch.cshtml" />
     <Content Include="Views\MentorPartner\TermsAndConditions.cshtml" />
+    <Content Include="Views\MentorPartner\AboutUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

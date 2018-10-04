@@ -1246,7 +1246,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     row = cmd.ExecuteNonQuery();
                     conAm.Close();
                     conAm.Dispose();
-                    string message = "you have pending message on mentor partner, please login to reply.";
+                    string message = "You have a pending message on mentor partner, please login to reply.";
                     if (row > 0)
                     {
                         mailService.MailService(OwnersId, OwnersId, message, Subject);
@@ -1415,6 +1415,22 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 }
             }
             return myuserlist.FirstOrDefault();
+        }
+
+        #endregion
+
+        #region Terms and Condition
+        public ActionResult TermsAndConditions()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region About Us
+        public ActionResult AboutUs()
+        {
+            return View();
         }
 
         #endregion

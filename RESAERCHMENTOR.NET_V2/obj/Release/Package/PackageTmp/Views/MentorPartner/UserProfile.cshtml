@@ -48,17 +48,16 @@
 
                             </div>
                             <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-info">
-                                @{ string myFullname = Model.MyFullName; }
                                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    if (myFullname == null)
+                                    if (Model.MyProfile.FullName == string.Empty)
                                     {
                                         @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                                     }
                                     else
                                     {
-                                    @Html.ActionLink("Hello " + myFullname + "", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                    @Html.ActionLink("Hello " + Model.MyProfile.FullName + "", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                                     }
                                 }
                             </h5>
@@ -119,7 +118,7 @@
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">First Name</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="FName" id="FName" value=@Model.MyProfile.FName placeholder="willard" required>
+                                                                                        <input type="text" class="form-control" name="FName" id="FName"  placeholder="willard" value=@Model.MyProfile.FName required>
                                                                                     </div>
                                                                                 </div>
 
@@ -127,28 +126,28 @@
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Last Name</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="LName" value=@Model.MyProfile.LName id="LName" placeholder="bryant" required>
+                                                                                        <input type="text" class="form-control" name="LName" id="LName" value=@Model.MyProfile.LName required>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Degree</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="Degree" value=@Model.MyProfile.Degree id="Degree" placeholder="MBBS, FWACP">
+                                                                                        <input type="text" class="form-control" name="Degree" id="Degree" placeholder="MBBS, FWACP"  value=@Model.MyProfile.Degree>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputEmail_1">Email address</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-                                                                                        <input type="email" class="form-control" name="OwnersId" value=@Model.MyProfile.OwnersId required="required" readonly="readonly" id="OwnersId" placeholder="xyz@gmail.com">
+                                                                                        <input type="email" class="form-control" name="OwnersId" required="required" readonly="readonly" id="OwnersId" placeholder="xyz@gmail.com" value=@User.Identity.GetUserName()>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputContact_1">Contact number</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                                        <input type="text" class="form-control" name="CNumber" value=@Model.MyProfile.CNumber required="required" id="CNumber" placeholder="+102 9388333">
+                                                                                        <input type="text" class="form-control" name="CNumber"  required="required" id="CNumber" placeholder="+102 9388333" value=@Model.MyProfile.CNumber>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
