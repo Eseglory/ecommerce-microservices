@@ -81,7 +81,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorText = "Sorry some thing went wrong..!";
+                ViewBag.ErrorText = "Sorry something went wrong..!";
             }
             return RedirectToAction("PreConfirm");
         }
@@ -1429,6 +1429,14 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
 
         #region About Us
         public ActionResult AboutUs()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region Payment for peer review
+        public ActionResult UserPayment()
         {
             return View();
         }

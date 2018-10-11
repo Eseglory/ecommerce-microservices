@@ -699,6 +699,7 @@
     <Content Include="Views\MentorPartner\userSearch.cshtml" />
     <Content Include="Views\MentorPartner\TermsAndConditions.cshtml" />
     <Content Include="Views\MentorPartner\AboutUs.cshtml" />
+    <Content Include="Views\MentorPartner\UserPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
