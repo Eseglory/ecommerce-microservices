@@ -434,3 +434,5 @@ C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\bin
 C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\obj\Debug\RESAERCHMENTOR.NET_V2.Tests.csprojResolveAssemblyReference.cache
 C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\obj\Debug\RESAERCHMENTOR.NET_V2.Tests.dll
 C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\obj\Debug\RESAERCHMENTOR.NET_V2.Tests.pdb
+C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\bin\Debug\PayStack.Net.dll
+C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\bin\Debug\XtremeIT.Library.Pins.dll

@@ -100,16 +100,16 @@
                                 </ul>
                                 <h6 class="pl-15 mb-20">Labels</h6>
                                 <ul class="inbox-nav mb-30">
-                                    <li> <a href="#"> <i class=" fa fa-stop txt-danger"></i> Work </a> </li>
-                                    <li> <a href="#"> <i class=" fa fa-stop txt-success"></i> Design </a> </li>
+                                    <li> <a href="#"> <i class="fa fa-stop txt-danger"></i> Work </a> </li>
+                                    <li> <a href="#"> <i class="fa fa-stop txt-success"></i> Design </a> </li>
                                     <li>
-                                        <a href="#"> <i class=" fa fa-stop txt-info "></i> Family </a>
+                                        <a href="#"> <i class="fa fa-stop txt-info "></i> Family </a>
                                     </li>
                                     <li>
-                                        <a href="#"> <i class=" fa fa-stop txt-warning "></i> Friends </a>
+                                        <a href="#"> <i class="fa fa-stop txt-warning "></i> Friends </a>
                                     </li>
                                     <li>
-                                        <a href="#"> <i class=" fa fa-stop txt-primary "></i> Office </a>
+                                        <a href="#"> <i class="fa fa-stop txt-primary "></i> Office </a>
                                     </li>
                                 </ul>
                                 <h6 class="pl-15 mb-20">online</h6>
@@ -129,20 +129,32 @@
                                             </a>
                                             @{foreach (var iuser in Model.GetAllUsers)
                                                 {
-                                                    <a href="#">
+                                                    <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })">
                                                         <div class="chat-data">
-                                                            <img class="user-img img-circle" src="~/Files/@iuser.ProfilePicsName" alt="user" />
+                                                            @if (iuser.ProfilePicsName == string.Empty && iuser.Gender == "Male")
+                                                            {
+                                                                <img ID="PictureImageA" class="user-img img-circle" src="~/Content/dist/img/userMale.png" />
+                                                            }
+
+                                                            else if (iuser.ProfilePicsName == string.Empty && iuser.Gender == "Female")
+                                                            {
+                                                                <img ID="PictureImageA" class="user-img img-circle" src="~/Content/dist/img/userfeMale.png" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <img class="user-img img-circle" src="~/Files/@iuser.ProfilePicsName" alt="user" />
+                                                            }
                                                             @{ string fullname = iuser.Title + " " + iuser.LName + " " + iuser.FName; }
                                                             <div class="user-data">
                                                                 <span class="name block capitalize-font">@fullname.</span>
                                                                 <span class="time block truncate txt-grey">@iuser.fieldExpertise</span>
                                                             </div>
                                                             <div class="status online"></div>
-                                                            <a title="View User Information"  data-toggle="modal" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })" class="btn-success pull-right btn-xs fixed-btn"><i class=" ti-plus"></i></a>
+                                                            <a title="Add This Person As Mentor" href="@Url.Action("mentor_click", "mentorpartner", new { id = iuser.Id })" class="btn-success pull-right btn-xs fixed-btn"><i class="ti-plus"></i></a>
                                                             <div class="clearfix"></div>
                                                         </div>
                                                     </a>
-                                                }
+                                                                }
                                             }
                                         </div>
                                     </li>

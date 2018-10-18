@@ -25,17 +25,27 @@
                         <div class="row story-cont2">
                             <div class="profile-pic col-lg-1 col-xs-2 pg-up">
                                 <div class="row">
+@if (item.ProfilePicsName == string.Empty && item.Gender == "Male")
+{
+    <img ID="PictureImageA" class="img-responsive img-circle" src="~/Content/dist/img/userMale.png" width="76" height="76" />
+}
 
+else if (item.ProfilePicsName == string.Empty && item.Gender == "Female")
+{
+    <img ID="PictureImageA" class="img-responsive img-circle" src="~/Content/dist/img/userfeMale.png" width="76" height="76" />
+}
+else
+{
 
-                                    <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName" width="96" height="76">
-
+                                    <img id="RProfileImg" class="img-responsive img-circle" src="~/Files/@item.ProfilePicsName" width="76" height="76">
+}
                                 </div><!-- /profile-pic -->
                             </div>
                             <!--div class="row"-->
                             <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
                                 <div class="username-newsfeed p-tb-xs">
 
-                                    <span class="txt-green"><strong>@Model.MyFullName </strong></span>
+                                    <span class="txt-green"><strong>@item.Title  @item.FName  @item.LName </strong></span>
 
                                     <div class="visible-xs"><br></div>
                                     @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
@@ -51,8 +61,10 @@
                                 <div class="news-feed-title_img col-lg-7">
 
                                     <div class="row">
+                                        <h5 style="color:#238C00; text-transform:capitalize;">@item.RTitle</h5>
                                         <div class="post-heading col-lg-12">
-                                            <h6>@item.Description </h6>
+                                        
+                                            <p style="font-size:14px;">@item.Description </p>
                                         </div><!-- /post-heading -->
                                         <div class="row">
 
@@ -95,7 +107,7 @@
                                         }
             }
             <p><br /></p>
-            <h5>My Mentors And Mentee Research</h5>
+            <h5>My Mentors And Mentee Research</h5><br /><br />
             @if (Model.GetOtherUsersResearch.Count() == 0)
             {
                 <h4>No research found.</h4>
@@ -110,7 +122,21 @@
                             <div class="profile-pic col-lg-1 col-xs-2 pg-up">
                                 <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">
                                     <div class="row">
-                                        <img id="RProfileImg" class="img-responsive" src="~/Files/@Model.MyProfile.ProfilePicsName" width="96" height="76">
+
+                                        @if (item.ProfilePicsName == string.Empty && item.Gender == "Male")
+                                        {
+                                            <img ID="PictureImageA" class="img-responsive img-circle" src="~/Content/dist/img/userMale.png" width="76" height="76" />
+                                        }
+
+                                        else if (item.ProfilePicsName == string.Empty && item.Gender == "Female")
+                                        {
+                                            <img ID="PictureImageA" class="img-responsive img-circle" src="~/Content/dist/img/userfeMale.png" width="76" height="76" />
+                                        }
+                                        else
+                                        {
+
+                                            <img id="RProfileImg" class="img-responsive img-circle" src="~/Files/@item.ProfilePicsName" width="76" height="76">
+                                        }
                                     </div><!-- /profile-pic -->
                                 </a>
 
@@ -118,7 +144,7 @@
                             <!--div class="row"-->
                             <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
                                 <div class="username-newsfeed p-tb-xs">
-                                    <span class="txt-green"><strong>@item.OwnersId </strong></span>
+                                    <span class="txt-green"><strong>@item.Title  @item.FName  @item.LName   </strong></span>
                                     <div class="visible-xs"><br></div>
                                     @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
                                     string MDate = RDate.ToLongDateString(); }
@@ -133,8 +159,9 @@
                                 <div class="news-feed-title_img col-lg-7">
 
                                     <div class="row">
+                                        <h5 style="color:#238C00; text-transform:capitalize;">@item.RTitle</h5>
                                         <div class="post-heading col-lg-12">
-                                            <h6>@item.Description </h6>
+                                            <p style="font-size:14px;">@item.Description </p>
                                         </div><!-- /post-heading -->
                                         <div class="row">
 

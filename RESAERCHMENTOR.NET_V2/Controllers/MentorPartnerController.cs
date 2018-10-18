@@ -12,6 +12,7 @@ using System.Data.Common;
 using System.Data;
 using RESAERCHMENTOR.NET.Controllers;
 using System.IO;
+using PayStack.Net;
 
 namespace RESAERCHMENTOR.NET_V2.Controllers
 {
@@ -67,7 +68,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 DBConnect dbconnect = new DBConnect();
                 string CCode = GeUser(model.OwnersId).ConfirmationCode;
                 #region Send Confirmation Mail
-                string Message = "Hello " + model.OwnersId + " your confirmation code is " + CCode + ".";
+                string Message = "<h4>Confirm your email address</h4> Let’s make sure this is the right email address for you.Please enter this verification code to continue using Mentor Partner" + model.OwnersId + " your confirmation code is " + CCode + ".";
                 Message = Message + " <a href=" + "http://mentorpartner.net/MentorPartner/PreConfirm" + ">click here</a> to proceed";
                 var sendmail = dbconnect.ConfirmationMail(model.OwnersId, model.OwnersId, Message);
                 if (!sendmail)
@@ -144,7 +145,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 return RedirectToAction("index", "Home");
             }
             List<UserProfile> LoadProfile = new List<UserProfile>();
-            LoadProfile = GetAllUsersAreaOfExpactise("090z");
+           // LoadProfile = GetAllUsersAreaOfExpactise("090z");
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);
         }
@@ -210,7 +211,19 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     UProfile.CNumber = MyProfile.CNumber;
                     UProfile.Country = MyProfile.Country;
                     UProfile.ProfilePicsName = MyProfile.ProfilePicsName;
-                    if (MyProfile.Gender == "Male")
+                    UProfile.Institution = MyProfile.Institution;
+                    UProfile.Specialty = MyProfile.Specialty;
+                    UProfile.Gender = MyProfile.Gender;
+                    UProfile.Qualification = MyProfile.Qualification;
+                    UProfile.Expertise = MyProfile.Expertise;
+                    UProfile.WhoYouAre = MyProfile.WhoYouAre;
+                    UProfile.fieldExpertise = MyProfile.fieldExpertise;
+                    UProfile.Interest = MyProfile.Interest;
+                    UProfile.WillingToBe = MyProfile.WillingToBe;
+                    UProfile.MentorCategory = MyProfile.MentorCategory;
+
+
+                if (MyProfile.Gender == "Male")
                     {
                      UProfile.Gender1 = true;
                     }
@@ -303,7 +316,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                                   OwnersId = rec["OwnersId"].ToString(),
                                                   DateCreated = rec["DateCreated"].ToString(),
                                                   ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
                                                   Following = rec["Following"].ToString(),
                                               }).ToList();
                             #endregion
@@ -412,6 +425,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                                   ProfilePicsName = rec["ProfilePicsName"].ToString(),
                                                   IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"].ToString()),
                                                   WhoYouAre = rec["WhoYouAre"].ToString(),
+                                                  Country = rec["Country"].ToString(),
                                                   Institution = rec["Institution"].ToString(),
                                                   Qualification = rec["Qualification"].ToString(),
                                                   Expertise = rec["Expertise"].ToString(),
@@ -445,7 +459,15 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and Expertise like '" + param + "'";
+                    if (param != null || param != string.Empty)
+                    {
+                        query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "'";
+                    }
+                    else
+                    {
+                        query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and Expertise like '" + param + "'";
+                    }
+                    
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -745,7 +767,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select * from Profile as a where a.OwnersId = '" + userName + "'";
+                    query = "select * from Profile as a where a.OwnersId = '" + @userName + "'";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -860,7 +882,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select distinct a.Title, a.Degree, a.BDate, a.Country, a.Gender, a.CNumber, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.Status from Profile as a join Research as b on a.OwnersId = b.OwnersId where a.OwnersId = '" + userName + "' and a.IsConfirmed = 1";
+                    query = "select distinct a.Title, a.Degree, a.BDate, a.Country, a.Gender, a.CNumber, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.Status, b.Title as RTitle, b.SubTitle from Profile as a join Research as b on a.OwnersId = b.OwnersId where a.OwnersId = '" + userName + "' and a.IsConfirmed = 1";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -887,6 +909,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                                   RType = rec["RType"].ToString(),
                                                   Status = rec["Status"].ToString(),
                                                   Description = rec["Description"].ToString(),
+                                                  RTitle = rec["RTitle"].ToString(),
 
                                               }).ToList();
                             #endregion
@@ -911,7 +934,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select distinct a.Title, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, a.Id, b.Id as ResearchId, b.DateCreated, b.Description, b.RType, b.OwnersId, b.Status from Profile as a join Research as b on a.OwnersId = b.OwnersId join MenTors_Mentees as c on a.OwnersId = c.Mentor where a.OwnersId != '" + userName + "' and c.Mentor != '" + userName + "'";
+                    query = "select distinct a.Title, a.LName, a.FName, a.ProfilePicsName, a.Gender, b.FileName, b.AuthorName, a.Id, b.Id as ResearchId, b.DateCreated, b.Description, b.RType, b.OwnersId, b.Status, b.Title as RTitle, b.SubTitle from Profile as a join Research as b on a.OwnersId = b.OwnersId join MenTors_Mentees as c on a.OwnersId = c.Mentor where a.OwnersId != '" + userName + "' and c.Mentor != '" + userName + "'";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -934,6 +957,8 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               RType = rec["RType"].ToString(),
                                               Status = rec["Status"].ToString(),
                                               Description = rec["Description"].ToString(),
+                                              RTitle = rec["RTitle"].ToString(),
+                                              Gender =  rec["Gender"].ToString(),
 
                                           }).ToList();
                             #endregion
@@ -970,6 +995,8 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             myuserlist = (from DataRow rec in dt.Rows
                                           select new UserProfile()
                                           {
+
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
                                               From = rec["From"].ToString(),
                                               To = rec["To"].ToString(),
                                               Subject = rec["Subject"].ToString(),
@@ -1012,6 +1039,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             myuserlist = (from DataRow rec in dt.Rows
                                           select new UserProfile()
                                           {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
                                               From = rec["From"].ToString(),
                                               To = rec["To"].ToString(),
                                               Subject = rec["Subject"].ToString(),
@@ -1062,6 +1090,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               ActivityDescription = rec["Description"].ToString(),
                                               Activityowner = rec["Activityowner"].ToString(),
                                               ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
                                           }).ToList();
                             #endregion
                         }
@@ -1430,7 +1459,22 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region About Us
         public ActionResult AboutUs()
         {
+                   
+
             return View();
+        }
+
+        #endregion
+
+        #region View each Message
+        public ActionResult UserInboxDetails()
+        {
+            
+            MyModelObjects MyObjectList = new MyModelObjects();
+            MyObjectList.MyMessages = GetLoginUserMessages();
+            MyObjectList.MyMessageInbox = GetLoginUserInbox();
+            MyObjectList.GetAllUsers = GetAllUsers();
+            return View(MyObjectList);
         }
 
         #endregion
@@ -1438,9 +1482,40 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region Payment for peer review
         public ActionResult UserPayment()
         {
+            string paymentUsername = User.Identity.GetUserName();
+
             return View();
         }
 
+        #endregion
+
+        #region Verify Paystack Payment
+        public JsonResult VerifyPSTranx(string reqId)
+        {
+            var testOrLiveSecret = "sk_test_fa2d7066061a713e56a751af1a9e1d2ca314cf49";
+            var api = new PayStackApi(testOrLiveSecret);
+
+            var verifyResponse = api.Transactions.Verify(reqId);
+
+            if (verifyResponse.Status == true)
+            {
+                var message = new
+                {
+                    requestStat = "Successful"
+                };
+                return Json(message);
+            }
+            else
+            {
+                var message = new
+                {
+                    requestStat = "Failed"
+                };
+                return Json(message);
+            }
+
+
+        }
         #endregion
     }
 }

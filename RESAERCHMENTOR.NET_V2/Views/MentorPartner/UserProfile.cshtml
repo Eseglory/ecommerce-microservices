@@ -37,13 +37,17 @@
                         </div>
                         <div class="profile-info text-center">
                             <div class="profile-img-wrap">
-                                @if (@Model.MyProfile.ProfilePicsName == null)
+                                @if (@Model.MyProfile.ProfilePicsName == string.Empty && Model.MyProfile.Gender == "Male")
                                 {
-                                    <img src="~/Content/dist/img/user1.png" alt="user_auth" class="user-auth-img img-circle" />
+                                    <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-auth-img img-circle" width="137" height="137" />
+                                }
+                                else if (@Model.MyProfile.ProfilePicsName == string.Empty && Model.MyProfile.Gender == "Female")
+                                {
+                                    <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-auth-img img-circle" width="137" height="137" />
                                 }
                                 else
                                 {
-                                    <img id="Image2" class="inline-block mb-10" src="~/Files/@Model.MyProfile.ProfilePicsName" />
+                                    <img id = "Image2" class="inline-block mb-10 user-auth-img img-circle" src="~/Files/@Model.MyProfile.ProfilePicsName" width="137" height="137" />
                                 }
 
                             </div>
@@ -102,13 +106,29 @@
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1"></label>
                                                                                     <div class="input-group">
-                                                                                        <img ID="PictureImageA" Height="140" Width="120" src="~/Files/@Model.MyProfile.ProfilePicsName" />
-                                                                                        <input type="file" name="postedFile" />
+                                                                                        @if (@Model.MyProfile.ProfilePicsName == string.Empty && Model.MyProfile.Gender == "Male")
+                                                                                        {
+                                                                                            <img ID="PictureImageA" Height="140" Width="137" src="~/Content/dist/img/userMale.png" />
+                                                                                        }
+
+                                                                                        else if (@Model.MyProfile.ProfilePicsName == string.Empty && Model.MyProfile.Gender == "Female")
+                                                                                        {
+                                                                                            <img ID="PictureImageA" Height="140" Width="137" src="~/Content/dist/img/userfeMale.png" />
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <img ID="PictureImageA" Height="140" Width="137" src="~/Files/@Model.MyProfile.ProfilePicsName" />
+                                                                                        }
+                                                                                        
+
+
+                                                                                        <input type="file" name="postedFile" value=@Model.MyProfile.ProfilePicsName />
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Title</label>
                                                                                     <select class="form-control" name="Title" id="Title" onselect=@Model.MyProfile.Title data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value=@Model.MyProfile.Title style="color:#ff0000;">@Model.MyProfile.Title</option>
                                                                                         <option value="Mr.">Mr.</option>
                                                                                         <option value="Mrs.">Mrs.</option>
                                                                                         <option value="Dr.">Dr.</option>
@@ -162,15 +182,15 @@
                                                                                     <label class="control-label mb-10">Gender</label>
                                                                                     <div>
                                                                                         <div class="radio">
-                                                                                            <input type="radio" name="Gender1" id="Gender1" value=@Model.MyProfile.Gender1>
+                                                                                            <input type="radio" name="Gender1" id="Gender1" value=@Model.MyProfile.Gender1 checked>
                                                                                             <label for="Gender1">
-                                                                                                M
+                                                                                                Male
                                                                                             </label>
                                                                                         </div>
                                                                                         <div class="radio">
                                                                                             <input type="radio" name="Gender2" id="Gender2" value=@Model.MyProfile.Gender2>
                                                                                             <label for="Gender2">
-                                                                                                F
+                                                                                                Female
                                                                                             </label>
                                                                                         </div>
                                                                                     </div>
@@ -178,7 +198,7 @@
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Who are you?</label>
                                                                                     <select class="form-control" name="WhoYouAre" id="WhoYouAre" value=@Model.MyProfile.WhoYouAre  data-placeholder="Choose a Category" tabindex="1">
-                                                                                        <option value="" selected="selected">Select One</option>
+                                                                                        <option value=@Model.MyProfile.WhoYouAre style="color:#ff0000;">@Model.MyProfile.WhoYouAre</option>
                                                                                         <option value="Student">Student</option>
                                                                                         <option value="researcher">Researcher or Academician</option>
                                                                                         <option value="Developer">Project developer</option>
@@ -190,14 +210,15 @@
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Institution</label>
                                                                                     <div class="input-group">
-                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="Institution" value=@Model.MyProfile.Institution id="Institution" placeholder="University of Lagos">
+                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>                                                                                        
+                                                                                        
+                                                                                        <input type="text" class="form-control" name="Institution" id="Institution" value=@Model.MyProfile.Institution>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Qualification</label>
                                                                                     <select class="form-control" name="Qualification" value=@Model.MyProfile.Qualification id="Qualification" data-placeholder="Choose a Category" tabindex="1">
-                                                                                        <option value="" selected="selected">Select Qualification</option>
+                                                                                        <option value=@Model.MyProfile.Qualification style="color:#ff0000;">@Model.MyProfile.Qualification</option>
                                                                                         <option value="SSCE">SSCE</option>
                                                                                         <option value="Bsc">Bsc</option>
                                                                                         <option value="Msc">Msc</option>
@@ -211,6 +232,7 @@
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
                                                                                         <select class="form-control" name="Expertise" value=@Model.MyProfile.Expertise id="Expertise" data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value=@Model.MyProfile.Expertise style="color:#ff0000;">@Model.MyProfile.Expertise</option>
                                                                                         <option value="Sciences">Science : PHYSICAL SCIENCES, LIFE SCIENCES , ETC.</option>
                                                                                         <option value="Medical">Medical /health: CLINICAL SCIENCES, HEALTH PROFESSIONALS</option>
                                                                                         <option value="Engineering">Technology/engineering</option>
@@ -224,7 +246,7 @@
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Sub Specialty</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="Specialty" value=@Model.MyProfile.Specialty id="Specialty" placeholder="Optician">
+                                                                                        <input type="text" class="form-control" name="Specialty" value=@Model.MyProfile.Specialty id="Specialty" >
                                                                                     </div>
                                                                                 </div>
 
@@ -232,7 +254,7 @@
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Research Interest or Focus</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="Interest" value=@Model.MyProfile.Interest id="Interest" placeholder="Research Interest or Focus">
+                                                                                        <input type="text" class="form-control" name="Interest" value=@Model.MyProfile.Interest id="Interest" >
                                                                                        
 
 </div>
@@ -242,14 +264,14 @@
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Number of years in Field of Expertise</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="fieldExpertise" value=@Model.MyProfile.fieldExpertise id="fieldExpertise" placeholder="4 years">
+                                                                                        <input type="text" class="form-control" name="fieldExpertise" value=@Model.MyProfile.fieldExpertise id="fieldExpertise" >
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Willing to be</label>
                                                                                     <select class="form-control" name="WillingToBe" id="WillingToBe" value=@Model.MyProfile.WillingToBe data-placeholder="Choose a Category" tabindex="1">
-                                                                                        <option value="" selected="selected">Select Category</option>
+                                                                                        <option value=@Model.MyProfile.WillingToBe style="color:#ff0000;"> @Model.MyProfile.WillingToBe</option>
                                                                                         <option value="Mentor">Mentor</option>
                                                                                         <option value="Mentee">Mentee</option>
                                                                                         <option value="Collaborator">Collaborator</option>
@@ -259,6 +281,7 @@
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Mark areas your willing to mentor  or provide academic services </label>
                                                                                     <select class="form-control" multiple name="MentorCategory" value=@Model.MyProfile.MentorCategory id="MentorCategory" data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value=@Model.MyProfile.MentorCategory style="color:#ff0000;"> @Model.MyProfile.MentorCategory </option>
                                                                                         <option value="Phd"> Phd/postdoc thesis </option>
                                                                                         <option value="Masters">	Master’s Thesis</option>
                                                                                         <option value="Bsc">	Bsc or Diploma or Undergraduate Thesis</option>
@@ -275,6 +298,7 @@
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Country</label>
                                                                                     <select class="form-control" name="Country" id="Country" onselect=@Model.MyProfile.Country data-placeholder="Choose a Category" tabindex="1">
+                                                                                        <option value=@Model.MyProfile.Country style="color:#ff0000;">@Model.MyProfile.Country</option>
                                                                                         <option value="" selected="selected">Select Country</option>
                                                                                         <option value="Afghanistan">Afghanistan</option>
                                                                                         <option value="Albania">Albania</option>
@@ -579,7 +603,19 @@
                                                  <div class="sl-item">
                                                 <a href="javascript:void(0)">
                                                     <div class="sl-avatar avatar avatar-sm avatar-circle">
+@if (act.ProfilePicsName == string.Empty && act.Gender == "Male")
+{
+    <img ID="PictureImageA" Height="140" Width="137" src="~/Content/dist/img/userMale.png" />
+}
+
+else if (act.ProfilePicsName == string.Empty && act.Gender == "Female")
+{
+    <img ID="PictureImageA" Height="140" Width="137" src="~/Content/dist/img/userfeMale.png" />
+}
+else
+{
                                                         <img class="img-responsive img-circle" src="~/Files/@act.ProfilePicsName" alt="avatar" />
+}
                                                     </div>
                                                     <div class="sl-content">
                                                         <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">@act.OwnerName</span><span>@act.ActivityDescription</span></p>
@@ -611,7 +647,20 @@
                                                 <div class="row story-cont2">
                                                     <div class="profile-pic col-lg-1 col-xs-2 pg-up">
                                                         <div class="row">
-                                                            <img id="RProfileImg" class="img-responsive">
+                                                           @if (item.ProfilePicsName == string.Empty && item.Gender == "Male")
+                                                           {
+                                                            <img ID="PictureImageA" class="img-responsive" src="~/Content/dist/img/userMale.png" />
+                                                           }
+
+                                                           else if (item.ProfilePicsName == string.Empty && item.Gender == "Female")
+                                                           {
+                                                            <img ID="PictureImageA" class="img-responsive" src="~/Content/dist/img/userfeMale.png" />
+                                                           }
+                                                           else
+                                                           {
+                                                            <img id = "RProfileImg" class="img-responsive" src="~/Files/@item.ProfilePicsName" alt="avatar" />
+                                                           }
+
                                                         </div><!-- /profile-pic -->
                                                     </div>
                                                     <!--div class="row"-->
@@ -696,7 +745,19 @@
                                                         @{foreach (var rec in Model.FollowList)
                                                             {
                                                         <div class="follo-data">
-                                                            <img class="user-img img-circle" src="~/Content/dist/img/user1.png" alt="user" />
+                                                        @if (rec.ProfilePicsName == string.Empty && rec.Gender == "Male")
+                                                        {
+                                                        <img  class="user-img img-circle" src="~/Content/dist/img/userMale.png" />
+                                                        }
+
+                                                        else if (rec.ProfilePicsName == string.Empty && rec.Gender == "Female")
+                                                        {
+                                                        <img  class="user-img img-circle" src="~/Content/dist/img/userfeMale.png" />
+                                                            }
+                                                        else
+                                                        {
+                                                        <img class="user-img img-circle" src="~/Files/@rec.ProfilePicsName" alt="user" />
+                                                        }
                                                             <div class="user-data">
                                                                 @{ string myName = rec.Title + " " + rec.LName + " " + rec.FName;}
                                                                 <span class="name block capitalize-font"> @myName</span>
@@ -730,7 +791,19 @@
                                                         @{foreach (var item in Model.FollowingList)
                                                             {
                                                         <div class="follo-data">
-                                                            <img class="user-img img-circle" src="~/Content/dist/img/user1.png" alt="user" />
+                                                            @if (item.ProfilePicsName == string.Empty && item.Gender == "Male")
+                                                            {
+                                                                <img class="user-img img-circle" src="~/Content/dist/img/userMale.png" />
+                                                            }
+
+                                                            else if (item.ProfilePicsName == string.Empty && item.Gender == "Female")
+                                                            {
+                                                                <img class="user-img img-circle" src="~/Content/dist/img/userfeMale.png" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <img class="user-img img-circle" src="~/Files/@item.ProfilePicsName" alt="user" />
+                                                            }
                                                             <div class="user-data">
                                                                 @{ string myName = item.Title + " " + item.LName + " " + item.FName;}
                                                                 <span class="name block capitalize-font">@myName </span>
@@ -1082,25 +1155,15 @@
                                                                     <label class="control-label mb-10" for="exampleInputContact_1">Date Of Birth number</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                        <input type="text" class="form-control" name="BDate" id="BDate" value=@Model.MyProfile.BDate placeholder="16/12/1986">
+                                                                        <input type="text" class="form-control" name="BDate" id="BDate" value=@Model.MyProfile.BDate readonly>
                                                                     </div>
                                                                 </div>
                                                                 <br /><br />
                                                                 <div class="form-group">
-                                                                    <label class="control-label mb-10">Gender</label>
-                                                                    <div>
-                                                                        <div class="radio">
-                                                                            <input type="radio" name="Gender1" id="Gender1" value=@Model.MyProfile.Gender1 checked="" readonly>
-                                                                            <label for="radio_01">
-                                                                                M
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="radio">
-                                                                            <input type="radio" name="Gender2" id="Gender2" value=@Model.MyProfile.Gender2 readonly>
-                                                                            <label for="radio_02">
-                                                                                F
-                                                                            </label>
-                                                                        </div>
+                                                                    <label class="control-label mb-10" for="exampleInputContact_1">Gender</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon"><i class="icon-phone"></i></div>
+                                                                        <input type="text" class="form-control" name="BDate" id="BDate" value=@Model.MyProfile.Gender readonly>
                                                                     </div>
                                                                 </div>
 
@@ -1130,13 +1193,7 @@
                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Primary Field of Expertise</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <select class="form-control" name="Expertise" value=@Model.MyProfile.Expertise id="Expertise" data-placeholder="Choose a Category" tabindex="1">
-                                                                            <option value="Sciences">Science : PHYSICAL SCIENCES, LIFE SCIENCES , ETC.</option>
-                                                                            <option value="Medical">Medical /health: CLINICAL SCIENCES, HEALTH PROFESSIONALS</option>
-                                                                            <option value="Engineering">Technology/engineering</option>
-                                                                            <option value="Arts">Arts</option>
-                                                                            <option value="Environment">Environmental Sciences</option>
-                                                                        </select>
+                                                                        <input type="text" class="form-control" name="Expertise" value=@Model.MyProfile.Expertise id="Qualification" placeholder="" readonly>
                                                                     </div>
                                                                 </div>
 
@@ -1175,7 +1232,7 @@
                                                                     <label class="control-label mb-10">Mark areas your willing to mentor  or provide academic services </label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="MentorCategory" value=@Model.MyProfile.MentorCategory id="MentorCategory" placeholder="" readonly>
+                                                                        <input type="text" class="form-control" name="MentorCategory" value=@Model.MyProfile.MentorCategory  readonly>
                                                                     </div>
                                                                 </div>
 
@@ -1183,7 +1240,7 @@
                                                                     <label class="control-label mb-10">Country</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-globe"></i></div>
-                                                                        <input type="text" class="form-control" name="Country" id="Country" value=@Model.MyProfile.Country placeholder="" readonly>
+                                                                        <input type="text" class="form-control" name="Country" id="Country" value=@Model.MyProfile.Country  readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1221,9 +1278,10 @@
                     <h6 class="panel-title pull-left">Looking For a Mentor </h6>
                 </div>
                 <div class="pull-right">
-                    <a href="#" class="pull-left inline-block mr-15">
-                        <i class="zmdi zmdi-search"></i>
-                    </a>
+                    <a href="@Url.Action("userSearch", "MentorPartner")" class="pull-left inline-block mr-15">
+                       
+                            <i class="zmdi zmdi-search"></i>
+                        </a>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -1236,22 +1294,25 @@
                                     <ul class="chat-list-wrap">
                                         <li class="chat-list">
                                             <div class="chat-body">
-                                                <a href="javascript:void(0)#">
-                                                    <div class="chat-data">
-                                                        <img class="user-img img-circle" src="~/Content/dist/img/user.png" alt="user" />
-                                                        <div class="user-data">
-                                                            <span class="name block capitalize-font">Mentor Partner Administrator</span>
-                                                            <span class="time block truncate txt-grey">Its all about mentoring.</span>
-                                                        </div>
-                                                        <div class="status away"></div>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                </a>
+                                               
                                                 @{foreach (var iuser in Model.GetAllUsers)
                                                  {
                                                         <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })">
                                                             <div class="chat-data">
+                                                                @if (@iuser.ProfilePicsName == string.Empty && iuser.Gender == "Male")
+
+                                                                {
+                                                                    <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-img img-circle" />
+                                                                }
+                                                                else if (@iuser.ProfilePicsName == string.Empty && iuser.Gender == "Female")
+                                                                {
+                                                                    <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-img img-circle" />
+                                                                }
+                                                                else
+                                                                {
                                                                 <img class="user-img img-circle" src="~/Files/@iuser.ProfilePicsName" alt="user" />
+                                                                }
+
                                                                 @{ string fullname = iuser.Title + " " + iuser.LName + " " + iuser.FName; }
                                                                 <div class="user-data">
                                                                     <span class="name block capitalize-font">@fullname.</span>
