@@ -129,16 +129,28 @@
                                             </a>
                                             @{foreach (var iuser in Model.GetAllUsers)
                                                 {
-                                                    <a href="#">
+                                                    <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })">
                                                         <div class="chat-data">
-                                                            <img class="user-img img-circle" src="~/Files/@iuser.ProfilePicsName" alt="user" />
+                                                            @if (iuser.ProfilePicsName == string.Empty && iuser.Gender == "Male")
+                                                            {
+                                                                <img ID="PictureImageA" class="user-img img-circle" src="~/Content/dist/img/userMale.png" />
+                                                            }
+
+                                                            else if (iuser.ProfilePicsName == string.Empty && iuser.Gender == "Female")
+                                                            {
+                                                                <img ID="PictureImageA" class="user-img img-circle" src="~/Content/dist/img/userfeMale.png" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <img class="user-img img-circle" src="~/Files/@iuser.ProfilePicsName" alt="user" />
+                                                            }
                                                             @{ string fullname = iuser.Title + " " + iuser.LName + " " + iuser.FName; }
                                                             <div class="user-data">
                                                                 <span class="name block capitalize-font">@fullname.</span>
                                                                 <span class="time block truncate txt-grey">@iuser.fieldExpertise</span>
                                                             </div>
                                                             <div class="status online"></div>
-                                                            <a title="View User Information"  data-toggle="modal" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })" class="btn-success pull-right btn-xs fixed-btn"><i class=" ti-plus"></i></a>
+                                                            <a title="View User Information" data-toggle="modal" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })" class="btn-success pull-right btn-xs fixed-btn"><i class=" ti-plus"></i></a>
                                                             <div class="clearfix"></div>
                                                         </div>
                                                     </a>
@@ -270,7 +282,13 @@
                                                                     <td class="view-message  dont-show">@rec.To <span class="label label-warning pull-right">@*new*@</span></td>
                                                                     <td class="view-message ">@rec.Message</td>
                                                                         <td class="view-message  text-right">
-                                                                            <i class="zmdi zmdi-attachment inline-block mr-15 font-16"></i>
+                                                                            @if (rec.AttachedFileName == String.Empty)
+                                                                            { }
+                                                                            else
+                                                                            {
+                                                                                <i class="zmdi zmdi-attachment inline-block mr-15 font-16"></i>
+                                                                            }
+                                                                            
                                                                             @{DateTime MDate = Convert.ToDateTime(rec.MessageDateCreated);
                                                                                 string mTime = MDate.ToLongTimeString();}
                                                                             <span class="time-chat-history inline-block">@mTime</span>

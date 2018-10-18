@@ -79,6 +79,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PayStack.Net, Version=0.6.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayStack.Net.0.6.6\lib\net45\PayStack.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -140,11 +148,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="XtremeIT.Library.Pins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5f275dd942b1b995, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayStack.Net.0.6.6\lib\net45\XtremeIT.Library.Pins.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -379,6 +388,8 @@
     <Content Include="Content\dist\img\user3.png" />
     <Content Include="Content\dist\img\user4.png" />
     <Content Include="Content\dist\img\user5.png" />
+    <Content Include="Content\dist\img\userfeMale.png" />
+    <Content Include="Content\dist\img\userMale.png" />
     <Content Include="Content\dist\img\video-play.png" />
     <Content Include="Content\dist\img\vimeo-play.png" />
     <Content Include="Content\dist\img\weathericons\0.svg" />
@@ -553,6 +564,9 @@
     <Content Include="Content\vendors\vectormap\jquery-jvectormap-world-mill-en.js" />
     <Content Include="Content\vendors\vectormap\jvectormap.custom.js" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\2.png" />
+    <Content Include="Files\BB-contact.PNG" />
+    <Content Include="Files\C# 100.png" />
     <Content Include="Files\fatz.jpg" />
     <Content Include="Files\NOU158851168.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -695,6 +709,9 @@
     <Content Include="Views\MentorPartner\AddPost.cshtml" />
     <Content Include="Views\MentorPartner\userSearch.cshtml" />
     <Content Include="Views\MentorPartner\TermsAndConditions.cshtml" />
+    <Content Include="Views\MentorPartner\AboutUs.cshtml" />
+    <Content Include="Views\MentorPartner\UserPayment.cshtml" />
+    <Content Include="Views\MentorPartner\UserInboxDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -50,29 +50,47 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @{foreach (var item in Model)
-                                            {
-                                              <tr>
-                                            <td>
-                                                <img src="~/Files/@item.ProfilePicsName" alt="iMac" width="80">
-                                            </td>
-                                                  @{ item.FullName = item.Title + " " + item.LName + " " + item.FName; }
-                                            <td>@item.FullName</td>
-                                            <td>
-                                                @item.Specialty
-                                            </td>
-                                            <td>@item.fieldExpertise</td>
-                                                  <td align="center">
-    @if (item.FullName != string.Empty)
-    {
-        <a title="Add This Person As Your Mentor" href="@Url.Action("mentor_click", "mentorpartner", new { id = item.Id })" class="btn-success pull-right btn-xs fixed-btn"><i class=" ti-plus"></i></a>
-    }
-                                            </td>
-                                        </tr>
+                                    @if (Model != null)
+                                    {
+                                        <tbody>
+                                            @{foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">
+                                                                @if (@item.ProfilePicsName == string.Empty && item.Gender == "Male")
+
+                                                                {
+                                                                    <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-img img-circle" width="70" />
+                                                                }
+                                                                else if (item.ProfilePicsName == string.Empty && item.Gender == "Female")
+                                                                {
+                                                                    <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-img img-circle" width="70" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <img src="~/Files/@item.ProfilePicsName" class="user-img img-circle" alt="iMac" width="70">
+                                                                }
+                                                                </a>
+                                                            </td>
+                                                        @{ item.FullName = item.Title + " " + item.LName + " " + item.FName; }
+                                                        <td><a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">@item.FullName</a></td>
+                                                        <td>
+                                                            @item.Expertise
+                                                        </td>
+                                                        <td>@item.fieldExpertise</td>
+                                                        <td align="left">
+                                                            @if (item.FullName != string.Empty)
+                                                            {
+                                                                <a title="Add This Person As Your Mentor" href="@Url.Action("mentor_click", "mentorpartner", new { id = item.Id })" class="btn-success pull-left btn-xs fixed-btn"><i class=" ti-plus"> </i> Add as Mentor</a>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                            }
                                             }
-                                         }
-                                    </tbody>
+                                        </tbody>
+                                                            }
+                                    
                                 </table>
                             </div>
                         </fieldset>

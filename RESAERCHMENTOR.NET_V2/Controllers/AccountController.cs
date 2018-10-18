@@ -433,6 +433,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     string userName = email;
                     string CreationDate = DateTime.Now.ToShortDateString();
                     var cmd = new SqlCommand("INSERT INTO Profile(Title,FName,LName,Degree,CNumber,BDate,Gender,OwnersId,DateCreated,ConfirmationCode) values('" + null + "','" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + userName + "','" + CreationDate + "','" + CodeGen + "')", conAm);
+                    //cmd.Parameters.AddWithValue("@Title", null);
                     row = cmd.ExecuteNonQuery();
                     string querystring = "UPDATE [dbo].[Profile] SET [IsConfirmed] = 0";
                     var cmd1 = new SqlCommand(querystring, conAm);
