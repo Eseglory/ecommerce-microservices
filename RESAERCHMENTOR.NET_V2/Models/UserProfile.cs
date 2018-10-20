@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace RESAERCHMENTOR.NET_V2.Models
 {
@@ -91,6 +89,7 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public int FollowingCount { get; set; }
         public string MyFullName { get; set; }
         public UserProfile MyProfile { get; set; }
+        public Messages MyMessageDetailInbox { get; set; }
         public List<UserProfile> MyResearch { get; set; }
         public List<UserProfile> FollowList { get; set; }
         public List<UserProfile> FollowingList { get; set; }
@@ -109,6 +108,7 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public string AttachedFileName { get; set; }
         public string MessageDateCreated { get; set; }
         public bool Read { get; set; }
+        public string FromImage { get; set; }
     }
     public class Activities
     {
