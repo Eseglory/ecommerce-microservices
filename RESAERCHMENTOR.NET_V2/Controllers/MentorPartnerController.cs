@@ -1467,14 +1467,12 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #endregion
 
         #region View each Message
-        public ActionResult UserInboxDetails()
+        public ActionResult UserInboxDetails(int id)
         {
             
-            MyModelObjects MyObjectList = new MyModelObjects();
-            MyObjectList.MyMessages = GetLoginUserMessages();
-            MyObjectList.MyMessageInbox = GetLoginUserInbox();
-            MyObjectList.GetAllUsers = GetAllUsers();
-            return View(MyObjectList);
+            var InboxDetails = GetLoginUserMessages().FirstOrDefault();
+            return View(InboxDetails);
+            
         }
 
         #endregion
