@@ -436,3 +436,5 @@ C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\obj
 C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\obj\Debug\RESAERCHMENTOR.NET_V2.Tests.pdb
 C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\bin\Debug\PayStack.Net.dll
 C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\bin\Debug\XtremeIT.Library.Pins.dll
+C:\Users\user\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\bin\Debug\roslyn\vcsc.exe
+C:\Users\user\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2.Tests\bin\Debug\roslyn\vcsc.ico
