@@ -48,10 +48,10 @@ else
                                     <span class="txt-green"><strong>@item.Title  @item.FName  @item.LName </strong></span>
 
                                     <div class="visible-xs"><br></div>
-                                    @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
-                                        string MDate = RDate.ToLongDateString(); }
+                                    @{@*DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                        string MDate = RDate.ToLongDateString();*@ }
 
-                                    <span class="txt-grey pull-right">Posted @MDate</span>
+                                    <span class="txt-grey pull-right">Posted @item.RDateCreated</span>
                                     <br>
 
                                     <span class="txt-grey">@item.RType was added</span>
@@ -63,7 +63,7 @@ else
                                     <div class="row">
                                         <h5 style="color:#238C00; text-transform:capitalize;">@item.RTitle</h5>
                                         <div class="post-heading col-lg-12">
-                                        
+
                                             <p style="font-size:14px;">@item.Description </p>
                                         </div><!-- /post-heading -->
                                         <div class="row">

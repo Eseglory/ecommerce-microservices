@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using PayStack.Net;
+using RESAERCHMENTOR.NET.Controllers;
+using RESAERCHMENTOR.NET_V2.Models;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using RESAERCHMENTOR.NET_V2.Models;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Data;
-using RESAERCHMENTOR.NET.Controllers;
-using System.IO;
-using PayStack.Net;
 
 namespace RESAERCHMENTOR.NET_V2.Controllers
 {
@@ -145,7 +145,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 return RedirectToAction("index", "Home");
             }
             List<UserProfile> LoadProfile = new List<UserProfile>();
-           // LoadProfile = GetAllUsersAreaOfExpactise("090z");
+            // LoadProfile = GetAllUsersAreaOfExpactise("090z");
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);
         }
@@ -183,59 +183,59 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region Functions
         public MyModelObjects Page_Load()
         {
-                MyModelObjects MyObjectList = new MyModelObjects();
-                UserProfile UProfile = new UserProfile();
-                MyObjectList.FollowCount = GetFellowByLoginList().Count();
-                MyObjectList.FollowingCount = GetFollowingByLogin().Count();
-                MyObjectList.GetAllUsers = GetAllUsers();
-                MyObjectList.MyResearch = GetLoginUserResearch();
-                MyObjectList.FollowingList = GetFollowingByLogin();
-                MyObjectList.FollowList = GetFellowByLoginList();               
-                MyObjectList.MyActivities = GetNonLoginUserActivities();
-                #region Load Profile
+            MyModelObjects MyObjectList = new MyModelObjects();
+            UserProfile UProfile = new UserProfile();
+            MyObjectList.FollowCount = GetFellowByLoginList().Count();
+            MyObjectList.FollowingCount = GetFollowingByLogin().Count();
+            MyObjectList.GetAllUsers = GetAllUsers();
+            MyObjectList.MyResearch = GetLoginUserResearch();
+            MyObjectList.FollowingList = GetFollowingByLogin();
+            MyObjectList.FollowList = GetFellowByLoginList();
+            MyObjectList.MyActivities = GetNonLoginUserActivities();
+            #region Load Profile
             var MyProfile = GetLoginUser();
-                if (MyProfile != null)
+            if (MyProfile != null)
+            {
+                UProfile.FullName = MyProfile.LName + " " + MyProfile.FName;
+                if (MyProfile.ProfilePicsName != string.Empty)
                 {
-                    UProfile.FullName = MyProfile.LName + " " + MyProfile.FName;
-                    if (MyProfile.ProfilePicsName != string.Empty)
-                    {
-                        //PictureImageA.ImageUrl = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
-                        //Image2.Src = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
-                    }
-                    UProfile.Title = MyProfile.Title;
-                    UProfile.FName = MyProfile.FName;
-                    UProfile.LName = MyProfile.LName;
-                    UProfile.FullName = MyProfile.Title + " " + MyProfile.LName + " " + MyProfile.FName;
-                    UProfile.Degree = MyProfile.Degree;
-                    UProfile.BDate = MyProfile.BDate;
-                    UProfile.CNumber = MyProfile.CNumber;
-                    UProfile.Country = MyProfile.Country;
-                    UProfile.ProfilePicsName = MyProfile.ProfilePicsName;
-                    UProfile.Institution = MyProfile.Institution;
-                    UProfile.Specialty = MyProfile.Specialty;
-                    UProfile.Gender = MyProfile.Gender;
-                    UProfile.Qualification = MyProfile.Qualification;
-                    UProfile.Expertise = MyProfile.Expertise;
-                    UProfile.WhoYouAre = MyProfile.WhoYouAre;
-                    UProfile.fieldExpertise = MyProfile.fieldExpertise;
-                    UProfile.Interest = MyProfile.Interest;
-                    UProfile.WillingToBe = MyProfile.WillingToBe;
-                    UProfile.MentorCategory = MyProfile.MentorCategory;
+                    //PictureImageA.ImageUrl = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
+                    //Image2.Src = "~/Files/" + Path.GetFileName(MyProfile.ProfilePicsName);
+                }
+                UProfile.Title = MyProfile.Title;
+                UProfile.FName = MyProfile.FName;
+                UProfile.LName = MyProfile.LName;
+                UProfile.FullName = MyProfile.Title + " " + MyProfile.LName + " " + MyProfile.FName;
+                UProfile.Degree = MyProfile.Degree;
+                UProfile.BDate = MyProfile.BDate;
+                UProfile.CNumber = MyProfile.CNumber;
+                UProfile.Country = MyProfile.Country;
+                UProfile.ProfilePicsName = MyProfile.ProfilePicsName;
+                UProfile.Institution = MyProfile.Institution;
+                UProfile.Specialty = MyProfile.Specialty;
+                UProfile.Gender = MyProfile.Gender;
+                UProfile.Qualification = MyProfile.Qualification;
+                UProfile.Expertise = MyProfile.Expertise;
+                UProfile.WhoYouAre = MyProfile.WhoYouAre;
+                UProfile.fieldExpertise = MyProfile.fieldExpertise;
+                UProfile.Interest = MyProfile.Interest;
+                UProfile.WillingToBe = MyProfile.WillingToBe;
+                UProfile.MentorCategory = MyProfile.MentorCategory;
 
 
                 if (MyProfile.Gender == "Male")
-                    {
-                     UProfile.Gender1 = true;
-                    }
-                    else
-                    {
-                    UProfile.Gender2 = true;
-                    }
+                {
+                    UProfile.Gender1 = true;
                 }
-            #endregion
-                MyObjectList.MyProfile = UProfile;
-            return MyObjectList;
+                else
+                {
+                    UProfile.Gender2 = true;
+                }
             }
+            #endregion
+            MyObjectList.MyProfile = UProfile;
+            return MyObjectList;
+        }
         public MyModelObjects Load_Profile(string userId)
         {
             UserProperties UProperties = new UserProperties();
@@ -303,22 +303,22 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  FullName = rec["Title"].ToString() + " " + rec["LName"].ToString() + rec["FName"].ToString(),
-                                                  Degree = rec["Degree"].ToString(),
-                                                  CNumber = rec["CNumber"].ToString(),
-                                                  BDate = rec["BDate"].ToString(),
-                                                  Gender = rec["Gender"].ToString(),
-                                                  OwnersId = rec["OwnersId"].ToString(),
-                                                  DateCreated = rec["DateCreated"].ToString(),
-                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
-                                                  Following = rec["Following"].ToString(),
-                                              }).ToList();
+                                          select new UserProfile()
+                                          {
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              FullName = rec["Title"].ToString() + " " + rec["LName"].ToString() + rec["FName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              Following = rec["Following"].ToString(),
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();
@@ -360,22 +360,22 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Id = Convert.ToInt32(rec["Id"].ToString()),
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  FullName = rec["Title"].ToString() + " " + rec["LName"].ToString() + rec["FName"].ToString(),
-                                                  Degree = rec["Degree"].ToString(),
-                                                  CNumber = rec["CNumber"].ToString(),
-                                                  BDate = rec["BDate"].ToString(),
-                                                  Gender = rec["Gender"].ToString(),
-                                                  OwnersId = rec["OwnersId"].ToString(),
-                                                  DateCreated = rec["DateCreated"].ToString(),
-                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
-                                              }).ToList();
+                                          select new UserProfile()
+                                          {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              FullName = rec["Title"].ToString() + " " + rec["LName"].ToString() + rec["FName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();
@@ -409,33 +409,33 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Id = Convert.ToInt32(rec["Id"].ToString()),
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  Degree = rec["Degree"].ToString(),
-                                                  CNumber = rec["CNumber"].ToString(),
-                                                  BDate = rec["BDate"].ToString(),
-                                                  Gender = rec["Gender"].ToString(),
-                                                  OwnersId = rec["OwnersId"].ToString(),
-                                                  DateCreated = rec["DateCreated"].ToString(),
-                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
-                                                  IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"].ToString()),
-                                                  WhoYouAre = rec["WhoYouAre"].ToString(),
-                                                  Country = rec["Country"].ToString(),
-                                                  Institution = rec["Institution"].ToString(),
-                                                  Qualification = rec["Qualification"].ToString(),
-                                                  Expertise = rec["Expertise"].ToString(),
-                                                  Specialty = rec["Specialty"].ToString(),
-                                                  Interest = rec["Interest"].ToString(),
-                                                  fieldExpertise = rec["fieldExpertise"].ToString(),
-                                                  WillingToBe = rec["WillingToBe"].ToString(),
-                                                  MentorCategory = rec["MentorCategory"].ToString(),
+                                          select new UserProfile()
+                                          {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"].ToString()),
+                                              WhoYouAre = rec["WhoYouAre"].ToString(),
+                                              Country = rec["Country"].ToString(),
+                                              Institution = rec["Institution"].ToString(),
+                                              Qualification = rec["Qualification"].ToString(),
+                                              Expertise = rec["Expertise"].ToString(),
+                                              Specialty = rec["Specialty"].ToString(),
+                                              Interest = rec["Interest"].ToString(),
+                                              fieldExpertise = rec["fieldExpertise"].ToString(),
+                                              WillingToBe = rec["WillingToBe"].ToString(),
+                                              MentorCategory = rec["MentorCategory"].ToString(),
 
-                                              }).ToList();
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();
@@ -467,7 +467,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and Expertise like '" + param + "'";
                     }
-                    
+
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -534,27 +534,27 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Id =  Convert.ToInt32(rec["Id"].ToString()),
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  OwnersId = rec["OwnersId"].ToString(),
-                                                  DateCreated = rec["DateCreated"].ToString(),
-                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
-                                                  WhoYouAre = rec["WhoYouAre"].ToString(),
-                                                  Institution = rec["Institution"].ToString(),
-                                                  Qualification = rec["Qualification"].ToString(),
-                                                  Expertise = rec["Expertise"].ToString(),
-                                                  Specialty = rec["Specialty"].ToString(),
-                                                  Interest = rec["Interest"].ToString(),
-                                                  fieldExpertise = rec["fieldExpertise"].ToString(),
-                                                  WillingToBe = rec["WillingToBe"].ToString(),
-                                                  MentorCategory = rec["MentorCategory"].ToString(),
+                                          select new UserProfile()
+                                          {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              WhoYouAre = rec["WhoYouAre"].ToString(),
+                                              Institution = rec["Institution"].ToString(),
+                                              Qualification = rec["Qualification"].ToString(),
+                                              Expertise = rec["Expertise"].ToString(),
+                                              Specialty = rec["Specialty"].ToString(),
+                                              Interest = rec["Interest"].ToString(),
+                                              fieldExpertise = rec["fieldExpertise"].ToString(),
+                                              WillingToBe = rec["WillingToBe"].ToString(),
+                                              MentorCategory = rec["MentorCategory"].ToString(),
 
-                                              }).ToList();
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();
@@ -586,17 +586,17 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Id = Convert.ToInt32(rec["Id"].ToString()),
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  OwnersId = rec["OwnersId"].ToString(),
-                                                  DateCreated = rec["DateCreated"].ToString(),
-                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
-                                              }).ToList();
+                                          select new UserProfile()
+                                          {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();
@@ -718,10 +718,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 querystring = querystring + "[Degree] = '" + model.Degree + "', [CNumber] = '" + model.CNumber + "',";
                 querystring = querystring + "[BDate] = '" + model.BDate + "', [Gender] = '" + Gender + "',";
                 querystring = querystring + "[ProfilePicsName] = '" + FileName + "', [WhoYouAre] ='" + model.WhoYouAre + "',";
-                querystring = querystring + "[Institution] = '" + model.Institution + "', [Qualification] = '" + model.Qualification +"'";
-                querystring = querystring + ", [Expertise] = '" + model.Expertise + "', [Specialty] = '" + model.Specialty +"', ";
+                querystring = querystring + "[Institution] = '" + model.Institution + "', [Qualification] = '" + model.Qualification + "'";
+                querystring = querystring + ", [Expertise] = '" + model.Expertise + "', [Specialty] = '" + model.Specialty + "', ";
                 querystring = querystring + "[Interest] = '" + model.Interest + "', [fieldExpertise] = '" + model.fieldExpertise + "',";
-                querystring = querystring + " [WillingToBe] = '" + model.WillingToBe + "', [MentorCategory] = '" + model.MentorCategory +"'";
+                querystring = querystring + " [WillingToBe] = '" + model.WillingToBe + "', [MentorCategory] = '" + model.MentorCategory + "'";
                 querystring = querystring + " WHERE[OwnersId] = '" + userName + "'";
                 try
                 {
@@ -777,32 +777,32 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Id = Convert.ToInt32(rec["Id"].ToString()),
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  Degree = rec["Degree"].ToString(),
-                                                  CNumber = rec["CNumber"].ToString(),
-                                                  BDate = rec["BDate"].ToString(),
-                                                  Gender = rec["Gender"].ToString(),
-                                                  OwnersId = rec["OwnersId"].ToString(),
-                                                  Country = rec["Country"].ToString(),
-                                                  DateCreated = rec["DateCreated"].ToString(),
-                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
-                                                  WhoYouAre = rec["WhoYouAre"].ToString(),
-                                                  Institution = rec["Institution"].ToString(),
-                                                  Qualification = rec["Qualification"].ToString(),
-                                                  Expertise = rec["Expertise"].ToString(),
-                                                  Specialty = rec["Specialty"].ToString(),
-                                                  Interest = rec["Interest"].ToString(),
-                                                  fieldExpertise = rec["fieldExpertise"].ToString(),
-                                                  WillingToBe = rec["WillingToBe"].ToString(),
-                                                  MentorCategory = rec["MentorCategory"].ToString(),
+                                          select new UserProfile()
+                                          {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              Country = rec["Country"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              WhoYouAre = rec["WhoYouAre"].ToString(),
+                                              Institution = rec["Institution"].ToString(),
+                                              Qualification = rec["Qualification"].ToString(),
+                                              Expertise = rec["Expertise"].ToString(),
+                                              Specialty = rec["Specialty"].ToString(),
+                                              Interest = rec["Interest"].ToString(),
+                                              fieldExpertise = rec["fieldExpertise"].ToString(),
+                                              WillingToBe = rec["WillingToBe"].ToString(),
+                                              MentorCategory = rec["MentorCategory"].ToString(),
 
-                                              }).ToList();
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();
@@ -825,7 +825,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select * from MenTors_Mentees as a where a.Mentee = '" + userName + "' and Mentor = '"+ mentor + "'";
+                    query = "select * from MenTors_Mentees as a where a.Mentee = '" + userName + "' and Mentor = '" + mentor + "'";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -840,7 +840,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Mentee = rec["Mentee"].ToString(),
                                               Mentor = rec["Mentor"].ToString(),
-                                              MenTors_MenteesCreated = rec["MenTors_MenteesCreated"].ToString(),                                            
+                                              MenTors_MenteesCreated = rec["MenTors_MenteesCreated"].ToString(),
                                           }).ToList();
                             #endregion
                         }
@@ -892,26 +892,26 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  Degree = rec["Degree"].ToString(),
-                                                  CNumber = rec["CNumber"].ToString(),
-                                                  BDate = rec["BDate"].ToString(),
-                                                  Gender = rec["Gender"].ToString(),
-                                                  Country = rec["Country"].ToString(),
-                                                  ProfilePicsName = rec["ProfilePicsName"].ToString(),
-                                                  FileName = rec["FileName"].ToString(),
-                                                  ResearchId = rec["Id"].ToString(),
-                                                  RDateCreated = rec["DateCreated"].ToString(),
-                                                  RType = rec["RType"].ToString(),
-                                                  Status = rec["Status"].ToString(),
-                                                  Description = rec["Description"].ToString(),
-                                                  RTitle = rec["RTitle"].ToString(),
+                                          select new UserProfile()
+                                          {
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              Country = rec["Country"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              FileName = rec["FileName"].ToString(),
+                                              ResearchId = rec["Id"].ToString(),
+                                              RDateCreated = rec["DateCreated"].ToString(),
+                                              RType = rec["RType"].ToString(),
+                                              Status = rec["Status"].ToString(),
+                                              Description = rec["Description"].ToString(),
+                                              RTitle = rec["RTitle"].ToString(),
 
-                                              }).ToList();
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();
@@ -946,7 +946,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             myuserlist = (from DataRow rec in dt.Rows
                                           select new UserProfile()
                                           {
-                                              Id = (int) rec["Id"],
+                                              Id = (int)rec["Id"],
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
                                               LName = rec["LName"].ToString(),
@@ -958,7 +958,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               Status = rec["Status"].ToString(),
                                               Description = rec["Description"].ToString(),
                                               RTitle = rec["RTitle"].ToString(),
-                                              Gender =  rec["Gender"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
 
                                           }).ToList();
                             #endregion
@@ -1002,7 +1002,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               Subject = rec["Subject"].ToString(),
                                               Message = rec["Message"].ToString(),
                                               AttachedFileName = rec["AttachedFileName"].ToString(),
-                                              MessageDateCreated = rec["MessageDateCreated"].ToString(),                                             
+                                              MessageDateCreated = rec["MessageDateCreated"].ToString(),
 
                                           }).ToList();
                             #endregion
@@ -1153,7 +1153,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     row = cmd.ExecuteNonQuery();
                     conAm.Close();
                     conAm.Dispose();
-                    if(row > 0)
+                    if (row > 0)
                     {
                         #region Activity
                         loadActivity.ActivityName = "New research was added, " + model.RTitle;
@@ -1264,13 +1264,13 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         Directory.CreateDirectory(path);
                     }
-                    if(postedFile != null)
+                    if (postedFile != null)
                     {
                         fileName = Path.GetFileName(postedFile.FileName);
                         postedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
                     }
                     string userName = User.Identity.GetUserName();
-                    string creationDate = DateTime.Now.ToShortDateString();                   
+                    string creationDate = DateTime.Now.ToShortDateString();
                     var cmd = new SqlCommand("Insert into Messages([From], [To], [Subject], [Message], [AttachedFileName], [MessageDateCreated], [Read]) values('" + userName + "', '" + OwnersId + "', '" + Subject + "', '" + Message + "', '" + fileName + "', '" + creationDate + "', '" + false + "')", conAm);
                     row = cmd.ExecuteNonQuery();
                     conAm.Close();
@@ -1306,7 +1306,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     string mentor = GetSingleUsers(id).OwnersId;
                     string MentorName = GetSingleUsersByEmail(mentor).Title + " " + GetSingleUsersByEmail(mentor).LName + " " + GetSingleUsersByEmail(mentor).FName;
                     var SeeId = Mentor_Mentee(mentor);
-                    if(SeeId != null)
+                    if (SeeId != null)
                     {
                         LoadProfile = Page_Load();
                         ViewBag.Message = "This  Person Is Already Your Mentor.";
@@ -1353,20 +1353,20 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  Degree = rec["Degree"].ToString(),
-                                                  CNumber = rec["CNumber"].ToString(),
-                                                  BDate = rec["BDate"].ToString(),
-                                                  Gender = rec["Gender"].ToString(),
-                                                  OwnersId = rec["OwnersId"].ToString(),
-                                                  DateCreated = rec["DateCreated"].ToString(),
-                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ConfirmationCode"].ToString(),
-                                              }).ToList();
+                                          select new UserProfile()
+                                          {
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();
@@ -1418,20 +1418,20 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  Degree = rec["Degree"].ToString(),
-                                                  CNumber = rec["CNumber"].ToString(),
-                                                  BDate = rec["BDate"].ToString(),
-                                                  Gender = rec["Gender"].ToString(),
-                                                  OwnersId = rec["OwnersId"].ToString(),
-                                                  DateCreated = rec["DateCreated"].ToString(),
-                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  ProfilePicsName = rec["ConfirmationCode"].ToString(),
-                                              }).ToList();
+                                          select new UserProfile()
+                                          {
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();
@@ -1459,7 +1459,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region About Us
         public ActionResult AboutUs()
         {
-                   
+
 
             return View();
         }
@@ -1467,12 +1467,29 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #endregion
 
         #region View each Message
-        public ActionResult UserInboxDetails(int id)
+        public ActionResult UserInboxDetails(int? id)
         {
-            
-            var InboxDetails = GetLoginUserMessages().FirstOrDefault();
-            return View(InboxDetails);
-            
+
+            MyModelObjects MyObjectList = new MyModelObjects();
+            MyObjectList.MyMessages = GetLoginUserMessages();
+            MyObjectList.MyMessageInbox = GetLoginUserInbox();
+            MyObjectList.GetAllUsers = GetAllUsers();
+            if (id.HasValue)
+            {
+                var myMessageIn = GetLoginUserInbox().FirstOrDefault();
+                if (myMessageIn != null)
+                {
+                    MyObjectList.MyMessageDetailInbox = new Messages();
+                    MyObjectList.MyMessageDetailInbox.From = myMessageIn.From;
+                    MyObjectList.MyMessageDetailInbox.To = myMessageIn.To;
+                    MyObjectList.MyMessageDetailInbox.Message = myMessageIn.Message;
+                    MyObjectList.MyMessageDetailInbox.Subject = myMessageIn.Subject;
+                    MyObjectList.MyMessageDetailInbox.MessageDateCreated = myMessageIn.MessageDateCreated;
+                    MyObjectList.MyMessageDetailInbox.FromImage = GetSingleUsersByEmail(myMessageIn.From).ProfilePicsName;
+
+                }
+            }
+            return View(MyObjectList);
         }
 
         #endregion

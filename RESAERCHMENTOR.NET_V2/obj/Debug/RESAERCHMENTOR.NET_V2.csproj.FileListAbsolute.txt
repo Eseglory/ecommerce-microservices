@@ -704,3 +704,5 @@ C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\obj\Debug
 C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\obj\Debug\RESAERCHMENTOR.NET_V2.pdb
 C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\bin\PayStack.Net.dll
 C:\Users\USER\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\bin\XtremeIT.Library.Pins.dll
+C:\Users\user\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\bin\roslyn\vcsc.exe
+C:\Users\user\Source\Repos\sxxy_research.net_dev\RESAERCHMENTOR.NET_V2\bin\roslyn\vcsc.ico

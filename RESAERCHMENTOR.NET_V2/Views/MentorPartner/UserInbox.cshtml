@@ -244,7 +244,7 @@
                                             <div class="table-responsive mb-0">
                                                 <table class="table table-inbox table-hover mb-0">
                                                     <tbody>
-                                                        @{ 
+                                                        @{
                                                             foreach (var rec in Model.MyMessageInbox)
                                                             {
 
@@ -267,27 +267,33 @@
                                                                             <span class="time-chat-history inline-block">March 15</span>
                                                                         </td>
                                                                     </tr>
-                                                                        }
-                                                                        else
-                                                                        {
+                                                                }
+                                                                else
+                                                                {
                                                                     //New Message
-                                                                    <tr class="unread">
-                                                                    <td class="inbox-small-cells">
-                                                                        <div class="checkbox checkbox-default inline-block">
-                                                                            @*<input type="checkbox" id="checkbox012" />
-                                                                            <label for="checkbox012"></label>*@
-                                                                        </div>
-                                                                        <i class="zmdi zmdi-star inline-block font-16"></i>
-                                                                    </td>
-                                                                    <td class="view-message  dont-show">@rec.From<span class="label label-warning pull-right">@*new*@</span></td>
-                                                                    <td class="view-message ">@rec.Message</td>
-                                                                    <td class="view-message  text-right">
-                                                                        @{ DateTime Mdate = Convert.ToDateTime(rec.MessageDateCreated);
-                                                                            string mTime = Mdate.ToLongTimeString(); }
-                                                                        <i class="zmdi zmdi-attachment inline-block mr-15 font-16"></i>
-                                                                        <span class="time-chat-history inline-block">@mTime</span>
-                                                                    </td>
-                                                                </tr>
+                                                                          <tr class="unread">
+                                                        <td class="inbox-small-cells">
+                                                            <div class="checkbox checkbox-default inline-block">
+                                                                @*<input type="checkbox" id="checkbox012" />
+                                                                                        <label for="checkbox012"></label>*@
+                                                            </div>
+                                                            <i class="zmdi zmdi-star inline-block font-16"></i>
+                                                        </td>
+                                                                              <td class="view-message  dont-show">
+                                                                                  <a href="@Url.Action("UserInboxDetails", "mentorpartner", new { id = rec.Id })">
+
+                                                                                      @rec.From<span class="label label-warning pull-right">@*new*@</span>
+                                                                                  </a>
+                                                                              </td>
+                                                        <td class="view-message ">@rec.Message</td>
+                                                        <td class="view-message  text-right">
+                                                            @{ @*DateTime Mdate = Convert.ToDateTime(rec.MessageDateCreated);
+                                                                                        string mTime = Mdate.ToLongTimeString();*@ }
+                                                            <i class="zmdi zmdi-attachment inline-block mr-15 font-16"></i>
+                                                            <span class="time-chat-history inline-block">@rec.MessageDateCreated</span>
+
+                                                        </td>
+                                                    </tr>
                                                                 }
 
                                                                 }
