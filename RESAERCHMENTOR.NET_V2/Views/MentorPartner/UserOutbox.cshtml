@@ -283,7 +283,7 @@
                                                                     </td>
                                                                     <td class="view-message  dont-show">@rec.To <span class="label label-warning pull-right">@*new*@</span></td>
                                                                     <td class="view-message ">
-                                                                        <a title="View User Information" href="@Url.Action("UserInboxDetails", "mentorpartner", new { id = rec.Id })">
+                                                                        <a title="View User Information" href="@Url.Action("UserOutboxDetails", "mentorpartner", new { id = rec.Id })">
                                                                             @rec.Message
                                                                         </a>
                                                                     </td>

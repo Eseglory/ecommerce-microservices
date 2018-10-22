@@ -1492,6 +1492,32 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             return View(MyObjectList);
         }
 
+        public ActionResult UserOutboxDetails(int? id)
+        {
+
+            MyModelObjects MyObjectList = new MyModelObjects();
+            MyObjectList.MyMessages = GetLoginUserMessages();
+            MyObjectList.MyMessageInbox = GetLoginUserInbox();
+            MyObjectList.GetAllUsers = GetAllUsers();
+            if (id.HasValue)
+            {
+                var myMessageIn = GetLoginUserMessages().FirstOrDefault();
+                if (myMessageIn != null)
+                {
+                    MyObjectList.MyMessageDetailInbox = new Messages();
+                    MyObjectList.MyMessageDetailInbox.From = myMessageIn.From;
+                    MyObjectList.MyMessageDetailInbox.To = myMessageIn.To;
+                    MyObjectList.MyMessageDetailInbox.Message = myMessageIn.Message;
+                    MyObjectList.MyMessageDetailInbox.Subject = myMessageIn.Subject;
+                    MyObjectList.MyMessageDetailInbox.MessageDateCreated = myMessageIn.MessageDateCreated;
+                    MyObjectList.MyMessageDetailInbox.FromImage = GetSingleUsersByEmail(myMessageIn.From).ProfilePicsName;
+                    
+
+                }
+            }
+            return View(MyObjectList);
+        }
+
         #endregion
 
         #region Payment for peer review

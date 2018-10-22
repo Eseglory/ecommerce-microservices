@@ -1,0 +1,101 @@
+﻿@model IEnumerable<RESAERCHMENTOR.NET_V2.Models.UserProfile>
+@using Microsoft.AspNet.Identity
+@using System.Globalization
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <br /><br /><br />
+        <div class="panel panel-default card-view pa-0">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body pt-0">
+                    <form action="@Url.Action("userSearchResult", "MentorPartner")" method="post" role="form" enctype="multipart/form-data" id="FileData">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-12 pa-30">
+
+
+                                    <h3 class="ma-30"><span class="number"><i class="icon-user-following txt-black"></i></span><span class="head-font capitalize-font"> Looking For a Mentor or Collaborator</span></h3>
+
+                                    <div class="form-wrap">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                <input type="text" class="form-control required" name="fieldExpertise" id="fieldExpertise" placeholder="Looking For a Mentor or Collaborator">
+                                            </div>
+                                        </div>
+
+                                        <div class="button-list mt-25">
+                                            <button class="btn  btn-primary btn-rounded pull-right" type="submit">Start Looking For Expert Now</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                        <fieldset>
+                            <div class="table-responsive">
+                                <table class="table display product-overview" id="datable_1">
+                                    <thead>
+                                        <tr>
+                                            <th>Photo</th>
+                                            <th>Name</th>
+                                            <th>Primary Area of Expertise</th>
+                                            <th>No of Years in Field</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    @if (Model != null)
+                                    {
+                                        <tbody>
+                                            @{foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">
+                                                                @if (@item.ProfilePicsName == string.Empty && item.Gender == "Male")
+
+                                                                {
+                                                                    <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-img img-circle" width="70" />
+                                                                }
+                                                                else if (item.ProfilePicsName == string.Empty && item.Gender == "Female")
+                                                                {
+                                                                    <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-img img-circle" width="70" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <img src="~/Files/@item.ProfilePicsName" class="user-img img-circle" alt="iMac" width="70">
+                                                                }
+                                                                </a>
+                                                            </td>
+                                                        @{ item.FullName = item.Title + " " + item.LName + " " + item.FName; }
+                                                        <td><a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">@item.FullName</a></td>
+                                                        <td>
+                                                            @item.Expertise
+                                                        </td>
+                                                        <td>@item.fieldExpertise</td>
+                                                        <td align="left">
+                                                            @if (item.FullName != string.Empty)
+                                                            {
+                                                                <a title="Add This Person As Your Mentor" href="@Url.Action("mentor_click", "mentorpartner", new { id = item.Id })" class="btn-success pull-left btn-xs fixed-btn"><i class=" ti-plus"> </i> Add as Mentor</a>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                            }
+                                            }
+                                        </tbody>
+                                                            }
+                                    
+                                </table>
+                            </div>
+                        </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

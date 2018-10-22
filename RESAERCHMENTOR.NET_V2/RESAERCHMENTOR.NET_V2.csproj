@@ -712,6 +712,7 @@
     <Content Include="Views\MentorPartner\AboutUs.cshtml" />
     <Content Include="Views\MentorPartner\UserPayment.cshtml" />
     <Content Include="Views\MentorPartner\UserInboxDetails.cshtml" />
+    <Content Include="Views\MentorPartner\UserOutboxDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

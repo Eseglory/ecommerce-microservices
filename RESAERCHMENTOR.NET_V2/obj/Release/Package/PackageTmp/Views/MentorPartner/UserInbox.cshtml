@@ -1,0 +1,315 @@
+﻿@model RESAERCHMENTOR.NET_V2.Models.MyModelObjects
+@using Microsoft.AspNet.Identity
+@using System.Globalization
+@{
+    ViewBag.Title = "Messages";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+
+
+<!-- Row Begins-->
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default card-view pa-0">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body pa-0">
+                    <div class="mail-box">
+                        <div class="row">
+                            <aside class="col-lg-3 col-md-4 pr-0">
+                                <div class="mt-20 mb-20 ml-15 mr-15">
+                                    <a href="#myModal" data-toggle="modal" title="Compose" class="btn btn-success btn-block">
+                                        Compose
+                                    </a>
+                                    <!-- Modal -->
+                                    <div aria-hidden="true" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="display: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                    <h4 class="modal-title">Compose</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form role="form" class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="col-lg-2 control-label">To</label>
+                                                            <div class="col-lg-10">
+                                                                <input type="text" placeholder="" id="inputEmail1" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-lg-2 control-label">Cc / Bcc</label>
+                                                            <div class="col-lg-10">
+                                                                <input type="text" placeholder="" id="cc" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-lg-2 control-label">Subject</label>
+                                                            <div class="col-lg-10">
+                                                                <input type="text" placeholder="" id="inputPassword1" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-lg-2 control-label">Message</label>
+                                                            <div class="col-lg-10">
+                                                                <textarea class="textarea_editor form-control" rows="15" placeholder="Enter text ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-lg-offset-2 col-lg-10">
+                                                                <div class="fileupload btn btn-info btn-anim mr-10">
+                                                                    <i class="fa fa-paperclip"></i><span class="btn-text">attachments</span>
+                                                                    <input type="file" class="upload">
+                                                                </div>
+
+                                                                <button class="btn btn-success" type="submit">Send</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
+                                </div>
+                                <ul class="inbox-nav mb-30">
+                                    <li class="active">
+                                        <a href="@Url.Action("UserInbox", "MentorPartner")">
+                                            <i class="zmdi zmdi-inbox"></i> Inbox
+                                            <span class="label label-danger ml-10">
+                                                @Model.MyMessageInbox.Where(x => x.Read == false).Count()
+                                            </span>
+                                        </a>
+                                    </li>
+                                   <li>
+                                        <a href="@Url.Action("UserOutbox", "MentorPartner")"><i class="zmdi zmdi-email-open"></i> Sent Mail</a>
+                                    </li>
+                                    @* <li>
+                                        <a href="#"><i class="zmdi zmdi-bookmark-outline"></i> Important</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="zmdi zmdi-folder-outline"></i> Drafts <span class="label label-info ml-10">30</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="zmdi zmdi-delete"></i> Trash</a>
+                                    </li>*@
+                                </ul>
+                                <h6 class="pl-15 mb-20">Labels</h6>
+                                <ul class="inbox-nav mb-30">
+                                    <li> <a href="#"> <i class="fa fa-stop txt-danger"></i> Work </a> </li>
+                                    <li> <a href="#"> <i class="fa fa-stop txt-success"></i> Design </a> </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-stop txt-info "></i> Family </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-stop txt-warning "></i> Friends </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> <i class="fa fa-stop txt-primary "></i> Office </a>
+                                    </li>
+                                </ul>
+                                <h6 class="pl-15 mb-20">online</h6>
+                                <ul class="chat-list-wrap">
+                                    <li class="chat-list">
+                                        <div class="chat-body">
+                                            <a href="javascript:void(0)">
+                                                <div class="chat-data">
+                                                    <img class="user-img img-circle" src="~/Content/dist/img/user.png" alt="user" />
+                                                    <div class="user-data">
+                                                        <span class="name block capitalize-font">Mentor Partner Administrator</span>
+                                                        <span class="time block truncate txt-grey">Its all about mentoring.</span>
+                                                    </div>
+                                                    <div class="status away"></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </a>
+                                            @{foreach (var iuser in Model.GetAllUsers)
+                                                {
+                                                    <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = iuser.Id })">
+                                                        <div class="chat-data">
+                                                            @if (iuser.ProfilePicsName == string.Empty && iuser.Gender == "Male")
+                                                            {
+                                                                <img ID="PictureImageA" class="user-img img-circle" src="~/Content/dist/img/userMale.png" />
+                                                            }
+
+                                                            else if (iuser.ProfilePicsName == string.Empty && iuser.Gender == "Female")
+                                                            {
+                                                                <img ID="PictureImageA" class="user-img img-circle" src="~/Content/dist/img/userfeMale.png" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <img class="user-img img-circle" src="~/Files/@iuser.ProfilePicsName" alt="user" />
+                                                            }
+                                                            @{ string fullname = iuser.Title + " " + iuser.LName + " " + iuser.FName; }
+                                                            <div class="user-data">
+                                                                <span class="name block capitalize-font">@fullname.</span>
+                                                                <span class="time block truncate txt-grey">@iuser.fieldExpertise</span>
+                                                            </div>
+                                                            <div class="status online"></div>
+                                                            <a title="Add This Person As Mentor" href="@Url.Action("mentor_click", "mentorpartner", new { id = iuser.Id })" class="btn-success pull-right btn-xs fixed-btn"><i class="ti-plus"></i></a>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </a>
+                                                                }
+                                            }
+                                        </div>
+                                    </li>
+                                </ul>
+                            </aside>
+
+                            <aside class="col-lg-9 col-md-8 pl-0">
+                                <div class="panel panel-refresh pa-0">
+                                    <div class="refresh-container">
+                                        <div class="la-anim-1"></div>
+                                    </div>
+                                    <div class="panel-heading pt-20 pb-20 pl-15 pr-15">
+                                        <div class="pull-left">
+                                            <h6 class="panel-title txt-dark">inbox</h6>
+                                        </div>
+                                        <div class="pull-right">
+                                            <form role="search" class="inbox-search inline-block pull-left mr-15">
+                                                <div class="input-group">
+                                                    <input name="example-input1-group2" class="form-control" placeholder="Search" type="text">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn  btn-default" data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                            <a href="#" class="pull-left inline-block refresh">
+                                                <i class="zmdi zmdi-replay"></i>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="panel-wrapper collapse in">
+                                        <div class="panel-body inbox-body pa-0">
+                                            <div class="mail-option pl-15 pr-15">
+                                                <div class="chk-all">
+                                                    <div class="checkbox checkbox-default inline-block">
+                                                        @*<input type="checkbox" id="checkbox051" />
+                                                        <label for="checkbox051"></label>*@
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        @*<a data-toggle="dropdown" href="#" class="btn  all" aria-expanded="false">
+                                                            All
+                                                            <i class="fa fa-angle-down "></i>
+                                                        </a>*@
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="#"> None</a></li>
+                                                            <li><a href="#"> Read</a></li>
+                                                            <li><a href="#"> Unread</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        @*<a data-toggle="dropdown" href="#" class="btn  blue">
+                                                            Move to
+                                                            <i class="fa fa-angle-down "></i>
+                                                        </a>*@
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="#">Personal</a></li>
+                                                            <li><a href="#">Social</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#">Promotional</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#">Updates</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        @*<a data-toggle="dropdown" href="#" class="btn  blue" aria-expanded="false">
+                                                            More
+                                                            <i class="fa fa-angle-down "></i>
+                                                        </a>*@
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
+                                                            <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <ul class="unstyled inbox-pagination">
+                                                    <li><span>@*1-10 of 234*@</span></li>
+                                                    <li>
+                                                        <a class="pl-15 pr-15" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="table-responsive mb-0">
+                                                <table class="table table-inbox table-hover mb-0">
+                                                    <tbody>
+                                                        @{
+                                                            foreach (var rec in Model.MyMessageInbox)
+                                                            {
+
+                                                                if(rec.Read)
+                                                                        {
+                                                                    //You Have Read The Message
+                                                                    <tr class="">
+                                                                        <td class="inbox-small-cells">
+                                                                            <div class="checkbox checkbox-default inline-block">
+                                                                                <input type="checkbox" id="checkbox014" />
+                                                                                <label for="checkbox014"></label>
+                                                                            </div>
+                                                                            <i class="zmdi zmdi-star inline-block font-16"></i>
+                                                                        </td>
+
+                                                                        <td class="view-message dont-show">Eseosa Glory</td>
+                                                                        <td class="view-message">Last Chance: Upgrade to Pro for </td>
+                                                                        <td class="view-message text-right">
+                                                                            <i class="zmdi zmdi-attachment inline-block mr-15 font-16"></i>
+                                                                            <span class="time-chat-history inline-block">March 15</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    //New Message
+                                                                          <tr class="unread">
+                                                        <td class="inbox-small-cells">
+                                                            <div class="checkbox checkbox-default inline-block">
+                                                                @*<input type="checkbox" id="checkbox012" />
+                                                                                        <label for="checkbox012"></label>*@
+                                                            </div>
+                                                            <i class="zmdi zmdi-star inline-block font-16"></i>
+                                                        </td>
+                                                                              <td class="view-message  dont-show">
+                                                                                  <a href="@Url.Action("UserInboxDetails", "mentorpartner", new { id = rec.Id })">
+
+                                                                                      @rec.From<span class="label label-warning pull-right">@*new*@</span>
+                                                                                  </a>
+                                                                              </td>
+                                                        <td class="view-message ">@rec.Message</td>
+                                                        <td class="view-message  text-right">
+                                                            @{ @*DateTime Mdate = Convert.ToDateTime(rec.MessageDateCreated);
+                                                                                        string mTime = Mdate.ToLongTimeString();*@ }
+                                                            <i class="zmdi zmdi-attachment inline-block mr-15 font-16"></i>
+                                                            <span class="time-chat-history inline-block">@rec.MessageDateCreated</span>
+
+                                                        </td>
+                                                    </tr>
+                                                                }
+
+                                                                }
+                                                          }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
