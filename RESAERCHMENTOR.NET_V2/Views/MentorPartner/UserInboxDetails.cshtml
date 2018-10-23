@@ -215,7 +215,15 @@
                                             <div class="sender-info">
                                                 <div class="container-fluid">
                                                     <div class="sender-img-wrap pull-left mr-20">
+                                                      @if (Model.MyMessageDetailInbox.FromImage == string.Empty)
+                                                      {
+                                                        <img ID="PictureImageA" class="user-img img-circle" src="~/Content/dist/img/userMale.png" />
+                                                      }
+
+                                                      else
+                                                      {
                                                         <img class="sender-img" alt="user" src="~/Files/@Model.MyMessageDetailInbox.FromImage">
+                                                      }
                                                     </div>
                                                     <div class="sender-details   pull-left">
                                                         <span class="capitalize-font pr-5 txt-dark block font-15 weight-500 head-font">@Model.MyMessageDetailInbox.From</span>
