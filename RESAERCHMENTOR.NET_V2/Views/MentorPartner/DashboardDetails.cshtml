@@ -1,0 +1,120 @@
+﻿
+
+@model RESAERCHMENTOR.NET_V2.Models.MyModelObjects
+@using Microsoft.AspNet.Identity
+@using System.Globalization
+
+@{
+    ViewBag.Title = "DashboardDetails";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<p><br /><br /><br /></p>
+
+<!-- Added by saka -->
+<div class="container">
+    <div class="row">
+        <div class="story-cont col-lg-12 p-b-m">
+           
+            @{foreach (var item in Model.MyResearch)
+            {
+                    <div class="story-cont col-lg-12 p-b-m">
+                        <div class="row story-cont2">
+                            <div class="profile-pic col-lg-1 col-xs-2 pg-up">
+                                <div class="row">
+                                    @if (item.ProfilePicsName == string.Empty && item.Gender == "Male")
+                                    {
+                                        <img ID="PictureImageA" class="img-responsive img-circle" src="~/Content/dist/img/userMale.png" width="76" height="76" />
+                                    }
+
+                                    else if (item.ProfilePicsName == string.Empty && item.Gender == "Female")
+                                    {
+                                        <img ID="PictureImageA" class="img-responsive img-circle" src="~/Content/dist/img/userfeMale.png" width="76" height="76" />
+                                    }
+                                    else
+                                    {
+
+                                        <img id="RProfileImg" class="img-responsive img-circle" src="~/Files/@item.ProfilePicsName" width="76" height="76">
+                                    }
+                                </div><!-- /profile-pic -->
+                            </div>
+                            <!--div class="row"-->
+                            <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
+                                <div class="username-newsfeed p-tb-xs">
+
+                                    <span class="txt-green"><strong>@item.Title  @item.FName  @item.LName </strong></span>
+
+                                    <div class="visible-xs"><br></div>
+                                    @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                        string MDate = RDate.ToLongDateString(); }
+
+                                    <span class="txt-grey pull-right">Posted @MDate</span>
+                                    <br>
+
+                                    <span class="txt-grey">@item.RType was added</span>
+                                </div><!-- /username-newsfeed -->
+                            </div><!-- /news-feed-header -->
+                            <div class="write-up col-lg-10 bg-white border-top p-b-s">
+                                <div class="news-feed-title_img col-lg-7">
+
+                                    <div class="row">
+                                        <h5 style="color:#238C00; text-transform:capitalize;">@item.RTitle</h5>
+                                        <div class="post-heading col-lg-12">
+
+                                            <p style="font-size:14px;">@item.Description </p>
+                                        </div><!-- /post-heading -->
+                                        <div class="row">
+
+                                            <br><br><br><br><br><br>
+
+                                        </div>
+                                    </div><!-- /row -->
+                                    <div class="row">
+                                        <div class="post-img col-lg-12">
+
+                                            <div class="row">
+                                                <div class="col-lg-8 col-xs-9 view-top">
+                                                    <div class="row">
+
+                                                        <a href="@Url.Action("DashboardDetails", "mentorpartner", new { id = item.ResearchId })" class="p-l-s txt-green">View </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <a href="~/Images/@item.FileName" target="_blank" class="p-l-s txt-green">Download </a>
+                                                    </div>
+                                                </div><!-- /col-6 -->
+
+                                            </div><!-- /row -->
+
+
+                                        </div><!-- /post-img -->
+                                    </div><!-- /row -->
+
+                                </div><!-- /news-feed-title_img -->
+                                <div class="news-feed-text col-lg-5 p-t-s">
+                                    <img src="~/Content/dist/img/big/kids.png" class="img-responsive" width="100" height="600">
+
+                                </div><!-- /news-feed-text -->
+                            </div><!-- /write-up -->
+                            <!--/div-->
+
+                        </div><!-- /row -->
+                    </div>
+                                        }
+            }
+            <p><br /></p>
+            
+        </div>
+
+     
+        <!-- /story-cont -->
+        <div class="col-lg-1"></div>
+
+        <div class="col-lg-4 bg-white static pull-right">
+            <div class="p-t-xs"><img src="~/Content/dist/img/big/ad-1.png" class="img-responsive" width="250"></div>
+            <div class="p-tb-xs"><img src="~/Content/dist/img/big/ad-2.png" class="img-responsive" width="250"></div>
+
+        </div><!-- /.col-3 -->
+    </div>
+
+
+</div><!-- /row -->
+<!-- Added by saka -->
+
+

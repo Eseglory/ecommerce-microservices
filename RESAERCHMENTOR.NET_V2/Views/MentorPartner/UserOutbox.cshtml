@@ -271,7 +271,9 @@
                                                                 else
                                                                 {
                                                                     //New Message
+                                                                    
                                                                     <tr class="unread">
+                                                                        
                                                                     <td class="inbox-small-cells">
                                                                         <div class="checkbox checkbox-default inline-block">
                                                                             @*<input type="checkbox" id="checkbox012" />
@@ -280,7 +282,11 @@
                                                                         <i class="zmdi zmdi-star inline-block font-16"></i>
                                                                     </td>
                                                                     <td class="view-message  dont-show">@rec.To <span class="label label-warning pull-right">@*new*@</span></td>
-                                                                    <td class="view-message ">@rec.Message</td>
+                                                                    <td class="view-message ">
+                                                                        <a title="View User Information" href="@Url.Action("UserOutboxDetails", "mentorpartner", new { id = rec.Id })">
+                                                                            @rec.Message
+                                                                        </a>
+                                                                    </td>
                                                                         <td class="view-message  text-right">
                                                                             @if (rec.AttachedFileName == String.Empty)
                                                                             { }
@@ -293,6 +299,7 @@
                                                                                 string mTime = MDate.ToLongTimeString();}
                                                                             <span class="time-chat-history inline-block">@mTime</span>
                                                                         </td>
+                                                                            
                                                                 </tr>
 
                                                                 }

@@ -48,10 +48,10 @@ else
                                     <span class="txt-green"><strong>@item.Title  @item.FName  @item.LName </strong></span>
 
                                     <div class="visible-xs"><br></div>
-                                    @{@*DateTime RDate = Convert.ToDateTime(item.RDateCreated);
-                                        string MDate = RDate.ToLongDateString();*@ }
+                                    @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                        string MDate = RDate.ToLongDateString(); }
 
-                                    <span class="txt-grey pull-right">Posted @item.RDateCreated</span>
+                                    <span class="txt-grey pull-right">Posted @MDate</span>
                                     <br>
 
                                     <span class="txt-grey">@item.RType was added</span>
@@ -78,16 +78,12 @@ else
                                             <div class="row">
                                                 <div class="col-lg-8 col-xs-9 view-top">
                                                     <div class="row">
-                                                        <a href="#" class="p-l-s txt-green">View </a>
-                                                        <a href="#" class="p-l-s txt-green">Download </a>
+
+                                                        <a href="@Url.Action("DashboardDetails", "mentorpartner", new { id = item.ResearchId })" class="p-l-s txt-green">View </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <a href="~/Images/@item.FileName" target="_blank" class="p-l-s txt-green">Download </a>
                                                     </div>
                                                 </div><!-- /col-6 -->
-                                                <div class="col-lg-4 col-xs-3 pull-right view-top">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/like.png" width="15"></div>
-                                                        <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/share.png" width="15"></div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div><!-- /row -->
 
 
@@ -144,16 +140,17 @@ else
                             <!--div class="row"-->
                             <div class="news-feed-header col-lg-8 col-xs-8 pg-up bg-white">
                                 <div class="username-newsfeed p-tb-xs">
-                                    <span class="txt-green"><strong>@item.Title  @item.FName  @item.LName   </strong></span>
-                                    <div class="visible-xs"><br></div>
-                                    @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
-                                    string MDate = RDate.ToLongDateString(); }
+                                    <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">
+                                        <span class="txt-green"><strong>@item.Title  @item.FName  @item.LName   </strong></span></a>
+                                        <div class="visible-xs"><br></div>
+                                        @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                            string MDate = RDate.ToLongDateString(); }
 
-                                    <span class="txt-grey pull-right">Posted @MDate</span>
-                                    <br>
+                                        <span class="txt-grey pull-right">Posted @MDate</span>
+                                        <br>
 
-                                    <span class="txt-grey">@item.RType was added</span>
-                                </div><!-- /username-newsfeed -->
+                                        <span class="txt-grey">@item.RType was added</span>
+</div><!-- /username-newsfeed -->
                             </div><!-- /news-feed-header -->
                             <div class="write-up col-lg-10 bg-white border-top p-b-s">
                                 <div class="news-feed-title_img col-lg-7">
@@ -175,15 +172,12 @@ else
                                             <div class="row">
                                                 <div class="col-lg-8 col-xs-9 view-top">
                                                     <div class="row">
-                                                        <a href="#" class="p-l-s txt-green">View </a>
-                                                        <a href="#" class="p-l-s txt-green">Download </a>
+                                                        <a href="@Url.Action("DashboardDetails", "mentorpartner", new { id = item.ResearchId })" class="p-l-s txt-green">View </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <a href="~/Images/@item.FileName" target="_blank" class="p-l-s txt-green">Download </a>
                                                     </div>
                                                 </div><!-- /col-6 -->
                                                 <div class="col-lg-4 col-xs-3 pull-right view-top">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/like.png" width="15"></div>
-                                                        <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/share.png" width="15"></div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div><!-- /row -->
 

@@ -1,0 +1,99 @@
+﻿@model RESAERCHMENTOR.NET_V2.Models.MyModelObjects
+@using Microsoft.AspNet.Identity
+@using System.Globalization
+@{
+    ViewBag.Title = "UserPayment";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <br /><br /><br />
+        <div class="panel panel-default card-view pa-0">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body pt-0">
+                    <form id="example-advanced-form" action="#">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-12 pa-30">
+
+
+                                    <h3 class="ma-30"><span class="number"><i class="fa fa-money txt-black"></i></span><span class="head-font capitalize-font"> Peer Review Payment</span></h3>
+
+                                    <div class="form-wrap">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-money"></i></div>
+                                                <input type="text" class="form-control required" name="Payment" id="exampleInputuname" placeholder="N4000" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="button-list mt-25">
+                                            @*I call the function that loads payment gateway here*@
+                                            <button class="btn  btn-primary btn-rounded pull-right" type="button" onclick="payWithPaystack()">Pay</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+
+    <div class="hidden">
+        @*Find a way to parse the user's email address here, you could send it to a ViewBag from your controller then replace "test@test.com" with the ViewBag object.*@
+        <input id="Email" value=@User.Identity.GetUserName() type="email" />
+        
+        @*Here is the main place where the price to pay is set (in kobo), so if you want to change the price in the future, remember to change it here also*@
+        <input id="Price" value="400000" type="text" />
+    </div>
+
+</form>
+
+<script>
+    function payWithPaystack() {
+        var handler = PaystackPop.setup({
+            key: 'pk_test_b3d7d43f9f36191805d74fe2d6cdd10c3025a515',
+            email: $('#Email').val(),
+            amount: $('#Price').val(),
+            callback: function (response) {
+                $.post("/MentorPartner/VerifyPSTranx",
+                    { reqId: response.reference },
+                    function (resp) {
+                        if (resp.requestStat == "Successful")
+                        {
+                            //This Code takes effect if the transaction was successful
+                            //Custom any other notification system you want here, I'd just use an Alert now, not best practise though so
+                            //I suggest you create a new page to display if a transaction is successful or not
+                            //use window.location.replace("https://mentorpartner.net/SuccessfulBlahBlahBlah"); to rediect to the relevant page after you've created it
+                            alert('Transaction Was Successful. You have Successfully Paid For Peer Review');
+                        }
+                        else
+                        {
+                            //This code takes effect if the transaction actually failed
+                            //Again, I suggest you create a new page to show this, I'd just use an Alert for now
+                            //use window.location.replace("https://mentorpartner.net/FailedBlahBlahBlah"); to rediect to the relevant page after you've created it
+                            alert('Failed!!! The Transaction You Attempted Failed!');
+                        }
+
+                    });
+            },
+            onClose: function () {
+                //Leave this as an Alert
+                alert('You Did Not Complete Your Payment, Please Try Again...');
+            }
+        });
+        handler.openIframe();
+    }
+</script>

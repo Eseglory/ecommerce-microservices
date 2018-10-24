@@ -7,6 +7,7 @@ namespace RESAERCHMENTOR.NET_V2.Models
     {
         [Key]
         public int Id { get; set; }
+        public int UId { get; set; }
         public string FullName { get; set; }
         public string Title { get; set; }
         public string FName { get; set; }
