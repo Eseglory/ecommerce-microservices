@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using Microsoft.Ajax.Utilities
+@using Microsoft.AspNet.Identity
 @using RESAERCHMENTOR.NET.Controllers
 <!DOCTYPE html>
 <html lang="en">
@@ -43,16 +44,21 @@
 
 <body>
     <!--Preloader-->
-    <div class="preloader-it">
-        <div class="la-anim-1"></div>
-    </div>
+<div class="preloader-it">
+    <div class="la-anim-1"></div>
+</div>
+
     @{
         string Username = User.Identity.GetUserName();
         DBConnect dbconrext = new DBConnect();
         string imgName = "";
         if (Username != string.Empty)
         {
-            imgName = dbconrext.GetLoginUser(Username).ProfilePicsName;
+            var userN = dbconrext.GetLoginUser(Username);
+            if (userN != null)
+            {
+                imgName = dbconrext.GetLoginUser(Username).ProfilePicsName;
+            }
         }
     }
     <!--/Preloader-->
@@ -110,20 +116,24 @@
 
                         <li>
                             <a href="@Url.Action("UserProfile", "MentorPartner")">
-                                @if (@imgName == string.Empty && dbconrext.GetLoginUser(Username).Gender == "Male")
-
+                                @{var User = dbconrext.GetLoginUser(Username); }
+                                @if (User != null)
                                 {
-                                    <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-auth-img img-circle" />
-                                }
-                                else if (@imgName == string.Empty && dbconrext.GetLoginUser(Username).Gender == "Female")
-                                {
-                                    <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-auth-img img-circle" />
-                                }
-                                else
-                                {
-                                    <img src="~/Files/@imgName" alt="user_auth" class="user-auth-img img-circle" />
+                                    if (@imgName == string.Empty && User.Gender == "Male")
+
+                                     {
+                                         <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-auth-img img-circle"/>
+                                     }
+                                     else if (@imgName == string.Empty && dbconrext.GetLoginUser(Username).Gender == "Female")
+                                     {
+                                         <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-auth-img img-circle"/>
+                                     }
+                                     else
+                                     {
+                                         <img src="~/Files/@imgName" alt="user_auth" class="user-auth-img img-circle"/>
 
 
+                                     }
                                 }
                                 <span class="user-online-status"></span>
                             </a>

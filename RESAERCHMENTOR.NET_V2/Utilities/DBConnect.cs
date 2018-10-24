@@ -1,4 +1,5 @@
 ﻿using RESAERCHMENTOR.NET_V2.Models;
+using RESAERCHMENTOR.NET_V2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,8 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using Microsoft.AspNet.Identity;
-
 using MailMessage = System.Net.Mail.MailMessage;
 
 namespace RESAERCHMENTOR.NET.Controllers
@@ -103,9 +102,9 @@ namespace RESAERCHMENTOR.NET.Controllers
                 outputFile.WriteLine(lines);
             }
         }
-        public UserProfile GetLoginUser(string userName)
+        public UserProfileViewModel GetLoginUser(string userName)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -117,11 +116,11 @@ namespace RESAERCHMENTOR.NET.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -181,9 +180,9 @@ namespace RESAERCHMENTOR.NET.Controllers
             string conString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             return conString;
         }
-        public List<UserProfile> GetFollowingByLogin(string userName)
+        public List<UserProfileViewModel> GetFollowingByLogin(string userName)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -194,11 +193,11 @@ namespace RESAERCHMENTOR.NET.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
@@ -235,10 +234,10 @@ namespace RESAERCHMENTOR.NET.Controllers
             }
             return myuserlist;
         }
-        public List<UserProfile> GetFellowByLoginList(string userName)
+        public List<UserProfileViewModel> GetFellowByLoginList(string userName)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
-            List<UserProfile> UserList = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
+            List<UserProfileViewModel> UserList = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -250,11 +249,11 @@ namespace RESAERCHMENTOR.NET.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -284,9 +283,9 @@ namespace RESAERCHMENTOR.NET.Controllers
             myuserlist.Where(x => x.OwnersId != userName);
             return myuserlist;
         }
-        public List<UserProfile> GetAllUsers(string userName)
+        public List<UserProfileViewModel> GetAllUsers(string userName)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -298,11 +297,11 @@ namespace RESAERCHMENTOR.NET.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -341,9 +340,9 @@ namespace RESAERCHMENTOR.NET.Controllers
             }
             return myuserlist;
         }
-        public UserProfile GetSingleUsers(string id)
+        public UserProfileViewModel GetSingleUsers(string id)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -355,11 +354,11 @@ namespace RESAERCHMENTOR.NET.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -393,9 +392,9 @@ namespace RESAERCHMENTOR.NET.Controllers
             }
             return myuserlist.FirstOrDefault();
         }
-        public UserProfile GetSingleUsersByEmail(string id)
+        public UserProfileViewModel GetSingleUsersByEmail(string id)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -407,11 +406,11 @@ namespace RESAERCHMENTOR.NET.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -435,9 +434,9 @@ namespace RESAERCHMENTOR.NET.Controllers
             }
             return myuserlist.FirstOrDefault();
         }
-        public List<UserProfile> GetLoginUserResearch(string userName)
+        public List<UserProfileViewModel> GetLoginUserResearch(string userName)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -449,11 +448,11 @@ namespace RESAERCHMENTOR.NET.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
@@ -493,7 +492,7 @@ namespace RESAERCHMENTOR.NET.Controllers
             {
                 conAm.Open();
                 try
-                {                  
+                {
                     string creationDate = DateTime.Now.ToShortDateString();
                     var cmd = new SqlCommand("Insert into Activities([ActivityName], [ActivityParentID], [ActivityType], [ActivityDateCreated], [OwnerName], [Description], [Activityowner]) values('" + model.ActivityName + "', '" + model.ActivityParentID + "', '" + model.ActivityType + "', '" + creationDate + "', '" + model.OwnerName + "', '" + model.Description + "', '" + model.Activityowner + "')", conAm);
                     row = cmd.ExecuteNonQuery();

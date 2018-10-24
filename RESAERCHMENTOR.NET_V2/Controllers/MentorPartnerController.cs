@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using PayStack.Net;
 using RESAERCHMENTOR.NET.Controllers;
 using RESAERCHMENTOR.NET_V2.Models;
+using RESAERCHMENTOR.NET_V2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,8 +21,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
         public MentorPartnerController()
         {
+            _context = new ApplicationDbContext();
         }
         public MentorPartnerController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -59,9 +62,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             MyModelObjects LoadProfile = new MyModelObjects();
             LoadProfile = Page_Load();
             string UserName = User.Identity.GetUserName();
+            LoadProfile.MyProfile.Countries = _context.Countries.ToList();
+
             return View(LoadProfile);
         }
-        public ActionResult ResendMail_Click(UserProfile model)
+        public ActionResult ResendMail_Click(UserProfileViewModel model)
         {
             try
             {
@@ -86,14 +91,14 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return RedirectToAction("PreConfirm");
         }
-        public ActionResult Confirm_Click(UserProfile model)
+        public ActionResult Confirm_Click(UserProfileViewModel model)
         {
             string Ccode = model.ConfirmationCode;
             int Update = 0;
             var CUser = GetUserConfirmation(Ccode);
             if (CUser.Count() > 0)
             {
-                Update = UpdateUserProfile(Ccode);
+                Update = UpdateUserProfileViewModel(Ccode);
             }
             if (Update > 0)
             {
@@ -104,12 +109,12 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult ResendConfirm()
         {
-            UserProfile model = new Models.UserProfile();
+            UserProfileViewModel model = new UserProfileViewModel();
             return View(model);
         }
         public ActionResult PreConfirm()
         {
-            UserProfile model = new UserProfile();
+            UserProfileViewModel model = new UserProfileViewModel();
             return View(model);
         }
         public ActionResult Confirm()
@@ -144,14 +149,14 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             {
                 return RedirectToAction("index", "Home");
             }
-            List<UserProfile> LoadProfile = new List<UserProfile>();
+            List<UserProfileViewModel> LoadProfile = new List<UserProfileViewModel>();
             // LoadProfile = GetAllUsersAreaOfExpactise("090z");
             string UserName = User.Identity.GetUserName();
             return View(LoadProfile);
         }
         public ActionResult userSearchResult(string fieldExpertise)
         {
-            List<UserProfile> LoadProfile = new List<UserProfile>();
+            List<UserProfileViewModel> LoadProfile = new List<UserProfileViewModel>();
             LoadProfile = GetAllUsersAreaOfExpactise(fieldExpertise); ;
             return View("userSearch", LoadProfile);
         }
@@ -184,7 +189,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         public MyModelObjects Page_Load()
         {
             MyModelObjects MyObjectList = new MyModelObjects();
-            UserProfile UProfile = new UserProfile();
+            UserProfileViewModel UProfile = new UserProfileViewModel();
             MyObjectList.FollowCount = GetFellowByLoginList().Count();
             MyObjectList.FollowingCount = GetFollowingByLogin().Count();
             MyObjectList.GetAllUsers = GetAllUsers();
@@ -240,7 +245,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         {
             UserProperties UProperties = new UserProperties();
             MyModelObjects MyObjectList = new MyModelObjects();
-            UserProfile UProfile = new UserProfile();
+            UserProfileViewModel UProfile = new UserProfileViewModel();
             MyObjectList.FollowCount = UProperties.GetFellowByLoginList(userId).Count();
             MyObjectList.FollowingCount = UProperties.GetFollowingByLogin(userId).Count();
             MyObjectList.GetAllUsers = GetAllUsers();
@@ -285,10 +290,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             string conString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             return conString;
         }
-        public List<UserProfile> GetFollowingByLogin()
+        public List<UserProfileViewModel> GetFollowingByLogin()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -299,11 +304,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
@@ -340,11 +345,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-        public List<UserProfile> GetFellowByLoginList()
+        public List<UserProfileViewModel> GetFellowByLoginList()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> myuserlist = new List<UserProfile>();
-            List<UserProfile> UserList = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
+            List<UserProfileViewModel> UserList = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -356,11 +361,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -390,10 +395,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             myuserlist.Where(x => x.OwnersId != userName);
             return myuserlist;
         }
-        public List<UserProfile> GetAllUsers()
+        public List<UserProfileViewModel> GetAllUsers()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -405,11 +410,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -449,11 +454,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-        public List<UserProfile> GetAllUsersAreaOfExpactise(string param)
+        public List<UserProfileViewModel> GetAllUsersAreaOfExpactise(string param)
         {
             string userName = User.Identity.GetUserName();
             param = "%" + param + "%";
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -473,11 +478,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -516,9 +521,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-        public UserProfile GetSingleUsers(string id)
+        public UserProfileViewModel GetSingleUsers(string id)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -530,11 +535,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -568,9 +573,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist.FirstOrDefault();
         }
-        public UserProfile GetSingleUsersByEmail(string id)
+        public UserProfileViewModel GetSingleUsersByEmail(string id)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -582,11 +587,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -669,15 +674,15 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             else
             {
-                ModelState.AddModelError("UserProfile", "Error Occured");
+                ModelState.AddModelError("UserProfileViewModel", "Error Occured");
             }
             if (FCount > 0)
             {
                 ViewBag.Message = "Operation was successful.";
-                return View("UserProfile", LoadProfile);
+                return View("UserProfileViewModel", LoadProfile);
             }
             ModelState.AddModelError("", "Error Occured");
-            return View("UserProfile", LoadProfile);
+            return View("UserProfileViewModel", LoadProfile);
         }
         public ActionResult UnFollow_Click(string id)
         {
@@ -697,9 +702,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             {
                 ViewBag.Message = "Operation was successful.";
             }
-            return View("UserProfile", LoadProfile);
+            return View("UserProfileViewModel", LoadProfile);
         }
-        protected int UpdateUserProfile(UserProfile model)
+        protected int UpdateUserProfileViewModel(UserProfileViewModel model)
         {
             int row = 0;
             string userName = User.Identity.GetUserName();
@@ -735,7 +740,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 }
             }
         }
-        public ActionResult UpdateProfile_Click(UserProfile model, HttpPostedFileBase postedFile)
+        public ActionResult UpdateProfile_Click(UserProfileViewModel model, HttpPostedFileBase postedFile)
         {
             MyModelObjects LoadProfile = new MyModelObjects();
             if (postedFile != null)
@@ -749,19 +754,19 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 postedFile.SaveAs(path + Path.GetFileName(postedFile.FileName));
                 ViewBag.Message = "Operation was successful.";
             }
-            int FCount = UpdateUserProfile(model);
+            int FCount = UpdateUserProfileViewModel(model);
             if (FCount > 0)
             {
                 LoadProfile = Page_Load();
                 ModelState.AddModelError("", "Operation was successful");
-                return View("UserProfile", LoadProfile);
+                return View("UserProfileViewModel", LoadProfile);
             }
-            return View("UserProfile", LoadProfile);
+            return View("UserProfileViewModel", LoadProfile);
         }
-        public UserProfile GetLoginUser()
+        public UserProfileViewModel GetLoginUser()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -773,11 +778,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
@@ -831,7 +836,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
@@ -873,10 +878,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 LogError(ex);
             }
         }
-        public List<UserProfile> GetLoginUserResearch()
+        public List<UserProfileViewModel> GetLoginUserResearch()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -888,11 +893,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
@@ -925,10 +930,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-        public List<UserProfile> GetOtherUsersResearch()
+        public List<UserProfileViewModel> GetOtherUsersResearch()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -940,11 +945,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = (int)rec["Id"],
                                               Title = rec["Title"].ToString(),
@@ -974,10 +979,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-        public List<UserProfile> GetLoginUserMessages()
+        public List<UserProfileViewModel> GetLoginUserMessages()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -989,11 +994,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
 
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
@@ -1018,10 +1023,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-        public List<UserProfile> GetLoginUserInbox()
+        public List<UserProfileViewModel> GetLoginUserInbox()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -1033,11 +1038,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Id = Convert.ToInt32(rec["Id"].ToString()),
                                               From = rec["From"].ToString(),
@@ -1061,10 +1066,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-        public List<UserProfile> GetNonLoginUserActivities()
+        public List<UserProfileViewModel> GetNonLoginUserActivities()
         {
             string userName = User.Identity.GetUserName();
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -1076,11 +1081,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               ActivityName = rec["ActivityName"].ToString(),
                                               ActivityParentID = Convert.ToInt32(rec["ActivityParentID"].ToString()),
@@ -1121,12 +1126,12 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region Add Research
         public ActionResult AddResearch()
         {
-            UserProfile LoadResearch = new UserProfile();
+            UserProfileViewModel LoadResearch = new UserProfileViewModel();
             LoadResearch.OwnersId = GetLoginUser().OwnersId;
             LoadResearch.AuthorName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
             return View("AddResearch", LoadResearch);
         }
-        public ActionResult AddResearch_Click(UserProfile model, HttpPostedFileBase postedFile)
+        public ActionResult AddResearch_Click(UserProfileViewModel model, HttpPostedFileBase postedFile)
         {
             UserProperties userProperties = new UserProperties();
             MyModelObjects LoadProfile = new MyModelObjects();
@@ -1165,7 +1170,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                         int myActivity = userProperties.AddActivity(loadActivity);
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful.";
-                        return View("UserProfile", LoadProfile);
+                        return View("UserProfileViewModel", LoadProfile);
                     }
                 }
                 catch (Exception ee)
@@ -1187,12 +1192,12 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region Add Post
         public ActionResult AddPost()
         {
-            UserProfile LoadResearch = new UserProfile();
+            UserProfileViewModel LoadResearch = new UserProfileViewModel();
             LoadResearch.OwnersId = GetLoginUser().OwnersId;
             LoadResearch.AuthorName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
             return View("AddPost", LoadResearch);
         }
-        public ActionResult AddPost_Click(UserProfile model, HttpPostedFileBase postedFile)
+        public ActionResult AddPost_Click(UserProfileViewModel model, HttpPostedFileBase postedFile)
         {
             UserProperties userProperties = new UserProperties();
             MyModelObjects LoadProfile = new MyModelObjects();
@@ -1231,7 +1236,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                         int myActivity = userProperties.AddActivity(loadActivity);
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful.";
-                        return View("UserProfile", LoadProfile);
+                        return View("UserProfileViewModel", LoadProfile);
                     }
                 }
                 catch (Exception ee)
@@ -1281,14 +1286,14 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                         mailService.MailService(OwnersId, OwnersId, message, Subject);
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful.";
-                        return View("UserProfile", LoadProfile);
+                        return View("UserProfileViewModel", LoadProfile);
                     }
                 }
                 catch (Exception ee)
                 {
                     Response.Write("Error Occurred.!");
                 }
-                return View("UserProfile", LoadProfile);
+                return View("UserProfileViewModel", LoadProfile);
             }
         }
         #endregion
@@ -1310,7 +1315,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         LoadProfile = Page_Load();
                         ViewBag.Message = "This  Person Is Already Your Mentor.";
-                        return View("UserProfile", LoadProfile);
+                        return View("UserProfileViewModel", LoadProfile);
                     }
                     string userName = User.Identity.GetUserName();
                     string creationDate = DateTime.Now.ToShortDateString();
@@ -1322,22 +1327,22 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful." + " " + MentorName + " is now your mentor.";
-                        return View("UserProfile", LoadProfile);
+                        return View("UserProfileViewModel", LoadProfile);
                     }
                 }
                 catch (Exception ee)
                 {
                     Response.Write("Error Occurred.!");
                 }
-                return View("UserProfile", LoadProfile);
+                return View("UserProfileViewModel", LoadProfile);
             }
         }
         #endregion
 
         #region Pre-Confirmation Functions
-        public List<UserProfile> GetUserConfirmation(string code)
+        public List<UserProfileViewModel> GetUserConfirmation(string code)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -1349,11 +1354,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
@@ -1380,7 +1385,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-        protected int UpdateUserProfile(string concode)
+        protected int UpdateUserProfileViewModel(string concode)
         {
             int row = 0;
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
@@ -1400,9 +1405,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 }
             }
         }
-        public UserProfile GeUser(string Email)
+        public UserProfileViewModel GeUser(string Email)
         {
-            List<UserProfile> myuserlist = new List<UserProfile>();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
             using (var con = new SqlConnection(ConnectionState()))
             {
                 try
@@ -1414,11 +1419,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         using (DbDataReader dr = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable("UserProfile");
+                            DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                          select new UserProfile()
+                                          select new UserProfileViewModel()
                                           {
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
