@@ -882,7 +882,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select distinct a.Title, a.Degree, a.BDate, a.Country, a.Gender, a.CNumber, a.LName, a.FName, a.ProfilePicsName, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.Status, b.Title as RTitle, b.SubTitle from Profile as a join Research as b on a.OwnersId = b.OwnersId where a.OwnersId = '" + userName + "' and a.IsConfirmed = 1";
+                    query = "select distinct a.Title, a.Degree, a.BDate, a.Country, a.Gender, a.CNumber, a.LName, a.FName, a.ProfilePicsName, a.Id as UId, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.Status, b.Title as RTitle, b.SubTitle from Profile as a join Research as b on a.OwnersId = b.OwnersId where a.OwnersId = '" + userName + "' and a.IsConfirmed = 1";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -952,7 +952,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               LName = rec["LName"].ToString(),
                                               ProfilePicsName = rec["ProfilePicsName"].ToString(),
                                               FileName = rec["FileName"].ToString(),
-                                              ResearchId = rec["Id"].ToString(),
+                                              ResearchId = rec["ResearchId"].ToString(),
                                               RDateCreated = rec["DateCreated"].ToString(),
                                               RType = rec["RType"].ToString(),
                                               Status = rec["Status"].ToString(),
@@ -1517,6 +1517,36 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return View(MyObjectList);
         }
+
+        #endregion
+
+        #region View each Post on Dashboard
+        public ActionResult DashboardDetails(int? id)
+        {
+
+            MyModelObjects MyObjectList = new MyModelObjects();
+            MyObjectList.MyMessages = GetLoginUserMessages();
+            MyObjectList.MyMessageInbox = GetLoginUserInbox();
+            MyObjectList.GetAllUsers = GetAllUsers();
+            if (id.HasValue)
+            {
+                var myMessageIn = GetLoginUserInbox().FirstOrDefault();
+                if (myMessageIn != null)
+                {
+                    MyObjectList.MyMessageDetailInbox = new Messages();
+                    MyObjectList.MyMessageDetailInbox.From = myMessageIn.From;
+                    MyObjectList.MyMessageDetailInbox.To = myMessageIn.To;
+                    MyObjectList.MyMessageDetailInbox.Message = myMessageIn.Message;
+                    MyObjectList.MyMessageDetailInbox.Subject = myMessageIn.Subject;
+                    MyObjectList.MyMessageDetailInbox.MessageDateCreated = myMessageIn.MessageDateCreated;
+                    MyObjectList.MyMessageDetailInbox.FromImage = GetSingleUsersByEmail(myMessageIn.From).ProfilePicsName;
+
+                }
+            }
+            return View(MyObjectList);
+        }
+
+       
 
         #endregion
 

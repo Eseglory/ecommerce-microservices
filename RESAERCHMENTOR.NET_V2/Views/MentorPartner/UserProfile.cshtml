@@ -217,14 +217,8 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Qualification</label>
-                                                                                    <select class="form-control" name="Qualification" value=@Model.MyProfile.Qualification id="Qualification" data-placeholder="Choose a Category" tabindex="1">
-                                                                                        <option value=@Model.MyProfile.Qualification style="color:#ff0000;">@Model.MyProfile.Qualification</option>
-                                                                                        <option value="SSCE">SSCE</option>
-                                                                                        <option value="Bsc">Bsc</option>
-                                                                                        <option value="Msc">Msc</option>
-                                                                                        <option value="Phd">Phd</option>
-
-                                                                                    </select>
+                                                                                   
+                                                                                    <input type="text" class="form-control" name="Qualification" id="Qualification" value=@Model.MyProfile.Qualification>
                                                                                 </div>
 
                                                                                 <div class="form-group">
@@ -239,7 +233,43 @@
                                                                                         <option value="Arts">Arts</option>
                                                                                         <option value="Environment">Environmental Sciences</option>
                                                                                         </select>
-</div>
+                                                                                 </div><br /><br />
+                                                                                    @* Saka Checkbox*@
+                                                                                    <div class="checkbox checkbox-success">
+                                                                                        <input id="checkbox2" type="checkbox">
+                                                                                        <label for="checkbox2">
+                                                                                            Science : PHYSICAL SCIENCES, LIFE SCIENCES , ETC.
+                                                                                        </label>
+                                                                                    </div>
+
+                                                                                    <div class="checkbox checkbox-success">
+                                                                                        <input id="checkbox2" type="checkbox">
+                                                                                        <label for="checkbox2">
+                                                                                            Medical /Health: CLINICAL SCIENCES, HEALTH PROFESSIONALS
+                                                                                        </label>
+                                                                                    </div>
+
+                                                                                    <div class="checkbox checkbox-success">
+                                                                                        <input id="checkbox2" type="checkbox">
+                                                                                        <label for="checkbox2">
+                                                                                            Technology/Engineering
+                                                                                        </label>
+                                                                                    </div>
+
+                                                                                    <div class="checkbox checkbox-success">
+                                                                                        <input id="checkbox2" type="checkbox">
+                                                                                        <label for="checkbox2">
+                                                                                           Arts
+                                                                                        </label>
+                                                                                    </div>
+
+                                                                                    <div class="checkbox checkbox-success">
+                                                                                        <input id="checkbox2" type="checkbox">
+                                                                                        <label for="checkbox2">
+                                                                                            Environmental Sciences
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    @* Saka Checkbox*@
                                                                                 </div>
 
                                                                                 <div class="form-group">
