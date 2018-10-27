@@ -1,10 +1,13 @@
 ﻿@model RESAERCHMENTOR.NET_V2.Models.MyModelObjects
 @using Microsoft.AspNet.Identity
 @using System.Globalization
+@using ModelBinderAttribute = System.Web.Http.ModelBinding.ModelBinderAttribute
 @{
     ViewBag.Title = "UserProfile";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+
+
 
 <!-- Title -->
 <div class="row heading-bg">
@@ -92,6 +95,7 @@
                                             <h5 class="modal-title" id="myModalLabel">Edit Profile</h5>
                                         </div>
                                         <form action="@Url.Action("UpdateProfile_Click", "MentorPartner")" method="post" role="form" enctype="multipart/form-data" id="FileData">
+                                            @Html.AntiForgeryToken()
                                             <div class="modal-body">
                                                 <!-- Row -->
                                                 <div class="row">
@@ -127,19 +131,14 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Title</label>
-                                                                                    <select class="form-control" name="Title" id="Title" onselect=@Model.MyProfile.Title data-placeholder="Choose a Category" tabindex="1">
-                                                                                        <option value=@Model.MyProfile.Title style="color:#ff0000;">@Model.MyProfile.Title</option>
-                                                                                        <option value="Mr.">Mr.</option>
-                                                                                        <option value="Mrs.">Mrs.</option>
-                                                                                        <option value="Dr.">Dr.</option>
-                                                                                        <option value="Prof.">Prof.</option>
-                                                                                    </select>
+                                                                                    @Html.DropDownListFor(m => m.MyProfile.Title, new SelectList(Model.MyProfile.Titles, "Name", "Name"), "Select Title", new { @class = "form-control" })
+                                                                                    @Html.ValidationMessageFor(m => m.MyProfile.Title)
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">First Name</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="FName" id="FName"  placeholder="willard" value=@Model.MyProfile.FName required>
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.FName, new { @class = "form-control", autofocus = "autofocus", required = true })
                                                                                     </div>
                                                                                 </div>
 
@@ -147,14 +146,14 @@
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Last Name</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="LName" id="LName" value=@Model.MyProfile.LName required>
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.LName, new { @class = "form-control", autofocus = "autofocus", required = true })
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Degree</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="Degree" id="Degree" placeholder="MBBS, FWACP"  value=@Model.MyProfile.Degree>
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.Degree, new { @class = "form-control", autofocus = "autofocus", required = true })
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
@@ -168,115 +167,97 @@
                                                                                     <label class="control-label mb-10" for="exampleInputContact_1">Contact number</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                                        <input type="text" class="form-control" name="CNumber"  required="required" id="CNumber" placeholder="+102 9388333" value=@Model.MyProfile.CNumber>
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.CNumber, new { @class = "form-control", autofocus = "autofocus", required = true })
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputContact_1">Date Of Birth number</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                                        <input type="date" class="form-control" name="BDate" value=@Model.MyProfile.BDate required="required" id="BDate" placeholder="16/12/1986">
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.BDate, new { @class = "form-control", type = "date", required = true })
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Gender</label>
                                                                                     <div>
                                                                                         <div class="radio">
-                                                                                            <input type="radio" name="Gender1" id="Gender1" value=@Model.MyProfile.Gender1 checked>
-                                                                                            <label for="Gender1">
+                                                                                            @Html.RadioButtonFor(m => m.MyProfile.Gender, "Male")
+                                                                                            <label for="Gender">
                                                                                                 Male
                                                                                             </label>
                                                                                         </div>
                                                                                         <div class="radio">
-                                                                                            <input type="radio" name="Gender2" id="Gender2" value=@Model.MyProfile.Gender2>
-                                                                                            <label for="Gender2">
+                                                                                            @Html.RadioButtonFor(m => m.MyProfile.Gender, "Female")
+                                                                                            <label for="Gender">
                                                                                                 Female
                                                                                             </label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
+
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Who are you?</label>
-                                                                                    <select class="form-control" name="WhoYouAre" id="WhoYouAre" value=@Model.MyProfile.WhoYouAre  data-placeholder="Choose a Category" tabindex="1">
-                                                                                        <option value=@Model.MyProfile.WhoYouAre style="color:#ff0000;">@Model.MyProfile.WhoYouAre</option>
-                                                                                        <option value="Student">Student</option>
-                                                                                        <option value="researcher">Researcher or Academician</option>
-                                                                                        <option value="Developer">Project developer</option>
-                                                                                        <option value="Writer">Writer</option>
-                                                                                        <option value="Professional">Professional</option>
-
-                                                                                    </select>
+                                                                                    @Html.DropDownListFor(m => m.MyProfile.WhoYouAre, new SelectList(Model.MyProfile.WhoYouAreList, "Name", "Name"), "Select Item", new { @class = "form-control" })
+                                                                                    @Html.ValidationMessageFor(m => m.MyProfile.WhoYouAre)
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Institution</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
 
-                                                                                        <input type="text" class="form-control" name="Institution" id="Institution" value=@Model.MyProfile.Institution>
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.Institution, new { @class = "form-control", autofocus = "autofocus", required = true })
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10">Qualification</label>
-                                                                                   
-                                                                                    <input type="text" class="form-control" name="Qualification" id="Qualification" value=@Model.MyProfile.Qualification>
+
+                                                                                    @Html.TextBoxFor(m => m.MyProfile.Qualification, new { @class = "form-control", autofocus = "autofocus", required = true })
                                                                                 </div>
 
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Primary Field of Expertise</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <select class="form-control" name="Expertise" value=@Model.MyProfile.Expertise id="Expertise" data-placeholder="Choose a Category" tabindex="1">
-                                                                                        <option value=@Model.MyProfile.Expertise style="color:#ff0000;">@Model.MyProfile.Expertise</option>
-                                                                                        <option value="Sciences">Science : PHYSICAL SCIENCES, LIFE SCIENCES , ETC.</option>
-                                                                                        <option value="Medical">Medical /health: CLINICAL SCIENCES, HEALTH PROFESSIONALS</option>
-                                                                                        <option value="Engineering">Technology/engineering</option>
-                                                                                        <option value="Arts">Arts</option>
-                                                                                        <option value="Environment">Environmental Sciences</option>
-                                                                                        </select>
-                                                                                 </div><br /><br />
-                                                                                    @* Saka Checkbox*@
-                                                                                    <div class="checkbox checkbox-success">
-                                                                                        <input id="checkbox2" type="checkbox">
-                                                                                        <label for="checkbox2">
-                                                                                            Science : PHYSICAL SCIENCES, LIFE SCIENCES , ETC.
-                                                                                        </label>
-                                                                                    </div>
+                                                                                        @Html.DropDownListFor(m => m.MyProfile.Expertise, new SelectList(Model.MyProfile.ExpertiseList, "Name", "Name"), "Select Expertise", new { @class = "form-control" })
+                                                                                        @Html.ValidationMessageFor(m => m.MyProfile.Expertise)
+                                                                                    </div><br /><br />
 
-                                                                                    <div class="checkbox checkbox-success">
-                                                                                        <input id="checkbox2" type="checkbox">
-                                                                                        <label for="checkbox2">
-                                                                                            Medical /Health: CLINICAL SCIENCES, HEALTH PROFESSIONALS
-                                                                                        </label>
-                                                                                    </div>
-
-                                                                                    <div class="checkbox checkbox-success">
-                                                                                        <input id="checkbox2" type="checkbox">
-                                                                                        <label for="checkbox2">
-                                                                                            Technology/Engineering
-                                                                                        </label>
-                                                                                    </div>
-
-                                                                                    <div class="checkbox checkbox-success">
-                                                                                        <input id="checkbox2" type="checkbox">
-                                                                                        <label for="checkbox2">
-                                                                                           Arts
-                                                                                        </label>
-                                                                                    </div>
-
-                                                                                    <div class="checkbox checkbox-success">
-                                                                                        <input id="checkbox2" type="checkbox">
-                                                                                        <label for="checkbox2">
-                                                                                            Environmental Sciences
-                                                                                        </label>
-                                                                                    </div>
-                                                                                    @* Saka Checkbox*@
                                                                                 </div>
+
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10">Willing to be</label>
+                                                                                    @Html.DropDownListFor(m => m.MyProfile.WillingToBe, new SelectList(Model.MyProfile.Willing, "Name", "Name"), "Select Item", new { @class = "form-control" })
+                                                                                    @Html.ValidationMessageFor(m => m.MyProfile.WillingToBe)
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10">Mark areas your willing to mentor  or provide academic services </label>
+                                                                                    @if (@Model.MyProfile.MentorCategory != string.Empty)
+                                                                                    {
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.MentorCategory, new { @class = "form-control", @readonly = "readonly" })
+                                                                                    }
+                                                                                    <select class="form-control" id="myWillings" required = false multiple="multiple" value=@Model.MyProfile.MentorCategory required name="myWillingToBe">
+                                                                                        @if (ViewBag.myWillings != null)
+                                                                                        {
+                                                                                            foreach (var item in ViewBag.myWillings)
+                                                                                            {
+                                                                                                if (item.Text != null)
+                                                                                                {
+                                                                                                    <option value="@item.Text">
+                                                                                                        @item.Text
+                                                                                                    </option>
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    </select>
+                                                                                </div>
+
 
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Sub Specialty</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="Specialty" value=@Model.MyProfile.Specialty id="Specialty" >
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.Specialty, new { @class = "form-control", autofocus = "autofocus", required = true })
                                                                                     </div>
                                                                                 </div>
 
@@ -284,57 +265,46 @@
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Research Interest or Focus</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="Interest" value=@Model.MyProfile.Interest id="Interest" >
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.Interest, new { @class = "form-control", autofocus = "autofocus", required = true })
 
 
-</div>
+
+
+                                                                                    </div>
                                                                                 </div>
 
                                                                                 <div class="form-group">
                                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Number of years in Field of Expertise</label>
                                                                                     <div class="input-group">
                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                        <input type="text" class="form-control" name="fieldExpertise" value=@Model.MyProfile.fieldExpertise id="fieldExpertise" >
+                                                                                        @Html.TextBoxFor(m => m.MyProfile.fieldExpertise, new { @class = "form-control", autofocus = "autofocus", required = true })
                                                                                     </div>
                                                                                 </div>
 
+
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label mb-10">Willing to be</label>
-                                                                                    <select class="form-control" name="WillingToBe" id="WillingToBe" value=@Model.MyProfile.WillingToBe data-placeholder="Choose a Category" tabindex="1">
-                                                                                        <option value=@Model.MyProfile.WillingToBe style="color:#ff0000;"> @Model.MyProfile.WillingToBe</option>
-                                                                                        <option value="Mentor">Mentor</option>
-                                                                                        <option value="Mentee">Mentee</option>
-                                                                                        <option value="Collaborator">Collaborator</option>
-
-                                                                                    </select>
+                                                                                    <label class="control-label mb-10">Country</label>
+                                                                                    @Html.DropDownListFor(m => m.MyProfile.Country, new SelectList(Model.MyProfile.Countries, "Name", "Name"), "Select Country", new { @class = "form-control" })
+                                                                                    @Html.ValidationMessageFor(m => m.MyProfile.Country)
                                                                                 </div>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label mb-10">Mark areas your willing to mentor  or provide academic services </label>
-                                                                                    <select class="form-control" multiple name="MentorCategory" value=@Model.MyProfile.MentorCategory id="MentorCategory" data-placeholder="Choose a Category" tabindex="1">
-                                                                                        <option value=@Model.MyProfile.MentorCategory style="color:#ff0000;"> @Model.MyProfile.MentorCategory </option>
-                                                                                        <option value="Phd"> Phd/postdoc thesis </option>
-                                                                                        <option value="Masters">	Master’s Thesis</option>
-                                                                                        <option value="Bsc">	Bsc or Diploma or Undergraduate Thesis</option>
-                                                                                        <option value="Manuscript">	Manuscript Proofreading or Editing</option>
-                                                                                        <option value="Translation">	Translation Services </option>
-                                                                                        <option value="Grant">	Grant Advisory</option>
-                                                                                        <option value="Journal">	journal advisory</option>
-                                                                                        <option value="Peer">	Peer Review </option>
-                                                                                        <option value="ProjectAdvisory">	Project  advisory </option>
-
-                                                                                    </select>
-                                                                                </div>
-
-                                                                            <div class="form-group">
-                                                                                <label class="control-label mb-10">Country</label>
-                                                                                @Html.DropDownListFor(m => m.MyProfile.Country, new SelectList(Model.MyProfile.Countries, "Name", "Name"), "Select Genre", new {@class = "form-control"})
-                                                                                @Html.ValidationMessageFor(m => m.MyProfile.Country)
-                                                                            </div>
 
 
                                                                             </div>
                                                                             <div class="form-actions mt-10">
-                                                                                <button type="submit" class="btn btn-success mr-10 mb-30">Update profile</button>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <button type="submit" class="btn btn-success mr-10 mb-30">Update profile</button>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            &nbsp;&nbsp;
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <button class="btn fa-refresh"> <a href="@Url.Action("UserProfile", "MentorPartner")"> Refresh</a>
+                                                                                            </button>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -389,8 +359,9 @@
                                             @{
                                                 foreach (var act in Model.MyActivities)
                                                 {
-                                                    DateTime DT = Convert.ToDateTime(act.ActivityDateCreated);
-                                                    var TStamp = DT.ToLongTimeString();
+                                                    /*DateTime DT = Convert.ToDateTime(act.ActivityDateCreated)*/
+                                                    ;
+                                                    var TStamp = act.ActivityDateCreated;//DT.ToLongTimeString();
                                                  <div class="sl-item">
                                                 <a href="javascript:void(0)">
                                                     <div class="sl-avatar avatar avatar-sm avatar-circle">
@@ -931,7 +902,7 @@ else
                                                                     <label class="control-label mb-10" for="exampleInputEmail_01">Email address</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-                                                                        <input type="text" name="OwnersId" class="form-control" id="OwnersId" value="@Model.MyProfile.OwnersId"  readonly>
+                                                                        @Html.TextBoxFor(m => m.MyProfile.OwnersId, new { @class = "form-control", @readonly = "readonly" })
                                                                     </div>
                                                                 </div>
 
@@ -954,7 +925,7 @@ else
                                                                     <label class="control-label mb-10" for="exampleInputContact_1">Gender</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                        <input type="text" class="form-control" name="BDate" id="BDate" value=@Model.MyProfile.Gender readonly>
+                                                                        @Html.TextBoxFor(m => m.MyProfile.Gender, new { @class = "form-control", @readonly = "readonly" })
                                                                     </div>
                                                                 </div>
 
@@ -984,7 +955,7 @@ else
                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Primary Field of Expertise</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="Expertise" value=@Model.MyProfile.Expertise id="Qualification" placeholder="" readonly>
+                                                                        @Html.TextBoxFor(m => m.MyProfile.Expertise, new { @class = "form-control", @readonly = "readonly" })
                                                                     </div>
                                                                 </div>
 
@@ -1008,7 +979,7 @@ else
                                                                     <label class="control-label mb-10" for="exampleInputuname_1">Number of years in Field of Expertise</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="fieldExpertise" value=@Model.MyProfile.fieldExpertise id="fieldExpertise" placeholder="" readonly>
+                                                                        @Html.TextBoxFor(m => m.MyProfile.fieldExpertise, new { @class = "form-control", @readonly = "readonly" })
                                                                     </div>
                                                                 </div>
 
@@ -1016,14 +987,14 @@ else
                                                                     <label class="control-label mb-10">Willing to be</label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="WillingToBe" value=@Model.MyProfile.WillingToBe id="WillingToBe" placeholder="" readonly>
+                                                                        @Html.TextBoxFor(m => m.MyProfile.WillingToBe, new { @class = "form-control", @readonly = "readonly" })
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label mb-10">Mark areas your willing to mentor  or provide academic services </label>
                                                                     <div class="input-group">
                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="MentorCategory" value=@Model.MyProfile.MentorCategory  readonly>
+                                                                        @Html.TextBoxFor(m => m.MyProfile.MentorCategory, new { @class = "form-control", @readonly = "readonly" })
                                                                     </div>
                                                                 </div>
 
@@ -1361,3 +1332,39 @@ else
     </div>
 </div>
 <!-- /Row -->
+@section scripts
+{
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+          rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+          rel="stylesheet" type="text/css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                $('#mySkills').multiselect({
+                    includeSelectAllOption: true
+                });
+            });
+            $("#btnGetSkills").click(function () {
+                alert($("#mySkills").val());
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                $('#myWillings').multiselect({
+                    includeSelectAllOption: true
+                });
+            });
+            $("#btnGetWillings").click(function () {
+                alert($("#myWillings").val());
+            });
+        });
+    </script>
+}

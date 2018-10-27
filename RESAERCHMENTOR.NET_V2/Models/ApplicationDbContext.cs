@@ -12,6 +12,13 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public DbSet<Messages> Messages { get; set; }
         public DbSet<UserProfile> Profile { get; set; }
         public DbSet<Research> Research { get; set; }
+        public DbSet<ResearchType> ResearchType { get; set; }
+        public DbSet<WhoYouAre> WhoYouAre { get; set; }
+        public DbSet<Willing> Willing { get; set; }
+        public DbSet<WillingTo> WillingTo { get; set; }
+        public DbSet<Titles> Titles { get; set; }
+        public DbSet<Expertise> Expertise { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

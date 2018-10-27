@@ -23,8 +23,6 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public string ProfilePicsName { get; set; }
         public string FollowState { get; set; }
         public bool IsConfirmed { get; set; }
-        public bool Gender1 { get; set; }
-        public bool Gender2 { get; set; }
         public string Country { get; set; }
         public string WhoYouAre { get; set; }
         public string Institution { get; set; }

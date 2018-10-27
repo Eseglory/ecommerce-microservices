@@ -48,10 +48,10 @@ else
                                     <span class="txt-green"><strong>@item.Title  @item.FName  @item.LName </strong></span>
 
                                     <div class="visible-xs"><br></div>
-                                    @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
-                                        string MDate = RDate.ToLongDateString(); }
+                                    @{@*DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                        string MDate = RDate.ToLongDateString();*@ }
 
-                                    <span class="txt-grey pull-right">Posted @MDate</span>
+                                    <span class="txt-grey pull-right">Posted @item.RDateCreated</span>
                                     <br>
 
                                     <span class="txt-grey">@item.RType was added</span>
@@ -83,7 +83,7 @@ else
                                                         <a href="~/Images/@item.FileName" target="_blank" class="p-l-s txt-green">Download </a>
                                                     </div>
                                                 </div><!-- /col-6 -->
-                                                
+
                                             </div><!-- /row -->
 
 
@@ -143,10 +143,10 @@ else
                                     <a title="View User Information" href="@Url.Action("UserInfo", "mentorpartner", new { id = item.Id })">
                                         <span class="txt-green"><strong>@item.Title  @item.FName  @item.LName   </strong></span></a>
                                         <div class="visible-xs"><br></div>
-                                        @{DateTime RDate = Convert.ToDateTime(item.RDateCreated);
-                                            string MDate = RDate.ToLongDateString(); }
+                                        @{@*DateTime RDate = Convert.ToDateTime(item.RDateCreated);
+                                            string MDate = RDate.ToLongDateString();*@ }
 
-                                        <span class="txt-grey pull-right">Posted @MDate</span>
+                                        <span class="txt-grey pull-right">Posted @item.RDateCreated</span>
                                         <br>
 
                                         <span class="txt-grey">@item.RType was added</span>
@@ -177,7 +177,7 @@ else
                                                     </div>
                                                 </div><!-- /col-6 -->
                                                 <div class="col-lg-4 col-xs-3 pull-right view-top">
-                                                    
+
                                                 </div>
                                             </div><!-- /row -->
 

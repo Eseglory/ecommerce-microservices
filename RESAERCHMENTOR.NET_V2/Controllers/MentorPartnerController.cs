@@ -59,13 +59,38 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             {
                 return RedirectToAction("index", "Home");
             }
+            var result = (from skills in _context.Expertise select skills).ToList();
+            if (result != null)
+            {
+                ViewBag.mySkills = result.Select(N => new SelectListItem { Text = N.Name, Value = N.Name.ToString() });
+            }
+            var result2 = (from skills in _context.WillingTo select skills).ToList();
+            if (result2 != null)
+            {
+                ViewBag.myWillings = result2.Select(N => new SelectListItem { Text = N.Name, Value = N.Name.ToString() });
+            }
             MyModelObjects LoadProfile = new MyModelObjects();
             LoadProfile = Page_Load();
             string UserName = User.Identity.GetUserName();
             LoadProfile.MyProfile.Countries = _context.Countries.ToList();
-
+            LoadProfile.MyProfile.Titles = _context.Titles.ToList();
+            LoadProfile.MyProfile.WillingTo = _context.WillingTo.ToList();
+            LoadProfile.MyProfile.Willing = _context.Willing.ToList();
+            LoadProfile.MyProfile.WhoYouAreList = _context.WhoYouAre.ToList();
+            LoadProfile.MyProfile.ResearchTypeList = _context.ResearchType.ToList();
+            LoadProfile.MyProfile.ExpertiseList = _context.Expertise.ToList();
             return View(LoadProfile);
         }
+        public ActionResult Index()
+        {
+            var result = (from skills in _context.WillingTo select skills).ToList();
+            if (result != null)
+            {
+                ViewBag.mySkills = result.Select(N => new SelectListItem { Text = N.Name, Value = N.Id.ToString() });
+            }
+            return View();
+        }
+
         public ActionResult ResendMail_Click(UserProfileViewModel model)
         {
             try
@@ -98,7 +123,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             var CUser = GetUserConfirmation(Ccode);
             if (CUser.Count() > 0)
             {
-                Update = UpdateUserProfileViewModel(Ccode);
+                Update = UpdateUserProfile(Ccode);
             }
             if (Update > 0)
             {
@@ -184,6 +209,79 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             MyObjectList.From = userName;
             return PartialView(MyObjectList);
         }
+        public ActionResult Follow_Click(string id)
+        {
+            int FCount = 0;
+            MyModelObjects LoadProfile = new MyModelObjects();
+            LoadProfile = Page_Load();
+            if (id != null)
+            {
+                string Following = GetSingleUsers(id).OwnersId;
+                FCount = FollowingR(Following);
+            }
+            else
+            {
+                ModelState.AddModelError("UserProfileViewModel", "Error Occured");
+            }
+            if (FCount > 0)
+            {
+                ViewBag.Message = "Operation was successful.";
+                return View("UserProfileViewModel", LoadProfile);
+            }
+            ModelState.AddModelError("", "Error Occured");
+            return View("UserProfileViewModel", LoadProfile);
+        }
+        public ActionResult UnFollow_Click(string id)
+        {
+            int FCount = 0;
+            MyModelObjects LoadProfile = new MyModelObjects();
+            LoadProfile = Page_Load();
+            if (id != null)
+            {
+                string Following = GetSingleUsers(id).OwnersId;
+                FCount = UnFollowingR(Following);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Error Occured");
+            }
+            if (FCount > 0)
+            {
+                ViewBag.Message = "Operation was successful.";
+            }
+            return View("UserProfileViewModel", LoadProfile);
+        }
+        public ActionResult UpdateProfile_Click(MyModelObjects model, HttpPostedFileBase postedFile, List<string> myWillingToBe)
+        {
+            MyModelObjects LoadProfile = new MyModelObjects();
+            if (myWillingToBe.Any())
+            {
+                string myWillingToBeItems = string.Join(",", myWillingToBe.ToArray());
+                model.MyProfile.MentorCategory = myWillingToBeItems;
+            }
+
+            if (postedFile != null)
+            {
+                model.MyProfile.ProfilePicsName = postedFile.FileName;
+                string path = Server.MapPath("~/Files/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                postedFile.SaveAs(path + Path.GetFileName(postedFile.FileName));
+                ViewBag.Message = "Operation was successful.";
+            }
+            int FCount = UpdateUserProfile(model);
+
+            if (FCount > 0)
+            {
+                LoadProfile = Page_Load();
+                ModelState.AddModelError("", "Operation was successful");
+                return View("UserProfile", LoadProfile);
+            }
+            return View("UserProfile", LoadProfile);
+        }
+
 
         #region Functions
         public MyModelObjects Page_Load()
@@ -226,16 +324,15 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 UProfile.Interest = MyProfile.Interest;
                 UProfile.WillingToBe = MyProfile.WillingToBe;
                 UProfile.MentorCategory = MyProfile.MentorCategory;
+                UProfile.Countries = _context.Countries.ToList();
+                UProfile.Titles = _context.Titles.ToList();
+                UProfile.WillingTo = _context.WillingTo.ToList();
+                UProfile.Willing = _context.Willing.ToList();
+                UProfile.WhoYouAreList = _context.WhoYouAre.ToList();
+                UProfile.ResearchTypeList = _context.ResearchType.ToList();
+                UProfile.ExpertiseList = _context.Expertise.ToList();
+                UProfile.OwnersId = MyProfile.OwnersId;
 
-
-                if (MyProfile.Gender == "Male")
-                {
-                    UProfile.Gender1 = true;
-                }
-                else
-                {
-                    UProfile.Gender2 = true;
-                }
             }
             #endregion
             MyObjectList.MyProfile = UProfile;
@@ -662,71 +759,28 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 }
             }
         }
-        public ActionResult Follow_Click(string id)
-        {
-            int FCount = 0;
-            MyModelObjects LoadProfile = new MyModelObjects();
-            LoadProfile = Page_Load();
-            if (id != null)
-            {
-                string Following = GetSingleUsers(id).OwnersId;
-                FCount = FollowingR(Following);
-            }
-            else
-            {
-                ModelState.AddModelError("UserProfileViewModel", "Error Occured");
-            }
-            if (FCount > 0)
-            {
-                ViewBag.Message = "Operation was successful.";
-                return View("UserProfileViewModel", LoadProfile);
-            }
-            ModelState.AddModelError("", "Error Occured");
-            return View("UserProfileViewModel", LoadProfile);
-        }
-        public ActionResult UnFollow_Click(string id)
-        {
-            int FCount = 0;
-            MyModelObjects LoadProfile = new MyModelObjects();
-            LoadProfile = Page_Load();
-            if (id != null)
-            {
-                string Following = GetSingleUsers(id).OwnersId;
-                FCount = UnFollowingR(Following);
-            }
-            else
-            {
-                ModelState.AddModelError("", "Error Occured");
-            }
-            if (FCount > 0)
-            {
-                ViewBag.Message = "Operation was successful.";
-            }
-            return View("UserProfileViewModel", LoadProfile);
-        }
-        protected int UpdateUserProfileViewModel(UserProfileViewModel model)
+        protected int UpdateUserProfile(MyModelObjects model)
         {
             int row = 0;
             string userName = User.Identity.GetUserName();
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
             {
-                string Gender = "";
-                string FileName = model.ProfilePicsName;
-                if (model.Gender1) { Gender = "Male"; }
-                else
+                string FileName = model.MyProfile.ProfilePicsName;
+                if (FileName == null)
                 {
-                    Gender = "Female";
+                    string prevModel = GetSingleUsersByEmail(userName).ProfilePicsName;
+                    FileName = prevModel;
                 }
                 conAm.Open();
-                string querystring = "UPDATE [dbo].[Profile] SET [Title] = '" + model.Title + "',";
-                querystring = querystring + "[FName] = '" + model.FName + "', [LName] = '" + model.LName + "',";
-                querystring = querystring + "[Degree] = '" + model.Degree + "', [CNumber] = '" + model.CNumber + "',";
-                querystring = querystring + "[BDate] = '" + model.BDate + "', [Gender] = '" + Gender + "',";
-                querystring = querystring + "[ProfilePicsName] = '" + FileName + "', [WhoYouAre] ='" + model.WhoYouAre + "',";
-                querystring = querystring + "[Institution] = '" + model.Institution + "', [Qualification] = '" + model.Qualification + "'";
-                querystring = querystring + ", [Expertise] = '" + model.Expertise + "', [Specialty] = '" + model.Specialty + "', ";
-                querystring = querystring + "[Interest] = '" + model.Interest + "', [fieldExpertise] = '" + model.fieldExpertise + "',";
-                querystring = querystring + " [WillingToBe] = '" + model.WillingToBe + "', [MentorCategory] = '" + model.MentorCategory + "'";
+                string querystring = "UPDATE [dbo].[Profile] SET [Title] = '" + model.MyProfile.Title + "',";
+                querystring = querystring + "[FName] = '" + model.MyProfile.FName + "', [LName] = '" + model.MyProfile.LName + "',";
+                querystring = querystring + "[Degree] = '" + model.MyProfile.Degree + "', [CNumber] = '" + model.MyProfile.CNumber + "',";
+                querystring = querystring + "[BDate] = '" + model.MyProfile.BDate + "', [Gender] = '" + model.MyProfile.Gender + "',";
+                querystring = querystring + "[ProfilePicsName] = '" + FileName + "', [WhoYouAre] ='" + model.MyProfile.WhoYouAre + "',";
+                querystring = querystring + "[Institution] = '" + model.MyProfile.Institution + "', [Qualification] = '" + model.MyProfile.Qualification + "'";
+                querystring = querystring + ", [Expertise] = '" + model.MyProfile.Expertise + "', [Specialty] = '" + model.MyProfile.Specialty + "', ";
+                querystring = querystring + "[Interest] = '" + model.MyProfile.Interest + "', [fieldExpertise] = '" + model.MyProfile.fieldExpertise + "',";
+                querystring = querystring + " [WillingToBe] = '" + model.MyProfile.WillingToBe + "', [MentorCategory] = '" + model.MyProfile.MentorCategory + "', [Country] = '" + model.MyProfile.Country + "'";
                 querystring = querystring + " WHERE[OwnersId] = '" + userName + "'";
                 try
                 {
@@ -739,29 +793,6 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     return 0;
                 }
             }
-        }
-        public ActionResult UpdateProfile_Click(UserProfileViewModel model, HttpPostedFileBase postedFile)
-        {
-            MyModelObjects LoadProfile = new MyModelObjects();
-            if (postedFile != null)
-            {
-                model.ProfilePicsName = postedFile.FileName;
-                string path = Server.MapPath("~/Files/");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                postedFile.SaveAs(path + Path.GetFileName(postedFile.FileName));
-                ViewBag.Message = "Operation was successful.";
-            }
-            int FCount = UpdateUserProfileViewModel(model);
-            if (FCount > 0)
-            {
-                LoadProfile = Page_Load();
-                ModelState.AddModelError("", "Operation was successful");
-                return View("UserProfileViewModel", LoadProfile);
-            }
-            return View("UserProfileViewModel", LoadProfile);
         }
         public UserProfileViewModel GetLoginUser()
         {
@@ -806,6 +837,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               fieldExpertise = rec["fieldExpertise"].ToString(),
                                               WillingToBe = rec["WillingToBe"].ToString(),
                                               MentorCategory = rec["MentorCategory"].ToString(),
+
 
                                           }).ToList();
                             #endregion
@@ -896,6 +928,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             DataTable dt = new DataTable("UserProfileViewModel");
                             dt.Load(dr);
                             #region Convert To Object List
+
                             myuserlist = (from DataRow rec in dt.Rows
                                           select new UserProfileViewModel()
                                           {
@@ -1385,7 +1418,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
-        protected int UpdateUserProfileViewModel(string concode)
+        protected int UpdateUserProfile(string concode)
         {
             int row = 0;
             using (SqlConnection conAm = new SqlConnection(ConnectionState()))
@@ -1516,7 +1549,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     MyObjectList.MyMessageDetailInbox.Subject = myMessageIn.Subject;
                     MyObjectList.MyMessageDetailInbox.MessageDateCreated = myMessageIn.MessageDateCreated;
                     MyObjectList.MyMessageDetailInbox.FromImage = GetSingleUsersByEmail(myMessageIn.From).ProfilePicsName;
-                    
+
 
                 }
             }
@@ -1551,7 +1584,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             return View(MyObjectList);
         }
 
-       
+
 
         #endregion
 

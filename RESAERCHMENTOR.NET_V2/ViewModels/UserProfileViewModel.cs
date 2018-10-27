@@ -79,6 +79,17 @@ namespace RESAERCHMENTOR.NET_V2.ViewModels
         #endregion
         [Required]
         public IEnumerable<Countries> Countries { get; set; }
-
+        [Required]
+        public IEnumerable<Titles> Titles { get; set; }
+        [Required]
+        public IEnumerable<WillingTo> WillingTo { get; set; }
+        [Required]
+        public IEnumerable<WhoYouAre> WhoYouAreList { get; set; }
+        [Required]
+        public IEnumerable<Willing> Willing { get; set; }
+        [Required]
+        public IEnumerable<ResearchType> ResearchTypeList { get; set; }
+        [Required]
+        public IEnumerable<Expertise> ExpertiseList { get; set; }
     }
 }

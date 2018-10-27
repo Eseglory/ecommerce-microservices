@@ -1,20 +1,18 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using RESAERCHMENTOR.NET.Controllers;
 using RESAERCHMENTOR.NET_V2.Models;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Collections.Generic;
-using System.Configuration;
-using RESAERCHMENTOR.NET.Controllers;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace RESAERCHMENTOR.NET_V2.Controllers
 {
@@ -27,7 +25,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         public AccountController()
         {
         }
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -76,10 +74,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 bool CIsConfirmed = GetLoginUser(model.Email).FirstOrDefault().IsConfirmed;
                 if (!CIsConfirmed)
                 {
-                   return RedirectToAction("PreConfirm", "MentorPartner");
+                    return RedirectToAction("PreConfirm", "MentorPartner");
                 }
             }
-            else if(Ccheck == 0)
+            else if (Ccheck == 0)
             {
                 return RedirectToAction("PreConfirm", "MentorPartner");
             }
@@ -127,7 +125,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account
             // will be locked out for a specified amount of time.
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -186,7 +184,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
@@ -432,12 +430,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 {
                     string userName = email;
                     string CreationDate = DateTime.Now.ToShortDateString();
-                    var cmd = new SqlCommand("INSERT INTO Profile(Title,FName,LName,Degree,CNumber,BDate,Gender,OwnersId,DateCreated,ConfirmationCode) values('" + null + "','" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + userName + "','" + CreationDate + "','" + CodeGen + "')", conAm);
+                    var cmd = new SqlCommand("INSERT INTO Profile(Title,FName,LName,Degree,CNumber,BDate,Gender,OwnersId,DateCreated,ConfirmationCode,IsConfirmed) values('" + null + "','" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + null + "', '" + userName + "','" + CreationDate + "','" + CodeGen + "','" + 0 + "')", conAm);
                     //cmd.Parameters.AddWithValue("@Title", null);
                     row = cmd.ExecuteNonQuery();
-                    string querystring = "UPDATE [dbo].[Profile] SET [IsConfirmed] = 0";
-                    var cmd1 = new SqlCommand(querystring, conAm);
-                    cmd1.ExecuteNonQuery();
                     #region Send Confirmation Mail
                     string Message = "Hello " + userName + " your confirmation code is " + CodeGen + ".";
                     Message = Message + " <a href=" + "http://mentorpartner.net/MentorPartner/PreConfirm" + ">click here</a> to proceed";
@@ -526,20 +521,20 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             dt.Load(dr);
                             #region Convert To Object List
                             myuserlist = (from DataRow rec in dt.Rows
-                                              select new UserProfile()
-                                              {
-                                                  Title = rec["Title"].ToString(),
-                                                  FName = rec["FName"].ToString(),
-                                                  LName = rec["LName"].ToString(),
-                                                  Degree = rec["Degree"].ToString(),
-                                                  CNumber = rec["CNumber"].ToString(),
-                                                  BDate = rec["BDate"].ToString(),
-                                                  Gender = rec["Gender"].ToString(),
-                                                  OwnersId = rec["OwnersId"].ToString(),
-                                                  DateCreated = rec["DateCreated"].ToString(),
-                                                  ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                                  IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"]),
-                                              }).ToList();
+                                          select new UserProfile()
+                                          {
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              OwnersId = rec["OwnersId"].ToString(),
+                                              DateCreated = rec["DateCreated"].ToString(),
+                                              ConfirmationCode = rec["ConfirmationCode"].ToString(),
+                                              IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"]),
+                                          }).ToList();
                             #endregion
                         }
                         con.Close();

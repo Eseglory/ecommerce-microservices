@@ -223,14 +223,29 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810241040441_Ese_FM.cs" />
-    <Compile Include="Migrations\201810241040441_Ese_FM.Designer.cs">
-      <DependentUpon>201810241040441_Ese_FM.cs</DependentUpon>
+    <Compile Include="Migrations\201810242043506_jd.cs" />
+    <Compile Include="Migrations\201810242043506_jd.Designer.cs">
+      <DependentUpon>201810242043506_jd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810251013335_hg.cs" />
+    <Compile Include="Migrations\201810251013335_hg.Designer.cs">
+      <DependentUpon>201810251013335_hg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810252021264_gf.cs" />
+    <Compile Include="Migrations\201810252021264_gf.Designer.cs">
+      <DependentUpon>201810252021264_gf.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Titles.cs" />
+    <Compile Include="Models\WillingTo.cs" />
+    <Compile Include="Models\Willing.cs" />
+    <Compile Include="Models\WhoYouAre.cs" />
+    <Compile Include="Models\ResearchType.cs" />
+    <Compile Include="Models\Expertise.cs" />
     <Compile Include="Models\Activities.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\CommonEnum.cs" />
     <Compile Include="Models\Research.cs" />
     <Compile Include="Models\Follower.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -728,6 +743,7 @@
     <Content Include="Views\MentorPartner\UserInboxDetails.cshtml" />
     <Content Include="Views\MentorPartner\UserOutboxDetails.cshtml" />
     <Content Include="Views\MentorPartner\DashboardDetails.cshtml" />
+    <Content Include="Views\MentorPartner\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -744,8 +760,14 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810241040441_Ese_FM.resx">
-      <DependentUpon>201810241040441_Ese_FM.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810242043506_jd.resx">
+      <DependentUpon>201810242043506_jd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810251013335_hg.resx">
+      <DependentUpon>201810251013335_hg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810252021264_gf.resx">
+      <DependentUpon>201810252021264_gf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
