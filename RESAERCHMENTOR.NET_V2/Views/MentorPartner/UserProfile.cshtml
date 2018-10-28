@@ -460,12 +460,12 @@ else
                                                                         <div class="col-lg-8 col-xs-9 view-top">
                                                                             <div class="row">
                                                                                 <a href="@Url.Action("DashboardDetails", "mentorpartner", new { id = item.ResearchId })" class="p-l-s txt-green">View </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                <a href="~/Images/@item.FileName" target="_blank" class="p-l-s txt-green">Download </a>
-                                                                                <button title="Delete This Post" class="btn  btn-primary btn-rounded pull-right" type="button">Delete Post</button>
+                                                                                <a href="~/Images/@item.FileName" target="_blank" class="p-l-s txt-green">Download </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                <a href="@Url.Action("DeleteResearch", "mentorpartner", new { id = item.ResearchId })" class="p-l-s txt-green">Delete Post </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                             </div>
                                                                         </div><!-- /col-6 -->
                                                                         <div class="col-lg-4 col-xs-3 pull-right view-top">
-                                                                            
+
                                                                         </div>
                                                                     </div><!-- /row -->
 
@@ -585,7 +585,7 @@ else
                             </div>
 
 
-                       
+
 
                             <div id="settings_8" class="tab-pane fade" role="tabpanel">
                                 <!-- Row -->
@@ -705,7 +705,7 @@ else
                             </div>
 
 
-                           
+
 
                             </div>
                     </div>
@@ -1021,11 +1021,11 @@ else
 @section scripts
 {
     @*@Scripts.Render("~/bundles/jqueryval")*@
-    
+
     <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
           rel="stylesheet" type="text/css" />
     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
-    
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
