@@ -10,6 +10,7 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public string MyFullName { get; set; }
         public UserProfileViewModel MyProfile { get; set; }
         public Messages MyMessageDetailInbox { get; set; }
+        public DashBoard DashBoardDetail { get; set; }
         public List<UserProfileViewModel> MyResearch { get; set; }
         public List<UserProfileViewModel> FollowList { get; set; }
         public List<UserProfileViewModel> FollowingList { get; set; }

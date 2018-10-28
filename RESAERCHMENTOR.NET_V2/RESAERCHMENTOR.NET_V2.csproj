@@ -237,6 +237,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DashBoard.cs" />
     <Compile Include="Models\Titles.cs" />
     <Compile Include="Models\WillingTo.cs" />
     <Compile Include="Models\Willing.cs" />
@@ -596,6 +597,7 @@
     <Content Include="Files\2.png" />
     <Content Include="Files\BB-contact.PNG" />
     <Content Include="Files\C# 100.png" />
+    <Content Include="Files\ese_pass.jpg" />
     <Content Include="Files\fatz.jpg" />
     <Content Include="Files\NOU158851168.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

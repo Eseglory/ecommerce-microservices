@@ -642,11 +642,17 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
                                               LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
                                               OwnersId = rec["OwnersId"].ToString(),
                                               DateCreated = rec["DateCreated"].ToString(),
                                               ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                               ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"].ToString()),
                                               WhoYouAre = rec["WhoYouAre"].ToString(),
+                                              Country = rec["Country"].ToString(),
                                               Institution = rec["Institution"].ToString(),
                                               Qualification = rec["Qualification"].ToString(),
                                               Expertise = rec["Expertise"].ToString(),
@@ -694,10 +700,25 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
                                               LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
                                               OwnersId = rec["OwnersId"].ToString(),
                                               DateCreated = rec["DateCreated"].ToString(),
                                               ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                               ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              IsConfirmed = Convert.ToBoolean(rec["IsConfirmed"].ToString()),
+                                              WhoYouAre = rec["WhoYouAre"].ToString(),
+                                              Country = rec["Country"].ToString(),
+                                              Institution = rec["Institution"].ToString(),
+                                              Qualification = rec["Qualification"].ToString(),
+                                              Expertise = rec["Expertise"].ToString(),
+                                              Specialty = rec["Specialty"].ToString(),
+                                              Interest = rec["Interest"].ToString(),
+                                              fieldExpertise = rec["fieldExpertise"].ToString(),
+                                              WillingToBe = rec["WillingToBe"].ToString(),
+                                              MentorCategory = rec["MentorCategory"].ToString(),
                                           }).ToList();
                             #endregion
                         }
@@ -932,6 +953,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             myuserlist = (from DataRow rec in dt.Rows
                                           select new UserProfileViewModel()
                                           {
+                                              Id = Convert.ToInt32(rec["UId"].ToString()),
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
                                               LName = rec["LName"].ToString(),
@@ -1559,26 +1581,26 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #endregion
 
         #region View each Post on Dashboard
-        public ActionResult DashboardDetails(int? id)
+        public ActionResult DashboardDetails(string ResearchId)
         {
 
             MyModelObjects MyObjectList = new MyModelObjects();
-            MyObjectList.MyMessages = GetLoginUserMessages();
-            MyObjectList.MyMessageInbox = GetLoginUserInbox();
+            MyObjectList.MyResearch = GetLoginUserResearch();
+            MyObjectList.GetOtherUsersResearch = GetOtherUsersResearch();
             MyObjectList.GetAllUsers = GetAllUsers();
-            if (id.HasValue)
+            if (ResearchId != null)
             {
-                var myMessageIn = GetLoginUserInbox().FirstOrDefault();
-                if (myMessageIn != null)
+                var myDashBoardIn = GetLoginUserResearch().FirstOrDefault();
+                var myDashBoardOut = GetOtherUsersResearch().FirstOrDefault();
+                if (myDashBoardIn != null)
                 {
-                    MyObjectList.MyMessageDetailInbox = new Messages();
-                    MyObjectList.MyMessageDetailInbox.From = myMessageIn.From;
-                    MyObjectList.MyMessageDetailInbox.To = myMessageIn.To;
-                    MyObjectList.MyMessageDetailInbox.Message = myMessageIn.Message;
-                    MyObjectList.MyMessageDetailInbox.Subject = myMessageIn.Subject;
-                    MyObjectList.MyMessageDetailInbox.MessageDateCreated = myMessageIn.MessageDateCreated;
-                    MyObjectList.MyMessageDetailInbox.FromImage = GetSingleUsersByEmail(myMessageIn.From).ProfilePicsName;
-
+                    MyObjectList.DashBoardDetail = new DashBoard();
+                    MyObjectList.DashBoardDetail.Id = myDashBoardIn.Id;
+                    MyObjectList.DashBoardDetail.Description = myDashBoardIn.Description;
+                    MyObjectList.DashBoardDetail.RTitle = myDashBoardIn.RTitle;
+                    MyObjectList.DashBoardDetail.RType = myDashBoardIn.RType;
+                    MyObjectList.DashBoardDetail.FileName = myDashBoardIn.FileName;
+                    MyObjectList.DashBoardDetail.ResearchId = myDashBoardIn.ResearchId;
                 }
             }
             return View(MyObjectList);
