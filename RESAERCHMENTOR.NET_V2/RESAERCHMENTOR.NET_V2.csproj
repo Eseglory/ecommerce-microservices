@@ -679,6 +679,7 @@
     <Content Include="Content\vendors\jquery.sparkline\Makefile" />
     <Content Include="Content\vendors\jquery.sparkline\README.md" />
     <Content Include="Content\vendors\jquery.sparkline\sparkline.jquery.json" />
+    <Content Include="MessageFile\FILE2 of 2-PRJ SAMPLE PRJ-SEND2.pdf" />
     <None Include="Properties\PublishProfiles\Ese.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
