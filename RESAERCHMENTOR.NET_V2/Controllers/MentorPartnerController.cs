@@ -226,10 +226,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             if (FCount > 0)
             {
                 ViewBag.Message = "Operation was successful.";
-                return View("UserProfileViewModel", LoadProfile);
+                return View("UserProfile", LoadProfile);
             }
             ModelState.AddModelError("", "Error Occured");
-            return View("UserProfileViewModel", LoadProfile);
+            return View("UserProfile", LoadProfile);
         }
         public ActionResult UnFollow_Click(string id)
         {
@@ -249,7 +249,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             {
                 ViewBag.Message = "Operation was successful.";
             }
-            return View("UserProfileViewModel", LoadProfile);
+            return View("UserProfile", LoadProfile);
         }
         public ActionResult UpdateProfile_Click(MyModelObjects model, HttpPostedFileBase postedFile, List<string> myWillingToBe)
         {
@@ -368,15 +368,17 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 UProfile.CNumber = MyProfile.CNumber;
                 UProfile.Country = MyProfile.Country;
                 UProfile.ProfilePicsName = MyProfile.ProfilePicsName;
+                UProfile.Institution = MyProfile.Institution;
+                UProfile.Specialty = MyProfile.Specialty;
+                UProfile.Gender = MyProfile.Gender;
+                UProfile.Qualification = MyProfile.Qualification;
+                UProfile.Expertise = MyProfile.Expertise;
+                UProfile.WhoYouAre = MyProfile.WhoYouAre;
+                UProfile.fieldExpertise = MyProfile.fieldExpertise;
+                UProfile.Interest = MyProfile.Interest;
+                UProfile.WillingToBe = MyProfile.WillingToBe;
+                UProfile.MentorCategory = MyProfile.MentorCategory;
                 UProfile.OwnersId = MyProfile.OwnersId;
-                if (MyProfile.Gender == "Male")
-                {
-                    UProfile.Gender1 = true;
-                }
-                else
-                {
-                    UProfile.Gender2 = true;
-                }
             }
             #endregion
             MyObjectList.MyProfile = UProfile;
@@ -985,6 +987,84 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return myuserlist;
         }
+        public int _deleteResearch(int id)
+        {
+            int row = 0;
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "delete Research where Id = '" + id + "'";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        row = cmd.ExecuteNonQuery();
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return row;
+        }
+        public List<UserProfileViewModel> GetResearches()
+        {
+            string userName = User.Identity.GetUserName();
+            List<UserProfileViewModel> myuserlist = new List<UserProfileViewModel>();
+            using (var con = new SqlConnection(ConnectionState()))
+            {
+                try
+                {
+                    string query = "";
+                    query = "select distinct a.Title, a.Degree, a.BDate, a.Country, a.Gender, a.CNumber, a.LName, a.FName, a.ProfilePicsName, a.Id as UId, b.FileName, b.AuthorName, b.Id, b.DateCreated, b.Description, b.RType, b.Status, b.Title as RTitle, b.SubTitle from Profile as a join Research as b on a.OwnersId = b.OwnersId";
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (DbDataReader dr = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable("UserProfileViewModel");
+                            dt.Load(dr);
+                            #region Convert To Object List
+
+                            myuserlist = (from DataRow rec in dt.Rows
+                                          select new UserProfileViewModel()
+                                          {
+                                              Id = Convert.ToInt32(rec["UId"].ToString()),
+                                              Title = rec["Title"].ToString(),
+                                              FName = rec["FName"].ToString(),
+                                              LName = rec["LName"].ToString(),
+                                              Degree = rec["Degree"].ToString(),
+                                              CNumber = rec["CNumber"].ToString(),
+                                              BDate = rec["BDate"].ToString(),
+                                              Gender = rec["Gender"].ToString(),
+                                              Country = rec["Country"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
+                                              FileName = rec["FileName"].ToString(),
+                                              ResearchId = rec["Id"].ToString(),
+                                              RDateCreated = rec["DateCreated"].ToString(),
+                                              RType = rec["RType"].ToString(),
+                                              Status = rec["Status"].ToString(),
+                                              Description = rec["Description"].ToString(),
+                                              RTitle = rec["RTitle"].ToString(),
+
+                                          }).ToList();
+                            #endregion
+                        }
+                        con.Close();
+                        con.Dispose();
+                    }
+                }
+                catch (Exception ee)
+                {
+                    var message = ee.Message;
+                }
+            }
+            return myuserlist;
+        }
         public List<UserProfileViewModel> GetOtherUsersResearch()
         {
             string userName = User.Identity.GetUserName();
@@ -1225,7 +1305,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                         int myActivity = userProperties.AddActivity(loadActivity);
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful.";
-                        return View("UserProfileViewModel", LoadProfile);
+                        return View("UserProfile", LoadProfile);
                     }
                 }
                 catch (Exception ee)
@@ -1291,7 +1371,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                         int myActivity = userProperties.AddActivity(loadActivity);
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful.";
-                        return View("UserProfileViewModel", LoadProfile);
+                        return View("UserProfile", LoadProfile);
                     }
                 }
                 catch (Exception ee)
@@ -1319,7 +1399,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 conAm.Open();
                 try
                 {
-                    string path = Server.MapPath("~/Images/");
+                    string path = Server.MapPath("~/MessageFile/");
                     if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);
@@ -1327,7 +1407,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     if (postedFile != null)
                     {
                         fileName = Path.GetFileName(postedFile.FileName);
-                        postedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
+                        postedFile.SaveAs(Server.MapPath("~/MessageFile/") + fileName);
                     }
                     string userName = User.Identity.GetUserName();
                     string creationDate = DateTime.Now.ToShortDateString();
@@ -1341,14 +1421,15 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                         mailService.MailService(OwnersId, OwnersId, message, Subject);
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful.";
-                        return View("UserProfileViewModel", LoadProfile);
+                        return View("UserProfile", LoadProfile);
                     }
                 }
                 catch (Exception ee)
                 {
-                    Response.Write("Error Occurred.!");
+                    Response.Write("Error Occurred.! " + ee.Message);
                 }
-                return View("UserProfileViewModel", LoadProfile);
+                LoadProfile = Page_Load();
+                return View("UserProfile", LoadProfile);
             }
         }
         #endregion
@@ -1370,7 +1451,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         LoadProfile = Page_Load();
                         ViewBag.Message = "This  Person Is Already Your Mentor.";
-                        return View("UserProfileViewModel", LoadProfile);
+                        return View("UserProfile", LoadProfile);
                     }
                     string userName = User.Identity.GetUserName();
                     string creationDate = DateTime.Now.ToShortDateString();
@@ -1382,14 +1463,15 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     {
                         LoadProfile = Page_Load();
                         ViewBag.Message = "Operation was successful." + " " + MentorName + " is now your mentor.";
-                        return View("UserProfileViewModel", LoadProfile);
+                        return View("UserProfile", LoadProfile);
                     }
                 }
                 catch (Exception ee)
                 {
                     Response.Write("Error Occurred.!");
                 }
-                return View("UserProfileViewModel", LoadProfile);
+                LoadProfile = Page_Load();
+                return View("UserProfile", LoadProfile);
             }
         }
         #endregion
@@ -1581,17 +1663,16 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #endregion
 
         #region View each Post on Dashboard
-        public ActionResult DashboardDetails(string ResearchId)
+        public ActionResult DashboardDetails(string id)
         {
 
             MyModelObjects MyObjectList = new MyModelObjects();
             MyObjectList.MyResearch = GetLoginUserResearch();
             MyObjectList.GetOtherUsersResearch = GetOtherUsersResearch();
             MyObjectList.GetAllUsers = GetAllUsers();
-            if (ResearchId != null)
+            if (id != null)
             {
-                var myDashBoardIn = GetLoginUserResearch().FirstOrDefault();
-                var myDashBoardOut = GetOtherUsersResearch().FirstOrDefault();
+                var myDashBoardIn = GetResearches().Single(d => d.ResearchId == id);
                 if (myDashBoardIn != null)
                 {
                     MyObjectList.DashBoardDetail = new DashBoard();
@@ -1605,8 +1686,23 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             }
             return View(MyObjectList);
         }
-
-
+        public ActionResult DeleteResearch(int? id)
+        {
+            var result = _deleteResearch(id.Value);
+            if (result > 0)
+            {
+                ViewBag.Message = "Operation was successful.";
+            }
+            var loadProfile = Page_Load();
+            loadProfile.MyProfile.Countries = _context.Countries.ToList();
+            loadProfile.MyProfile.Titles = _context.Titles.ToList();
+            loadProfile.MyProfile.WillingTo = _context.WillingTo.ToList();
+            loadProfile.MyProfile.Willing = _context.Willing.ToList();
+            loadProfile.MyProfile.WhoYouAreList = _context.WhoYouAre.ToList();
+            loadProfile.MyProfile.ResearchTypeList = _context.ResearchType.ToList();
+            loadProfile.MyProfile.ExpertiseList = _context.Expertise.ToList();
+            return View("UserProfile", loadProfile);
+        }
 
         #endregion
 
