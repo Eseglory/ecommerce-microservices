@@ -338,7 +338,7 @@
                             <li role="presentation" class="next"><a aria-expanded="true" data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>follow<span class="inline-block">(@Model.FollowCount)</span></span></a></li>
                             <li role="presentation" class="next"><a aria-expanded="true" data-toggle="tab" role="tab" id="folloing_tab_8" href="#folloing_8"><span>following<span class="inline-block">(@Model.FollowingCount)</span></span></a></li>
                             <!--li role="presentation" class=""><a data-toggle="tab" id="earning_tab_8" role="tab" href="#earnings_8" aria-expanded="false"><span>Timeline</span></a></li-->
-                            <li role="presentation" class=""><a data-toggle="tab" id="settings_tab_8" role="tab" href="#settings_8" aria-expanded="false"><span>settings</span></a></li>
+                            <li role="presentation" class=""><a data-toggle="tab" id="settings_tab_8" role="tab" href="#settings_8" aria-expanded="false"><span>User Information</span></a></li>
 
                             <!--li class="dropdown" role="presentation">
                                 <a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false"><span>More</span> <span class="caret"></span></a>
@@ -443,6 +443,7 @@ else
                                                         <div class="news-feed-title_img col-lg-7">
 
                                                             <div class="row">
+                                                                <h5 style="color:#238C00; text-transform:capitalize;">@item.RTitle</h5>
                                                                 <div class="post-heading col-lg-12">
                                                                     <h6>@item.Description </h6>
                                                                 </div><!-- /post-heading -->
@@ -458,15 +459,13 @@ else
                                                                     <div class="row">
                                                                         <div class="col-lg-8 col-xs-9 view-top">
                                                                             <div class="row">
-                                                                                <a href="#" class="p-l-s txt-green">View </a>
-                                                                                <a href="#" class="p-l-s txt-green">Download </a>
+                                                                                <a href="@Url.Action("DashboardDetails", "mentorpartner", new { id = item.ResearchId })" class="p-l-s txt-green">View </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                <a href="~/Images/@item.FileName" target="_blank" class="p-l-s txt-green">Download </a>
+                                                                                <button title="Delete This Post" class="btn  btn-primary btn-rounded pull-right" type="button">Delete Post</button>
                                                                             </div>
                                                                         </div><!-- /col-6 -->
                                                                         <div class="col-lg-4 col-xs-3 pull-right view-top">
-                                                                            <div class="row">
-                                                                                <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/like.png" width="15"></div>
-                                                                                <div class="col-lg-6 col-xs-6"><img src="~/Content/dist/img/big/share.png" width="15"></div>
-                                                                            </div>
+                                                                            
                                                                         </div>
                                                                     </div><!-- /row -->
 
@@ -585,433 +584,120 @@ else
                                 </div>
                             </div>
 
-                            <div id="photos_8" class="tab-pane fade" role="tabpanel">
-                                <div class="col-md-12 pb-20">
-                                    <div class="gallery-wrap">
-                                        <div class="portfolio-wrap project-gallery">
-                                            <ul id="portfolio_1" class="portf auto-construct  project-gallery" data-col="4">
-                                                <li class="item" data-src="~/Content/dist/img/gallery/equal-size/mock1.jpg" data-sub-html="<h6>Bagwati</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                    <a href="">
-                                                        <img class="img-responsive" src="~/Content/dist/img/gallery/equal-size/mock1.jpg" alt="Image description" />
-                                                        <span class="hover-cap">Bagwati</span>
-                                                    </a>
-                                                </li>
-                                                <li class="item" data-src="~/Content/dist/img/gallery/equal-size/mock2.jpg" data-sub-html="<h6>Not a Keyboard</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                    <a href="">
-                                                        <img class="img-responsive" src="~/Content/dist/img/gallery/equal-size/mock2.jpg" alt="Image description" />
-                                                        <span class="hover-cap">Not a Keyboard</span>
-                                                    </a>
-                                                </li>
-                                                <li class="item" data-src="~/Content/dist/img/gallery/equal-size/mock3.jpg" data-sub-html="<h6>Into the Woods</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                    <a href="">
-                                                        <img class="img-responsive" src="~/Content/dist/img/gallery/equal-size/mock3.jpg" alt="Image description" />
-                                                        <span class="hover-cap">Into the Woods</span>
-                                                    </a>
-                                                </li>
-                                                <li class="item" data-src="~/Content/dist/img/gallery/equal-size/mock4.jpg" data-sub-html="<h6>Ultra Saffire</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                    <a href="">
-                                                        <img class="img-responsive" src="~/Content/dist/img/gallery/equal-size/mock4.jpg" alt="Image description" />
-                                                        <span class="hover-cap"> Ultra Saffire</span>
-                                                    </a>
-                                                </li>
 
-                                                <li class="item" data-src="~/Content/dist/img/gallery/equal-size/mock5.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                    <a href="">
-                                                        <img class="img-responsive" src="~/Content/dist/img/gallery/equal-size/mock5.jpg" alt="Image description" />
-                                                        <span class="hover-cap">Happy Puppy</span>
-                                                    </a>
-                                                </li>
-                                                <li class="item" data-src="~/Content/dist/img/gallery/equal-size/mock6.jpg" data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                    <a href="">
-                                                        <img class="img-responsive" src="~/Content/dist/img/gallery/equal-size/mock6.jpg" alt="Image description" />
-                                                        <span class="hover-cap">Wooden Closet</span>
-                                                    </a>
-                                                </li>
-                                                <li class="item" data-src="~/Content/dist/img/gallery/equal-size/mock7.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                    <a href="">
-                                                        <img class="img-responsive" src="~/Content/dist/img/gallery/equal-size/mock7.jpg" alt="Image description" />
-                                                        <span class="hover-cap">Happy Puppy</span>
-                                                    </a>
-                                                </li>
-                                                <li class="item" data-src="~/Content/dist/img/gallery/equal-size/mock8.jpg" data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                    <a href="">
-                                                        <img class="img-responsive" src="~/Content/dist/img/gallery/equal-size/mock8.jpg" alt="Image description" />
-                                                        <span class="hover-cap">Wooden Closet</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="earnings_8" class="tab-pane fade" role="tabpanel">
-                                <!-- Row -->
-                                <div class="row">
-                                    <div class="col-lg-12">
-
-                                        <div class="panel panel-default card-view">
-                                            <div class="panel-body">
-                                                <ul class="timeline">
-                                                    <li>
-                                                        <div class="timeline-badge bg-yellow">
-                                                            <i class="icon-layers"></i>
-                                                        </div>
-                                                        <div class="timeline-panel pa-30">
-                                                            <div class="panel-heading" style="background-color:#0cb;">
-                                                                <div class="timeline-heading">
-                                                                    <div class="pull-left">
-                                                                        <div class="tmlphoto">
-                                                                            <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
-                                                                        </div><div class="clearfix"></div>
-                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
-                                                                        <h6 class="mb-15">1 september 15</h6>
-                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
-                                                                    </div>
-                                                                    <div class="pull-right">
-                                                                        <div class="pull-left inline-block dropdown mr-15">
-                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
-                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
-                                                                            </ul>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div><div class="clearfix"></div>
-                                                            </div>
-                                                            <div class="timeline-body">
-                                                                <div class="" style="height:auto; max-width: 100%;">
-                                                                    <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
-                                                                </div>
-                                                                <br>
-                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
-
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li class="timeline-inverted">
-                                                        <div class="timeline-badge bg-pink">
-                                                            <i class="icon-layers"></i>
-                                                        </div>
-                                                        <div class="timeline-panel pa-30">
-                                                            <div class="panel-heading" style="background-color:#0cb;">
-                                                                <div class="timeline-heading">
-                                                                    <div class="pull-left">
-                                                                        <div class="tmlphoto">
-                                                                            <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
-                                                                        </div><div class="clearfix"></div>
-                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
-                                                                        <h6 class="mb-15">1 september 15</h6>
-                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
-                                                                    </div>
-                                                                    <div class="pull-right">
-                                                                        <div class="pull-left inline-block dropdown mr-15">
-                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
-                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
-                                                                            </ul>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div><div class="clearfix"></div>
-                                                            </div>
-                                                            <div class="timeline-body">
-                                                                <div class="" style="height:auto; max-width: 100%;">
-                                                                    <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
-                                                                </div>
-                                                                <br>
-                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
-
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li>
-                                                        <div class="timeline-badge bg-red">
-                                                            <i class="icon-layers"></i>
-                                                        </div>
-                                                        <div class="timeline-panel pa-30">
-                                                            <div class="panel-heading" style="background-color:#0cb;">
-                                                                <div class="timeline-heading">
-                                                                    <div class="pull-left">
-                                                                        <div class="tmlphoto">
-                                                                            <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
-                                                                        </div><div class="clearfix"></div>
-                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
-                                                                        <h6 class="mb-15">1 september 15</h6>
-                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
-                                                                    </div>
-                                                                    <div class="pull-right">
-                                                                        <div class="pull-left inline-block dropdown mr-15">
-                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
-                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
-                                                                            </ul>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div><div class="clearfix"></div>
-                                                            </div>
-                                                            <div class="timeline-body">
-                                                                <div class="" style="height:auto; max-width: 100%;">
-                                                                    <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
-                                                                </div>
-                                                                <br>
-                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
-
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li class="timeline-inverted">
-                                                        <div class="timeline-badge bg-blue">
-                                                            <i class="icon-layers"></i>
-                                                        </div>
-                                                        <div class="timeline-panel pa-30">
-                                                            <div class="panel-heading" style="background-color:#0cb;">
-                                                                <div class="timeline-heading">
-                                                                    <div class="pull-left">
-                                                                        <div class="tmlphoto">
-                                                                            <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
-                                                                        </div><div class="clearfix"></div>
-                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
-                                                                        <h6 class="mb-15">1 september 15</h6>
-                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
-                                                                    </div>
-                                                                    <div class="pull-right">
-                                                                        <div class="pull-left inline-block dropdown mr-15">
-                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
-                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
-                                                                            </ul>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div><div class="clearfix"></div>
-                                                            </div>
-                                                            <div class="timeline-body">
-                                                                <div class="" style="height:auto; max-width: 100%;">
-                                                                    <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
-                                                                </div>
-                                                                <br>
-                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
-
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li>
-                                                        <div class="timeline-badge bg-green">
-                                                            <i class="icon-layers"></i>
-                                                        </div>
-                                                        <div class="timeline-panel pa-30">
-                                                            <div class="panel-heading" style="background-color:#0cb;">
-                                                                <div class="timeline-heading">
-                                                                    <div class="pull-left">
-                                                                        <div class="tmlphoto">
-                                                                            <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="100" height="100" class="tmlphotoimg" />
-                                                                        </div><div class="clearfix"></div>
-                                                                        <h4 class="mb-5" style="color: #fff;"><strong>pogody</strong></h4>
-                                                                        <h6 class="mb-15">1 september 15</h6>
-                                                                        <h6 class="panel-title txt-dark"><p class="lead head-font mb-20" style="font-size:30px; color: #fff;">Responsive html5 template</p></h6>
-                                                                    </div>
-                                                                    <div class="pull-right">
-                                                                        <div class="pull-left inline-block dropdown mr-15">
-                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert" style="color:#fff;"></i></a>
-                                                                            <ul class="dropdown-menu bullet dropdown-menu-right" role="menu">
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Share</a></li>
-                                                                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a></li>
-                                                                            </ul>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div><div class="clearfix"></div>
-                                                            </div>
-                                                            <div class="timeline-body">
-                                                                <div class="" style="height:auto; max-width: 100%;">
-                                                                    <img src="~/Content/dist/img/big/circle.jpg" alt="image" width="500" height="500" class="tmlphotoimg2" />
-                                                                </div>
-                                                                <br>
-                                                                <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p><br>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">View</button></a>
-                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btnmenuresearch">Download</button></a>
-
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li class="clearfix no-float"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                       
 
                             <div id="settings_8" class="tab-pane fade" role="tabpanel">
                                 <!-- Row -->
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="">
-                                            <div class="panel-wrapper collapse in">
-                                                <div class="panel-body pa-0">
-                                                    <div class="col-lg-12 col-sm-12 col-xs-12">
-                                                        <div class="form-wrap">
-                                                            <div class="form-body overflow-hide">
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputuname_01">First Name</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        @Html.TextBoxFor(m => m.MyProfile.FName, new { @class = "form-control", placeholder = "Enter First Name", required = true, @readonly = "readonly" })
-                                                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="pt-20">
+                                            <div class="streamline user-activity">
+                                                <div class="sl-item" style="border:none;">
+                                                    <a href="#">
+
+                                                        <div class="sl-content" style="margin-left:0px;">
+                                                            <span class="capitalize-font txt-success mr-5 weight-500"> Bio-Data</span>
+                                                            <hr>
+                                                            <p class="inline-block"><br><br></p>
+                                                            <div class="col-lg-12">
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Title:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.Title</div>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputuname_01">Last Name</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" name="LName" class="form-control" value=@Model.MyProfile.LName id="LName" placeholder="bryant" readonly>
-                                                                    </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> First Name:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.FName</div>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputuname_01">Degree</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" name="Degree" class="form-control" id="Degree" value=@Model.MyProfile.Degree placeholder="willard bryant" readonly>
-                                                                    </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Last Name:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.LName </div>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputEmail_01">Email address</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-                                                                        @Html.TextBoxFor(m => m.MyProfile.OwnersId, new { @class = "form-control", @readonly = "readonly" })
-                                                                    </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Gender:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.Gender </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Mobile:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.CNumber</div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Date of Birth:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.BDate</div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Country:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.Country</div>
                                                                 </div>
 
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputContact_01">Contact number</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                        <input type="text" name="CNumber" class="form-control" id="CNumber" value=@Model.MyProfile.CNumber  readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputContact_1">Date Of Birth number</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                        <input type="text" class="form-control" name="BDate" id="BDate" value=@Model.MyProfile.BDate readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <br /><br />
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputContact_1">Gender</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                        @Html.TextBoxFor(m => m.MyProfile.Gender, new { @class = "form-control", @readonly = "readonly" })
-                                                                    </div>
-                                                                </div>
 
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10">Who are you?</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="WhoYouAre" value=@Model.MyProfile.WhoYouAre id="WhoYouAre" placeholder="Who Are You" readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Institution</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="Institution" value=@Model.MyProfile.Institution id="Institution" placeholder="University of Lagos" readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10">Qualification</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="Qualification" value=@Model.MyProfile.Qualification id="Qualification" placeholder="" readonly>
-                                                                    </div>
-                                                                </div>
 
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Primary Field of Expertise</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        @Html.TextBoxFor(m => m.MyProfile.Expertise, new { @class = "form-control", @readonly = "readonly" })
-                                                                    </div>
-                                                                </div>
 
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Sub Specialty</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="Specialty" value=@Model.MyProfile.Specialty id="Specialty" placeholder="" readonly>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Research Interest or Focus</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        <input type="text" class="form-control" name="Interest" value=@Model.MyProfile.Interest id="Interest" placeholder="" readonly>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10" for="exampleInputuname_1">Number of years in Field of Expertise</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        @Html.TextBoxFor(m => m.MyProfile.fieldExpertise, new { @class = "form-control", @readonly = "readonly" })
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10">Willing to be</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        @Html.TextBoxFor(m => m.MyProfile.WillingToBe, new { @class = "form-control", @readonly = "readonly" })
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10">Mark areas your willing to mentor  or provide academic services </label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                        @Html.TextBoxFor(m => m.MyProfile.MentorCategory, new { @class = "form-control", @readonly = "readonly" })
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label mb-10">Country</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon"><i class="icon-globe"></i></div>
-                                                                        <input type="text" class="form-control" name="Country" id="Country" value=@Model.MyProfile.Country  readonly>
-                                                                    </div>
-                                                                </div>
                                                             </div>
-                                                            <div class="form-actions mt-10">
+
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <br /><br /><br /><br />
+                                                <div class="sl-item" style="border:none;">
+                                                    <a href="javascript:void(0)">
+
+                                                        <div class="sl-content" style="margin-left:0px;">
+                                                            <span class="capitalize-font txt-success mr-5 weight-500"> Education</span>
+                                                            <hr>
+                                                            <p class="inline-block"><br><br></p>
+
+                                                            <div class="col-lg-12">
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Institution:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.Institution</div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Degree:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.Degree</div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Qualification:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.Qualification</div>
+                                                                </div>
 
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
+                                                <br /><br />
+                                                <div class="sl-item" style="border:none;">
+                                                    <a href="javascript:void(0)">
+
+                                                        <div class="sl-content" style="margin-left:0px;">
+                                                            <span class="capitalize-font txt-success mr-5 weight-500"> Other</span>
+                                                            <hr>
+                                                            <p class="inline-block"><br><br></p>
+
+
+                                                            <div class="col-lg-12">
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Who Are You:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.WhoYouAre</div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Willing To Be:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.WillingToBe</div>
+                                                                </div>
+
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Area of Expertise:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.Expertise</div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Field of Expertise(Years):</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.fieldExpertise Years</div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Specialty:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.Specialty</div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Area of Interest:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.Interest</div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="col-lg-3 pull-left"><strong> Category:</strong></div> <div class="col-lg-9 pull-right">@Model.MyProfile.MentorCategory</div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                                <div class="sl-item" style="border:none;">
+                                                    <p class="inline-block"><br><br></p>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -1019,9 +705,9 @@ else
                             </div>
 
 
+                           
 
-
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -1078,7 +764,7 @@ else
                                                                 @{ string fullname = iuser.Title + " " + iuser.LName + " " + iuser.FName; }
                                                                 <div class="user-data">
                                                                     <span class="name block capitalize-font">@fullname.</span>
-                                                                    <span class="time block truncate txt-grey">@iuser.fieldExpertise</span>
+                                                                    <span class="time block truncate txt-grey">@iuser.Expertise</span>
                                                                 </div>
                                                                 <div class="status offline"></div>
                                                                 <a title="Add This Person As Mentor" href="@Url.Action("mentor_click", "mentorpartner", new { id = iuser.Id })" class="btn-success pull-right btn-xs fixed-btn"><i class=" ti-plus"></i></a>
@@ -1335,12 +1021,11 @@ else
 @section scripts
 {
     @*@Scripts.Render("~/bundles/jqueryval")*@
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    
     <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
           rel="stylesheet" type="text/css" />
     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
-          rel="stylesheet" type="text/css" />
+    
     <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
