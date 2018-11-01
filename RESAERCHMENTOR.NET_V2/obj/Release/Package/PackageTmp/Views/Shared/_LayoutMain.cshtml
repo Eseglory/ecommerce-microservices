@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using Microsoft.Ajax.Utilities
+@using Microsoft.AspNet.Identity
 @using RESAERCHMENTOR.NET.Controllers
 <!DOCTYPE html>
 <html lang="en">
@@ -39,20 +40,35 @@
     <link href="~/Content/dist/css/style.css" rel="stylesheet" type="text/css">
     <link href="~/Content/dist/css/custom-style.css" rel="stylesheet" type="text/css">
 
+    <!--saka yusuf-->
+    <!-- select2 CSS -->
+    <link href="~/Content/vendors/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- switchery CSS -->
+    <link href="~/Content/vendors/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- bootstrap-select CSS -->
+    <link href="~/Content/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
     <!--Preloader-->
-    <div class="preloader-it">
-        <div class="la-anim-1"></div>
-    </div>
+<div class="preloader-it">
+    <div class="la-anim-1"></div>
+</div>
+
     @{
         string Username = User.Identity.GetUserName();
         DBConnect dbconrext = new DBConnect();
         string imgName = "";
         if (Username != string.Empty)
         {
-            imgName = dbconrext.GetLoginUser(Username).ProfilePicsName;
+            var userN = dbconrext.GetLoginUser(Username);
+            if (userN != null)
+            {
+                imgName = dbconrext.GetLoginUser(Username).ProfilePicsName;
+            }
         }
     }
     <!--/Preloader-->
@@ -110,20 +126,24 @@
 
                         <li>
                             <a href="@Url.Action("UserProfile", "MentorPartner")">
-                                @if (@imgName == string.Empty && dbconrext.GetLoginUser(Username).Gender == "Male")
-
+                                @{var User = dbconrext.GetLoginUser(Username); }
+                                @if (User != null)
                                 {
-                                    <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-auth-img img-circle" />
-                                }
-                                else if (@imgName == string.Empty && dbconrext.GetLoginUser(Username).Gender == "Female")
-                                {
-                                    <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-auth-img img-circle" />
-                                }
-                                else
-                                {
-                                    <img src="~/Files/@imgName" alt="user_auth" class="user-auth-img img-circle" />
+                                    if (@imgName == string.Empty && User.Gender == "Male")
+
+                                     {
+                                         <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-auth-img img-circle"/>
+                                     }
+                                     else if (@imgName == string.Empty && dbconrext.GetLoginUser(Username).Gender == "Female")
+                                     {
+                                         <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-auth-img img-circle"/>
+                                     }
+                                     else
+                                     {
+                                         <img src="~/Files/@imgName" alt="user_auth" class="user-auth-img img-circle"/>
 
 
+                                     }
                                 }
                                 <span class="user-online-status"></span>
                             </a>
@@ -270,6 +290,19 @@
 
     <!-- Spectragram JavaScript -->
     <script src="~/Content/dist/js/spectragram.min.js"></script>
+
+    <!-- Select2 JavaScript -->
+    <script src="~/Content/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+    <!-- Bootstrap Select JavaScript -->
+    <script src="~/Content/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+    <!-- Multiselect JavaScript -->
+    <script src="~/Content/vendors/bower_components/multiselect/js/jquery.multi-select.js"></script>
+
+    <!-- Form Advance Init JavaScript -->
+    <script src="~/Content/dist/js/form-advance-data.js"></script>
+
 
     <!-- Init JavaScript -->
     <script src="~/Content/dist/js/init.js"></script>

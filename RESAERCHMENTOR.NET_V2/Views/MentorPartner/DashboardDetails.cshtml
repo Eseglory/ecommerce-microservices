@@ -13,23 +13,46 @@
 <!-- Added by saka -->
 <div class="container">
     <div class="row">
-        <div class="story-cont col-lg-12 p-b-m">
-           
-          
-      @Model.DashBoardDetail.Description
-            
-            <p><br /></p>
-            
+        <div class="col-lg-9">
+            <div class="story-cont col-lg-12 p-b-m">
+                <a title="Go Back" class="dropdown-toggle pr-0" href="@Url.Action("DashBoard", "mentorpartner")"> Go back to DashBoard</a><br /><br />
+                <div class="row story-cont2">
+                    <!--div class="row"-->
+                    <div class="write-up col-lg-10 bg-white border-top p-b-s">
+                        <div class="news-feed-title_img col-lg-11">
+
+                            <div class="row">
+                                <h5 style="color:#238C00; text-transform:capitalize;">@Model.DashBoardDetail.RTitle</h5>
+                                <div class="post-heading col-lg-12">
+
+                                    <p style="font-size:14px;">@Model.DashBoardDetail.Description </p>
+                                </div><!-- /post-heading -->
+                                <div class="row">
+
+                                    <br><br><br><br><br><br>
+
+                                </div>
+                            </div>
+
+                        </div><!-- /news-feed-title_img -->
+                    </div><!-- /write-up -->
+                    <!--/div-->
+
+                </div><!-- /row -->
+
+                <p><br /></p>
+
+            </div>
+
+            <!-- /story-cont -->
+            <div class="col-lg-1"></div>
         </div>
-
-     
-        <!-- /story-cont -->
-        <div class="col-lg-1"></div>
-
-        <div class="col-lg-4 bg-white static pull-right">
+        <div class="col-lg-3 bg-white statics pull-right">
             <div class="p-t-xs"><img src="~/Content/dist/img/big/ad-1.png" class="img-responsive" width="250"></div>
             <div class="p-tb-xs"><img src="~/Content/dist/img/big/ad-2.png" class="img-responsive" width="250"></div>
-
+            <p><br /><br /><br /></p>
+            <a class="twitter-timeline" data-width="302" data-height="450" data-theme="dark" href="https://twitter.com/mentor_partner?ref_src=twsrc%5Etfw">Tweets by mentor_partner</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div><!-- /.col-3 -->
     </div>
 

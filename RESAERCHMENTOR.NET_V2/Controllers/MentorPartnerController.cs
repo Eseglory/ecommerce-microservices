@@ -150,7 +150,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         {
             if (!Request.IsAuthenticated)
             {
-                return RedirectToAction("index", "Home");
+                return RedirectToAction("Login", "Account");
             }
             MyModelObjects LoadProfile = new MyModelObjects();
             LoadProfile.MyResearch = GetLoginUserResearch();
@@ -162,6 +162,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult UserInfo(string id)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             MyModelObjects LoadProfile = new MyModelObjects();
             string userId = GetSingleUsers(id).OwnersId;
             LoadProfile = Load_Profile(userId);
@@ -172,7 +176,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         {
             if (!Request.IsAuthenticated)
             {
-                return RedirectToAction("index", "Home");
+                return RedirectToAction("Login", "Account");
             }
             List<UserProfileViewModel> LoadProfile = new List<UserProfileViewModel>();
             // LoadProfile = GetAllUsersAreaOfExpactise("090z");
@@ -181,12 +185,20 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult userSearchResult(string fieldExpertise)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             List<UserProfileViewModel> LoadProfile = new List<UserProfileViewModel>();
             LoadProfile = GetAllUsersAreaOfExpactise(fieldExpertise); ;
             return View("userSearch", LoadProfile);
         }
         public ActionResult UserInbox()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             MyModelObjects MyObjectList = new MyModelObjects();
             MyObjectList.MyMessages = GetLoginUserMessages();
             MyObjectList.MyMessageInbox = GetLoginUserInbox();
@@ -195,6 +207,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult UserOutbox()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             MyModelObjects MyObjectList = new MyModelObjects();
             MyObjectList.MyMessages = GetLoginUserMessages();
             MyObjectList.MyMessageInbox = GetLoginUserInbox();
@@ -203,6 +219,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult SendMessage(string id)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             Messages MyObjectList = new Messages();
             string userName = User.Identity.GetUserName();
             MyObjectList.To = GetSingleUsers(id).OwnersId;
@@ -1261,6 +1281,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region Add Research
         public ActionResult AddResearch()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             UserProfileViewModel LoadResearch = new UserProfileViewModel();
             LoadResearch.OwnersId = GetLoginUser().OwnersId;
             LoadResearch.AuthorName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
@@ -1327,6 +1351,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region Add Post
         public ActionResult AddPost()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             UserProfileViewModel LoadResearch = new UserProfileViewModel();
             LoadResearch.OwnersId = GetLoginUser().OwnersId;
             LoadResearch.AuthorName = GetLoginUser().Title + " " + GetLoginUser().FName + " " + GetLoginUser().LName;
@@ -1611,6 +1639,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region View each Message
         public ActionResult UserInboxDetails(int? id)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             MyModelObjects MyObjectList = new MyModelObjects();
             MyObjectList.MyMessages = GetLoginUserMessages();
@@ -1628,6 +1660,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     MyObjectList.MyMessageDetailInbox.Subject = myMessageIn.Subject;
                     MyObjectList.MyMessageDetailInbox.MessageDateCreated = myMessageIn.MessageDateCreated;
                     MyObjectList.MyMessageDetailInbox.FromImage = GetSingleUsersByEmail(myMessageIn.From).ProfilePicsName;
+                    MyObjectList.MyMessageDetailInbox.AttachedFileName = myMessageIn.AttachedFileName;
 
                 }
             }
@@ -1636,6 +1669,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
 
         public ActionResult UserOutboxDetails(int? id)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             MyModelObjects MyObjectList = new MyModelObjects();
             MyObjectList.MyMessages = GetLoginUserMessages();
@@ -1653,6 +1690,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     MyObjectList.MyMessageDetailInbox.Subject = myMessageIn.Subject;
                     MyObjectList.MyMessageDetailInbox.MessageDateCreated = myMessageIn.MessageDateCreated;
                     MyObjectList.MyMessageDetailInbox.FromImage = GetSingleUsersByEmail(myMessageIn.From).ProfilePicsName;
+                    MyObjectList.MyMessageDetailInbox.AttachedFileName = myMessageIn.AttachedFileName;
 
 
                 }
@@ -1665,6 +1703,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region View each Post on Dashboard
         public ActionResult DashboardDetails(string id)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             MyModelObjects MyObjectList = new MyModelObjects();
             MyObjectList.MyResearch = GetLoginUserResearch();
@@ -1673,6 +1715,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             if (id != null)
             {
                 var myDashBoardIn = GetResearches().Single(d => d.ResearchId == id);
+                
                 if (myDashBoardIn != null)
                 {
                     MyObjectList.DashBoardDetail = new DashBoard();
@@ -1683,6 +1726,8 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     MyObjectList.DashBoardDetail.FileName = myDashBoardIn.FileName;
                     MyObjectList.DashBoardDetail.ResearchId = myDashBoardIn.ResearchId;
                 }
+
+                
             }
             return View(MyObjectList);
         }
@@ -1709,6 +1754,10 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         #region Payment for peer review
         public ActionResult UserPayment()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             string paymentUsername = User.Identity.GetUserName();
 
             return View();

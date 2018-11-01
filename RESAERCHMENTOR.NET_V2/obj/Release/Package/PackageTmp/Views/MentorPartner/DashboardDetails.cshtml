@@ -1,0 +1,61 @@
+﻿
+
+@model RESAERCHMENTOR.NET_V2.Models.MyModelObjects
+@using Microsoft.AspNet.Identity
+@using System.Globalization
+
+@{
+    ViewBag.Title = "DashboardDetails";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<p><br /><br /><br /></p>
+
+<!-- Added by saka -->
+<div class="container">
+    <div class="row">
+        <div class="story-cont col-lg-12 p-b-m">
+            <a title="Go Back"  class="dropdown-toggle pr-0" href="@Url.Action("DashBoard", "mentorpartner")"> Go back to DashBoard</a><br /><br />
+                <div class="row story-cont2">
+                    <!--div class="row"-->
+                    <div class="write-up col-lg-10 bg-white border-top p-b-s">
+                        <div class="news-feed-title_img col-lg-11">
+
+                            <div class="row">
+                                <h5 style="color:#238C00; text-transform:capitalize;">@Model.DashBoardDetail.RTitle</h5>
+                                <div class="post-heading col-lg-12">
+
+                                    <p style="font-size:14px;">@Model.DashBoardDetail.Description </p>
+                                </div><!-- /post-heading -->
+                                <div class="row">
+
+                                    <br><br><br><br><br><br>
+
+                                </div>
+                            </div>
+
+                        </div><!-- /news-feed-title_img -->
+                    </div><!-- /write-up -->
+                    <!--/div-->
+
+                </div><!-- /row -->
+
+                <p><br /></p>
+
+</div>
+
+     
+        <!-- /story-cont -->
+        <div class="col-lg-1"></div>
+
+        <div class="col-lg-4 bg-white static pull-right">
+            <div class="p-t-xs"><img src="~/Content/dist/img/big/ad-1.png" class="img-responsive" width="250"></div>
+            <div class="p-tb-xs"><img src="~/Content/dist/img/big/ad-2.png" class="img-responsive" width="250"></div>
+
+        </div><!-- /.col-3 -->
+    </div>
+
+
+</div><!-- /row -->
+<!-- Added by saka -->
+
+

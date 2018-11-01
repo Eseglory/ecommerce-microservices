@@ -231,26 +231,32 @@
                                                                                 </div>
 
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label mb-10">Mark areas your willing to mentor  or provide academic services </label>
+                                                                                    <label class="control-label mb-10">Mark areas you are willing to mentor  or provide academic services </label>
                                                                                     @if (@Model.MyProfile.MentorCategory != string.Empty)
                                                                                     {
                                                                                         @Html.TextBoxFor(m => m.MyProfile.MentorCategory, new { @class = "form-control", @readonly = "readonly" })
                                                                                     }
-                                                                                    <select class="form-control" id="myWillings" required = false multiple="multiple" value=@Model.MyProfile.MentorCategory required name="myWillingToBe">
-                                                                                        @if (ViewBag.myWillings != null)
-                                                                                        {
-                                                                                            foreach (var item in ViewBag.myWillings)
+                                                                                    
+                                                                                    <!--saka-->
+
+                                                                                    <select class="form-control select2 select2-multiple" id="myWillings" multiple="multiple" value=@Model.MyProfile.MentorCategory  name="myWillingToBe" data-placeholder="Select the areas">
+                                                                                       
+                                                                                            @if (ViewBag.myWillings != null)
                                                                                             {
-                                                                                                if (item.Text != null)
+                                                                                                foreach (var item in ViewBag.myWillings)
                                                                                                 {
-                                                                                                    <option value="@item.Text">
-                                                                                                        @item.Text
-                                                                                                    </option>
+                                                                                                    if (item.Text != null)
+                                                                                                    {
+                                                                                                        <option value="@item.Text">
+                                                                                                            @item.Text
+                                                                                                        </option>
+                                                                                                    }
                                                                                                 }
                                                                                             }
-                                                                                        }
-                                                                                    </select>
-                                                                                </div>
+                                                                                        </select>
+
+                                                                                        <!--sas-->
+</div>
 
 
                                                                                 <div class="form-group">
@@ -989,12 +995,8 @@ else
                     </div>
                     <!-- START carousel-->
                     <div id="twitter_slider" data-ride="carousel" class="carousel slide twitter-slider-wrap text-slider">
-                        <ol class="carousel-indicators">
-                            <li data-target="#twitter_slider" data-slide-to="0" class="active"></li>
-                            <li data-target="#twitter_slider" data-slide-to="1"></li>
-                        </ol>
-                        <div id="tweets_fetch" role="listbox" class="carousel-inner mb-50">
-                        </div>
+                        <a class="twitter-timeline" data-width="302" data-height="450" href="https://twitter.com/mentor_partner?ref_src=twsrc%5Etfw">Tweets by mentor_partner</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                     <!-- END carousel-->
                 </div>
@@ -1003,7 +1005,7 @@ else
         <div class="panel panel-default card-view">
             <div class="panel-heading">
                 <div class="pull-left">
-                    <h6 class="panel-title txt-dark">Follow Mentor Partners</h6>
+                    <h6 class="panel-title txt-dark">Follow Mentor_Partner</h6>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -1018,38 +1020,6 @@ else
     </div>
 </div>
 <!-- /Row -->
-@section scripts
-{
-    @*@Scripts.Render("~/bundles/jqueryval")*@
 
-    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
-          rel="stylesheet" type="text/css" />
-    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
+ 
 
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(function () {
-                $('#mySkills').multiselect({
-                    includeSelectAllOption: true
-                });
-            });
-            $("#btnGetSkills").click(function () {
-                alert($("#mySkills").val());
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(function () {
-                $('#myWillings').multiselect({
-                    includeSelectAllOption: true
-                });
-            });
-            $("#btnGetWillings").click(function () {
-                alert($("#myWillings").val());
-            });
-        });
-    </script>
-}
