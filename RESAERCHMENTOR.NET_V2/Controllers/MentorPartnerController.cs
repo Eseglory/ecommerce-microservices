@@ -433,6 +433,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                             myuserlist = (from DataRow rec in dt.Rows
                                           select new UserProfileViewModel()
                                           {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
                                               LName = rec["LName"].ToString(),
