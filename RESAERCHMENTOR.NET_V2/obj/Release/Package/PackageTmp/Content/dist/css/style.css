@@ -2741,12 +2741,12 @@ a#toggle_mobile_nav {
   .navbar.navbar-inverse.navbar-fixed-top {
     border-bottom: 1px solid #dedede;
     margin-bottom: 0;
-    height: 66px;
+    min-height: 66px;
     padding: 0 15px 0 0; }
     .navbar.navbar-inverse.navbar-fixed-top .nav-header {
       width: 270px;
       padding-left: 15px;
-      height: 66px;
+      min-height: 66px;
       -webkit-transition: 0.4s ease;
       -moz-transition: 0.4s ease;
       transition: 0.4s ease;
@@ -8138,6 +8138,18 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 
 
 
+    
+div#navbar ul#sakay li{
+	 display:block;
+	 border-right:#fff 1px solid;
+	 line-height:66px;
+	 padding:0 7px 0px 7px;
+	 width:120px;
+	 text-align:center;
+ }
 
+div#navbar ul#sakay li:last-child{
+     border-right:none;	
+	}
 
 

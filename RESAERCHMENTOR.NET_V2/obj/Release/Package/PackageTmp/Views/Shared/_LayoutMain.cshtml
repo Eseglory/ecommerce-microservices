@@ -76,120 +76,132 @@
         @if (Request.IsAuthenticated)
         {
 			 <!-- Top Menu Items -->
-            <nav class="navbar navbar-inverse navbar-fixed-top">
-                <div class="mobile-only-brand pull-left">
-                    <div class="nav-header pull-left">
-                        <div class="logo-wrap">
-                            <a href="@Url.Action("index","home")">
-                                <img class="" src="~/Content/dist/img/logo.png" alt="brand" />
-                                <!---span class="brand-text">Mentor Partner</span-->
-                            </a>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div id="mobile_only_nav" class="mobile-only-nav pull-right">
-                    <ul class="nav navbar-right top-nav pull-right">
-
-
-                        <li>
-                            <a href="@Url.Action("index","home")" data-toggle=""><i class="ti-home"> Home</i> </a>
-                        </li>
-
-                        <li>
-                            <a href="@Url.Action("AddPost", "MentorPartner")" data-toggle="">
-                                <i class="ti-comments">
-                                    Post
-                                </i>
-                            </a>
-                        </li>
-
-                        <li style="width:200px;">
-                            <a href="@Url.Action("AddResearch", "MentorPartner")" data-toggle="">
-                                <i class="ti-comment-alt">
-                                    Add research
-                                </i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("UserInbox", "MentorPartner")" data-toggle="">
-                                <i class="ti-envelope">
-                                    Messages
-                                </i>
-                            </a>
-                        </li>
-
-                        <li style="width:200px;">
-                            <a href="@Url.Action("userSearch", "MentorPartner")" data-toggle=""><i class="ti-user"> Find a Mentor </i></a>
-                        </li>
-
-                        <li>
-                            <a href="@Url.Action("UserProfile", "MentorPartner")">
-                                @{var User = dbconrext.GetLoginUser(Username); }
-                                @if (User != null)
-                                {
-                                    if (@imgName == string.Empty && User.Gender == "Male")
-
-                                     {
-                                         <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-auth-img img-circle"/>
-                                     }
-                                     else if (@imgName == string.Empty && dbconrext.GetLoginUser(Username).Gender == "Female")
-                                     {
-                                         <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-auth-img img-circle"/>
-                                     }
-                                     else
-                                     {
-                                         <img src="~/Files/@imgName" alt="user_auth" class="user-auth-img img-circle"/>
-
-
-                                     }
-                                }
-                                <span class="user-online-status"></span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="@Url.Action("LogOffExtend", "Account")"><i class="ti-lock"> Log Out</i></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            
 			<!-- /Top Menu Items -->
 			<!-- Right Sidebar Menu -->
+                                    <!-- Main Content -->
+                                    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top yusuf">
+                                        <div class="container" style="width:100%;">
+                                            <div class="navbar-header">
+                                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                                    <span class="sr-only">Toggle navigation</span>
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                </button>
+                                                    <a href="@Url.Action("index","home")" style="padding-top:0px; height:66px;">
+                                                        <img class="" src="~/Content/dist/img/logo.png" alt="brand" />
+                                                        <!---span class="brand-text">Mentor Partner</span-->
+                                                    </a> 
+                                            </div>
+                                            <div id="navbar" class="navbar-collapse collapse">
 
+                                                <ul class="nav navbar-nav navbar-right" id="sakay">
+
+
+
+
+                                                    <li>
+                                                        <a href="@Url.Action("index","home")" data-toggle=""><i class="ti-home"> Home</i> </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="@Url.Action("AddPost", "MentorPartner")" data-toggle="">
+                                                            <i class="ti-comments">
+                                                                Post
+                                                            </i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li style="width:200px;">
+                                                        <a href="@Url.Action("AddResearch", "MentorPartner")" data-toggle="">
+                                                            <i class="ti-comment-alt">
+                                                                Add research
+                                                            </i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="@Url.Action("UserInbox", "MentorPartner")" data-toggle="">
+                                                            <i class="ti-envelope">
+                                                                Messages
+                                                            </i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li style="width:200px;">
+                                                        <a href="@Url.Action("userSearch", "MentorPartner")" data-toggle=""><i class="ti-user"> Find a Mentor </i></a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="@Url.Action("UserProfile", "MentorPartner")">
+                                                            @{var User = dbconrext.GetLoginUser(Username); }
+                                                            @if (User != null)
+                                                            {
+                                                                if (@imgName == string.Empty && User.Gender == "Male")
+
+                                                                {
+                                                                    <img src="~/Content/dist/img/userMale.png" alt="user_auth" class="user-auth-img img-circle" />
+                                                                }
+                                                                else if (@imgName == string.Empty && dbconrext.GetLoginUser(Username).Gender == "Female")
+                                                                {
+                                                                    <img src="~/Content/dist/img/userfeMale.png" alt="user_auth" class="user-auth-img img-circle" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <img src="~/Files/@imgName" alt="user_auth" class="user-auth-img img-circle" />
+
+
+                                                                }
+                                                            }
+                                                            <span class="user-online-status"></span>
+                                                        </a>
+
+                                                    </li>
+                                                    <li>
+                                                        <a href="@Url.Action("LogOffExtend", "Account")"><i class="ti-lock"> Log Out</i></a>
+                                                    </li>
+
+                                                </ul>
+                                            </div><!--/.nav-collapse -->
+                                        </div>
+                                    </nav>
             <!-- Right Sidebar Menu -->
 
 
-        }
-        else
-        {
+                                    }
+                                    else
+                                    {
 			  <!-- Top Menu Items -->
-            <nav class="navbar navbar-inverse navbar-fixed-top">
-                <div class="mobile-only-brand pull-left">
-                    <div class="nav-header pull-left">
-                        <div class="logo-wrap">
-                            <a href="@Url.Action("index","home")">
-                                <img class="" src="~/Content/dist/img/logo.png" alt="brand" />
-                                <!--span class="brand-text">Mentor Partner</span -->
-                            </a>
-                        </div>
-                    </div>
+                                     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top yusuf">
+                                            <div class="container" style="width:100%;">
+                                                <div class="navbar-header">
+                                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                                        <span class="sr-only">Toggle navigation</span>
+                                                        <span class="icon-bar"></span>
+                                                        <span class="icon-bar"></span>
+                                                        <span class="icon-bar"></span>
+                                                    </button>
 
+                                                    <a class="navbar-brand" href="@Url.Action("index","home")" style="padding-top:0px; height:66px;">
+                                                        <img class="" src="~/Content/dist/img/logo.png" alt="brand" />
+                                                        <!--span class="brand-text">Mentor Partner</span -->
+                                                    </a>
+                                                </div>
+                                                <div id="navbar" class="navbar-collapse collapse">
 
-                </div>
+                                                    <ul class="nav navbar-nav navbar-right" id="sakay">
 
-                <div>
-                    <ul class="nav navbar-right top-nav pull-right">
-                        <li class="active"><a href="@Url.Action("index","home")"><i class=" ti-home"> Home</i></a></li>
-                        <li class="active"><a href="@Url.Action("Register","Account")"><i class=" ti-user"> Sign Up</i> </a></li>
-                        <li class="active"><a href="@Url.Action("Login","Account")"><i class="ti-lock"> Log In</i> </a></li>
-                    </ul>
-                </div>
-
-            </nav>
+                                                        <li class="active"><a href="@Url.Action("index","home")"><i class=" ti-home"> Home</i></a></li>
+                                                        <li class="active"><a href="@Url.Action("Register","Account")"><i class=" ti-user"> Sign Up</i> </a></li>
+                                                        <li class="active"><a href="@Url.Action("Login","Account")"><i class="ti-lock"> Log In</i> </a></li>
+                                                    </ul>
+                                                </div><!--/.nav-collapse -->
+                                            </div>
+                                        </nav>
 			  <!-- /Top Menu Items -->
-        }
+
+
+                                    }
         <!-- Main Content -->
         <div class="page-wrapper">
             <div class="container-fluid">

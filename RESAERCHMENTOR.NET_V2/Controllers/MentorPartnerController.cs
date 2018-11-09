@@ -274,11 +274,15 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         public ActionResult UpdateProfile_Click(MyModelObjects model, HttpPostedFileBase postedFile, List<string> myWillingToBe)
         {
             MyModelObjects LoadProfile = new MyModelObjects();
-            if (myWillingToBe.Any())
+            
+
+           
+            if (myWillingToBe != null)
             {
                 string myWillingToBeItems = string.Join(",", myWillingToBe.ToArray());
                 model.MyProfile.MentorCategory = myWillingToBeItems;
             }
+            
 
             if (postedFile != null)
             {
