@@ -69,6 +69,7 @@ namespace RESAERCHMENTOR.NET_V2.ViewModels
         #endregion
         #region Following
         public string Following { get; set; }
+        public string FollowingId { get; set; }
         public string Follower { get; set; }
         public string FollowDate { get; set; }
         #endregion

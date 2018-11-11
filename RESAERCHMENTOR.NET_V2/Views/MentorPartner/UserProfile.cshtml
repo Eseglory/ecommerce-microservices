@@ -236,11 +236,11 @@
                                                                                     {
                                                                                         @Html.TextBoxFor(m => m.MyProfile.MentorCategory, new { @class = "form-control", @readonly = "readonly" })
                                                                                     }
-                                                                                    
+
                                                                                     <!--saka-->
 
                                                                                     <select class="form-control select2 select2-multiple" id="myWillings" multiple="multiple" value=@Model.MyProfile.MentorCategory  name="myWillingToBe" data-placeholder="Select the areas">
-                                                                                       
+
                                                                                             @if (ViewBag.myWillings != null)
                                                                                             {
                                                                                                 foreach (var item in ViewBag.myWillings)
@@ -576,7 +576,7 @@ else
                                                                 <span class="name block capitalize-font">@myName </span>
                                                                 <span class="time block truncate txt-grey">@item.Following</span>
                                                             </div>
-                                                            <a title="Un-Follow This Person" href="@Url.Action("UnFollow_Click", "mentorpartner", new { id = item.Id })" class="btn btn-success btn-outline pull-right btn-xs fixed-btn"> Un-Follow <i class='fa fa-user'></i></a>
+                                                            <a title="Un-Follow This Person" href="@Url.Action("UnFollow_Click", "mentorpartner", new { id = item.FollowingId })" class="btn btn-success btn-outline pull-right btn-xs fixed-btn"> Un-Follow <i class='fa fa-user'></i></a>
                                                             <div class="clearfix"></div>
                                                         </div>
                                                                     }
@@ -1021,5 +1021,5 @@ else
 </div>
 <!-- /Row -->
 
- 
+
 

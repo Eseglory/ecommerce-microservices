@@ -274,15 +274,15 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         public ActionResult UpdateProfile_Click(MyModelObjects model, HttpPostedFileBase postedFile, List<string> myWillingToBe)
         {
             MyModelObjects LoadProfile = new MyModelObjects();
-            
 
-           
+
+
             if (myWillingToBe != null)
             {
                 string myWillingToBeItems = string.Join(",", myWillingToBe.ToArray());
                 model.MyProfile.MentorCategory = myWillingToBeItems;
             }
-            
+
 
             if (postedFile != null)
             {
@@ -447,6 +447,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                                               ConfirmationCode = rec["ConfirmationCode"].ToString(),
                                               ProfilePicsName = rec["ProfilePicsName"].ToString(),
                                               Following = rec["Following"].ToString(),
+
                                           }).ToList();
                             #endregion
                         }
@@ -465,6 +466,9 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 {
                     rec.FName = GetSingleUsersByEmail(rec.Following).FName;
                     rec.LName = GetSingleUsersByEmail(rec.Following).LName;
+                    rec.Title = GetSingleUsersByEmail(rec.Following).Title;
+                    rec.ProfilePicsName = GetSingleUsersByEmail(rec.Following).ProfilePicsName;
+                    rec.FollowingId = GetSingleUsersByEmail(rec.Following).Id.ToString();
                 }
             }
             return myuserlist;
@@ -1720,7 +1724,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             if (id != null)
             {
                 var myDashBoardIn = GetResearches().Single(d => d.ResearchId == id);
-                
+
                 if (myDashBoardIn != null)
                 {
                     MyObjectList.DashBoardDetail = new DashBoard();
@@ -1732,7 +1736,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     MyObjectList.DashBoardDetail.ResearchId = myDashBoardIn.ResearchId;
                 }
 
-                
+
             }
             return View(MyObjectList);
         }
