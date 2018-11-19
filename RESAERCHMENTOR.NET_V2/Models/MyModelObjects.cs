@@ -19,5 +19,8 @@ namespace RESAERCHMENTOR.NET_V2.Models
         public List<UserProfileViewModel> MyMessageInbox { get; set; }
         public List<UserProfileViewModel> MyActivities { get; set; }
         public List<UserProfileViewModel> GetOtherUsersResearch { get; set; }
+
+
+        public List<UserProfileViewModel> GetAllUsersForUserPro { get; set; }
     }
 }

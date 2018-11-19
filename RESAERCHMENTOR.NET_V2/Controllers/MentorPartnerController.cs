@@ -532,7 +532,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                 try
                 {
                     string query = "";
-                    query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "'";
+                    query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and IsConfirmed = 1";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -594,11 +594,11 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
                     string query = "";
                     if (param != null || param != string.Empty)
                     {
-                        query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "'";
+                        query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and IsConfirmed = 1";
                     }
                     else
                     {
-                        query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and Expertise like '" + param + "'";
+                        query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and Expertise like '" + param + "' and IsConfirmed = 1";
                     }
 
                     con.Open();

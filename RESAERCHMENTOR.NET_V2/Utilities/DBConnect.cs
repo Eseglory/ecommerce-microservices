@@ -26,7 +26,7 @@ namespace RESAERCHMENTOR.NET.Controllers
         {
             try
             {
-                mail = new MailMessage(new MailAddress("pasosoese@gmail.com", "Mentor Partner"), new MailAddress(email));
+                mail = new MailMessage(new MailAddress("mentorpartnernet@gmail.com", "Mentor Partner"), new MailAddress(email));
                 mail.Subject = "Registration Confirmation Process For " + user;
                 mail.Body = message;
                 mail.IsBodyHtml = true;
@@ -45,7 +45,7 @@ namespace RESAERCHMENTOR.NET.Controllers
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("pasosoese@gmail.com", "eseosa@1212")
+                    Credentials = new NetworkCredential("mentorpartnernet@gmail.com", "Mentorpartner2018")
                 };
 
                 smtp.Send(mail);
@@ -60,7 +60,7 @@ namespace RESAERCHMENTOR.NET.Controllers
         {
             try
             {
-                mail = new MailMessage(new MailAddress("pasosoese@gmail.com", "Mentor Partner"), new MailAddress(email));
+                mail = new MailMessage(new MailAddress("mentorpartnernet@gmail.com", "Mentor Partner"), new MailAddress(email));
                 mail.Subject = Subject;
                 mail.Body = message;
                 mail.IsBodyHtml = true;
@@ -79,7 +79,7 @@ namespace RESAERCHMENTOR.NET.Controllers
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("pasosoese@gmail.com", "eseosa@1212")
+                    Credentials = new NetworkCredential("mentorpartnernet@gmail.com", "Mentorpartner2018")
                 };
 
                 smtp.Send(mail);
@@ -199,6 +199,7 @@ namespace RESAERCHMENTOR.NET.Controllers
                             myuserlist = (from DataRow rec in dt.Rows
                                           select new UserProfileViewModel()
                                           {
+                                              Id = Convert.ToInt32(rec["Id"].ToString()),
                                               Title = rec["Title"].ToString(),
                                               FName = rec["FName"].ToString(),
                                               LName = rec["LName"].ToString(),
@@ -210,7 +211,7 @@ namespace RESAERCHMENTOR.NET.Controllers
                                               OwnersId = rec["OwnersId"].ToString(),
                                               DateCreated = rec["DateCreated"].ToString(),
                                               ConfirmationCode = rec["ConfirmationCode"].ToString(),
-                                              ProfilePicsName = rec["ConfirmationCode"].ToString(),
+                                              ProfilePicsName = rec["ProfilePicsName"].ToString(),
                                               Following = rec["Following"].ToString(),
                                           }).ToList();
                             #endregion
@@ -230,6 +231,9 @@ namespace RESAERCHMENTOR.NET.Controllers
                 {
                     rec.FName = GetSingleUsersByEmail(rec.Following).FName;
                     rec.LName = GetSingleUsersByEmail(rec.Following).LName;
+                    rec.Title = GetSingleUsersByEmail(rec.Following).Title;
+                    rec.ProfilePicsName = GetSingleUsersByEmail(rec.Following).ProfilePicsName;
+                    rec.FollowingId = GetSingleUsersByEmail(rec.Following).Id.ToString();
                 }
             }
             return myuserlist;
@@ -291,7 +295,7 @@ namespace RESAERCHMENTOR.NET.Controllers
                 try
                 {
                     string query = "";
-                    query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "'";
+                    query = "select distinct * from Profile as a where a.OwnersId != '" + userName + "' and IsConfirmed = 1";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {

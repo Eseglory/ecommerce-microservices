@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
-
+<br /><br /><br />
 <!-- Row -->
 <div class="row">
     <div class="col-lg-3 col-xs-12">
@@ -125,7 +125,7 @@ else
                     <div class="tab-struct custom-tab-1">
                         <ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
                             <li class="active" role="presentation"><a data-toggle="tab" id="profile_tab_9" role="tab" href="#profile_9" aria-expanded="false"><span>info</span></a></li>
-                            <li role="presentation" class=""><a data-toggle="tab" id="follo_tab_8" role="tab" href="#follo_8" aria-expanded="false"><span>Follow</span></a></li>
+                            <!---li role="presentation" class=""><a data-toggle="tab" id="follo_tab_8" role="tab" href="#follo_8" aria-expanded="false"><span>Follow</span></a></li-->
                             <li role="presentation" class=""><a data-toggle="tab" id="following_tab_8" role="tab" href="#folloing_8" aria-expanded="false"><span>Following</span></a></li>
                         </ul>
                         <div class="tab-content" id="myTabContent_8">
@@ -303,8 +303,19 @@ else
                                                         @{foreach (var item in Model.FollowingList)
                                                             {
                                                                 <div class="follo-data">
-                                                                   
-                                                                    <img class="user-img img-circle" src="~/Content/dist/img/user1.png" alt="user" />
+                                                                    @if (item.ProfilePicsName == string.Empty && item.Gender == "Male")
+                                                                    {
+                                                                        <img class="user-img img-circle" src="~/Content/dist/img/userMale.png" />
+                                                                    }
+
+                                                                    else if (item.ProfilePicsName == string.Empty && item.Gender == "Female")
+                                                                    {
+                                                                        <img class="user-img img-circle" src="~/Content/dist/img/userfeMale.png" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img class="user-img img-circle" src="~/Files/@item.ProfilePicsName" alt="user" />
+                                                                    }
                                                                     <div class="user-data">
                                                                         @{ string myName = item.Title + " " + item.LName + " " + item.FName;}
                                                                         <span class="name block capitalize-font">@myName </span>
