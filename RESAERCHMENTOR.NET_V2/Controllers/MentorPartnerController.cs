@@ -55,13 +55,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult UserProfile()
         {
-            if (Session.Contents.Count == 0)
-
-            {
-
-                return View("index", "Home");
-
-            }
+           
             if (!Request.IsAuthenticated)
             {
                 return RedirectToAction("index", "Home");
@@ -90,13 +84,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult Index()
         {
-            if (Session.Contents.Count == 0)
-
-            {
-
-                return View("index", "Home");
-
-            }
+            
             var result = (from skills in _context.WillingTo select skills).ToList();
             if (result != null)
             {
@@ -162,13 +150,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult DashBoard()
         {
-            if (Session.Contents.Count == 0)
-
-            {
-
-                return View("index", "Home");
-
-            }
+            
             if (!Request.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
@@ -183,13 +165,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult UserInfo(string id)
         {
-            if (Session.Contents.Count == 0)
-
-            {
-
-                return View("index", "Home");
-
-            }
+            
             if (!Request.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
@@ -202,13 +178,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult userSearch()
         {
-            if (Session.Contents.Count == 0)
-
-            {
-
-                return View("index", "Home");
-
-            }
+            
             if (!Request.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
@@ -220,13 +190,6 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult userSearchResult(string fieldExpertise)
         {
-            if (Session.Contents.Count == 0)
-
-            {
-
-                return View("index", "Home");
-
-            }
             if (!Request.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
@@ -249,13 +212,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult UserOutbox()
         {
-            if (Session.Contents.Count == 0)
-
-            {
-
-                return View("index", "Home");
-
-            }
+            
             if (!Request.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
@@ -268,13 +225,7 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
         }
         public ActionResult SendMessage(string id)
         {
-            if (Session.Contents.Count == 0)
-
-            {
-
-                return View("index", "Home");
-
-            }
+            
             if (!Request.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
