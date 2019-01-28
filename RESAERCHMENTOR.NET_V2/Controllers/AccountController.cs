@@ -152,33 +152,33 @@ namespace RESAERCHMENTOR.NET_V2.Controllers
             if (ModelState.IsValid)
             {
                 #region Check Email
-                string emailCheck = model.Email;
-                if (emailCheck.Contains("gmail"))
-                {
-                    ViewBag.ErrorText = "Sorry you can only use your institution email address";
-                    return View(model);
-                }
-                else if (emailCheck.Contains("hotmail"))
-                {
-                    ViewBag.ErrorText = "Sorry you can only use your institution email address";
-                    return View(model);
-                }
-                else if (emailCheck.Contains("livemail"))
-                {
-                    ViewBag.ErrorText = "Sorry you can only use your institution email address";
-                    return View(model);
-                }
-                else if (emailCheck.Contains("yahoo"))
-                {
-                    ViewBag.ErrorText = "Sorry you can only use your institution email address";
-                    return View(model);
-                }
-                else if (emailCheck.Contains("outlook"))
-                {
-                    ViewBag.ErrorText = "Sorry you can only use your institution email address";
-                    return View(model);
-                }
-                #endregion
+                //string emailCheck = model.Email;
+                //if (emailCheck.Contains("gmail"))
+                //{
+                //    ViewBag.ErrorText = "Sorry you can only use your institution email address";
+                //    return View(model);
+                //}
+                //else if (emailCheck.Contains("hotmail"))
+                //{
+                //    ViewBag.ErrorText = "Sorry you can only use your institution email address";
+                //    return View(model);
+                //}
+                //else if (emailCheck.Contains("livemail"))
+                //{
+                //    ViewBag.ErrorText = "Sorry you can only use your institution email address";
+                //    return View(model);
+                //}
+                //else if (emailCheck.Contains("yahoo"))
+                //{
+                //    ViewBag.ErrorText = "Sorry you can only use your institution email address";
+                //    return View(model);
+                //}
+                //else if (emailCheck.Contains("outlook"))
+                //{
+                //    ViewBag.ErrorText = "Sorry you can only use your institution email address";
+                //    return View(model);
+                //}
+               #endregion
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
